@@ -1,0 +1,162 @@
+﻿@using Yookey.WisdomClassed.SIP.Enumerate
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+    </script>
+    <style type="text/css">
+        * {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="a1"></div>
+
+    <script src="@Url.Content("~/Librarys/ckplayer6.6/ckplayer/ckplayer.js")" charset="utf-8"></script>
+    <script type="text/javascript">
+        var isLoaded = false;
+        ckplayer_a1 = CKobject.getObjectById('ckplayer_a1');
+        onmouseout = "pauseTime()";
+        function loadedHandler() {
+            isLoaded = true; //说明播放器已加载    
+            //监听    
+            CKobject.getObjectById('ckplayer_a1').addListener("play", "pausedStart");
+            CKobject.getObjectById('ckplayer_a1').addListener("pause", "pauseEnd");
+        }
+        var flashvars = {
+            f: "@ViewBag.FileAddress",
+            c: 0,
+            p: 1,
+            b: 0,
+            e: 0,
+            h: 3,
+            g: @ViewBag.LastStudySec,      //默认第多少秒开始播放
+            loaded: 'loadedHandler'
+        };
+        var params = { bgcolor: '#FFF', allowFullScreen: true, allowScriptAccess: 'always', wmode: 'transparent' };
+        //CKobject.embedSWF('@Url.Content("~/Librarys/ckplayer6.6/ckplayer/ckplayer.swf")', 'a1', 'ckplayer_a1', $(document).width(),$(document).height(),  flashvars, params);
+        CKobject.embedSWF('@Url.Content("~/Librarys/ckplayer6.6/ckplayer/ckplayer.swf")', 'a1', 'ckplayer_a1', 1500,750, flashvars, params);
+        /*
+        CKobject.embedSWF(播放器路径,容器id,播放器id/name,播放器宽,播放器高,flashvars的值,其它定义也可省略);
+        下面三行是调用html5播放器用到的
+       
+        var video = ['http://movie.ks.js.cn/flv/other/1_0.mp4->video/mp4', 'http://www.ckplayer.com/webm/0.webm->video/webm', 'http://www.ckplayer.com/webm/0.ogv->video/ogg'];
+        var support = ['iPad', 'iPhone', 'ios', 'android+false', 'msie10+false'];
+        CKobject.embedHTML5('a1', 'ckplayer_a1', 890, 490, video, flashvars, support);
+         */
+
+        function playTime() {
+            CKobject.getObjectById('ckplayer_a1').addListener("play", "pausedHandler");
+        }
+        function pausedStart(play) {
+            isStudy = true;
+        }
+        var totaltime = 0;
+        var time = 0;
+        function pauseEnd(pause) {
+            isStudy = false;
+        }
+        
+        function pauseTime() {
+            CKobject.getObjectById('ckplayer_a1').videoPause();
+            isStudy = false;
+        }
+
+        var studytime = 0;  //已学习时长
+        var stime = 0;   //总时间（用于监听鼠标）
+        var minute = 0;  //分钟
+        var second = 0;  //秒
+        var timeout;
+        var isStudy = true;
+        function ListenerTime() {
+            if (isStudy) {
+                minute = Math.floor(minute);
+                if (minute < 10)
+                    minute = "0" + minute;
+                if (second < 10)
+                    second = "0" + second;
+                stime++;
+                studytime++;
+                minute = stime / 60;
+                second = stime % 60;
+                if (minute > 10) {   //视频5分钟不动后不再计时
+                    pauseTime();
+                }
+            }
+            timeout = setTimeout("ListenerTime()", 1000);
+        }
+        $(function () {
+            ListenerTime();
+            //鼠标移动事件
+            $(document).mousemove(function () {
+                stime = 0;
+                minute = 0;
+                second = 0;
+            });
+        });
+        
+        function SaveProcess() {
+                
+            //当前播放时长
+            var playtime = CKobject.getObjectById('ckplayer_a1').getStatus().time;
+            //视频时长
+            var videotime=CKobject.getObjectById('ckplayer_a1').getStatus().totalTime;
+
+            var states = $("#states").val();
+            var startTime = $("#startTime").val();
+            var courseId = $("#courseId").val();
+            $.ajax({
+                url: '@Url.Action("StudyRecord")',
+                data: { courseId: courseId, courseType: 1, startTime: startTime, studyTime: studytime, studySec: playtime, isFinish: states,videoTime:videotime },
+                async: false,
+                datatype: 'json',
+                success: function (data) {
+                    //alert(data);
+                }
+            });
+        }
+
+        //function playerstop() {
+        //    $("#states").val('1');
+        //    //让窗体关闭
+        //    this.close();
+        //}
+        
+
+        function ckplayer_status(str){
+            if(str=="netStatus:NetStream.Play.Stop"){
+                CKobject.getObjectById('ckplayer_a1').videoPause();
+                CKobject.getObjectById('ckplayer_a1').videoClear();
+                $("#states").val('1');
+                //让窗体关闭
+                this.close();
+            }
+        }
+
+        window.onbeforeunload = function (event) {
+            var state=$("#states").val();
+            var msg = '友情提醒：该视频已经学习完成，请问是否需要退出？';
+            if(state=='0')
+                msg='友情提醒：该视频还没有播放结束,退出没有积分,你确定要退出吗？';
+            SaveProcess();
+            if (confirm(msg)) {
+                this.close();
+            } else {
+                return false;
+            }
+            return '';
+        };
+
+    </script>
+    <input type="hidden" value="@ViewBag.StartTime" id="startTime"/>
+    <input type="hidden" value="@ViewBag.CourseId" id="courseId"/>
+    <input type="hidden" id="states" value="0" />
+    <label id="StudyTime">
+    </label>
+</body>
+</html>

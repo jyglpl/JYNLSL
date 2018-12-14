@@ -1,0 +1,86 @@
+.caseColorOne {
+  color: #5186e0;
+}
+.caseColorTwo {
+  color: #71d8da;
+}
+.caseColorThree {
+  color: #00be43;
+}
+.caseColorFour {
+  color: #82be00;
+}
+.caseColorFive {
+  color: #c19e11;
+}
+.caseColorSix {
+  color: #d38b65;
+}
+.caseColorSeven {
+  color: #be0000;
+}
+.caseColorEight {
+  color: #be00b3;
+}
+body {
+  font-family: "微软雅黑", "Arial";
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+div,
+p,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+a:active {
+  text-decoration: none;
+}
+.lf {
+  float: left;
+}
+.rt {
+  float: right;
+}
+.clearfix:before {
+  content: "";
+  display: table;
+  clear: both;
+  height: 0px;
+}
+.clearfix {
+  width: 100%;
+  zoom: 1;
+}
+.clear {
+  clear: both;
+}
+.footer {
+  width: 100%;
+  height: 35px;
+  color: #000;
+  text-align: center;
+  line-height: 35px;
+  background-color: #fff;
+  font-size: 16px;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 5px;
+}
+/*************************/

@@ -1,0 +1,180 @@
+﻿@model Yookey.WisdomClassed.SIP.Model.Case.InfBuildInfoEntity
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>登记</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <link href="@Url.Content("~/Librarys/casepic/css/style.css")" rel="stylesheet" />
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件start-->
+
+</head>
+<body>
+    <div class="ScrollBar" style="margin: 1px; overflow: hidden;">
+        <div id="basic" class="tabPanel">
+            <form id="form">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle">部门：
+                        </th>
+                        <td class="formValue">@Html.DropDownListFor(m => m.DeptId, (ViewData["Depts"] as IEnumerable<SelectListItem>), new { @class = "select", @width = "130px" })</td>
+                        
+                        <th class="formTitle">当前状态：
+                        </th>
+                        <td class="formValue">@Html.DropDownListFor(m => m.Status, (ViewData["Statuses"] as IEnumerable<SelectListItem>), new { @class = "select", @width = "130px" })</td>
+                    </tr>
+                    <tr>
+                         <th class="formTitle">当事人：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.UserName, new { @class = "txt", @maxLength = "50" })</td>
+                        
+                       <th class="formTitle">来源：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.DataSource, new { @class = "txt" })</td>
+                    </tr>
+                    <tr>
+                       <th class="formTitle">属地管理：
+                        </th>
+                        <td class="formValue" colspan="3">@Html.TextBoxFor(m => m.Subordinate, new { @class = "txt", @maxLength = "50" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">收到社工委转规划认定时间：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.AffirmationTime, Model.AffirmationTime.ToString("yyyy-MM-dd"), new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:100px" })</td>
+                        <th class="formTitle">转交大队办理时间：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.ReceiveTime, Model.ReceiveTime.ToString("yyyy-MM-dd"), new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:100px" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">地点：
+                        </th>
+                        <td class="formValue" colspan="3">@Html.TextBoxFor(m => m.Address, new { @class = "txt", @maxLength = "500" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">附件：
+                        </th>
+                        <td class="formValue" colspan="3">
+                            @Html.Action("FilesTab",new{ResourceId=Model.Id})
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">立案审批：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.Filed, new { @class = "txt", @maxLength = "50" })</td>
+                        <th class="formTitle">停违单：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.NoticeNo, new { @class = "txt", @maxLength = "50" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">处理审批：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.DealWith, new { @class = "txt", @maxLength = "50" })</td>
+                        <th class="formTitle">处罚告知书：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.Inform, new { @class = "txt", @maxLength = "50" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">陈述申辩：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.CT, new { @class = "txt", @maxLength = "50" })</td>
+                        <th class="formTitle">处罚决定书：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.Decision, new { @class = "txt", @maxLength = "50" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">公告时间：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.Announcement, Model.Announcement.ToString("yyyy-MM-dd"), new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:100px" })</td>
+                        <th class="formTitle">行政复议：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.Reconsider, new { @class = "txt", @maxLength = "50" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">行政诉讼一审：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.LawsuitFirst, new { @class = "txt", @maxLength = "50" })</td>
+                        <th class="formTitle">行政诉讼二审：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.LawsuitSecond, new { @class = "txt", @maxLength = "50" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">管委会责令：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.GovementOrder, new { @class = "txt", @maxLength = "50" })</td>
+                        <th class="formTitle">强制催告书：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.Exigent, new { @class = "txt", @maxLength = "50" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">强制决定书：
+                        </th>
+                        <td class="formValue">@Html.TextBoxFor(m => m.ForcedDecision, new { @class = "txt", @maxLength = "50" })</td>
+                        <th class="formTitle"></th>
+                        <td class="formValue"></td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">执行情况：
+                        </th>
+                        <td class="formValue" colspan="3">@Html.TextBoxFor(m => m.ExecutiveCondition, new { @class = "txt", @maxLength = "500" })</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: center">&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: center">
+                            <input type="button" value="保存" class="btnSearch" onclick="saveData()"/>&nbsp;
+                            <input type="button" value="取消" class="btnSearch" onclick="cancel()" /></td>
+                    </tr>
+                </table>
+                @Html.HiddenFor(m => m.Id)
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function saveData() {
+       
+        var DeptId = $("#DeptId").val();
+        var UserName = $("#UserName").val();
+        if (DeptId == "")
+        {
+            alertDialog("请选择部门", -1);
+            return;
+        }
+        if (UserName == "") {
+            alertDialog("请填写当事人姓名", -1);
+        }
+        AjaxJson("@Url.Action("CreateOrUpdate")", $("#form").serialize(), function (data) {
+            if (data.rtState)
+                alertDialog("保存成功", 2);
+            top.frames[tabiframeId()].reload();
+        });
+
+    }
+    //关闭
+    function cancel() {
+        var api = frameElement.api;
+        api.close();
+    }
+
+</script>

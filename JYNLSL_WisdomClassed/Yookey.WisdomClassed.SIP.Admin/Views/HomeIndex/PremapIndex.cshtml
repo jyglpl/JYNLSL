@@ -1,0 +1,118 @@
+﻿<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@(Yookey.WisdomClassed.SIP.Common.AppConfig.SystemName)</title>
+    <link href="@Url.Content("~/Content/Main/css/border.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/Main/js/learunui-framework.js")"></script>
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <link href="~/Content/Main/css/swiper.min.css" rel="stylesheet" />
+    <!--框架必需start-->
+    @*<link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />*@
+    @*<link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />*@
+    @*<link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />*@
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <!--框架必需end-->
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")"></script>
+    <!--引入弹窗组件end-->
+    <script src="@Url.Content("~/Scripts/Index.js")"></script>
+     <!--引入时间组件start-->
+    <!--引入时间组件end-->
+    <!--[if lt IE 8]>
+    <script src="js/ie8.js"></script>
+<![endif]-->
+    <script>
+        $(document).ready(function () {
+            AddTabMenu('Imain', 'http://app.cityfun.com.cn/cgzfmap/');
+        });
+    </script>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="headerTop">
+        <p>
+            <img src="~/Content/Main/images/logoTwo.png" alt="">
+        </p>
+        <ul>
+            <li>
+                <a href="@Url.Action("Index", "HomeIndex")">
+                    <img src="~/Content/Main/images/home.png" alt="" />
+                    <div>系统首页</div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:AddTabMenu('WorkList', '@Url.Action("Index", "WorkList")');">
+                    <div style="position: relative">
+                        <div class='newsIcon' id="Untreated">0</div>
+                        <img src="~/Content/Main/images/news.png" alt="" />
+                    </div>
+                    <div>待办事宜</div>
+                </a>
+            </li>
+            <li><a href="javascript:void(0);">
+                <img src="~/Content/Main/images/nav2.png" alt="" />
+                <div>帮助中心</div>
+            </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="~/Content/Main/images/nav3.png" alt="" />
+                    <div>操作手册</div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="~/Content/Main/images/nav4.png" alt="" />
+                    <div>个人中心</div>
+                </a>
+            </li>
+            <li><a href="@Url.Action("Index", "HomeIndex")">
+                <img src="~/Content/Main/images/nav5.png" alt="" />
+                <div>安全退出</div>
+            </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 内容 -->
+    <div id="content" class="clearfixed">
+        <!-- 右侧内容 -->
+        <div class="fullContent clearfix" id="ContentPanel" style="border: none; background-color: white;">
+            @* <div i></div>*@
+        </div>
+        <div id="footer">
+            技术支持:江苏中越科技发展有限公司
+        </div>
+    </div>
+
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/echarts.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/jQuery.js")"></script>
+
+
+
+    <script>
+        // $('.leftListNav').height($(".rightContent").outerHeight());
+
+        var A_num1 = parseInt($('.manTol1').parent().siblings('.manText').find('.man1').text());
+        var A_num2 = parseInt($('.total_num').text());
+        var A_num = ((A_num1 / A_num2) * 100).toFixed(2);
+        $('.manTol1').height(A_num + "%");
+
+        var B_num1 = parseInt($('.manTol2').parent().siblings('.manText').find('.man1').text());
+        var B_num2 = parseInt($('.total_num').text());
+        var B_num = ((B_num1 / B_num2) * 100).toFixed(2);
+
+        $('.manTol2').height(B_num + "%");
+
+        $('#menu li').hover(function () {
+            $(this).find('.secList').show();
+        }, function () {
+            $(this).find('.secList').hide();
+        })
+    </script>
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")"></script>
+    <!--引入弹窗组件end-->
+</body>
+</html>

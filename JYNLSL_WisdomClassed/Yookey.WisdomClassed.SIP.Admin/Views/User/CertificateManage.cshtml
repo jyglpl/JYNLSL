@@ -1,0 +1,138 @@
+﻿@{
+    Layout = null;
+}
+@using System.Web.Mvc.Html
+@model Yookey.WisdomClassed.SIP.Model.Base.BaseCertificateEntity
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            Loading(false);
+        });
+
+        function UseManage() {
+            var id = document.getElementById("UserID").value;
+            var caseEntity = '@Url.Action("CertificateUseManage")';
+            var width = "600px";
+            var height = "320px";
+            Dialog((caseEntity + "?uid=" + id), "CertificateUseManage", "执法（监督）证使用管理", width, height);
+        }
+
+        /*
+        * 取消
+        */
+        function cancle() {
+            closeDialog();
+        }
+
+        //数据保存
+        function Save() {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: '@Url.Action("SaveCertificate")',
+                data: $('#formmain').serialize(),
+                async: false,
+                datatype: 'json',
+                success: function (data) {
+                    if (data.rtState == 0) {
+                        tipDialog('保存成功', 2, 2);
+                    } else if (data == 'error') {
+                        tipDialog('保存失败', 2, -1);
+                    }
+                    else {
+                        tipDialog('保存出现异常,请联系管理员！', 2, 0);
+                    }
+                }
+            });
+        }
+
+        //保存
+        function ChangeNum(value) {
+            var id = document.getElementById("UserID").value;
+            var typeid = value;
+            $.ajax({
+                cache: true,
+                type: "GET",
+                url: '@Url.Action("ReturnCNumber","User")?uid=' + id + "&typeid=" + typeid + "&rnd=" + Math.random(),
+                data: $('#formmain').serialize(),
+                async: false,
+                datatype: 'json',
+                success: function (data) {
+                    $("input[name='CNumber']").val(data);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <form id="formmain">
+            <div style="margin-left: 5px; margin-right: 5px;">
+                <table class="casedt" style="width: 100%; border: 1px;">
+                    <tr>
+                        <td class="formTitle">登录账号：</td>
+                        <td class="formValue">
+                            @ViewBag.Account
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formTitle">用户姓名：</td>
+                        <td class="formValue">
+                            @ViewBag.UserName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formTitle">角 色：</td>
+                        <td class="formValue">
+                            @Html.DropDownListFor(x => x.LeaveRoleId, (ViewData["Roles"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 100%" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formTitle">证件类型：</td>
+                        <td class="formValue">
+                            @Html.DropDownListFor(x => x.CertificateType, (ViewData["CardType"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 100%" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formTitle">证件号码：</td>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.CertificateNo, new { @class = "txt" })
+                            <input type="hidden" id="Id" name="Id" value="@Model.Id"/>
+                        </td>
+                    </tr>
+                </table>
+                <table style="width: 100%;">
+                    <tr>
+
+                        <td style="text-align: center;">
+                            <input type="button" value="证件使用管理" class="btnSearch" onclick="UseManage()" />
+                            <input type="button" value="保  存" class="btnSearch" onclick="Save()" />
+                            <input type="button" value="关  闭" class="btnSearch" onclick="cancle();" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <input type="hidden" id="UserID" name="UserID" value="@ViewBag.UserId" />
+        </form>
+    </div>
+</body>
+</html>

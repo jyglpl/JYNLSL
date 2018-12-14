@@ -1,0 +1,352 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PageTwo</title>
+    <link href="@Url.Content("~/Content/Main/css/border.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--引入时间组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--引入时间组件end-->
+    <style type="text/css">
+        .txt {
+            border: 1px solid #A8A8A8;
+            padding: 3px 3px 4px 2px;
+            height: 15px;
+            line-height: 15px;
+            border-radius: 6px;
+        }
+
+        .sel1 > p span, .dataBox .toDoWith .titleleftFirst > p span {
+            cursor: pointer;
+            display: inline-block;
+            width: 55px;
+            height: 25px;
+            line-height: 25px;
+            color: #777;
+            background-color: #e5e5e5;
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(function () {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("GetStatistics", "HomeIndex")',
+                data: {},
+                dataType: 'json',
+                success: function (result) {
+                    $("#AllCourseType").html(result.allCourse);//全部分类总数
+                    $("#VideoCourseType").html(result.videoCourse);//视频类课件总数
+                    $("#AudioCourseType").html(result.audioCourse);//音频类课件总数
+                    $("#GraphicCourseType").html(result.pictureCourse);//图文类课件总数
+                    $("#Referencepeople").html(result.joinUserCount);//参考人员总数
+                    $("#ksnumber").html(result.joinCount);//考试次数
+                },
+                erroe: function (errorMsg) { }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- 右侧内容 -->
+    <div class="contentAll clearfixed days">
+        <div class="clearfixed">
+            <!-- 学习考试 -->
+            <div class="bg_white clearfixed day_left" style="width: 101%">
+                <div class="title">学习考试</div>
+                <div class="p8">
+                    <ul class="studyList clearfixed">
+                        <li>
+                            <img src="~/Content/Main/images/dayIcon.png" alt="">
+                            <div class="w90">全部分类</div>
+                            <div class="font6 w90" id="AllCourseType"></div>
+                        </li>
+                        <li>
+                            <img src="~/Content/Main/images/dayIcon.png" alt="">
+                            <div class="w90">视频类</div>
+                            <div class="font6 w90" id="VideoCourseType"></div>
+                        </li>
+                        <li>
+                            <img src="~/Content/Main/images/dayIcon.png" alt="">
+                            <div class="w90">音频类</div>
+                            <div class="font6 w90" id="AudioCourseType">2222</div>
+                        </li>
+                        <li>
+                            <img src="~/Content/Main/images/dayIcon.png" alt="">
+                            <div class="w90">图文类</div>
+                            <div class="font6 w90" id="GraphicCourseType">2222</div>
+                        </li>
+                        <li>
+                            <img src="~/Content/Main/images/dayIcon.png" alt="">
+                            <div class="w90">参考人员</div>
+                            <div class="font6 w90" id="Referencepeople"></div>
+                        </li>
+                        <li style="margin-right: 0">
+                            <img src="~/Content/Main/images/dayIcon.png" alt="">
+                            <div class="w90">参考次数</div>
+                            <div class="font6 w90" id="ksnumber"></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="averBox">
+                    <div class="averTitle">考试平均分</div>
+                    <div class="form-group approveSel">
+                        <div class="sel1" style="right: 16px; top: 16px; width: 120px; height: 30px; position: absolute;">
+                            <p>
+                                <span class="yearbt1">本年</span>
+                                <span class="monthbt1">本月</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="averPoint" style="height: 340px; width: 100%"></div>
+                </div>
+                <div class="averBox">
+                    <div class="averTitle">学习时长TOP10</div>
+                    <div class="echarts_title">(min)</div>
+                    <select name="" id="" class="select" style="right: 43px;">
+                        <option value="">单位选择</option>
+                        <option value=""></option>
+                    </select>
+                    <div id="averPoint1" style="height: 200px; width: 100%"></div>
+                </div>
+            </div>
+        </div>
+        <div class="bg_white pos_rel">
+            <div class="title">信访投诉</div>
+            <div class="form-group approveSel">
+                <div class="sel1" style="right: 16px; top: 16px; width: 120px; height: 30px; position: absolute;">
+                    <p>
+                        <span class="yearbt2">本年</span>
+                        <span class="monthbt2">本月</span>
+                    </p>
+                </div>
+            </div>
+            <div class="tousuTitle">
+            </div>
+            <div class="clearfixed">
+                <div class="fl todayTS">
+                    <div>今日案件投诉量:&nbsp;<span id="TodayCount"></span></div>
+                    <div>今日投诉处理:&nbsp;<span id="Todaydeal"></span></div>
+                    <div>信访投诉办结率:&nbsp;<span id="Todaydealrate"></span></div>
+                </div>
+                <div class="fl tsList">
+                    <ul class="clearfixed">
+                        <li>
+                            <div class="circle" id="Complaintreporting"></div>
+                            <div class="tsText">
+                                <div>阳光信访</div>
+                                <div id="Complaint_reporting"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="circle" id="Districtparty"></div>
+                            <div class="tsText">
+                                <div>区党政办</div>
+                                <div id="District_party"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="circle" id="AreaComplaintreporting"></div>
+                            <div class="tsText">
+                                <div>区信访科</div>
+                                <div id="Area_Complaintreporting"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="circle" id="AreaPublic"></div>
+                            <div class="tsText">
+                                <div>区公众监督</div>
+                                <div id="Area_Public"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="circle" id="Citybureau"></div>
+                            <div class="tsText">
+                                <div>市局</div>
+                                <div id="City_bureau"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/echarts.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/jQuery.js")"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("GetDeptScore", "HomeIndex")',
+                data: {}, //无参数
+                dataType: 'json', //返回数据形式为json
+                success: function (result) {
+                    if (result) {
+                        myChart1(result);
+                    }
+                },
+                error: function (errorMsg) {
+                    alert("加载数据失败");
+                }
+            });
+        });
+
+        function myChart1(result) {
+            var myChart = echarts.init(document.getElementById('averPoint'));
+            myChart.setOption(option = {
+                grid: {
+                    x: 30,
+                    y: 25,
+                    x2: 30,
+                    y2: 25
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                res.push({
+                                    value: result[i].deptName,
+                                });
+                            }
+                            return res;
+                        })(),
+                        //['湖东社工委', '综合执法大队', '湖西社工委', '月亮湾社工委', '东沙湖社工委', '娄葑街道', '唯亭街道', '斜塘街道', '胜浦街道', '安监大队', '渔政大队'],
+                        splitLine: { show: false },//去除网格线  
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '邮件营销',
+                        type: 'line',
+                        stack: '总量',
+                        data: (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                res.push({
+                                    value: result[i].score,
+                                });
+                            }
+                            return res;
+                        })(),
+                        //[0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                        itemStyle: {
+                            normal: {
+                                color: "#39acff"
+                            }
+                        },
+                    }
+                ]
+            })
+        }
+
+        $(function () {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("GetLongTime", "HomeIndex")',
+                data: {}, //无参数
+                dataType: 'json', //返回数据形式为json
+                success: function (result) {
+                    if (result) {
+                        myChart2(result);
+                    }
+                },
+                error: function (errorMsg) {
+                    alert("加载数据失败");
+                }
+            });
+        });
+
+        function myChart2(result) {
+            var myChart = echarts.init(document.getElementById('averPoint1'));
+            myChart.setOption(option = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                grid: {
+                    x: 30,
+                    y: 25,
+                    x2: 30,
+                    y2: 25
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                res.push({
+                                    value: result[i].Name,
+                                });
+                            }
+                            return res;
+                        })(),
+                        splitLine: { show: false },//去除网格线
+
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                    }
+                ],
+                series: [
+                    {
+                        name: '学习时长',
+                        type: 'bar',
+                        itemStyle: {
+                            normal: {
+                                color: "#39acff"
+                            }
+                        },
+                        data: (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                res.push({
+                                    value: result[i].Time,
+                                });
+                            }
+                            return res;
+                        })(),
+                        barWidth: 30
+                    }
+                ]
+            });
+        }
+
+        $(".yearbt1").click(function () {
+            $(".yearbt1").attr("style", "color:blue;")
+            $(".monthbt1").attr("style", "color:#777;")
+        });
+        $(".monthbt1").click(function () {
+            $(".monthbt1").attr("style", "color:blue;")
+            $(".yearbt1").attr("style", "color:#777;")
+        });
+        $(".yearbt2").click(function () {
+            $(".yearbt2").attr("style", "color:blue;")
+            $(".monthbt2").attr("style", "color:#777;")
+        });
+        $(".monthbt2").click(function () {
+            $(".monthbt2").attr("style", "color:blue;")
+            $(".yearbt2").attr("style", "color:#777;")
+        });
+    </script>
+</body>
+</html>

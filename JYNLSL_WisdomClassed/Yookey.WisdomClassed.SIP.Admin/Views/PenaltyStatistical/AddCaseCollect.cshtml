@@ -1,0 +1,158 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>添加</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+</head>
+<body>
+    <form id="form">
+        <table class="casedt">
+            @if (ViewBag.CaseType == 1)
+            {
+                <tr>
+                    <th class="formTitle">类型</th>
+                    <td class="formValue">
+                        @Html.DropDownList("ClassNo", (ViewData["ClassNos"] as SelectList), new { @class = "txtselect", @style = "width:120px;", @onchange = "getCaseCollent()" })
+                    </td>
+                    <th class="formTitle"></th>
+                    <td class="formValue"></td>
+                </tr>
+            }
+            <tr>
+                <th class="formTitle">部门</th>
+                <td class="formValue">
+                    @Html.DropDownList("DeptId", (ViewData["Depts"] as SelectList), new { @class = "txtselect", @style = "width:120px;", @onchange = "getCaseCollent()" })
+                </td>
+                <th class="formTitle">所属日期</th>
+
+                <td class="formValue">
+                    @Html.DropDownList("DrpYear", (ViewData["Years"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "width: 60px", @onchange = "getCaseCollent()" })&nbsp;年&nbsp;
+                  @Html.DropDownList("DrpMonth", (ViewData["Months"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "width: 50px", @onchange = "getCaseCollent()" })&nbsp;月
+                </td>
+            </tr>
+            <tr>
+               
+                    <th class="formTitle">数量</th>
+                    <td class="formValue">
+                        @Html.TextBox("Number", "", new { @class = "txt" })
+                    </td>
+                 @if (ViewBag.CaseType == 1)
+                {
+                    <th class="formTitle"></th>
+                    <td class="formValue"></td>
+                }
+                else
+                {
+                    <th class="formTitle">拆除面积</th>
+                    <td class="formValue">
+                        @Html.TextBox("Area", "", new { @class = "txt" })
+                    </td>
+
+                }
+            </tr>
+            <tr>
+                <td colspan="4">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align: center">
+                    <input type="button" class="btnSearch" value="保存" onclick="createSitePubnishment()" />
+                    &nbsp;<input type="button" class="btnSearch" value="取消" onclick="cancle()" />
+                </td>
+            </tr>
+        </table>
+        @Html.Hidden("Id")
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+    var caseType = '@ViewBag.CaseType';
+    $(function () {
+        //只能输数字
+        IsNumber("Number");
+        //数字和小数
+        IsMoney("Area");
+    });
+    //创建现场纠处
+    function createSitePubnishment() {
+        var id = $("#Id").val();
+        var classNo = $("#ClassNo").val();
+        if (classNo == "") {
+            alertDialog("请选择类别", -1);
+            return;
+        }
+        var deptId = $("#DeptId").val();
+        if (deptId == "") {
+            alertDialog("请选择部门", -1);
+            return;
+        }
+        var number = $("#Number").val();
+        if (number == "") {
+            alertDialog("请填写数量", -1);
+            return;
+        }
+        var area = 0;
+        if (caseType == 2 || caseType == 3)
+        {
+            area = $("#Area").val();
+            if (area == "") {
+                alertDialog("请填写面积", -1);
+                return;
+            }
+        }
+        var period = $("#DrpYear").val() + "-" + $("#DrpMonth").val() + "-01";
+        AjaxJson("@Url.Action("CreateCaseCollect")", { "Id": id, "ClassesNo": classNo, "DeptId": deptId, "Number": number, "ReportingPeriod": period, "TypeNo": caseType,"Area":area }, function (data) {
+            if (data.Status) 
+                alertDialog("保存成功", 2);
+            else
+                alertDialog(data.Msg, -1);
+            top.frames[tabiframeId()].reload();
+        });
+    }
+
+    function getCaseCollent() {
+        var classNo = $("#ClassNo").val();
+        var deptId = $("#DeptId").val();
+        var period = $("#DrpYear").val() + "-" + $("#DrpMonth").val() + "-01"
+        if ((caseType==1&&deptId != "" && classNo != "")||((caseType==2||caseType==3)&&deptId != "")) {
+            AjaxJson("@Url.Action("GetCaseCollent")", { "classNo": classNo, "deptId": deptId, "period": period, "caseType": caseType }, function (data) {
+                if (data.Data != null) {
+                    $("#Id").val(data.Data.Id);
+                    $("#Number").val(data.Data.Number);
+                    $("#Area").val(data.Data.Area);
+                }
+                else {
+                    $("#Id").val("");
+                    $("#Number").val("");
+                    $("#Area").val("");
+                }
+            });
+        }
+    }
+
+    //关闭
+    function cancle() {
+        var api = frameElement.api;
+        api.close();
+    }
+</script>

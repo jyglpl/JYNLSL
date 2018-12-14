@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+<head dir="rtl">
+    <title>Paint</title>
+    <link href="@Url.Content("~/Content/Styles/Flow/FlowMain.css")" rel="stylesheet" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+</head>
+<body oncontextmenu="return false;" onselectstart="return false">
+    <!-------------------&&&&&&&&&&&&--Body--&&&&&&&&&&----------------------->
+    <v:group id="group1" style="position: relative; height: 768px; width: 560px;" coordsize="560,768">
+        <v:roundrect id="DrawFrame" style="position:absolute;top:0px;left:0px; width: 0px; height: 0px">
+            </v:roundrect>
+            <v:oval class="dragAble" id="EStart" onclick="eClick(this);" style="position:absolute;left:200px;top:50px;width:60px;height:60px;">
+                <v:shadow on="T" type="single" color="#b3b3b3" offset="4px,4px"/>
+                <v:TextBox class="PointText" inset="8pt,15pt,8pt,15pt" style="font-size:10pt;">开始_EStart</v:TextBox>
+            </v:oval>
+            <v:oval class="dragAble" id="EEnd" onclick="eClick(this);" style="position:absolute;left:200px;top:400px;width:60px;height:60px">
+                <v:shadow on="T" type="single" color="#b3b3b3" offset="4px,4px"/>
+                <v:TextBox class="PointText" inset="8pt,15pt,8pt,15pt" style="font-size:10pt;">结束_EEnd</v:TextBox>
+            </v:oval>
+    </v:group>
+    <!-------------------&&&&&&&&&&&&--Body--&&&&&&&&&&----------------------->
+
+    <!--右键菜单-->
+    <div id="aContextMenu" class="aContextMenu" style="display: none;">
+        <ul>
+            <li><a class="MenuItem" href="javascript:MenuItemClick('指针')">
+                <img alt='可以移动结点' class="MenuItemIco" src="@Url.Content("~/Content/Images/floweditor/mouse.gif")" />指针</a></li>
+            <li><a class="MenuItem" href="javascript:MenuItemClick('添加结点')">
+                <img alt='添加一个新结点' class="MenuItemIco" src="@Url.Content("~/Content/Images/floweditor/add.gif")" />添加结点</a></li>
+            <li><a class="MenuItem" href="javascript:MenuItemClick('画连结线')">
+                <img alt='连结两点结点' class="MenuItemIco" src="@Url.Content("~/Content/Images/floweditor/line.gif")" />画连结线</a></li>
+            <!--<li><a class="MenuItem" href="javascript:MenuItemClick('删除')"><img alt='删除一个结点或连结线' class="MenuItemIco" src="../images/delete.gif" />删除</a></li>-->
+            <p class="MenuItemSplit"></p>
+            <li><a class="MenuItem" href="javascript:MenuItemClick('网格')">
+                <img alt='隐藏或显示网格' class="MenuItemIco" src="@Url.Content("~/Content/Images/floweditor/Grid.gif")" />网格</a></li>
+            <p class="MenuItemSplit"></p>
+            <li><a class="MenuItem" href="javascript:MenuItemClick('属性')">
+                <img alt='对象属性' class="MenuItemIco btnProperpies" src="@Url.Content("~/Content/Images/floweditor/Properpies.gif")" />属性</a></li>
+
+        </ul>
+    </div>
+    <!--/右键菜单-->
+    <script src="@Url.Content("~/Scripts/FlowEditor/main.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/FlowEditor/OnContextMenu.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/FlowEditor/Console.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/FlowEditor/KeyDownHandle.js")" type="text/javascript"></script>
+</body>
+</html>

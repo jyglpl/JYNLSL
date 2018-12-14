@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<configuration>
+
+  <configSections>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="Yookey.WisdomClassed.SIP.WebService.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+  </configSections>
+  <appSettings>
+    <add key="WTNumber" value="00500022"></add>
+    <add key="AJNumber" value="00500025"></add>
+    <add key="JYNumber" value="00500023"></add>
+    <add key="YBNumber" value="00500024"></add>
+    <add key="ImageHttp" value="http://192.168.1.180/YQFileSave/" />
+    <add key="SaveImageHttp" value="F:\FileSave\" />
+    <add key="FileSaveUpLoad" value="E:\SZFileSave\" />
+  </appSettings>
+
+  <connectionStrings>
+    <add name="SQLConnStringRead" connectionString="server=58.210.250.90;database=WisdomClassed_SZGSOverall;user id=Yookey_SIP;password=Yookey123;MultipleActiveResultSets=true;" providerName="System.Data.SqlClient" />
+    <add name="SQLConnStringWrite" connectionString="server=58.210.250.90;database=WisdomClassed_SZGSOverall;user id=Yookey_SIP;password=Yookey123;;MultipleActiveResultSets=true;" />
+    <add name="CreditSQLConnStringWrite" connectionString="" />
+    <add name="SqlConnStringDataExchange" connectionString="" />
+    <!--姑苏区一张网前置数据库-->
+    <add name="GsqzjSQLConnStringWrite" connectionString="" providerName="System.Data.SqlClient" />
+    <!--基础数据平台-->
+    <add name="SQLConnStringJCXXDBRead" connectionString="server=58.210.250.90;database=WisdomClassed_SZGSOverall;user id=Yookey_SIP;password=Yookey123;MultipleActiveResultSets=true;" providerName="System.Data.SqlClient" />
+
+    <!--事部件处置-->
+    <add name="SQLConnStringDSFXCRead" connectionString="server=58.210.9.131,8033;database=DSFXC;user id=szyk;password=szyk123;MultipleActiveResultSets=true;" providerName="System.Data.SqlClient" />
+    <add name="SQLConnStringDSFXCWrite" connectionString="server=58.210.9.131,8033;database=DSFXC;user id=szyk;password=szyk123;MultipleActiveResultSets=true;"/>
+
+
+  </connectionStrings>
+
+  <system.web>
+    <httpRuntime maxRequestLength="999999999" maxQueryStringLength="2097151" />
+    <!-- 
+            设置 compilation debug="true" 将调试符号插入
+            已编译的页面中。但由于这会 
+            影响性能，因此只在开发过程中将此值 
+            设置为 true。 
+        -->
+    <compilation debug="true" />
+    <!--
+            通过 <authentication> 节可以配置 ASP.NET 使用的 
+            安全身份验证模式，
+            以标识传入的用户。 
+        -->
+    <authentication mode="Windows" />
+    <!--
+            如果在执行请求的过程中出现未处理的错误，
+            则通过 <customErrors> 节可以配置相应的处理步骤。具体说来，
+            开发人员通过该节可以配置
+            要显示的 html 错误页
+            以代替错误堆栈跟踪。
+        <customErrors mode="RemoteOnly" defaultRedirect="GenericErrorPage.htm">
+            <error statusCode="403" redirect="NoAccess.htm" />
+            <error statusCode="404" redirect="FileNotFound.htm" />
+        </customErrors>
+        -->
+    <webServices>
+      <protocols>
+        <add name="HttpSoap" />
+        <add name="HttpPost" />
+        <add name="HttpGet" />
+        <add name="Documentation" />
+      </protocols>
+    </webServices>
+
+    <identity impersonate="true" userName="ZhouPeng" password="1"/>
+    
+  </system.web>
+  <applicationSettings>
+    <Yookey.WisdomClassed.SIP.WebService.Properties.Settings>
+      <setting name="Yookey_WisdomClassed_SIP_WebService_PictureService_PictureService" serializeAs="String">
+        <value>http://localhost/GSCGPictureService/PictureService.asmx</value>
+      </setting>
+    </Yookey.WisdomClassed.SIP.WebService.Properties.Settings>
+  </applicationSettings>
+
+  <system.webServer>
+    <directoryBrowse enabled="true" />
+  </system.webServer>
+</configuration>

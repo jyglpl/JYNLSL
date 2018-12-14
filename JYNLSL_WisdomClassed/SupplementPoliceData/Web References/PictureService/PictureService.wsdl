@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="WritePicture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fielType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileExt" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ff" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WritePictureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WritePictureResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WritePictureSecond">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fielType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileExt" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ff" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WritePictureSecondResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WritePictureSecondResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePicResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="MakewatermarkNew">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FilePath1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FilePath2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FilePath3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="checktime" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="height" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="mode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MakewatermarkNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MakewatermarkNewResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopNewPic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FilePath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopNewPicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CopNewPicResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="WritePictureSoapIn">
+    <wsdl:part name="parameters" element="tns:WritePicture" />
+  </wsdl:message>
+  <wsdl:message name="WritePictureSoapOut">
+    <wsdl:part name="parameters" element="tns:WritePictureResponse" />
+  </wsdl:message>
+  <wsdl:message name="WritePictureSecondSoapIn">
+    <wsdl:part name="parameters" element="tns:WritePictureSecond" />
+  </wsdl:message>
+  <wsdl:message name="WritePictureSecondSoapOut">
+    <wsdl:part name="parameters" element="tns:WritePictureSecondResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePicSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePic" />
+  </wsdl:message>
+  <wsdl:message name="DeletePicSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePicResponse" />
+  </wsdl:message>
+  <wsdl:message name="MakewatermarkNewSoapIn">
+    <wsdl:part name="parameters" element="tns:MakewatermarkNew" />
+  </wsdl:message>
+  <wsdl:message name="MakewatermarkNewSoapOut">
+    <wsdl:part name="parameters" element="tns:MakewatermarkNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="CopNewPicSoapIn">
+    <wsdl:part name="parameters" element="tns:CopNewPic" />
+  </wsdl:message>
+  <wsdl:message name="CopNewPicSoapOut">
+    <wsdl:part name="parameters" element="tns:CopNewPicResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PictureServiceSoap">
+    <wsdl:operation name="WritePicture">
+      <wsdl:input message="tns:WritePictureSoapIn" />
+      <wsdl:output message="tns:WritePictureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WritePictureSecond">
+      <wsdl:input message="tns:WritePictureSecondSoapIn" />
+      <wsdl:output message="tns:WritePictureSecondSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePic">
+      <wsdl:input message="tns:DeletePicSoapIn" />
+      <wsdl:output message="tns:DeletePicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MakewatermarkNew">
+      <wsdl:input message="tns:MakewatermarkNewSoapIn" />
+      <wsdl:output message="tns:MakewatermarkNewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CopNewPic">
+      <wsdl:input message="tns:CopNewPicSoapIn" />
+      <wsdl:output message="tns:CopNewPicSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PictureServiceSoap" type="tns:PictureServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WritePicture">
+      <soap:operation soapAction="http://tempuri.org/WritePicture" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WritePictureSecond">
+      <soap:operation soapAction="http://tempuri.org/WritePictureSecond" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePic">
+      <soap:operation soapAction="http://tempuri.org/DeletePic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakewatermarkNew">
+      <soap:operation soapAction="http://tempuri.org/MakewatermarkNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopNewPic">
+      <soap:operation soapAction="http://tempuri.org/CopNewPic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PictureServiceSoap12" type="tns:PictureServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WritePicture">
+      <soap12:operation soapAction="http://tempuri.org/WritePicture" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WritePictureSecond">
+      <soap12:operation soapAction="http://tempuri.org/WritePictureSecond" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePic">
+      <soap12:operation soapAction="http://tempuri.org/DeletePic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakewatermarkNew">
+      <soap12:operation soapAction="http://tempuri.org/MakewatermarkNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopNewPic">
+      <soap12:operation soapAction="http://tempuri.org/CopNewPic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PictureService">
+    <wsdl:port name="PictureServiceSoap" binding="tns:PictureServiceSoap">
+      <soap:address location="http://192.168.1.180/GSCGPictureService/PictureService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PictureServiceSoap12" binding="tns:PictureServiceSoap12">
+      <soap12:address location="http://192.168.1.180/GSCGPictureService/PictureService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

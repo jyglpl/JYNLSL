@@ -1,0 +1,319 @@
+﻿@using Yookey.WisdomClassed.SIP.Model.LawPunishInformation;
+@{
+    ViewBag.Title = "LegalPersonEdit";
+    @model LegalPersonEntity
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>法人详情</title>
+    <link  href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <link href="~/Librarys/css/chosen.min.css" rel="stylesheet" />
+    <link href="~/Librarys/css/sipac.css" rel="stylesheet" />
+    <link href="~/Styles/common.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Librarys/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="~/Librarys/js/chosen.jquery.min.js"></script>
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+    <!--[if lt IE 8]>
+    <![endif]-->
+    <style type="text/css">
+        .form .formTitle {
+            height: 34px;
+            white-space: nowrap;
+            font-weight: normal;
+            text-align: left;
+            width: 128px;
+            background: rgb(247, 247, 247);
+            border-top: 1px solid rgb(204, 204, 204);
+            border-left: 1px solid rgb(204, 204, 204);
+            border-bottom: 1px solid rgb(204, 204, 204);
+            padding: 0px 5px;
+            margin: 0px;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            var keyid = $("#keyid").val();
+            if (keyid == "") {
+
+            }
+            else {
+                $(".sipac_head").hide();
+            }
+        });
+
+        function myfunction() {
+            var api = frameElement.api;
+            api.close();
+        }
+        //保存法人信息
+        function Save() {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: "@Url.Action("SaveLw", "LawPunishInformation")",
+                data: $("#formmain").serialize(),
+                datatype: "JSON",
+                success: function (data) {
+                    if (rtState = 1) {
+                        alert("保存成功");
+                        myfunction();
+                    }
+                    else {
+                        alert("保存失败");
+                    }
+                }
+            });
+        }
+        //“是”单击选择
+        function Onclickpublic1() {
+            if ($("#public_radio").val() == 1) {
+                $("#public_radio").attr("value", "0");
+                $("#public_radio").removeAttr("checked");
+            }
+            else {
+                $("#public_radio").val("1");
+                $("#public_radio").attr("checked", "checked");
+            }
+        }
+
+
+        //“否”单击选择
+        function Onclickpublic2() {
+            if ($("#public_radio2").val() == 1) {
+                $("#public_radio2").attr("value", "0");
+                $("#public_radio2").removeAttr("checked");
+            }
+            else {
+                $("#public_radio2").val("1");
+                $("#public_radio2").attr("checked", "checked");
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <!-- Wrap all page content here -->
+    <div class="sipac_wrap">
+        <input type="hidden" value="@ViewBag.keyId" id="keyid" />
+        <div class="sipac_body">
+            <div class="sipac_container mf0">
+                <div class="bd" style="border-bottom: none; margin: 1px;">
+                    <div class="tipstitle_title settingtable bold bd todayInfoPanelTab rightPanelTitle_normal">
+                        <div class="tab_list_top" style="position: absolute">
+                            <div id="Tabbasic" class="tab_list bd actived">法人处罚公示详情 </div>
+                        </div>
+                    </div>
+                    <div class="ScrollBar" style="margin: 1px; overflow: hidden;">
+                        <div class="tabPanel" style="margin-bottom: 15px;">
+                            <table class="form">
+                                <form id="formmain" name="formmain">
+                                    <tr>
+                                        <th class="formTitle">工商注册号：</th>
+                                        <td class="formValue" colspan="3">
+                                            @Html.TextBoxFor(x => x.RegistraNumber, new { @class = "txt", @style = "", @datacol = "yes", @err = "工商注册号", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">组织机构代码：</th>
+                                        <td class="formValue" colspan="3">
+                                            @Html.TextBoxFor(x => x.OrganizationCode, new { @class = "txt", @style = "", @datacol = "yes", @err = "组织机构代码", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">处罚名称：</th>
+                                        <td class="formValue" colspan="3">
+                                            @Html.TextBoxFor(x => x.PunishmentName, new { @class = "txt", @style = "", @datacol = "yes", @err = "处罚名称", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">行政处罚编码：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.PunishmentCod, new { @class = "txt", @style = "", @datacol = "yes", @err = "行政处罚编码", @checkexpession = "NotNull" })
+                                        </td>
+                                        <th class="formTitle">处罚决定文书号：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.DocumentNumber, new { @class = "txt", @style = "", @datacol = "yes", @err = "处罚类别2", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">处罚类别1：</th>
+                                        <td class="formValue" colspan="3">
+                                            <input type="radio" name="CategoryOne" id="rdocflb1jg" value="0" @(Model.CategoryOne == 0 ? "checked=checked" : "")/>
+                                            <label for="rdocflb1jg">警告</label>
+                                            <input type="radio" name="CategoryOne" id="rdocflb1fk" value="1" @(Model.CategoryOne == 1 ? "checked=checked" : "")/>
+                                            <label for="rdocflb1fk">罚款</label>
+                                            <input type="radio" name="CategoryOne" id="rdocflb1ms" value="2" @(Model.CategoryOne == 2 ? "checked=checked" : "")/>
+                                            <label for="rdocflb1ms">没收违法所得物、没收非法财务</label>
+                                            <input type="radio" name="CategoryOne" id="rdocflb1tc" value="3" @(Model.CategoryOne == 3 ? "checked=checked" : "")/>
+                                            <label for="rdocflb2tc">责令停产停业</label>
+                                            <input type="radio" name="CategoryOne" id="rdocflb1zq" value="4" @( Model.CategoryOne == 4 ? "checked=checked" : "")/>
+                                            <label for="rdocflb2zq">暂扣或者吊销许可证、暂扣或者吊销执照</label>
+                                            <input type="radio" name="CategoryOne" id="rdocflb1jl" value="5" @( Model.CategoryOne == 5 ? "checked=checked" : "")/>
+                                            <label for="rdocflb2jl">行政拘留</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">处罚类别2：</th>
+                                        <td class="formValue" colspan="3">
+                                            <input type="radio" name="CategoryTwo" id="rdocflb2jg" value="0" @(Model.CategoryTwo == 0 ? "checked=checked" : "")/>
+                                            <label for="rdocflb1jg">警告</label>
+                                            <input type="radio" name="CategoryTwo" id="rdocflb2fk" value="1" @(Model.CategoryTwo == 1 ? "checked=checked" : "")/>
+                                            <label for="rdocflb1fk">罚款</label>
+                                            <input type="radio" name="CategoryTwo" id="rdocflb2ms" value="2" @(Model.CategoryTwo == 2 ? "checked=checked" : "")/>
+                                            <label for="rdocflb1ms">没收违法所得物、没收非法财务</label>
+                                            <input type="radio" name="CategoryTwo" id="rdocflb2tc" value="3" @(Model.CategoryTwo == 3 ? "checked=checked" : "")/>
+                                            <label for="rdocflb2tc">责令停产停业</label>
+                                            <input type="radio" name="CategoryTwo" id="rdocflb2zq" value="4" @( Model.CategoryTwo == 4 ? "checked=checked" : "")/>
+                                            <label for="rdocflb2zq">暂扣或者吊销许可证、暂扣或者吊销执照</label>
+                                            <input type="radio" name="CategoryTwo" id="rdocflb2jl" value="5" @( Model.CategoryTwo == 5 ? "checked=checked" : "")/>
+                                            <label for="rdocflb2jl">行政拘留</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">罚款金额：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.FineMoney, new { @class = "txt", @style = "", @datacol = "yes", @err = "罚款金额", @checkexpession = "NotNull" })
+                                        </td>
+                                        <th class="formTitle">没收金额 :</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.ConfiscateMoney, new { @class = "txt", @style = "", @datacol = "yes", @err = "没收金额", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">处罚事由： </th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.PunishmentReason, new { @class = "txt", @style = "", @datacol = "yes", @err = "处罚事由", @checkexpession = "NotNull" })
+                                        </td>
+                                        <th class="formTitle">处罚依据：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.PunishmentBasis, new { @class = "txt", @style = "", @datacol = "yes", @err = "工商注册号", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">处罚结论：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.PunishmentVerdict, new { @class = "txt", @style = "", @datacol = "yes", @err = "税务登记号", @checkexpession = "NotNull" })
+                                        </td>
+                                        <th class="formTitle">失信严重程度： </th>
+                                        <td class="formValue">
+                                            <input type="radio" name="DishonestSeverity" id="rdosxyzcdwd" value="0" @(Model.DishonestSeverity == 0 ? "checked=checked" : "")/>
+                                            <label for="rdosxyzcdwd">未定</label>
+                                            <input type="radio" name="DishonestSeverity" id="rdosxyzcdyb" value="1" @(Model.DishonestSeverity == 1 ? "checked=checked" : "")/>
+                                            <label for="rdosxyzcdyb">一般</label>
+                                            <input type="radio" name="DishonestSeverity" id="rdosxyzcdjz" value="2" @(Model.DishonestSeverity == 2 ? "checked=checked" : "")/>
+                                            <label for="rdosxyzcdjz">较重</label>
+                                            <input type="radio" name="DishonestSeverity" id="rdosxyzcdyz" value="3" @(Model.DishonestSeverity == 3 ? "checked=checked" : "")/>
+                                            <label for="rdosxyzcdyz">严重</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">失信行为有效期：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.DishonestValidity, new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @Value = Model.DishonestValidity.ToString("yyyy-MM-dd") == "0001-01-01" ? DateTime.Now.ToString("yyyy-MM-dd") : Model.DishonestValidity.ToString("yyyy-MM-dd"), @style = "width:150px" })
+                                        </td>
+                                        <th class="formTitle">处罚决定机关名称：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.DecidedName, new { @class = "txt", @style = "", @datacol = "yes", @err = "处罚决定机关名称", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">处罚决定日期：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.DecidedTime, new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @Value = Model.DecidedTime.ToString("yyyy-MM-dd") == "0001-01-01" ? DateTime.Now.ToString("yyyy-MM-dd") : Model.DecidedTime.ToString("yyyy-MM-dd"), @style = "width:150px" })
+                                        </td>
+                                        <th class="formTitle">法定代表人姓名：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.LegalName, new { @class = "txt", @style = "", @datacol = "yes", @err = "法定代表人姓名", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">法定代表人证件类型：</th>
+                                        <td class="formValue">
+                                            @Html.DropDownListFor(x => x.LegalCardType, (ViewData["LegalCardTypes"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                                        </td>
+                                        <th class="formTitle">法定代表人证件号：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.LegalCard, new { @class = "txt", @style = "", @datacol = "yes", @err = "失信严重程度", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">处罚截止期： </th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.PunishmentDeadline, new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @Value = Model.PunishmentDeadline.ToString("yyyy-MM-dd") == "0001-01-01" ? DateTime.Now.ToString("yyyy-MM-dd") : Model.PunishmentDeadline.ToString("yyyy-MM-dd"), @style = "width:150px" })
+                                        </td>
+                                        <th class="formTitle">执行情况：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.Implementation, new { @class = "txt", @style = "", @datacol = "yes", @err = "执行情况", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">信息使用范围：</th>
+                                        <td class="formValue" colspan="3">
+                                            <input type="radio" name="CF_SYFW" id="rdosyfwgs" value="0" @(Model.Scope == 0 ? "checked=checked" : "")/>
+                                            <label for="rdosyfwgs">公示</label>
+                                            <input type="radio" name="CF_SYFW" id="rdosyfwgx" value="1" @(Model.Scope == 1 ? "checked=checked" : "")/>
+                                            <label for="rdosyfwgx">公政府部门内部共享</label>
+                                            <input type="radio" name="CF_SYFW" id="rdosyfwcx" value="2" @(Model.Scope == 2 ? "checked=checked" : "")/>
+                                            <label for="rdosyfwcx">公可授权查询</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">当前状态：</th>
+                                        <td class="formValue" colspan="3">
+                                            <input type="radio" name="CF_ZT" id="rdocfztzc" value="0" @(Model.State == 0 ? "checked=checked" : "")/>
+                                            <label for="rdocfztzc">正常</label>
+                                            <input type="radio" name="CF_ZT" id="rdocfztcx" value="1" @(Model.State == 1 ? "checked=checked" : "")/>
+                                            <label for="rdocfztcx">撤销</label>
+                                            <input type="radio" name="CF_ZT" id="rdocfztyy" value="2" @(Model.State == 2 ? "checked=checked" : "")/>
+                                            <label for="rdocfztyy">异议</label>
+                                            <input type="radio" name="CF_ZT" id="rdocfztqt" value="3" @(Model.State == 3 ? "checked=checked" : "")/>
+                                            <label for="rdocfztqt">其他</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">信息提供部门全称：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.InformationName, new { @class = "txt", @style = "", @datacol = "yes", @err = "信息提供部门全称", @checkexpession = "NotNull" })
+                                        </td>
+                                        <th class="formTitle">公示截止期：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.PublicDeadline, new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @Value = Model.PublicDeadline.ToString("yyyy-MM-dd") == "0001-01-01" ? DateTime.Now.ToString("yyyy-MM-dd") : Model.PublicDeadline.ToString("yyyy-MM-dd"), @style = "width:150px" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">是否公示：</th>
+                                        <td class="formValue" colspan="3">
+                                            <input type="radio" name="IsPush" id="rdopublic" value="1" @(Model.IsPush == 1 ? "checked=checked" : "") />
+                                            <label for="rdopublic">公示</label>
+                                            <input type="radio" name="IsPush" id="rdounpublic" value="0" @(Model.IsPush == 0 ? "checked=checked" : "")/>
+                                            <label for="rdounpublic">不公示</label>
+                                        </td>
+                                    </tr>
+                                    <th class="formTitle">备注：
+                                    </th>
+                                    <td class="formValue" colspan="3">
+                                        @Html.TextBoxFor(x => x.Note, new { @class = "txt", @style = "", @datacol = "yes", @err = "备注", @checkexpession = "NotNull" })
+                                    </td>
+                                    </tr>
+                                    @Html.HiddenFor(x => x.ID)
+                                </form>
+                            </table>
+                        </div>
+                        <div align="center">
+                            <button class="btnSearch" onclick="Save()">确认</button>
+                            <button class="btnSearch" onclick="myfunction()">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

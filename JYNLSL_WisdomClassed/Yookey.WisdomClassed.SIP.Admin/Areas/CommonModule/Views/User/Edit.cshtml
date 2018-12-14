@@ -1,0 +1,253 @@
+﻿@{
+    Layout = null;
+}
+@using Yookey.WisdomClassed.SIP.Common.Security
+@using Yookey.WisdomClassed.SIP.Common
+@model Yookey.WisdomClassed.SIP.Model.Crm.CrmUserEntity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>新增/编辑用户</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet"/>
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--树形组件start-->
+    <link href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" type="text/css"/>
+    <script src="@Url.Content("~/Librarys/tree/tree.js")" type="text/javascript"></script>
+    <!--树形组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Loadlayout();
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <form id="formmain">
+            <div id="message" style="display: none; padding: 1px; padding-bottom: 0;"></div>
+            <div class="bd" style="border-bottom: none; margin: 1px;">
+                <div class="tipstitle_title settingtable bold bd todayInfoPanelTab rightPanelTitle_normal">
+                    <div class="tab_list_top" style="position: absolute">
+                        <div id="Tabbasic" class="tab_list bd actived" onclick="Tabchange('basic')">基本信息</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ScrollBar" style="margin: 1px; overflow: hidden;">
+                <!--基本信息-->
+                <div id="basic" class="tabPanel">
+                    <table class="form">
+                        <tr>
+                            <th class="formTitle">工号：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.Code, new { @class = "txt" })
+                            </td>
+                            <th class="formTitle">姓名：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.RealName, new { @class = "txt required", @datacol = "yes", @err = "姓名", @checkexpession = "NotNull" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">登录帐号：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.Account, new { @class = "txt required", @datacol = "yes", @err = "登录帐号", @checkexpession = "NotNull" })
+                            </td>
+                            <th class="formTitle">登录密码：</th>
+                            <td class="formValue">
+                                <span style="color: red">初始密码：123456</span>
+                                @*@Html.PasswordFor(x => x.Password, new { @class = "txt required", Value = DESHelper.ToDESDecrypt(Model.Password, AppConst.EncryptKey), @datacol = "yes", @err = "登录密码", @checkexpession = "NotNull" })*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">性别：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.Gender, new { @class = "txt" })
+                            </td>
+                            <th class="formTitle">出生日期：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.Birthday, new { @class = "txt Wdate", Value = Model.Birthday.Year <= 1900 ? "" : Model.Birthday.ToString(AppConst.DateFormat), @onfocus = "WdatePicker({maxDate:'%y-%M-%d'})" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">联系手机：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.Mobile, new { @class = "txt" })
+                            </td>
+                            <th class="formTitle">联系电话：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.Telephone, new { @class = "txt" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">电子邮件：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.Email, new { @class = "txt required", @datacol = "yes", @err = "电子邮件", @checkexpession = "EmailOrNotNull" })
+                            </td>
+                            <th class="formTitle">QQ号码：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.OICQ, new { @class = "txt" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">所在公司：</th>
+                            <td class="formValue">
+                                @Html.TextBox("CompanyName", "", new { @class = "txt icontree" })
+                            </td>
+                            <th class="formTitle">所在部门：</th>
+                            <td class="formValue">
+                                <select id="DepartmentName" class="txtselect" datacol="yes" err="所在部门" checkexpession="NotNull" onchange="javascript:SelectDepartment();"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">排序编号</th>
+                            <td class="formValue" colspan="3">
+                                @Html.TextBoxFor(x => x.SortCode, new { @class = "txt" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">排序（排班）</th>
+                            <td class="formValue" colspan="3">
+                                @Html.TextBoxFor(x => x.FlightSortCode, new { @class = "txt" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="formValue" colspan="3">
+                                <span class="item">
+                                    <input type="checkbox" name="checkbox" @(Model.IsCityManager == "1" ? "checked=checked" : "") id="CityManager" />
+                                    <label for="CityManager">是否市容管理员</label>
+                                </span>
+                                <span class="item">
+                                    <input type="checkbox" name="checkbox" @(Model.IsBorrow == 1 ? "checked=checked" : "") id="Borrow" />
+                                    <label for="Borrow">是否外借人员</label>
+                                </span>
+                                <span class="item">
+                                    <input type="checkbox" name="checkbox" @(Model.InnerUser == 1 ? "checked=checked" : "") id="IsInnerUser" />
+                                    <label for="IsInnerUser">内部员工</label>
+                                </span>
+                                <span class="item">
+                                    <input type="checkbox" name="checkbox" @(Model.Enabled == 1 ? "checked=checked" : "") id="IsEnabled" />
+                                    <label for="IsEnabled">有效</label>
+                                </span>
+                                <label style="vertical-align: middle; color: red;">注意：禁用该用户后，将不能登录。</label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="formTitle">所拥有角色：
+                            </th>
+                            <td class="formValue" colspan="3">
+                                @ViewBag.Roles
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">说明：</th>
+                            <td class="formValue" colspan="3">
+                                @Html.TextAreaFor(x => x.Remark, new { @name = "Description", @maxlength = "200", @class = "txtArea", @rows = "3" })
+
+                                @Html.HiddenFor(x => x.Id)
+                                @Html.HiddenFor(x => x.CompanyId)
+                                @Html.HiddenFor(x => x.DepartmentId)
+                                @Html.HiddenFor(x => x.IsCityManager)
+                                @Html.HiddenFor(x => x.IsBorrow)
+                                @Html.HiddenFor(x => x.ChangePasswordDate)
+                                @Html.HiddenFor(x => x.Enabled)
+                                @Html.HiddenFor(x => x.RowStatus)
+                                @Html.HiddenFor(x => x.InnerUser)
+                                @Html.HiddenFor(t => t.CreatorId)
+                                @Html.HiddenFor(t => t.CreateBy)
+                                @Html.HiddenFor(t => t.CreateOn)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    $(function () {
+        BindCompany();
+        if ($("#CompanyId").val() !== '') {
+            //获取公司名称
+            AjaxJson("@Url.Action("SetForm", "Company")", { companyId: $("#CompanyId").val() }, function (data) {
+                $("#CompanyId").val(data.CompanyId);
+                $("#CompanyName").val(data.FullName);
+            });
+            //绑定部门
+            BindDepartment();
+            $("#DepartmentName").val($("#DepartmentId").val());
+        }
+    });
+
+    //部门下拉框
+    function BindCompany() {
+        //加载公司
+        $("#CompanyName").focus(function () {
+            var objId = this.id;
+            comboBoxTree(objId, "150px");
+            var itemtree = {
+                onnodeclick: function (item) {
+                    $("#CompanyId").val(item.id);
+                    $("#CompanyName").val(item.text);
+                    //加载部门
+                    BindDepartment();
+                },
+                url: "@Url.Action("TreeJson", "Company")"
+            };
+            $("#comboBoxTree" + objId).treeview(itemtree);
+        });
+    }
+
+    //加载部门
+    function BindDepartment() {
+        $("#DepartmentName").html("");
+        $("#DepartmentName").append("<option value=''>==请选择==</option>");
+        getAjax("@Url.Action("DropList", "Department")", { companyId: $("#CompanyId").val(), selectId: "DepartmentName" }, function (msg) {
+            eval(msg);
+        });
+    }
+
+    //选择部门
+    function SelectDepartment() {
+        $("#DepartmentId").val($("#DepartmentName").val());
+    }
+
+    //保存事件
+    function AcceptClick() {
+        if (!CheckDataValid('#formmain')) {
+            return false;
+        }
+
+        $("#IsCityManager").val($("#CityManager").attr("checked") == "checked" ? "1" : "0");
+        $("#IsBorrow").val($("#Borrow").attr("checked") == "checked" ? "1" : "0");
+        $("#InnerUser").val($("#IsInnerUser").attr("checked") == "checked" ? "1" : "0");
+        $("#Enabled").val($("#IsEnabled").attr("checked") == "checked" ? "1" : "0");
+
+        Loading(true, "正在提交数据...");
+        window.setTimeout(function () {
+
+            AjaxJson('@Url.Action("SubmitUserForm", "User")', $('#formmain').serialize(), function (data) {
+                tipDialog(data.rtMsrg, 3, data.rtState);
+                top.frames[tabiframeId()].windowload();
+                closeDialog();
+            });
+        }, 200);
+    }
+</script>

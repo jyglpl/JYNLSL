@@ -1,0 +1,383 @@
+﻿@{
+    ViewBag.Title = "IllegalVerify";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>核实认定</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link href="@Url.Content("~/Librarys/css/chosen.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/css/sipac.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/common.css")" rel="stylesheet" />
+    @*<script type="text/javascript" src="@Url.Content("~/Librarys/js/jquery-1.9.1.min.js")"></script>*@
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/chosen.jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/main.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+    <!--[if lt IE 8]>
+    <![endif]-->
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- Wrap all page content here -->
+    <div class="sipac_wrap">
+        <div class="sipac_body">
+            <div class="sipac_container mf0">
+                <div class="sipac_selectbox">
+                    <div class="s_sb_cont sipac_editbox sipac_form">
+                        <table>
+                            <tr>
+                                <th>长：</th>
+                                <td>
+                                    @Html.TextBox("Long", "", new { @class = "s_input" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>宽：</th>
+                                <td>
+                                    @Html.TextBox("Width", "", new { @class = "s_input" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>高：</th>
+                                <td>
+                                    @Html.TextBox("High", "", new { @class = "s_input" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>违建类型：</th>
+                                <td>
+                                    @Html.DropDownList("BuildType", (ViewData["BuildType"] as IEnumerable<SelectListItem>), new { @class = "s_input", @style = "width:250px;" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>违建结构：</th>
+                                <td>
+                                    @Html.DropDownList("Structure", (ViewData["Structure"] as IEnumerable<SelectListItem>), new { @class = "s_input", @style = "width:250px;" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>违建处数：</th>
+                                <td>
+                                    @Html.TextBox("Covers", "", new { @class = "s_input" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>违建面积：</th>
+                                <td>
+                                    @Html.TextBox("Build", "", new { @class = "s_input" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>现场照片：</th>
+                                <td>
+                                    @Html.Action("FilesTab", "FileUpload", new { resourceId = @ViewBag.CaseInfoNo, evtache = "verify", isupload = "true", istime = "true" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>备注描述：</th>
+                                <td>
+                                    @Html.TextArea("Describe", new { @class = "s_textarea", @style = "width:92%" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>核实时间：</th>
+                                <td>
+                                    @Html.TextBox("txtVerifyTime", "", new { @class = "s_input", @onfocus = "WdatePicker({ dateFmt: 'yyyy-MM-dd' })" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>核实结果：</th>
+                                <td>
+                                    <span class="s_checkbox">
+                                        <input type="checkbox" class="Illegaltrue">
+                                        <label>是违建</label>
+                                    </span>
+                                    <span class="s_checkbox">
+                                        <input type="checkbox" class="Illegalfalse">
+                                        <label>非违建</label>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="createstatus none">
+                                <th></th>
+                                <td>
+                                    @Html.DropDownList("CreateStatus", (ViewData["CreateStatus"] as IEnumerable<SelectListItem>), new { @class = "s_input", @style = "width:250px;" })
+                                </td>
+                            </tr>
+                            <tr class="fact none">
+                                <th></th>
+                                <td>
+                                    @Html.DropDownList("Fact", (ViewData["Fact"] as IEnumerable<SelectListItem>), new { @class = "s_input", @style = "width:250px;" })
+                                </td>
+                            </tr>
+                            <tr class="buildtime none">
+                                <th>违建日期：</th>
+                                <td>
+                                    @Html.TextBox("BuildTime", "", new { @class = "s_input" }) <span style="color: red;">(列如：1900-01-01)</span>
+                                </td>
+                            </tr>
+                            <tr class="trcase none">
+                                <th></th>
+                                <td class="s_sb_bar">
+                                    <button class="sipac_btn s_b_submit" onclick="ApplyForFiled('applys', 0, 0)" id="btnApply">申请结案</button>
+                                    <button class="sipac_btn s_b_cancel">取消</button>
+                                </td>
+                            </tr>
+                            <tr class="trsave none">
+                                <th></th>
+                                <td class="s_sb_bar">
+                                    <button class="sipac_btn s_b_submit" onclick="verifyData();">确定</button>
+                                    <button class="sipac_btn s_b_cancel">取消</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/Librarys/js/chosen.jquery.min.js"></script>
+    <script type="text/javascript">
+
+
+
+        //=================案件审批======================
+        //结案审批
+        var worklistid = '@ViewBag.WorkListId';
+        function ApplyForFiled(htype, isloadOp, isFaster) {
+            var url = "";
+            var formId = '@ViewBag.CaseInfoNo';
+            var Long = $("#Long").val();
+            if (Long != "") {
+                if (!isNumber(Long)) {
+                    tipDialog('请输入正确格式！', 2, 0);
+                    $("#Long").focus();
+                    $("#Long").val('');
+                    return;
+                }
+            }
+            var Width = $("#Width").val();
+            if (Width != "") {
+                if (!isNumber(Width)) {
+                    tipDialog('请输入正确格式！', 2, 0);
+                    $("#Width").focus();
+                    $("#Width").val('');
+                    return;
+                }
+            }
+            var High = $("#High").val();
+            if (High != "") {
+                if (!isNumber(High)) {
+                    tipDialog('请输入正确格式！', 2, 0);
+                    $("#High").focus();
+                    $("#High").val('');
+                    return;
+                }
+            }
+            var BuildTypeId = $("#BuildType").val();
+            var BuildType = $("#BuildType option:selected").text();
+            var StructureId = $("#Structure").val();
+            var Structure = $("#Structure option:selected").text();
+            var Covers = $("#Covers").val();
+            if (Covers != "") {
+                if (!isNumber(Covers)) {
+                    tipDialog('请输入正确格式！', 2, 0);
+                    $("#Covers").focus();
+                    $("#Covers").val('');
+                    return;
+                }
+            }
+            var Build = $("#Build").val();
+            if (Build != "") {
+                if (!isNumber(Build)) {
+                    tipDialog('请输入正确格式！', 2, 0);
+                    $("#Build").focus();
+                    $("#Build").val('');
+                    return;
+                }
+            }
+            var Describe = $("#Describe").val();
+            var txtVerifyTime = $("#txtVerifyTime").val();
+            if (txtVerifyTime == "") {
+                tipDialog('请输入核实时间！', 2, 0);
+                $("#txtVerifyTime").focus();
+                return;
+            }
+            var id = '@ViewBag.Id';
+            if ($(".Illegalfalse").attr('checked') == "checked") {
+                url = '@Url.Action("IllegalWorkFlow", "WorkFlow", new { Area = "" })?formId=' + formId + '&flowName=违建结案审批&eType=' + htype + '&worklistId=' + worklistid + '&isloadOp=' + isloadOp + '&isFaster=' + isFaster + '&hidden=true&VerifyId=' + id + '&CASE_INFO_NO=' + formId + '&Long=' + Long + '&Width=' + Width + '&High=' + High + '&BuildTypeId=' + BuildTypeId + '&BuildType=' + BuildType + '&StructureId=' + StructureId + '&Structure=' + Structure + '&Covers=' + Covers + '&Build=' + Build + '&Describe=' + Describe + '&txtVerifyTime=' + txtVerifyTime + '&IllegalState=0&IllegalResult=' + $("#Fact option:selected").text();
+            }
+            else {
+                url = '@Url.Action("IllegalWorkFlow", "WorkFlow", new { Area = "" })?formId=' + formId + '&flowName=违建结案审批&eType=' + htype + '&worklistId=' + worklistid + '&isloadOp=' + isloadOp + '&isFaster=' + isFaster + '&hidden=true';
+            }
+            url = encodeURI(url);
+            var width = 500;
+            var height = 300;
+            top.$.dialog({
+                id: "WorkFlow", width: width, height: height, lock: true, max: false, resize: false, extendDrag: true,
+                title: "案件审批",
+                content: 'url:' + url,
+                button: [
+                    {
+                        name: '确 定',
+                        className: '',
+                        callback: function () {
+                            top.frames["WorkFlow"].AcceptClick('MainDialog');
+                            verifyData();
+                            //var api = frameElement.api, w = api.opener;
+                            //api.get('MainDialog').location.reload();
+                            //api.close();
+                            return true;
+                        }
+                    }, { name: '关 闭', className: 'closeBtn' }
+                ]
+            });
+
+        }
+
+        function ApplyReturn() {
+            var api = frameElement.api, w = api.opener;
+            api.close();
+        }
+
+        $(".Illegaltrue").click(function () {
+            $(this).attr('checked', 'checked');
+            $(".Illegalfalse").removeAttr('checked');
+            $(".createstatus").removeClass('none');
+            $(".fact").addClass('none');
+            $(".trcase").addClass('none');
+            $(".trsave").removeClass('none');
+            $(".buildtime").removeClass('none');
+        });
+        $(".Illegalfalse").click(function () {
+            $(this).attr('checked', 'checked');
+            $(".Illegaltrue").removeAttr('checked');
+            $(".createstatus").addClass('none');
+            $(".fact").removeClass('none');
+            $(".trcase").removeClass('none');
+            $(".trsave").addClass('none');
+            $(".buildtime").addClass('none');
+        });
+
+        function isNumber(value) {         //验证是否为数字
+            var patrn = /^[0-9]+\.?[0-9]*$/;
+            if (patrn.exec(value) == null || value == "") {
+                return false
+            } else {
+                return true
+            }
+        }
+
+        function verifyData() {
+            var Long = $("#Long").val();
+            if (Long != "") {
+                if (!isNumber(Long)) {
+                    tipDialog('请输入正确格式！', 2, 0);
+                    $("#Long").focus();
+                    $("#Long").val('');
+                    return;
+                }
+            }
+            var Width = $("#Width").val();
+            if (Width != "") {
+                if (!isNumber(Width)) {
+                    tipDialog('请输入正确格式！', 2, 0);
+                    $("#Width").focus();
+                    $("#Width").val('');
+                    return;
+                }
+            }
+            var High = $("#High").val();
+            if (High != "") {
+                if (!isNumber(High)) {
+                    tipDialog('请输入正确格式！', 2, 0);
+                    $("#High").focus();
+                    $("#High").val('');
+                    return;
+                }
+            }
+            var BuildTypeId = $("#BuildType").val();
+            var BuildType = $("#BuildType option:selected").text();
+            var StructureId = $("#Structure").val();
+            var Structure = $("#Structure option:selected").text();
+            var Covers = $("#Covers").val();
+            if (Covers != "") {
+                if (!isNumber(Covers)) {
+                    tipDialog('请输入正确格式！', 2, 0);
+                    $("#Covers").focus();
+                    $("#Covers").val('');
+                    return;
+                }
+            }
+            var Build = $("#Build").val();
+            if (Build != "") {
+                if (!isNumber(Build)) {
+                    tipDialog('请输入正确格式！', 2, 0);
+                    $("#Build").focus();
+                    $("#Build").val('');
+                    return;
+                }
+            }
+            var Describe = $("#Describe").val();
+            var txtVerifyTime = $("#txtVerifyTime").val();
+            if (txtVerifyTime == "") {
+                tipDialog('请输入核实时间！', 2, 0);
+                $("#txtVerifyTime").focus();
+                return;
+            }
+            var IllegalState = 0;
+            var IllegalResultId = "";
+            var IllegalResult = "";
+            var buildTime = "";
+            if ($(".Illegaltrue").attr('checked') == "checked") {
+                IllegalState = 1;
+                IllegalResultId = $("#CreateStatus").val();
+                IllegalResult = $("#CreateStatus option:selected").text();
+                buildTime = $("#BuildTime").val();
+            }
+            else {
+                IllegalState = 0;
+                IllegalResultId = $("#Fact").val();
+                IllegalResult = $("#Fact option:selected").text();
+                buildTime = "";
+            }
+            if (buildTime != "")//验证日期格式
+            {
+                var DATE_FORMAT = /^[0-9]{4}-[0-1]?[0-9]{1}-[0-3]?[0-9]{1}$/;
+                if (!DATE_FORMAT.test(buildTime)) {
+                    tipDialog("违建日期格式错误！", 2, -2);
+                    return;
+                }
+            }
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: "@Url.Action("SubmitVerifyData", "IllegalConstruction")",
+                data: { Id: '@ViewBag.Id', CASE_INFO_NO: '@ViewBag.CaseInfoNo', Long: Long, Width: Width, High: High, BuildTypeId: BuildTypeId, BuildType: BuildType, StructureId: StructureId, Structure: Structure, Covers: Covers, Build: Build, Describe: Describe, txtVerifyTime: txtVerifyTime, IllegalState: IllegalState, IllegalResult: IllegalResult, buildTime: buildTime },
+                datatype: 'json',
+                success: function (data) {
+                    if (data.rtState == 1) {
+                        tipDialog("核实认定成功！", 2, 2);
+                        var api = frameElement.api, w = api.opener;
+                        api.get('MainDialog').location.reload();
+                        api.close();
+                    }
+                    else {
+                        tipDialog("核实认定失败！", 2, 0);
+                    }
+                }
+            });
+
+        }
+    </script>
+</body>
+</html>
+

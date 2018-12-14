@@ -1,0 +1,546 @@
+body {
+  font-family: "Microsoft yahei";
+}
+.rt {
+  float: right;
+}
+.sipac_head {
+  width: 100%;
+  background-color: #edf7fd;
+  overflow: hidden;
+}
+.sipac_head .s_s_text {
+  box-sizing: content-box;
+}
+.sipac_fullTwo {
+  background-color: #edf7fd;
+}
+.sipac_fullThree {
+  background-color: #f6f7f9;
+}
+.statisticalBox {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.statisticalBox > p {
+  font-size: 24px;
+  color: #4c4c4c;
+  padding: 10px;
+}
+.statisticalBox > p span {
+  font-size: 16px;
+  margin-left: 20px;
+}
+.statisticalBox > p span b {
+  font-weight: normal;
+  color: #063def;
+}
+.statisticalBox > p a {
+  float: right;
+  width: 90px;
+  height: 30px;
+  background-color: #157dbf;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+.statisticalBox > p .detele {
+  float: right;
+  cursor: pointer;
+  margin-left: 20px;
+  border: 1px solid #ccc;
+  padding: 3px 13px;
+}
+.statisticalBox > p .detele span {
+  margin-left: 0px;
+}
+.statisticalBox > p .detele b {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url(../images/deleteIconTwo.png) no-repeat;
+  vertical-align: sub;
+  margin-right: 6px;
+}
+.statisticalBox > p .spanS {
+  float: right;
+  cursor: pointer;
+  margin-left: 20px;
+  border: 1px solid #ccc;
+  padding: 3px 13px;
+}
+.statisticalBox > p .break b {
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  background: url(../images/break.png) no-repeat;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.statisticalBox > p .break span {
+  margin-left: 0px;
+}
+.statisticalBox > p .lead b {
+  display: inline-block;
+  width: 19px;
+  height: 20px;
+  background: url(../images/lead.png) no-repeat;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.statisticalBox > p .lead span {
+  margin-left: 0px;
+}
+.statisticalBox > p .add {
+  float: right;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  padding: 3px 13px;
+}
+.statisticalBox > p .add span {
+  margin-left: 0px;
+}
+.statisticalBox > p .add b {
+  display: inline-block;
+  width: 22px;
+  height: 20px;
+  background: url(../images/addIcon.png) no-repeat;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.statisticalBox .border_bottom {
+  border-bottom: 1px solid #ddd;
+}
+.statisticalBox .ulExamination > li {
+  margin: 15px;
+  height: 40px;
+  color: #666;
+}
+.statisticalBox .ulExamination > li > label {
+  width: 200px;
+  display: inline-block;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+}
+.statisticalBox .ulExamination > li > p.checkBox {
+  float: left;
+  width: 70%;
+}
+.statisticalBox .ulExamination > li > p.checkBox > span {
+  margin-right: 10px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+.statisticalBox .ulExamination > li p .inputS {
+  background: #FFF;
+  border: 1px solid #CCCCCC;
+  color: #888888;
+  font: 14px/18px Arial;
+  padding: 5px;
+  width: 400px;
+}
+.statisticalBox .ulExamination > li p .inputM {
+  width: 100px;
+  background: #FFF;
+  border: 1px solid #CCCCCC;
+  color: #888888;
+  font: 14px/18px Arial;
+  padding: 5px;
+  margin-right: 5px;
+}
+.statisticalBox .ulExamination > li p select {
+  width: 150px;
+}
+.statisticalBox .ulExamination > li .inputBox span {
+  margin-right: 15px;
+}
+.statisticalBox .sipac_tableBox {
+  padding: 0px;
+}
+.statisticalBox .sipac_tableBox > p.jianc {
+  float: right;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+.statisticalBox .sipac_tableBox > p.jianc a {
+  float: left;
+  width: 90px;
+  height: 30px;
+  background-color: #157dbf;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+.statisticalBox .sipac_tableBox table thead tr {
+  background-color: #f6f7f9;
+}
+.statisticalBox .sipac_tableBox table thead tr th {
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+  font-weight: normal;
+}
+.statisticalBox .sipac_tableBox table tbody tr td {
+  text-align: center;
+  color: #888;
+}
+.statisticalBox .sipac_tableBox table tbody tr td a {
+  color: #44a9f3;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left {
+  text-align: left;
+  padding: 10px;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left > div {
+  float: left;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left > div .chooiceTest {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left > div .chooiceTest li {
+  margin-bottom: 10px;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left > div .chooiceTest li label {
+  margin-left: 10px;
+  font-size: 16px;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left > div .error {
+  color: #e4393c;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left .paperTitle {
+  color: #138cda;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left p.smallPaper {
+  font-size: 14px;
+  color: #888;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left b {
+  float: right;
+  width: 28px;
+  height: 30px;
+  background: url(../images/deleteIcon.png) no-repeat;
+  margin-right: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left .btnStart {
+  float: right;
+  margin: 20px;
+  font-size: 16px;
+}
+.basicTitle {
+  width: 99%;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-top: none;
+  font-size: 24px;
+  color: #4c4c4c;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.basicBox {
+  width: 99%;
+  box-sizing: border-box;
+  padding: 10px;
+  border-top: none;
+  border: 1px solid #ddd;
+  margin: 0 auto;
+  background-color: #fff;
+  overflow: hidden;
+}
+.basicBox label.ldftTi {
+  width: 200px;
+  height: 120px;
+  text-align: center;
+  font-size: 16px;
+  float: left;
+  line-height: 120px;
+}
+.basicBox p {
+  margin-bottom: 15px;
+}
+.basicBox p .bordB {
+  display: inline-block;
+  width: 100px;
+  height: 28px;
+  text-align: center;
+  line-height: 28px;
+  border: 1px solid #CCCCCC;
+  color: #888;
+}
+.basicBox p span input {
+  width: 100px;
+  background: #FFF;
+  border: 1px solid #CCCCCC;
+  color: #362929;
+  font: 14px/18px Arial;
+  padding: 5px;
+  margin-right: 5px;
+}
+.basicBox p span .longInp {
+  width: 200px;
+}
+.basicBox p .longLeft {
+  margin-left: 25px;
+}
+.basicBox .dateBox {
+  margin-bottom: 20px;
+}
+.basicBox .dateBox label {
+  text-align: center;
+  font-size: 16px;
+  width: 100px;
+  display: inline-block;
+}
+.basicBox .dateBox span input {
+  width: 150px;
+}
+.basicBox .knowBox label {
+  text-align: center;
+  font-size: 16px;
+  width: 100px;
+  float: left;
+}
+.basicBox .knowBox span {
+  float: left;
+}
+.basicBox .knowBox span textarea {
+  background: #FFF;
+  border: 1px solid #CCCCCC;
+  color: #888888;
+  font: 14px/18px Arial;
+  padding: 5px;
+  width: 500px;
+  height: 80px;
+}
+.rule {
+  width: 100%;
+  margin: 10px 0px;
+}
+.rule p {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: "microsoft yahei";
+}
+.rule p > span {
+  font-size: 16px;
+  color: #424344;
+  margin-right: 25px;
+}
+.rule p > span span {
+  color: #747576;
+}
+.chooseAction {
+  width: 100%;
+  height: 60px;
+  background-color: #f9f9f9;
+}
+.chooseAction a {
+  float: left;
+  margin-left: 20px;
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  margin-top: 20px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #666;
+}
+.chooseAction .choose {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  color: #44a9f3;
+}
+.shadeBox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 999;
+  top: 0px;
+  visibility: hidden;
+}
+.shadeBox .shade {
+  width: 45%;
+  margin: 2% auto;
+  background-color: #fff;
+  -moz-box-shadow: 10px 10px 5px #888888;
+  /* 老的 Firefox */
+  box-shadow: 10px 10px 5px #888888;
+}
+.shadeBox .shade .shadeTop {
+  width: 100%;
+  background-color: #eeeeee;
+  height: 50px;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  line-height: 50px;
+}
+.shadeBox .shade .shadeTop span {
+  color: #404040;
+  font-size: 22px;
+}
+.shadeBox .shade .shadeTop b {
+  float: right;
+  color: #404040;
+  font-size: 14px;
+  cursor: pointer;
+}
+.shadeBox .shade .shadeCenter {
+  width: 100%;
+  background-color: #fff;
+  overflow: hidden;
+}
+.shadeBox .shade .shadeCenter .answer {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 87%;
+}
+.shadeBox .shade .shadeCenter .answer p {
+  margin-top: 10px;
+}
+.shadeBox .shade .shadeCenter .answer p input {
+  background-color: #e9f6fb;
+  width: 90%;
+}
+.shadeBox .shade .shadeCenter .keyBox span {
+  margin-left: 30px;
+  font-size: 16px;
+}
+.shadeBox .shade .shadeCenter .keyBox span input {
+  margin-right: 5px;
+}
+.shadeBox .shade .shadeCenter .typeBox span {
+  font-size: 16px;
+  margin-left: 30px;
+}
+.shadeBox .shade .shadeCenter .typeBox span input {
+  margin-right: 5px;
+}
+.QuestionshadeBox {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 999;
+  top: 0px;
+}
+.QuestionshadeBox .Questionshade {
+  width: 1000px;
+  margin: 2% auto;
+  background-color: #fff;
+  -moz-box-shadow: 10px 10px 5px #888888;
+  /* 老的 Firefox */
+  box-shadow: 10px 10px 5px #888888;
+}
+.QuestionshadeBox .Questionshade .shadeTop {
+  width: 100%;
+  background-color: #eeeeee;
+  height: 50px;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  line-height: 50px;
+  text-align: center;
+}
+.QuestionshadeBox .Questionshade .shadeTop span.title {
+  color: #404040;
+  font-size: 22px;
+}
+.QuestionshadeBox .Questionshade .shadeTop .smallTitle {
+  position: relative;
+  top: 5px;
+  left: 10px;
+  font-size: 14px;
+}
+.QuestionshadeBox .Questionshade .shadeTop .smallTitle b {
+  color: #0074c9;
+}
+.QuestionshadeBox .Questionshade .shadeTop > b {
+  float: right;
+  color: #404040;
+  font-size: 14px;
+  cursor: pointer;
+}
+.QuestionshadeBox .Questionshade .rule {
+  background-color: #f9f9f9;
+  margin: 0px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.QuestionshadeBox .Questionshade .rule p span {
+  white-space: nowrap;
+}
+.QuestionshadeBox .Questionshade .statisticalBox {
+  border: none;
+}
+.QuestionshadeBox .Questionshade .statisticalBox > p {
+  overflow: hidden;
+}
+.QuestionshadeBox .Questionshade .statisticalBox .sipac_tableBox {
+  overflow: hidden;
+}
+.QuestionshadeBox .Questionshade .statisticalBox .sipac_tableBox > p.jianc {
+  float: inherit;
+  text-align: center;
+}
+.QuestionshadeBox .Questionshade .statisticalBox .sipac_tableBox > p.jianc a {
+  float: inherit;
+  display: inline-block;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left > div.key {
+  width: 900px;
+  height: 100px;
+  margin-top: 10px;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left > div.key > span {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-color: #5e718b;
+  text-align: center;
+  color: #fff;
+  line-height: 100px;
+  font-size: 18px;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left > div.key div {
+  float: left;
+  border: 1px solid #ccc;
+  border-left: none;
+  width: 790px;
+  height: 98px;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left > div.key div p {
+  margin-left: 15px;
+  margin-top: 4px;
+  font-size: 14px;
+  color: #999;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left > div.key div p .mistakes {
+  display: inline-block;
+  width: 30px;
+  height: 36px;
+  background: url(../images/mistakes.png) no-repeat;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left > div.key div p .sure {
+  display: inline-block;
+  width: 35px;
+  height: 34px;
+  background: url(../images/sure.png) no-repeat;
+}
+.statisticalBox .sipac_tableBox table tbody tr .left > div.key div p em {
+  color: #8c8c8c;
+}

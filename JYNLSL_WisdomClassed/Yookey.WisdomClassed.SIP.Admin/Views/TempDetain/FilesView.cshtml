@@ -1,0 +1,129 @@
+﻿@{
+    Layout = null;
+}
+@using Yookey.WisdomClassed.SIP.Common
+@using Yookey.WisdomClassed.SIP.Model.TempDetain
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>图片预览</title>
+    <link href="@Url.Content("~/Librarys/scrollpic/css/global.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/scrollpic/css/index.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/scrollpic/js/jquery.scrollpic.js")"></script>
+    <script src="@Url.Content("~/Librarys/jquery.rotate.js")"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#scrollpic00').scrollpic({
+                defaultSpeed: 1000,   //默认滚动时间  点击按钮滚动时间
+                speed: 5000,   		   //自动播放滚动时间
+                defaultPicId: '@ViewBag.DefaultPicId'
+            });
+        });
+    </script>
+
+</head>
+<body class="bgBlack">
+    <div class="scrollBox thRelative hidden" id="scrollpic00">
+        <div class="scrollMap">
+            <span class="slidePre"><a href="javascript:void(0);" title="上一页"></a></span>
+            <div class="picWrap">
+                <ul>
+                    @{
+                        var files = ViewData["Files"] as List<TempDetainAttachEntity>;
+                        if (files != null && files.Any())
+                        {
+                            foreach (var infPunishAttachEntity in files)
+                            {
+                        <li id="@infPunishAttachEntity.Id">
+                            <a href="javascript:void(0)">
+                                <img src="@(AppConfig.FileViewLink + infPunishAttachEntity.FileAddress)" width="700" height="400" id="img_@infPunishAttachEntity.Id" alt="">
+                            </a>
+                        </li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+
+
+            <div class="sliderTextBox">
+                <div class="sliderTextBg"></div>
+                <div class="sliderShowText">
+                    <div class="sliderTextAll" name="txt0">
+                        <div class="sliderTxtBot">
+                            <p><em>名称：</em><label id="labFileName"></label><input type="hidden" id="txtFileId" /></p>
+                            <p><em>类型：</em><label id="labFileType"></label></p>
+                            <p>
+                                <em>备注: </em>
+                                <input type="text" id="txtFileRemark" />
+                            </p>
+                            <p>
+                                <em>操作: </em>
+                                <a href="javascript:void(0)" onclick="RotateImg()">旋转</a>
+                                <a href="javascript:void(0)" onclick="SaveFile()">保存</a>&nbsp;
+                                <a href="javascript:void(0)" onclick="DeleteFile()">删除</a>&nbsp;
+                                @*<a href="javascript:void(0)" onclick="PrintFile()">打印</a>*@
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span class="slideNext"><a href="javascript:void(0);" title="下一页"></a></span>
+    </div>
+</body>
+</html>
+
+<script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+<script type="text/javascript">
+
+    //旋转照片
+    function RotateImg() {
+        var id = $("#txtFileId").val();
+        $("#img_" + id).rotate(90);
+    }
+
+    //请求附件详情
+    function GetFileDetails(fileId) {
+        AjaxJson('@Url.Action("FileDetails", "TempDetain")', { fileId: fileId }, function (data) {
+            var typename = data.rtObj.FileTypeName;
+            var remark = data.rtObj.FileRemark;
+            var fileName = data.rtObj.FileName;
+            var fid = data.rtObj.Id;
+
+            $("#labFileName").text(fileName);
+            $("#labFileType").text(typename);
+            $("#txtFileRemark").val(remark);
+            $("#txtFileId").val(fid);
+        });
+    }
+
+    //保存附件
+    function SaveFile() {
+        AjaxJson('@Url.Action("SaveFileDetails", "TempDetain")', { fileId: $("#txtFileId").val(), remark: $("#txtFileRemark").val() }, function (data) {
+            if (data.rtState == 1) {
+                alertDialog('保存成功！', 2);
+            }
+        });
+    }
+
+    //删除附件
+    function DeleteFile() {
+        confirmDialog("系统提示", "您确定需要执行删除操作吗？", function (confirm) {
+            if (confirm) {
+                AjaxJson('/PenaltyCaseFile/DeleteFile', { fileId: $("#txtFileId").val() }, function (data) {
+                    alertDialog('删除成功！', 2);
+                });
+            }
+        });
+    }
+
+@*    //打印
+    function PrintFile() {
+        window.open('@Url.Action("FilePrintView", "PenaltyCase")?fileId=' + $("#txtFileId").val());
+    }*@
+
+</script>

@@ -1,0 +1,230 @@
+﻿@using Yookey.WisdomClassed.SIP.Model.LawPunishInformation;
+@{
+    ViewBag.Title = "NaturalPersonEdit";
+    @model NaturalPersonEntity
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>自然人详情</title>
+    <link  href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <link href="~/Librarys/css/chosen.min.css" rel="stylesheet" />
+    <link href="~/Librarys/css/sipac.css" rel="stylesheet" />
+    <link href="~/Styles/common.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Librarys/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="~/Librarys/js/chosen.jquery.min.js"></script>
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+    <!--[if lt IE 8]>
+    <![endif]-->
+    <style type="text/css">
+        .form .formTitle {
+            height: 34px;
+            white-space: nowrap;
+            font-weight: normal;
+            text-align: left;
+            width: 128px;
+            background: rgb(247, 247, 247);
+            border-top: 1px solid rgb(204, 204, 204);
+            border-left: 1px solid rgb(204, 204, 204);
+            border-bottom: 1px solid rgb(204, 204, 204);
+            padding: 0px 5px;
+            margin: 0px;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            var keyid = $("#keyid").val();
+            if (keyid == "") {
+
+            }
+            else {
+                $(".sipac_head").hide();
+            }
+        });
+
+        function myfunction() {
+            var api = frameElement.api;
+            api.close();
+        }
+        //保存法人信息
+        function Save() {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: "@Url.Action("SaveCorporation", "LawPunishInformation")",
+                data: $("#formmain").serialize(),
+                datatype: "JSON",
+                success: function (data) {
+                    if (rtState = 1) {
+                        alert("保存成功");
+                        myfunction();
+                    }
+                    else {
+                        alert("保存失败");
+                    }
+                }
+            });
+        }
+        //“是”单击选择
+        function Onclickpublic1() {
+            if ($("#public_radio").val() == 1) {
+                $("#public_radio").attr("value", "0");
+                $("#public_radio").removeAttr("checked");
+            }
+            else {
+                $("#public_radio").val("1");
+                $("#public_radio").attr("checked", "checked");
+            }
+        }
+
+
+        //“否”单击选择
+        function Onclickpublic2() {
+            if ($("#public_radio2").val() == 1) {
+                $("#public_radio2").attr("value", "0");
+                $("#public_radio2").removeAttr("checked");
+            }
+            else {
+                $("#public_radio2").val("1");
+                $("#public_radio2").attr("checked", "checked");
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <!-- Wrap all page content here -->
+    <div class="sipac_wrap">
+        <input type="hidden" value="@ViewBag.keyId" id="keyid" />
+        <div class="sipac_body">
+            <div class="sipac_container mf0">
+                <div class="bd" style="border-bottom: none; margin: 1px;">
+                    <div class="tipstitle_title settingtable bold bd todayInfoPanelTab rightPanelTitle_normal">
+                        <div class="tab_list_top" style="position: absolute">
+                            <div id="Tabbasic" class="tab_list bd actived">自然人处罚公示详情 </div>
+                        </div>
+                    </div>
+                    <div class="ScrollBar" style="margin: 1px; overflow: hidden;">
+                        <div class="tabPanel" style="margin-bottom: 15px;">
+                            <table class="form">
+                                <form id="formmain" name="formmain">
+                                    <tr>
+                                        <th class="formTitle">姓名：</th>
+                                        <td class="formValue" colspan="3">
+                                            @Html.TextBoxFor(x => x.NaturalName, new { @class = "txt", @style = "", @datacol = "yes", @err = "姓名", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">证件号码：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.IdCard, new { @class = "txt", @style = "", @datacol = "yes", @err = "证件号码", @checkexpession = "NotNull" })
+                                        </td>
+                                        <th class="formTitle">证件类型：</th>
+                                        <td class="formValue">
+                                            @Html.DropDownListFor(x => x.IdCardType, (ViewData["IdCardTypes"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">违法行为名称：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.IllegalName, new { @class = "txt", @style = "", @datacol = "yes", @err = "违法行为名称", @checkexpession = "NotNull" })
+                                        </td>
+                                        <th class="formTitle">处罚文书编号：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.DocumentNumber, new { @class = "txt", @style = "", @datacol = "yes", @err = "处罚类别2", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">处罚依据：</th>
+                                        <td class="formValue" colspan="3">
+                                            @Html.TextBoxFor(x => x.PunishmentBasis, new { @class = "txt", @style = "", @datacol = "yes", @err = "处罚依据", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">处罚结果：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.PunishmentResults, new { @class = "txt", @style = "", @datacol = "yes", @err = "处罚结果", @checkexpession = "NotNull" })
+                                        </td>
+                                        <th class="formTitle">处罚金额： </th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.FineMoney, new { @class = "txt", @style = "", @datacol = "yes", @err = "处罚金额", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">失信严重程度： </th>
+                                        <td class="formValue">
+                                            <input type="radio" name="DishonestSeverity" id="rdosxyzcdwd" value="0" @(Model.DishonestSeverity == 0 ? "checked=checked" : "")/>
+                                            <label for="rdosxyzcdwd">未定</label>
+                                            <input type="radio" name="DishonestSeverity" id="rdosxyzcdyb" value="1" @(Model.DishonestSeverity == 1 ? "checked=checked" : "")/>
+                                            <label for="rdosxyzcdyb">一般</label>
+                                            <input type="radio" name="DishonestSeverity" id="rdosxyzcdjz" value="2" @(Model.DishonestSeverity == 2 ? "checked=checked" : "")/>
+                                            <label for="rdosxyzcdjz">较重</label>
+                                            <input type="radio" name="DishonestSeverity" id="rdosxyzcdyz" value="3" @(Model.DishonestSeverity == 3 ? "checked=checked" : "")/>
+                                            <label for="rdosxyzcdyz">严重</label>
+                                        </td>
+                                        <th class="formTitle">失信行为有效期：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.DishonestValidity, new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @Value = Model.DishonestValidity.ToString("yyyy-MM-dd") == "0001-01-01" ? DateTime.Now.ToString("yyyy-MM-dd") : Model.DishonestValidity.ToString("yyyy-MM-dd"), @style = "width:150px" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">处罚机关名称：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.OtherName, new { @class = "txt", @style = "", @datacol = "yes", @err = "税务登记号", @checkexpession = "NotNull" })
+                                        </td>
+                                        <th class="formTitle">处罚决定日期： </th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.DecidedTime, new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @Value = Model.DecidedTime.ToString("yyyy-MM-dd") == "0001-01-01" ? DateTime.Now.ToString("yyyy-MM-dd") : Model.DecidedTime.ToString("yyyy-MM-dd"), @style = "width:150px" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">信息提供部门全称：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.InformationName, new { @class = "txt", @style = "", @datacol = "yes", @err = "信息提供部门全称", @checkexpession = "NotNull" })
+                                        </td>
+                                        <th class="formTitle">主要失信事实：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.MainDishonest, new { @class = "txt", @style = "", @datacol = "yes", @err = "主要失信事实", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">公示截止日期：</th>
+                                        <td class="formValue">
+                                            @Html.TextBoxFor(x => x.PublicDeadline, new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @Value = Model.PublicDeadline.ToString("yyyy-MM-dd") == "0001-01-01" ? DateTime.Now.ToString("yyyy-MM-dd") : Model.PublicDeadline.ToString("yyyy-MM-dd"), @style = "width:150px" })
+                                        </td>
+                                        <th class="formTitle">是否公示：</th>
+                                        <td class="formValue">
+                                            <input type="radio" name="IsPush" id="rdopublic" value="1" @(Model.IsPush == 1 ? "checked=checked" : "") />
+                                            <label for="rdopublic">公示</label>
+                                            <input type="radio" name="IsPush" id="rdounpublic" value="0" @(Model.IsPush == 0 ? "checked=checked" : "")/>
+                                            <label for="rdounpublic">不公示</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="formTitle">备注：
+                                        </th>
+                                        <td class="formValue" colspan="3">
+                                            @Html.TextBoxFor(x => x.Note, new { @class = "txt", @style = "", @datacol = "yes", @err = "备注", @checkexpession = "NotNull" })
+                                        </td>
+                                    </tr>
+                                    @Html.HiddenFor(x => x.ID)
+                                </form>
+                            </table>
+                        </div>
+                        <div align="center">
+                            <button class="btnSearch" onclick="Save()">确认</button>
+                            <button class="btnSearch" onclick="myfunction()">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

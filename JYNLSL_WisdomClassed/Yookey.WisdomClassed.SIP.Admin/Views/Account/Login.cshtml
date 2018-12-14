@@ -1,0 +1,183 @@
+﻿@using Yookey.WisdomClassed.SIP.Common
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@(AppConfig.SystemName)</title>
+    <link href="@Url.Content("~/Content/Main/css/border.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Main/css/swiper.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Main/css/bootstrap.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <script src="@Url.Content("~/Librarys/jquery/jQuery.md5.js")"></script>
+    <script src="@Url.Content("~/Librarys/cookie/jquery.cookie.js")"></script>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script>
+        //回车键
+        document.onkeydown = function (e) {
+            if (!e) e = window.event; //火狐中是 window.event
+            if ((e.keyCode || e.which) == 13) {
+                var btlogin = document.getElementById("btlogin");
+                btlogin.focus();
+                btlogin.click();
+            }
+        };
+        $(function () {
+            $("#btlogin").click(function () {
+
+                var txtaccount = $("#txtaccount").val();
+                var txtpassword = $("#txtpassword").val();
+                var ckrember = $("#remember").attr("checked");
+                if (txtaccount == "") {
+                    $("#txtaccount").focus();
+                    formMessage('登录账户不能为空', 'alert-danger');
+                    return false;
+                } else if (txtpassword == "") {
+                    $("#txtpassword").focus();
+                    formMessage('登录密码不能为空', 'alert-danger');
+                    return false;
+                } else {
+                    var pattern = new RegExp("[`~!@@#$^&*()=|{}':;',\\[\\].<>/?~！@@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+                    if (txtaccount != "" && txtaccount != null) {
+                        if (pattern.test(txtaccount)) {
+                            formMessage('用户名中存在非法字符！', 'alert-danger');
+                            $("#txtaccount").val("");
+                            $("#txtaccount").focus();
+                            return false;
+                        }
+                    }
+                    formMessage('正在登陆...', 'alert-success');
+
+                    window.setTimeout(function () {
+                        var postData = {
+                            Account: escape(txtaccount),
+                            Password: escape(txtpassword),
+                            RemberPwd: escape(ckrember)
+                        };
+                        getAjax('@Url.Action("LogOn")', postData, function (rs) {
+                            if (parseInt(rs) == -1) {
+                                $("#txtaccount").focus();
+                                formMessage('登陆账户不存在', 'alert-danger');
+                            } else if (parseInt(rs) == 2) {
+                                $("#txtaccount").focus();
+                                formMessage('登陆账户被系统锁定', 'alert-danger');
+                            } else if (parseInt(rs) == 4) {
+                                $("#txtpassword").focus();
+                                $("#txtpassword").val("");
+                                formMessage('登陆密码错误', 'alert-danger');
+                            } else if (parseInt(rs) == 6) {
+                                $("#txtpassword").focus();
+                                $("#txtpassword").val("");
+                                formMessage('登录次数过多，请稍会儿再试...', 'alert-danger');
+                            } else if (parseInt(rs) == 3) {
+                                formMessage('登陆验证成功,正在跳转首页', 'alert-success');
+                                setInterval(Load, 1000);
+                                //window.event.returnValue = false;
+                            } else {
+                                alert(rs);
+                            }
+                        });
+                    }, 500);
+                    //window.event.returnValue = false;
+                }
+            });
+        });
+    //登陆加载
+    function Load() {
+        window.location.href = '@Url.Action("Main", "HomeIndex")';
+        //window.event.returnValue = false;
+        //if (window.event.preventDefault) window.event.preventDefault();
+        return false;
+    }
+
+    //提示信息
+    function formMessage(msg, type) {
+        $('.form-message').html('');
+        $('.form-message').append('<div class="alert alert-success ' + type + '" style="display:block">' + msg + '</div>');
+    }
+    </script>
+</head>
+<body>
+    <div class="loginBg">
+
+                    <img src="~/Content/Main/images/5.png" alt="">
+
+
+
+
+    </div>
+    <div class="time">
+        <div class="time1"></div>
+        <div class="time2"></div>
+    </div>
+    <div class="login">
+        <div class="title">@(AppConfig.SystemName)</div>
+        <div>
+            <div class="form">
+                <div class="form-message">
+                </div>
+                <div class="inpText">用户名</div>
+                <div class="formInput">
+                    <img src="~/Content/Main/images/username.png" alt="">
+                    <input id="txtaccount" type="text" placeholder="请输入账户" tabindex="1" value="@(Model.UserName)">
+                </div>
+                <div class="inpText" style="margin-top: 10px">密码</div>
+                <div class="formInput">
+                    <img src="~/Content/Main/images/password.png" alt="">
+                    <input id="txtpassword" type="password" placeholder="请输正确密码" tabindex="2" value="@(Model.Password)">
+                </div>
+                <div class="remember">
+                    <input type="checkbox" id="remember" name="remember" />
+                    <label for="remember" @(Model.RememberMe == true ? "class=active" : "")>记住密码</label>
+                </div>
+                <button id="btlogin" tabindex="3">登录</button>
+            </div>
+        </div>
+    </div>
+    @*<script src="~/Content/Main/js/jquery-1.9.1.min.js"></script>*@
+@*    <script src="~/Content/Main/js/swiper.min.js"></script>
+    <script src="~/Content/Main/js/jquery.SuperSlide.2.1.3.js"></script>*@
+    <script>
+        var num = 0;
+
+        $('.remember input:checkbox').click(function () {
+            if (!$('.remember label').hasClass('active')) {
+                $('.remember label').addClass('active')
+            } else {
+                $('.remember label').removeClass('active')
+            }
+        })
+        function add0(m) {
+            return m < 10 ? "0" + m : m
+        }
+        function formatDate() {
+            var time = new Date();
+            var y = time.getFullYear();
+            var m = time.getMonth() + 1;
+            var d = time.getDate();
+            var h = time.getHours();
+            var mm = time.getMinutes();
+            var s = time.getSeconds();
+            $('.time1').html(add0(m) + '月' + add0(d) + '日')
+            $('.time2').html(add0(h) + ':' + add0(mm) + ':' + add0(s))
+        }
+
+        setInterval(formatDate, 1000)
+        var flag = true;
+        $('.loginBg img').click(function () {
+            if (flag) {
+                $('.login').fadeIn(800);
+                flag = false;
+            }
+
+        })
+    </script>
+</body>
+</html>

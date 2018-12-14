@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+@using Yookey.WisdomClassed.SIP.Membership
+@{
+    
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+    <title>欢迎使用</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--第三方统计图start-->
+    <script src="@Url.Content("~/Librarys/Highcharts-4.0.3/js/highcharts.js")"></script>
+
+
+
+    <!--第三方统计图end-->
+    <script>
+        $(function () {
+            //待办数
+            GetUntreatedCount();
+        });
+
+
+        //打开待办事宜
+        function OpenWorkList() {
+            AddTabMenu('tabworklist', '@Url.Action("Index", "WorkList")', '待办事宜', 'share_workbook.png', 'true');
+            window.parent.linkAddTabMenu();
+        }
+
+        //待办事宜条数
+        function GetUntreatedCount() {
+            getAjax('@Url.Action("GetUntreatedCount", "WorkList")', {}, function (data) {
+                $("#Untreated").html(data);
+            });
+        }
+
+        //打开现场纠处
+        function OpenEducation() {
+            AddTabMenu('Education', '@Url.Action("Index", "Education")', '现场纠处', 'world_go.png', 'true');
+            window.parent.linkAddTabMenu();
+        }
+        
+        //打开案件办理
+        function OpenPenaltyCase() {
+            AddTabMenu('PenaltyCase', '@Url.Action("Index", "PenaltyCase")', '案件办理', 'web_layout.png', 'true');
+            window.parent.linkAddTabMenu();
+        }
+
+        //打开暂扣
+        function OpenTempDetain() {
+            AddTabMenu('Notice', '@Url.Action("Index", "TempDetain")', '暂扣管理', 'update_contact_info.png', 'true');
+            window.parent.linkAddTabMenu();
+        }
+
+        //打开违法停车
+        function OpenPenaltyParking() {
+            AddTabMenu('PenaltyParking', '@Url.Action("Index", "PenaltyParking")', '违法停车', 'small_car.png', 'true');
+            window.parent.linkAddTabMenu();
+        }
+
+        //没有权限操作提醒
+        function NoPermissions() {
+            alertDialog('提示：您没有操作该功能权限！', '0');
+        }
+
+    </script>
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            LoadLeftReport('month');
+            LoadBarChart('month');
+        });
+
+
+        /*
+        * 请求数据报表
+        */
+        function LoadReport(type, btn) {
+            $("input[name='btnReport']").attr('class', 'btnReportThem');
+            $("#" + btn).attr('class', 'btnReport');
+            LoadLeftReport(type);
+            LoadBarChart(type);
+        }
+
+        /*
+        * 按八大类-加载饼图
+        * type 条件类 week 按周 month 按月
+        */
+        function LoadLeftReport(type) {
+            var jo;
+            getAjax('@Url.Action("IndexReportByClass", "PenaltyAnalysis")', { type: type }, function (data) {
+                jo = eval(data);
+            });
+
+            $('#container').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: '按八大类'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            color: '#000000',
+                            connectorColor: '#000000',
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: '八大类',
+                    data: jo
+                }]
+            });
+        }
+
+        /*
+        * 按案件类别-柱状图
+        */
+        function LoadBarChart(type) {
+
+            var jo;
+            getAjax('@Url.Action("IndexReportCharByClassify", "PenaltyAnalysis")', { chartType: "bar", type: type }, function (data) {
+                jo = eval('(' + data + ')');
+            });
+
+            $('#containerA').highcharts({
+                chart: {
+                    type: 'column',
+                    margin: [50, 50, 100, 80]
+                },
+                title: {
+                    text: '按案件分类'
+                },
+                xAxis: {
+                    categories: jo.cate,
+                    labels: {
+                        rotation: 0,
+                        align: 'right',
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '案件量 (件)'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: '{point.y:.1f} 件</b>',
+                },
+                series: [{
+                    name: 'Population',
+                    data: jo.data,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.0f}件'
+                    }
+                }]
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <div style="margin: 10px;">
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <div class="Task" style="background-color: #E7191B" onclick="javascript:OpenWorkList();">
+                        <i></i>
+                        <div class="centre">
+                            <div class="icon">
+                                <img src="@Url.Content("~/Content/Images/task-1.png")" />
+                            </div>
+                            <div class="Number" id="Untreated"></div>
+                        </div>
+                        <div class="text">
+                            审核待处理任务
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="caseflow" style="background-color: #2BA9E3" onclick="OpenEducation();">
+                        <i></i>
+                        <div class="centre">
+                            <div class="icon">
+                                <img src="@Url.Content("~/Content/Images/notic.png")" />
+                            </div>
+                            <div class="Number"></div>
+                        </div>
+                        <div class="text">
+                            现场纠处
+                        </div>
+                    </div>
+                </td>
+
+
+                <td>
+                    <div class="caseflow" style="background-color: #28B779" @(ViewBag.IsPenaltyParkingIndex ? "onclick=OpenPenaltyParking()" : "onclick=NoPermissions()")>
+                        <i></i>
+                        <div class="centre">
+                            <div class="icon">
+                                <img src="@Url.Content("~/Content/Images/task-3.png")" />
+                            </div>
+                            <div class="Number"></div>
+                        </div>
+                        <div class="text">
+                            违法停车
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="caseflow" style="background-color: #EEAE44" @(ViewBag.PenaltyCaseIndex ? "onclick=OpenPenaltyCase()" : "onclick=NoPermissions()")>
+                        <i></i>
+                        <div class="centre">
+                            <div class="icon">
+                                <img src="@Url.Content("~/Content/Images/task-2.png")" />
+                            </div>
+                            <div class="Number"></div>
+                        </div>
+                        <div class="text">
+                            案件办理
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="caseflow" style="background-color: #4CB9E9" @(ViewBag.TempDetainIndex ? "onclick=OpenTempDetain()" : "onclick=NoPermissions()")>
+                        <i></i>
+                        <div class="centre">
+                            <div class="icon">
+                                <img src="@Url.Content("~/Content/Images/task-2.png")" />
+                            </div>
+                            <div class="Number"></div>
+                        </div>
+                        <div class="text">
+                            暂扣管理
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <div class="box">
+                        <div class="box-title">
+                            <div style="">
+                                <div style="width: 20px; float: left">
+                                    <img src="@Url.Content("~/Content/Images/Icon32/chart_bar.png")" alt="" width="20" height="20" />
+                                </div>
+                                <div style="width: 200px; float: right; text-align: right">
+                                    <input type="button" class="btnReport" value="本 月" id="btnMonth" name="btnReport" onclick="LoadReport('month', 'btnMonth')" />
+                                    <input type="button" class="btnReportThem" value="本 周" id="btnWeek" name="btnReport" onclick="LoadReport('week', 'btnWeek')" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-content" style="height: 400px;">
+                            <div id="containerA" style="height: 400px; width: 60%; float: left;"></div>
+                            <div id="container" style="height: 400px; width: 40%; float: left;"></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

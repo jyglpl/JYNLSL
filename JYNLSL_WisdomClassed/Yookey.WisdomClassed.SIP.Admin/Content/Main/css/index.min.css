@@ -1,0 +1,43 @@
+.header{height:68px;}.logo{display:block;width:200px;height:68px;float:left;}.logo img{position:relative;left:10px;top:10px;}.menu{display:block;width:68px;height:68px;float:right;text-align:center;}.menu img{position:relative;top:10px;}.menu span{display:inline-block;position:relative;top:16px;color:#2973A0;}.bg{height:360px;background:#3bade1 url(../images/bg.png) repeat;}.banner{width:100%;height:100%;background: url(../images/banner1.jpg) no-repeat;margin:0 auto; background-size:100% 100%;}.system{height:266px;background:#fbfbfb;border-bottom:1px solid #f0f0f0; position:relative;}.div-nav{width:1022px;height:266px;margin:0 auto;}.div-nav ul li{width:203px;height:256px;border-top:10px solid #fbfbfb;background-color:#fbfbfb;float:left;border-left:1px solid #f0f0f0;text-align:center;}.div-nav ul li:hover{background-color:#ffffff;}.div-nav ul li a.icon{display:block;width:82px;height:82px;background:url(../images/icons.png) no-repeat;padding:auto;margin:50px auto 0;}.div-nav ul li.li-last{border-right:1px solid #f0f0f0;}.div-nav ul li a.zhgl{background-position:0 0;}.div-nav ul li a.srsz{background-position:-82px 0;}.div-nav ul li a.xzzf{background-position:-164px 0;}.div-nav ul li a.fbjcz{background-position:-246px 0;}.div-nav ul li a.jcxx{background-position:-328px 0;}.div-nav ul li span{color:#333333;font-size:24px;display:block;margin-top:30px;}.div-nav ul li span a:hover{color:#0067a8;}.div-nav ul li div{display:block;width:150px;line-height:30px;margin:20px auto 0;}.div-nav ul li div dl dd{text-align:left;padding-left:30px;}.div-nav ul li div dl dd.link{background:url(../images/a_link.png) no-repeat 0 5px;}.div-nav ul li div dl dd.qrcode{background:url(../images/a_qrcode.png) no-repeat 0 5px;}.div-nav ul li div dl dd.blank{background:url(../images/a_blank.png) no-repeat 0 5px;}.div-nav ul li div dl dd a{font-size:14px;}.div-nav ul li div dl dd a:hover{color:#0067a8;}.div-nav ul li table{width:100%;}.div-nav ul li table tr td{text-align:center;padding:10px 0;font-size:12px;}.div-nav ul li table tr td a{display:block;width:14px;height:14px;margin-left:180px;background:url(../images/back.png) no-repeat;}.footer{height:130px;line-height:130px;text-align:center;}.support{margin-left:10px;color:#999999;}
+.rightfu {
+            float: right;
+            margin-top: 2%;
+            height: 46px;
+            width: 146px;
+            position:absolute;
+            background-image:url(../images/rightfu.jpg);
+            background-repeat:no-repeat;
+            right:0;
+            top:53px;
+}
+.clear {
+clear:both;
+}
+.rightfu2 {
+            float: right;
+            margin-top: 1%;
+            height: 46px;
+            width: 146px;
+            background-image:url(../images/rightfu.jpg);
+            background-repeat:no-repeat;
+            position:absolute;
+            right:0;
+            top:0px;
+}
+.rightfu span{
+    display:block;
+    margin-top:9%;
+    text-align:center;
+    color:white;
+    font-size:18px;
+}
+.rightfu2 a{
+    display:block;
+    margin-top:9%;
+    text-align:center;
+    color:white;
+    font-size:18px;
+}
+    .rightfu2 a:hover {
+     color:black;
+    }

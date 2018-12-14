@@ -1,0 +1,20 @@
+﻿
+/***********************************************************/
+v\:*{behavior: url(#default#VML);}
+
+body{width:100%;height:100%;margin:0px; /*background-image:url(../images/bg.jpg);*/position:relative;cursor:default;}
+.mainBody{width:100%;height:100%;margin:0px; /*background-image:url(../images/bg.jpg);*/position:relative;cursor:default;}
+.PointText{cursor:default;}
+/***********************************************************/
+
+/***********************************************************/
+#aContextMenu{margin:0px;padding:0px;border:solid 1px #555588;width:120px;height:173px;background-color:#f5f5f5;position:absolute;text-align:center;}
+ul{margin:5px;padding:0px;width:95%;}
+li{list-style-type:none;margin:0px;padding:0px;width:100%;}
+.MenuItem{width:90%;padding:3px;color:Black ;text-decoration:none;float:left;font-size:13px;text-align:left;cursor:default;}
+.MenuItem:hover{width:90%;padding:3px;color:Black ;text-decoration:none;float:left;font-size:13px;text-align:left;cursor:default;background-color:#9999bb;}
+.MenuItemIco{border:none;width:16px;height:15px;vertical-align:text-bottom;margin-right:6px;}
+.MenuItemSplit{border-bottom:solid 1px #cccccc; margin:3px; height:0px; clear:both; padding:0px; margin-left:0px;font-size:0px;overflow: hidden;}
+
+
+/***********************************************************/

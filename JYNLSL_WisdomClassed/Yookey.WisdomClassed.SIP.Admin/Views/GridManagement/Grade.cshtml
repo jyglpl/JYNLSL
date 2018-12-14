@@ -1,0 +1,113 @@
+﻿@using System.Web.UI.WebControls
+@using Yookey.WisdomClassed.SIP.Model.GridManagement
+@model GridManagementFileScoreInfoEntity
+
+<html lang="en" style="height: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>评分</title>
+    <link href="@Url.Content("~/Content/Files/css/forgm.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <script src="@Url.Content("~/Librarys/layer3.1.1/layer.js")"></script>
+
+    <!--日期控件-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+
+</head>
+<body>
+    <div class="constructionBox">
+        <div class="construction">
+            <div class="constructionCenter">
+                <div>
+                    @using (Html.BeginForm("GreadAdd", "GridManagement", FormMethod.Post, new { @id = "formmain" }))
+                    {
+                        <p>
+                            <label for="FileScore">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;值</label>
+                            <span>
+                                @Html.TextBoxFor(x => x.FileScore, new { @class = "inputText", Value = Model.FileScore == 0 ? "" : Model.FileScore.ToString() })
+                            </span>
+                        </p>
+                        <p>
+                            <label for="FileScoreTime">所属季度</label>
+                            <span>
+                                @Html.TextBox("GradeQuarter", "", new { @class = "inputText", Value = "", @onfocus = "WdatePicker({dateFmt:'yyyy年MM季度', isQuarter:true, isShowOK:false, disabledDates:['....-0[5-9]-..','....-1[0-2]-..'], startDate:'%y-01-01' })" })
+                            </span>
+                        </p>
+                        <p>
+                            <label for="FileScoreTime">操作时间</label>
+                            <span>
+                                @Html.TextBoxFor(x => x.FileScoreTime, new { @class = "inputText", Value = Model.FileScoreTime.ToString("yyyy-MM-dd HH:mm"), @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" })
+                            </span>
+                        </p>
+                        <p>
+                            <label for="FileScoreRemark">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</label>
+                            <span>
+                                @Html.TextAreaFor(x => x.FileScoreRemark)
+                            </span>
+                        </p>
+                        
+                        @Html.HiddenFor(t => t.ID)
+                        @Html.HiddenFor(t => t.CompanyId)
+                        @Html.HiddenFor(t => t.DeptId)
+                        @Html.HiddenFor(t => t.GmId)
+                        @Html.HiddenFor(t => t.GmFileInfoId)
+                    }
+                </div>
+            </div>
+            <p class="constructionBottom">
+                <button type="button" class="sureBtn" onclick="AcceptClick();">确认</button>
+                <button type="button" class="edits" onclick="btnClose()">取消</button>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    function AcceptClick() {
+
+        var quarter = $("#GradeQuarter").val(); //季度
+        if (quarter == '') {
+            layer.alert('请选择扣分所属季度！', { title: '系统提示', icon: 5, shade: [0.1, '#fff'] });
+            return;
+        }
+
+        var score = $("#FileScore").val();  //分值
+        if (score == '') {
+            layer.alert('请输入评分分值！', { title: '系统提示', icon: 5, shade: [0.1, '#fff'] });
+            return;
+        }
+
+        var layerIndex = -1;
+        layerIndex = layer.load(0, { shade: [0.1, '#fff'] });
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: '@Url.Action("GreadAdd", "GridManagement")',
+            data: $('#formmain').serialize(),
+            async: false,
+            datatype: 'json',
+            success: function (data) {
+                layer.close(layerIndex); //完成加载后关闭loading
+                if (data.RtState === 0) {
+                    layer.alert('评分操作成功！', { title: '系统提示', icon: 6, shade: [0.1, '#fff'] }, function () {
+                        btnClose();
+                    });
+                } else {
+                    layer.alert('评分出现异常，请刷新后重试', { title: '系统提示', icon: 5, shade: [0.1, '#fff'] });
+                }
+            }
+        });
+    }
+
+
+    function btnClose() {
+        parent.layer.closeAll();
+    }
+
+</script>

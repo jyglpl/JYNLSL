@@ -1,0 +1,343 @@
+﻿@using Yookey.WisdomClassed.SIP.Enumerate
+@using Yookey.WisdomClassed.SIP.Model.Com
+@{
+    Layout = null;
+    
+}
+@model Yookey.WisdomClassed.SIP.Model.Com.ComNoteContentEntity
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+	<title>短信发送</title>
+    
+        <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    @*<link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />*@
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <link href="@Url.Content("~/Librarys/zTree/css/defult.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/zTree/css/zTreeStyle/zTreeStyle.css")" rel="stylesheet" />
+
+    <script src="@Url.Content("~/Librarys/zTree/js/jquery-1.4.4.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/zTree/js/jquery.ztree.core-3.5.js")"></script>
+    <script src="@Url.Content("~/Librarys/zTree/js/jquery.ztree.excheck-3.5.js")"></script>
+
+    <style type ="text/css" >
+    .i{ background-color :#eae7e7;}
+    .footer{ color:red; height:50px; width:70%; position:fixed; bottom:0; z-index:999;  overflow:visible;
+/* for IE6 */
+ _top: expression(documentElement.scrollTop + documentElement.clientHeight-this.offsetHeight);
+ _position:absolute;
+ /* for IE6 */}
+    </style>
+    <link href="@Url.Content("~/Librarys/casepic/css/style.css")" rel="stylesheet" />
+        <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--jqgrid表格组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+	
+	<!--
+	<script type="text/javascript" src="../../../js/jquery.ztree.exedit-3.5.js"></script>
+	-->
+	<SCRIPT type="text/javascript">
+		<!--
+	    var zNodes;
+	    var phoneNumber = '';
+	    var title = "发送人请用;隔开，例如 15825412584;15924587412;1586547881;";
+    var setting = {
+        view: {
+            selectedMulti: false
+        },
+        check: {
+            enable: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            beforeCheck: beforeCheck,
+            onCheck: onCheck
+        }
+    };
+     
+    /*创建树*/
+    function createTree() {
+        $.ajax({
+            url: '@Url.Action("AsyncGetNodes","MessagePhone")',
+            data: { pId: '姑苏区城市管理行政执法局' },
+            type: 'Post',
+            dataType: "text",
+            success: function (data) {              
+                zNodes=eval('(' + data + ')');
+                $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+                var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+                var node = treeObj.getNodeByParam("id", zNodes[0].id, null);
+                treeObj.expandNode(node, true, false, true);
+            },
+            error: function (msg) {
+                alert(" 数据加载失败！" + msg);
+            }
+        });
+    }
+
+    var code, log, className = "dark";
+    function beforeCheck(treeId, treeNode) {
+        className = (className === "dark" ? "" : "dark");
+        showLog("[ " + getTime() + " beforeCheck ]&nbsp;&nbsp;&nbsp;&nbsp;" + treeNode.name);
+        return (treeNode.doCheck !== false);
+    }
+
+    //选中方法
+    function onCheck(e, treeId, treeNode) {
+        phoneNumber = '';
+        var treeObj=$.fn.zTree.getZTreeObj("treeDemo"),
+        nodes=treeObj.getCheckedNodes(true)
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].id.length == 11) {
+                if (nodes[i].checked) {
+                    phoneNumber += "<" + nodes[i].name + ">" + nodes[i].id + ";";                   
+                } 
+            }
+        }
+
+        unnodes = treeObj.getCheckedNodes(false)
+        for (var i = 0; i < unnodes.length; i++) {
+            if (unnodes[i].id.length == 11) {
+                if (!unnodes[i].checked) {
+                    phoneNumber = phoneNumber.replace("<" + unnodes[i].name + ">" + unnodes[i].id + ";", '');
+                }
+            }
+        }
+        var searchBox = $("#ReceivePhone");
+        if (searchBox.val() == title) { // TextBox控件ToolTip属性转换为Html为title属性 
+            searchBox.removeClass("i");
+            searchBox.val("");
+        }
+
+        $("#ReceivePhone").val(phoneNumber);
+  
+        if (searchBox.val() == "") {
+            searchBox.val(title);
+            searchBox.addClass("i");
+        }
+    }
+    function showLog(str) {
+        if (!log) log = $("#log");
+        log.append("<li class='" + className + "'>" + str + "</li>");
+        if (log.children("li").length > 6) {
+            log.get(0).removeChild(log.children("li")[0]);
+        }
+    }
+    function getTime() {
+        var now = new Date(),
+        h = now.getHours(),
+        m = now.getMinutes(),
+        s = now.getSeconds(),
+        ms = now.getMilliseconds();
+        return (h + ":" + m + ":" + s + " " + ms);
+    }
+
+    function checkNode(e) {
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+        type = e.data.type,
+        nodes = zTree.getSelectedNodes();
+        if (type.indexOf("All") < 0 && nodes.length == 0) {
+            alert("请先选择一个节点");
+        }
+
+        if (type == "checkAllTrue") {
+            zTree.checkAllNodes(true);
+        } else if (type == "checkAllFalse") {
+            zTree.checkAllNodes(false);
+        } else {
+            var callbackFlag = $("#callbackTrigger").attr("checked");
+            for (var i = 0, l = nodes.length; i < l; i++) {
+                if (type == "checkTrue") {
+                    zTree.checkNode(nodes[i], true, false, callbackFlag);
+                } else if (type == "checkFalse") {
+                    zTree.checkNode(nodes[i], false, false, callbackFlag);
+                } else if (type == "toggle") {
+                    zTree.checkNode(nodes[i], null, false, callbackFlag);
+                } else if (type == "checkTruePS") {
+                    zTree.checkNode(nodes[i], true, true, callbackFlag);
+                } else if (type == "checkFalsePS") {
+                    zTree.checkNode(nodes[i], false, true, callbackFlag);
+                } else if (type == "togglePS") {
+                    zTree.checkNode(nodes[i], null, true, callbackFlag);
+                }
+            }
+        }
+    }
+
+    function setAutoTrigger(e) {
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+        zTree.setting.check.autoCheckTrigger = $("#autoCallbackTrigger").attr("checked");
+        $("#autoCheckTriggerValue").html(zTree.setting.check.autoCheckTrigger ? "true" : "false");
+    }
+
+    $(document).ready(function () {
+        createTree();
+        //$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        $("#checkTrue").bind("click", { type: "checkTrue" }, checkNode);
+        $("#checkFalse").bind("click", { type: "checkFalse" }, checkNode);
+        $("#toggle").bind("click", { type: "toggle" }, checkNode);
+        $("#checkTruePS").bind("click", { type: "checkTruePS" }, checkNode);
+        $("#checkFalsePS").bind("click", { type: "checkFalsePS" }, checkNode);
+        $("#togglePS").bind("click", { type: "togglePS" }, checkNode);
+        $("#checkAllTrue").bind("click", { type: "checkAllTrue" }, checkNode);
+        $("#checkAllFalse").bind("click", { type: "checkAllFalse" }, checkNode);
+        $("#autoCallbackTrigger").bind("change", {}, setAutoTrigger);
+    });
+    
+    $(document).ready(function () {
+        var searchBox = $("#ReceivePhone");     
+        searchBox.focus(function () {
+            if (searchBox.val() == title) { // TextBox控件ToolTip属性转换为Html为title属性 
+                $(this).removeClass("i");
+                searchBox.val("");
+            }
+        });
+        searchBox.blur(function () {
+            if (searchBox.val() == "") {
+                searchBox.val(title);
+                $(this).addClass("i");
+            }
+        });
+        searchBox.blur();
+    });
+    //-->
+	</SCRIPT>
+
+     <script type="text/javascript" >
+         $(document).ready(function () {
+             var leftwidth = $(window).width() * 0.35;
+             $("#layout").splitter({
+                 type: "v",
+                 outline: true,
+                 minLeft: leftwidth, sizeLeft: leftwidth, maxLeft: leftwidth,
+                 anchorToWindow: true,
+                 accessKey: "L"
+             });
+         });
+    </script>
+
+    <script type="text/javascript" >
+        //发送消息
+        function SendPhoneMessage() {
+            var receivePhone = $("#ReceivePhone").val();
+            var mistakeInfo = $("#MistakeInfo").val();
+            if (receivePhone == '' || receivePhone==title)
+            {
+                tipDialog("接收人号码不能为空！！！", 1, -1);
+                return;
+            }
+            if (mistakeInfo == '')
+            {
+                tipDialog("发送内容不能为空！！！", 1, -1);
+                return;
+            }
+            $.ajax({
+                url: '@Url.Action("SendPhoneMessage","MessagePhone")',
+                data: $('#formmain').serialize(),
+                type: 'Post',
+                dataType: "text",
+                success: function (data) {
+                    if (data == 'True') {
+                        tipDialog("发送成功！！！", 1, 2);
+                        cancle();
+                                            
+                    }
+                }
+            });                       
+        }
+
+        /*
+      * 取消
+     */
+        function cancle() {
+            try
+            {
+                jQuery.event.remove(this);
+                jQuery.removeData(this);
+                var api = frameElement.api, w = api.opener;
+                $.fn.zTree.destroy("treeDemo");
+            
+                api.close();
+            }
+            catch (e)
+            {
+                
+            }
+        }
+    </script>
+</HEAD>
+
+<BODY >
+<div id="layout" class="layout">
+    <!--左边-->
+     <div class="zTreeDemoBackground left">
+		<ul id="treeDemo" class="ztree"></ul>
+    </div>
+    <!--right-->
+     <div>
+            <form id="formmain">
+            @using (Html.BeginForm("Add", "MessagePhone", FormMethod.Post, new { @id = "formmain" }))
+            {
+                <table class="form" >
+                    <tr>
+                        <th class="formTitle" >发送时间：<span style="color: Red;">*</span></th>
+                         <td class="formValue"  colspan="3">
+                                 @Html.TextBoxFor(x => x.ReceiveTime, new { @class = "txt Wdate", Value = Model.ReceiveTime.ToString("yyyy-MM-dd HH:mm:ss"), @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})", @style = "width:150px" })
+                         </td>
+                    </tr>
+                    <tr>
+                        
+                        <th class="formTitle" >接收人号码：<span style="color: Red;">*</span></th>
+                            <td class="formValue" colspan="3">
+                                @Html.TextAreaFor(x => x.ReceivePhone, new { @class = "txtArea", @style = "width: 100%", @rows = "8" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">内容：<span style="color: Red;">*</span></th>
+                            <td class="formValue" colspan="3">
+                                @Html.TextAreaFor(x => x.MistakeInfo, new { @class = "txtArea", @style = "width: 100% ", @rows = "22" })
+                            </td>
+                        </tr>
+                         @Html.HiddenFor(x => x.Id)
+                       
+                    </table>
+            }
+        </form>
+        <table  class="footer">
+                <tr>
+                    <td style="text-align: center;">
+                        <input type="button" value="发 送" class="btnSearch" onclick="SendPhoneMessage()" /><span style="margin-left:50px"></span>
+                        <input type="button" value="关 闭" class="btnSearch" onclick="cancle()" />
+                    </td>
+                </tr>
+        </table>
+    </div>
+</div>
+</BODY>
+</HTML>

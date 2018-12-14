@@ -1,0 +1,167 @@
+﻿@{
+    Layout = null;
+}
+@model Yookey.WisdomClassed.SIP.Model.Com.ComMenuEntity
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>编辑</title>
+
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+</head>
+<body>
+    @using (Html.BeginForm("Edit", "Menu", FormMethod.Post, new { @id = "formmain" }))
+    {
+        <table class="form">
+            <tr>
+                <th class="formTitle" style="width: 130px;">菜单名称：</th>
+                <td class="formValue">
+                    @Html.TextBoxFor(t => t.MenuName, new { @style = "width: 100%;", @class = "txt" })
+                </td>
+
+                <th class="formTitle">菜单类型：</th>
+                <td class="formValue">
+                    @{
+        if (Model.IsMenu.Equals(1))
+        {
+                        <input type="radio" value="1" name="IsMenu" id="Menu" checked="checked" />
+                        <label
+                            for="Menu">
+                            菜单</label>
+                        <input type="radio" name="IsMenu" id="Action" value="0" />
+                        <label for="Action">功能</label>
+        }
+        else
+        {
+                        <input type="radio" value="1" name="IsMenu" id="Menu" />
+                        <label for="Menu">菜单</label>
+                        <input type="radio" name="IsMenu" id="Action" value="0" checked="checked" />
+                        <label for="Action">功能</label>
+        }
+                    }
+                </td>
+            </tr>
+
+            <tr>
+                <th class="formTitle">Controller：</th>
+                <td class="formValue">
+                    @Html.TextBoxFor(t => t.Controller, new { @style = "width: 100%;", @class = "txt" })
+                </td>
+
+                <th class="formTitle">Action：</th>
+                <td class="formValue">
+                    @Html.TextBoxFor(t => t.Action, new { @style = "width: 100%;", @class = "txt" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">菜单链接：</th>
+                <td class="formValue" colspan="3">
+                    @Html.TextBoxFor(t => t.MenuUrl, new { @style = "width: 100%;", @class = "txt" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">菜单级别：</th>
+                <td class="formValue">
+                    @Html.DropDownListFor(t => t.MenuLevel, (ViewData["MenuLevelList"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                </td>
+
+                <th class="formTitle">父级菜单：</th>
+                <td class="formValue">
+                    @Html.DropDownListFor(t => t.ParentMenuId, (ViewData["ParentMenuList"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">打开方式：</th>
+                <td class="formValue">
+                    @Html.DropDownListFor(t => t.OpenType, (ViewData["OpenTypeList"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                </td>
+
+                <th class="formTitle">Icon图标：</th>
+                <td class="formValue">
+                    @Html.TextBoxFor(t => t.IconPic, new { @style = "width: 100%;", @class = "txt" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">排序编号：</th>
+                <td class="formValue">
+                    @Html.TextBoxFor(t => t.SortCode, new { @style = "width: 100%;", @class = "txt" })
+                </td>
+                <th class="formTitle">来源：</th>
+                <td class="formValue">
+                    @Html.DropDownListFor(t => t.Source, (ViewData["SourceList"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">备注：
+                </th>
+                <td class="formValue" colspan="3">
+                    @Html.TextAreaFor(t => t.MenuDesc, new { @rows = "5", @class = "txtArea" })
+                </td>
+            </tr>
+
+
+            @Html.HiddenFor(t => t.Id)
+            @Html.HiddenFor(t => t.CreatorId)
+            @Html.HiddenFor(t => t.CreateBy)
+            @Html.HiddenFor(t => t.CreateOn)
+        </table>
+    }
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+    function ChangeParentMenu() {
+        var menulevel = $('#MenuLevel').val();
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("AjaxLoadMenus")',
+            data: { menuLevel: menulevel, rnd: Math.random() },
+            success: function (msg) {
+                $('#ParentMenuId').html(msg);
+            },
+            error: function (msg) {
+                alert(msg);
+            }
+        });
+    }
+
+    //提交表单
+    function AcceptClick() {
+        Loading(true, "正在提交数据...");
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: '@Url.Action("Edit")',
+            data: $('#formmain').serialize(),
+            async: false,
+            datatype: 'json',
+            success: function (data) {
+                //Loading(false);
+                if (data.rtState === 0) {
+                    tipDialog("编辑保存成功！", 2, 2);
+                    top.frames[tabiframeId()].windowload();
+                    closeDialog();
+                } else {
+                    tipDialog("保存出现异常，请联系管理员！", 2, 0);
+                }
+            }
+        });
+    }
+
+    $(function () {
+        $('#MenuLevel').change(function () {
+            ChangeParentMenu();
+        });
+    });
+</script>

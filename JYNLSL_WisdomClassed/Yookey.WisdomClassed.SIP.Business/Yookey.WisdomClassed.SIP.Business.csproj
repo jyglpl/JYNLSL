@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2B63F3F3-3A55-492A-A2A1-AEB56C38E165}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yookey.WisdomClassed.SIP.Business</RootNamespace>
+    <AssemblyName>Yookey.WisdomClassed.SIP.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Approval\TcAttachMentBll.cs" />
+    <Compile Include="Approval\TcAttachMentRefBll.cs" />
+    <Compile Include="Approval\TcDictionaryDataBll.cs" />
+    <Compile Include="Approval\TmEnterpriseBll.cs" />
+    <Compile Include="Approval\TmMatteApplyZYWJBll.cs" />
+    <Compile Include="Approval\TmMatterApplyCertificateBll.cs" />
+    <Compile Include="Approval\TmMatterApplyHWGGBll.cs" />
+    <Compile Include="Approval\TmMatterApplyHWGGDetailBll.cs" />
+    <Compile Include="Approval\TmMatterApplyMajorBll.cs" />
+    <Compile Include="Approval\TmMatterApplyZTYSBll.cs" />
+    <Compile Include="Approval\TmMatterApplyZTYSVehicleBll.cs" />
+    <Compile Include="Approval\TmMatterBll.cs" />
+    <Compile Include="Assessment\AssessmentAttachBll.cs" />
+    <Compile Include="Assessment\AssessmentBll.cs" />
+    <Compile Include="Assessment\AssessmentProcessBll.cs" />
+    <Compile Include="Attendance\AttendanceBll.cs" />
+    <Compile Include="BasePetaPoco\BaseBll.cs" />
+    <Compile Include="BasePetaPoco\IBll.cs" />
+    <Compile Include="Base\BaseCertificateBll.cs" />
+    <Compile Include="Base\BaseCertificateUseBll.cs" />
+    <Compile Include="Base\BaseCompanyBll.cs" />
+    <Compile Include="Base\BaseDepartmentBll.cs" />
+    <Compile Include="Base\BaseGroupUserBll.cs" />
+    <Compile Include="Base\BaseObjectUserRelationBll.cs" />
+    <Compile Include="Base\BasePostBll.cs" />
+    <Compile Include="Base\BaseRolesBll.cs" />
+    <Compile Include="Base\BaseUserBll.cs" />
+    <Compile Include="Base\IBll.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Case\InfSimpleNumberBll.cs" />
+    <Compile Include="BllImp\BaseBll.cs" />
+    <Compile Include="Case\InfPunishCaseinfoBll.cs" />
+    <Compile Include="Case\InfPunishDecisionBll.cs" />
+    <Compile Include="Case\InfPunishFinishBll.cs" />
+    <Compile Include="Case\InfPunishHearBll.cs" />
+    <Compile Include="Case\InfPunishInformBll.cs" />
+    <Compile Include="Case\InfPunishReceiptBll.cs" />
+    <Compile Include="Case\InfPunishRecordBll.cs" />
+    <Compile Include="Case\InfPunishSurveyBll.cs" />
+    <Compile Include="Case\InfPunishTargetBll.cs" />
+    <Compile Include="Case\InfPunishAttachBll.cs" />
+    <Compile Include="Case\InfCarAttachBll.cs" />
+    <Compile Include="Case\InfCarChecksignBll.cs" />
+    <Compile Include="Case\InfCarChecksignmiddleBll.cs" />
+    <Compile Include="Case\InfCarHandlerBll.cs" />
+    <Compile Include="Case\InfWritBll.cs" />
+    <Compile Include="Case\InfPunishDocumentBll.cs" />
+    <Compile Include="Case\InfPunishLegislationBll.cs" />
+    <Compile Include="Case\InfCaseCollectBll.cs" />
+    <Compile Include="Case\InfPunishDiscussBll.cs" />
+    <Compile Include="Case\LegislationBll.cs" />
+    <Compile Include="Case\LegislationGistBll.cs" />
+    <Compile Include="Case\LegislationItemBll.cs" />
+    <Compile Include="Case\LegislationRuleBll.cs" />
+    <Compile Include="Case\PunishmentBll.cs" />
+    <Compile Include="Case\RoadManagerBll.cs" />
+    <Compile Include="Case\RoadOfDeptBll.cs" />
+    <Compile Include="Case\SimpleProgram_AttachBll.cs" />
+    <Compile Include="Certificate\CertificateAttachBll.cs" />
+    <Compile Include="Certificate\CertificateInfoBll.cs" />
+    <Compile Include="Com\ComApiAccountBll.cs" />
+    <Compile Include="Com\ComArticleBll.cs" />
+    <Compile Include="Com\ComAttachmentBll.cs" />
+    <Compile Include="Com\ComAttributeBll.cs" />
+    <Compile Include="Com\ComAttributeValueBll.cs" />
+    <Compile Include="Com\ComHolidaysBll.cs" />
+    <Compile Include="Com\ComInitial.cs" />
+    <Compile Include="Com\ComLoginLogBll.cs" />
+    <Compile Include="Com\ComMenuBll.cs" />
+    <Compile Include="Com\ComNoteBll.cs" />
+    <Compile Include="Com\ComNoticeAttachBll.cs" />
+    <Compile Include="Com\ComNoticeBll.cs" />
+    <Compile Include="Com\ComNoticeReceiveBll.cs" />
+    <Compile Include="Com\ComNumberBll.cs" />
+    <Compile Include="Com\ComOperationLogBll.cs" />
+    <Compile Include="Com\ComResourceBll.cs" />
+    <Compile Include="Com\ComVersionManagementBll.cs" />
+    <Compile Include="Com\ComWhiteListBll.cs" />
+    <Compile Include="Consent\ActivityBll.cs" />
+    <Compile Include="Consent\AdvertisingBll.cs" />
+    <Compile Include="Consent\Consent_AttachBll.cs" />
+    <Compile Include="Consent\ExcavationBll.cs" />
+    <Compile Include="Consent\TemporaryBll.cs" />
+    <Compile Include="Crm\CrmCompanyBll.cs" />
+    <Compile Include="Crm\CrmDailyOneProblemBll.cs" />
+    <Compile Include="Crm\CrmDailyOneProblemRecordBll.cs" />
+    <Compile Include="Crm\CrmDepartmentBll.cs" />
+    <Compile Include="Crm\CrmFeedBackBll.cs" />
+    <Compile Include="Crm\CrmIdeaListBll.cs" />
+    <Compile Include="Crm\CrmIssuanceModelBll.cs" />
+    <Compile Include="Crm\CrmMessageWorkBll.cs" />
+    <Compile Include="Crm\CrmOpinionsBll.cs" />
+    <Compile Include="Crm\CrmPostBll.cs" />
+    <Compile Include="Crm\CrmRoleBll.cs" />
+    <Compile Include="Crm\CrmRoleMenuBll.cs" />
+    <Compile Include="Crm\CrmUserBll.cs" />
+    <Compile Include="Crm\CrmUserMenuBll.cs" />
+    <Compile Include="Crm\CrmUserRoleBll.cs" />
+    <Compile Include="DocumentManagement\DocumentAttachBll.cs" />
+    <Compile Include="DocumentManagement\DocumentIncomingBll.cs" />
+    <Compile Include="DocumentManagement\DocumentOfficialBll.cs" />
+    <Compile Include="DoubleRandom\DoubleRandomAttachBll.cs" />
+    <Compile Include="DoubleRandom\DoubleRandomConstructionSiteBll.cs" />
+    <Compile Include="DoubleRandom\DoubleRandomEnterpriseBll.cs" />
+    <Compile Include="DoubleRandom\DoubleRandomObjBll.cs" />
+    <Compile Include="DoubleRandom\DoubleRandomObjLogBll.cs" />
+    <Compile Include="DoubleRandom\DoubleRandomRoadBll.cs" />
+    <Compile Include="DoubleRandom\DoubleRandomSpotChecksBll.cs" />
+    <Compile Include="Education\EducationAttachBll.cs" />
+    <Compile Include="Education\EducationBll.cs" />
+    <Compile Include="Evidence\ProofAttachBll.cs" />
+    <Compile Include="Evaluation\EvaluationBasisBll.cs" />
+    <Compile Include="Evaluation\EvaluationLogBll.cs" />
+    <Compile Include="Evaluation\EvaluationAttachBll.cs" />
+    <Compile Include="Evaluation\EvaluationProcBll.cs" />
+    <Compile Include="Evidence\ProofAttachCaseBll.cs" />
+    <Compile Include="Exam\ExamInfoBll.cs" />
+    <Compile Include="Exam\ExamInfoMationBll.cs" />
+    <Compile Include="Exam\ExamQuestionsBll.cs" />
+    <Compile Include="Exam\ExamThemeBll.cs" />
+    <Compile Include="Exam\ExamTypeBll.cs" />
+    <Compile Include="Exam\OldAnswerBll.cs" />
+    <Compile Include="Exam\QuetionTitleBll.cs" />
+    <Compile Include="Exam\QuetionTypeBll.cs" />
+    <Compile Include="FingerPrint\FingerPrintBll.cs" />
+    <Compile Include="FlowEditor\FeActionBll.cs" />
+    <Compile Include="FlowEditor\FeActionInstanceBll.cs" />
+    <Compile Include="FlowEditor\FeActivityBll.cs" />
+    <Compile Include="FlowEditor\FePickupUserBll.cs" />
+    <Compile Include="FlowEditor\FeProcessBll.cs" />
+    <Compile Include="FlowEditor\FeRuleCodeBll.cs" />
+    <Compile Include="FlowEditor\FE_WorkListBll.cs" />
+    <Compile Include="GridManagement\GridManagementBll.cs" />
+    <Compile Include="GridManagement\GridManagementFileInfoBll.cs" />
+    <Compile Include="GridManagement\GridManagementFileScoreInfoBll.cs" />
+    <Compile Include="Hr\AttendanceLeaveBll.cs" />
+    <Compile Include="Hr\AttendanceReportBll.cs" />
+    <Compile Include="Hr\AttendanceReportDetailsBll.cs" />
+    <Compile Include="Hr\EmployeeWageBll.cs" />
+    <Compile Include="Hr\FlightAlterationBll.cs" />
+    <Compile Include="Hr\FlightClassesOfDeptmentBll.cs" />
+    <Compile Include="Hr\FlightLochusAppearBll.cs" />
+    <Compile Include="Hr\FlightMonitorBll.cs" />
+    <Compile Include="Hr\FlightOfEmpBll.cs" />
+    <Compile Include="Hr\FlightParticularBll.cs" />
+    <Compile Include="Hr\WorkOvertimeBll.cs" />
+    <Compile Include="IllegalConstruction\IllegalCaseAttachBll.cs" />
+    <Compile Include="IllegalConstruction\IllegalCaseInfoBll.cs" />
+    <Compile Include="IllegalConstruction\IllegalCaseRemoveBll.cs" />
+    <Compile Include="IllegalConstruction\IllegalCaseVerifyBll.cs" />
+    <Compile Include="IllegalConstruction\IllegalConstructionBll.cs" />
+    <Compile Include="IllegalConstruction\IllegalConstructionAttachBll.cs" />
+    <Compile Include="Instrument\WBRIGADEBll.cs" />
+    <Compile Include="Instrument\WDEPTSTORAGEBll.cs" />
+    <Compile Include="Instrument\WDESTROYBll.cs" />
+    <Compile Include="Instrument\WDESTROYBYDATEBll.cs" />
+    <Compile Include="Instrument\WLYCRECORDBll.cs" />
+    <Compile Include="Instrument\WLYRECORDBll.cs" />
+    <Compile Include="Instrument\WSTOCKCRECORDBll.cs" />
+    <Compile Include="Instrument\WSTOCKRECORDBll.cs" />
+    <Compile Include="Instrument\WSTOCKTABLEBll.cs" />
+    <Compile Include="Instrument\WTYPETABLEBll.cs" />
+    <Compile Include="Instrument\WUNITSTORAGEBll.cs" />
+    <Compile Include="Instrument\WUSERECORDBll.cs" />
+    <Compile Include="Instrument\WZDSTORAGEBll.cs" />
+    <Compile Include="LawPunishInformation\LegalPersonListBll.cs" />
+    <Compile Include="LawPunishInformation\NaturalPersonListBll.cs" />
+    <Compile Include="License\LicenseAttachBll.cs" />
+    <Compile Include="License\LicenseCheckSpecBll.cs" />
+    <Compile Include="License\LicenseHandUsersBll.cs" />
+    <Compile Include="License\LicenseInquestSizeBll.cs" />
+    <Compile Include="License\LicenseJeevesBll.cs" />
+    <Compile Include="License\LicenseMainBll.cs" />
+    <Compile Include="License\LicenseMaterialCatalogueBll.cs" />
+    <Compile Include="License\LicenseOutDoorBll.cs" />
+    <Compile Include="License\LicensePointPositionBll.cs" />
+    <Compile Include="License\LicensePulicityBll.cs" />
+    <Compile Include="License\LicenseSpecBll.cs" />
+    <Compile Include="License\TransactionLoader.cs" />
+    <Compile Include="Mobile\ApproveBll.cs" />
+    <Compile Include="Mobile\BasisBll.cs" />
+    <Compile Include="Mobile\DsfxcBll.cs" />
+    <Compile Include="Mobile\MobileBasicBll.cs" />
+    <Compile Include="Mobile\MobileBasicVersionBll.cs" />
+    <Compile Include="Mobile\MobileUserMenuBll.cs" />
+    <Compile Include="Mobile\WSAllNumberBll.cs" />
+    <Compile Include="Mobile\WsspBll.cs" />
+    <Compile Include="OA\DocumentNotificationBll.cs" />
+    <Compile Include="OfficeIndex\OfficeIndexBll.cs" />
+    <Compile Include="OnlineClass\OnlineClassAttachmentBll.cs" />
+    <Compile Include="OnlineClass\OnlineClassCourseAttachBll.cs" />
+    <Compile Include="OnlineClass\OnlineClassCourseBll.cs" />
+    <Compile Include="OnlineClass\OnlineClassGroupBll.cs" />
+    <Compile Include="OnlineClass\OnlineClassProgressBll.cs" />
+    <Compile Include="OnlineClass\OnlineClassReceiveBll.cs" />
+    <Compile Include="OnlineClass\OnlineClassRecordBll.cs" />
+    <Compile Include="OnlineClass\OnlineClassStatisticBll.cs" />
+    <Compile Include="OnlineClass\OnlineClassUserGroupBll.cs" />
+    <Compile Include="PenaltyCaseSafty\CheckrectificationBll.cs" />
+    <Compile Include="PenaltyCaseSafty\CorrectiveReviewBll.cs" />
+    <Compile Include="PenaltyCaseSafty\EnterpriseBll.cs" />
+    <Compile Include="PenaltyCaseSafty\LawbasisBll.cs" />
+    <Compile Include="PenaltyCaseSafty\PunishCaseBll.cs" />
+    <Compile Include="PenaltyCaseSafty\InspectionBll.cs" />
+    <Compile Include="PenaltyCaseSafty\LawpersonnelBll.cs" />
+    <Compile Include="PenaltyCaseSafty\RectificationBll.cs" />
+    <Compile Include="Petition\PetitionBll.cs" />
+    <Compile Include="Petition\PetitionProcessBll.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\CaseAnalysisBll.cs" />
+    <Compile Include="Report\CaseReportBll.cs" />
+    <Compile Include="SealUp\SealUpAttachBll.cs" />
+    <Compile Include="SealUp\SealUpBll.cs" />
+    <Compile Include="SealUp\SealUpGoodsBll.cs" />
+    <Compile Include="SealUp\SealUpLegislationBll.cs" />
+    <Compile Include="ShowVideo\ShowVideoBll.cs" />
+    <Compile Include="TeamManagement\TeamManagementAttachBll.cs" />
+    <Compile Include="TeamManagement\TeamManagementBll.cs" />
+    <Compile Include="TeamManagement\TeamManagementProcessBll.cs" />
+    <Compile Include="TeamManagement\TeamManagementStandardBll.cs" />
+    <Compile Include="TempDetain\TempDetainAttachBll.cs" />
+    <Compile Include="TempDetain\TempDetainGoodsBll.cs" />
+    <Compile Include="TempDetain\TempDetainInfoBll.cs" />
+    <Compile Include="TempDetain\TempDetainInfoLegislationBll.cs" />
+    <Compile Include="TempDetain\TempDetainInfoProcessBll.cs" />
+    <Compile Include="TempDetain\TempDetainNumBll.cs" />
+    <Compile Include="TestStatistic\TestStatisticBLL.cs" />
+    <Compile Include="WorkFlow\WfProcessBll.cs" />
+    <Compile Include="WorkFlow\WfProcessInstanceBll.cs" />
+    <Compile Include="Work\FolderBll.cs" />
+    <Compile Include="Work\FolderPermitionBll.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.Common\Yookey.WisdomClassed.SIP.Common.csproj">
+      <Project>{7ffbc8b4-d5d5-4478-98bb-ec0284d78444}</Project>
+      <Name>Yookey.WisdomClassed.SIP.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.DataAccess\Yookey.WisdomClassed.SIP.DataAccess.csproj">
+      <Project>{c1b64528-cbbb-4658-9783-fd1bdbbfaff8}</Project>
+      <Name>Yookey.WisdomClassed.SIP.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.Enumerate\Yookey.WisdomClassed.SIP.Enumerate.csproj">
+      <Project>{760a3b96-f7d6-48c5-91cb-6125e5858387}</Project>
+      <Name>Yookey.WisdomClassed.SIP.Enumerate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.Model\Yookey.WisdomClassed.SIP.Model.csproj">
+      <Project>{64765b1f-7e6e-4b1a-a440-dfd15c2112ec}</Project>
+      <Name>Yookey.WisdomClassed.SIP.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.PetaPoco\PetaPoco.csproj">
+      <Project>{8fbf860e-d32f-4168-bed5-4f67c34817de}</Project>
+      <Name>PetaPoco</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

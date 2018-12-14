@@ -1,0 +1,185 @@
+﻿@{
+    ViewBag.Title = "申请人列表";
+    
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>行政许可综合查询</title>
+
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <link href="@Url.Content("~/Librarys/casepic/css/style.css")" rel="stylesheet" />
+
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--jqgrid表格组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+
+    <style type="text/css">
+        .ui-jqgrid .ui-jqgrid-htable th {
+            height: 28px;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+
+        .ui-th-column, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+            background: none;
+        }
+
+        .ui-jqgrid tr.jqgrow td {
+            white-space: normal !important;
+            height: 25px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+        });
+    </script>
+</head>
+<body>
+    <div class="leftline rightline QueryArea" style="margin: 1px; margin-top: 0px; margin-bottom: 0px;">
+        <table border="0" class="form-find" style="height: 45px;">
+            <tr>
+                <th>关键字：
+                </th>
+                <td>
+                    <input id="txtkeyWords" type="text" class="txt" style="width: 200px" />
+                </td>
+                <td colspan="2">
+                    <input id="btnSearch" type="button" class="btnSearch" value="搜 索" onclick="btn_Search()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topline rightline" style="margin: 1px; margin-top: -1px;">
+        <table id="gridTable"></table>
+        <div id="gridPager"></div>
+    </div>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $("#txtkeyWords").focus();
+        GetGrid();
+    });
+
+    var lastSel;
+    //加载表格
+    function GetGrid() {
+        $("#gridTable").jqGrid({
+            url: '@Url.Action("SearchApplicantInfoList", "LicenseApproval")',
+            postData: {
+                rnd: Math.random()
+            }, //发送数据 
+            datatype: "json",
+            height: 370,
+            width: 850,
+            colModel: [
+                { label: "申请人类型", name: "ApplicantType", index: "ApplicantType", hidden: true },
+                { label: "证件类型", name: "PaperType", index: "PaperType", width: 80, hidden: true },
+                { label: "申请人证照编号", name: "PaperCode", index: "PaperCode", width: 120, align: 'left' },
+                { label: "申请人", name: "ApplicantName", index: "ApplicantName", width: 120, align: 'left' },
+                { label: "单位地址", name: "CompanyAddress", index: "CompanyAddress", width: 180, align: 'left' },
+                { label: "法定代表人", name: "LegalPersonName", index: "LegalPersonName", width: 100, align: 'left' },
+                { label: "身份证件号", name: "LegalPersonId", index: "LegalPersonId", width: 120, align: 'left' },
+                { label: "联系人", name: "LinkMan", index: "LinkMan", width: 80, align: 'left' },
+                { label: "联系电话", name: "LinkTel", index: "LinkTel", width: 100, align: 'left' },
+                { label: "传真", name: "Fax", index: "Fax", width: 100, align: 'left' },
+                { label: "邮编", name: "ZipCode", index: "ZipCode", width: 80, align: 'left' },
+                { label: "电子邮件", name: "Email", index: "Email", width: 100, align: 'left' },
+            ],
+            viewrecords: true,
+            rowList: [30, 50, 100, 500, 1000],
+            pager: "#gridPager",
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                AcceptClick();
+            }
+        });
+    };
+
+    //刷新
+    function windowload() {
+        $("#gridTable").trigger("reloadGrid"); //重新载入  
+    };
+
+    //查询
+    function btn_Search() {
+        $("#gridTable").jqGrid('setGridParam', {
+            url: '@Url.Action("SearchApplicantInfoList", "LicenseApproval")',
+            postData: {
+                keyword: $("#txtkeyWords").val()
+            }, //发送数据 
+            page: 1
+        }).trigger('reloadGrid');
+    };
+
+    //保存事件
+    function AcceptClick() {
+        var applicantType = GetJqGridRowValue("#gridTable", "ApplicantType");
+        var paperType = GetJqGridRowValue("#gridTable", "PaperType");
+        var paperCode = GetJqGridRowValue("#gridTable", "PaperCode");
+        var applicantName = GetJqGridRowValue("#gridTable", "ApplicantName");
+        var companyAddress = GetJqGridRowValue("#gridTable", "CompanyAddress");
+        var legalPersonName = GetJqGridRowValue("#gridTable", "LegalPersonName");
+        var legalPersonId = GetJqGridRowValue("#gridTable", "LegalPersonId");
+        var linkMan = GetJqGridRowValue("#gridTable", "LinkMan");
+        var linkTel = GetJqGridRowValue("#gridTable", "LinkTel");
+        var zipCode = GetJqGridRowValue("#gridTable", "ZipCode");
+        var email = GetJqGridRowValue("#gridTable", "Email");
+        var fax = GetJqGridRowValue("#gridTable", "Fax");
+        
+        var api = frameElement.api, w = api.opener;
+        w.Update_ApplicantInfo(applicantType, paperType, paperCode, applicantName, companyAddress, legalPersonName, legalPersonId, linkMan, linkTel, zipCode, email, fax);
+        api.close();
+    }
+</script>

@@ -1,0 +1,597 @@
+body {
+  font-family: "微软雅黑", "Arial";
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+div,
+p,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a:active {
+  text-decoration: none;
+}
+.lf {
+  float: left;
+}
+.rt {
+  float: right;
+}
+.clearfix:before {
+  content: "";
+  display: table;
+  clear: both;
+  height: 0px;
+}
+.clearfix {
+  width: 100%;
+  zoom: 1;
+}
+.clear {
+  clear: both;
+}
+/*********************/
+.header {
+  width: 100%;
+  height: 60px;
+  background-color: #fdfdfd;
+  box-shadow: 0px 2px 1.5px 0px rgba(6, 0, 1, 0.07);
+  overflow: hidden;
+}
+.header .logoTitle {
+  line-height: 60px;
+  margin-right: 136px;
+  font-size: 16px;
+  color: #666;
+}
+.header .logoTitle b {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin-top: 16px;
+  border-radius: 50%;
+  background-color: #44a9f3;
+  vertical-align: top;
+}
+.header .logoTitle b img {
+  border-radius: 50%;
+}
+.header .navList {
+  line-height: 60px;
+}
+.header .navList a {
+  margin-right: 136px;
+  font-size: 16px;
+  color: #666;
+  cursor: pointer;
+}
+.header .navList .chooseSpan {
+  color: #44a9f3;
+}
+.header .operation {
+  float: right;
+  line-height: 60px;
+}
+.header .operation a {
+  color: #666;
+  font-size: 18px;
+  margin-left: 32px;
+}
+.header .operation a b.help {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background: url(../img/helpIcon.png) no-repeat;
+  vertical-align: middle;
+}
+.header .operation a b.exit {
+  display: inline-block;
+  width: 25px;
+  height: 22px;
+  background: url(../img/exitIcon.png) no-repeat;
+  vertical-align: middle;
+}
+.main {
+  background-color: #e7e8eb;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 18px;
+  padding-bottom: 20px;
+}
+.main .col-md-3 .leftTop {
+  width: 100%;
+  height: 128px;
+  background-color: #f4f6f8;
+  border: 1px solid #bfbfbf;
+}
+.main .col-md-3 .leftTop .searchBox {
+  width: 75%;
+  position: relative;
+  height: 30px;
+  margin: 20px auto;
+  margin-bottom: 30px;
+}
+.main .col-md-3 .leftTop .searchBox input {
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #999;
+  padding-left: 10px;
+}
+.main .col-md-3 .leftTop .searchBox span {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  width: 22px;
+  height: 22px;
+  background: url(../img/searchIcon.png) no-repeat;
+}
+.main .col-md-3 .leftTop .titleThree {
+  overflow: hidden;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.main .col-md-3 .leftTop .titleThree > span {
+  font-size: 22px;
+  color: #666;
+}
+.main .col-md-3 .leftTop .titleThree > span b {
+  display: inline-block;
+  width: 29px;
+  height: 29px;
+  background: url(../img/threeList.png) no-repeat;
+  vertical-align: middle;
+}
+.main .col-md-3 .leftTop .titleThree a {
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  background-color: #44a9f3;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  font-size: 16px;
+}
+.main .col-md-3 .listItem {
+  width: 100%;
+  height: 600px;
+  background-color: #f4f6f8;
+}
+.main .col-md-3 .listItem > ul > li {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 0.5px 0 rgba(6, 0, 1, 0.4);
+  cursor: pointer;
+  background-color: #44a9f3;
+  color: #fff;
+}
+.main .col-md-3 .listItem > ul > li p {
+  height: 45px;
+  line-height: 45px;
+  width: 100%;
+  padding-left: 15px;
+  font-size: 16px;
+  padding-right: 15px;
+  border-bottom: 1px dotted #fff;
+}
+.main .col-md-3 .listItem > ul > li p span {
+  float: left;
+}
+.main .col-md-3 .listItem > ul > li p b {
+  float: right;
+}
+.main .col-md-3 .listItem > ul > li p em {
+  float: left;
+  margin-top: 16.5px;
+  margin-right: 10px;
+  width: 14px;
+  height: 12px;
+  background: url(../img/all_icon.png) no-repeat;
+}
+.main .col-md-3 .listItem > ul ul {
+  display: none;
+  background-color: #3b93d4;
+}
+.main .col-md-3 .listItem > ul ul li {
+  width: 100%;
+  box-shadow: 0 0 0.5px 0 rgba(6, 0, 1, 0.4);
+  cursor: pointer;
+}
+.main .col-md-3 .listItem > ul ul li a {
+  display: block;
+  width: 100%;
+  line-height: 45px;
+  padding-left: 30px;
+  font-size: 14px;
+  color: #fff;
+}
+.main .detailCaseRight {
+  background-color: #fff;
+  border: 1px solid #bfbfbf;
+  border-left: none;
+}
+.main .detailCaseRight .rightTopTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 38px;
+  color: #666;
+  margin-top: 24px;
+  margin-bottom: 32px;
+  position: relative;
+}
+.main .detailCaseRight .rightTopTitle .specified {
+  position: absolute;
+  float: right;
+  width: 115px;
+  height: 37px;
+  background-color: #44a9f3;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  line-height: 37px;
+  border-radius: 5px;
+  margin-top: 8px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.main .detailCaseRight .rightTopTitle .one {
+  right: 10px;
+}
+.main .detailCaseRight .rightTopTitle .two {
+  right: 140px;
+}
+.main .detailCaseRight .tableList {
+  border: 1px solid #bfbfbf;
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+}
+.main .detailCaseRight .tableList > div {
+  height: 60px;
+}
+.main .detailCaseRight .tableList > div b {
+  color: #e4393c;
+}
+.main .detailCaseRight .tableList > div span {
+  color: #3c3c3c;
+}
+.main .detailCaseRight .tableList .col-md-2 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 60px;
+  border-right: 1px solid #bfbfbf;
+  text-align: right;
+}
+.main .detailCaseRight .tableList .col-md-4:nth-child(2n) {
+  border-right: none;
+}
+.main .detailCaseRight .tableList .col-md-4,
+.main .detailCaseRight .tableList .col-md-10 {
+  font-size: 14px;
+  font-weight: 600;
+  border-right: 1px solid #bfbfbf;
+}
+.main .detailCaseRight .tableList .col-md-4 span,
+.main .detailCaseRight .tableList .col-md-10 span {
+  margin-top: 18px;
+  display: block;
+}
+.main .detailCaseRight .tableList .col-md-10 {
+  border-right: none;
+}
+.main .detailCaseRight .tableList:nth-child(7n) {
+  border-bottom: 1px solid #bfbfbf;
+}
+.main .detailCaseRight .inoutContentBox {
+  width: 100%;
+  margin: 10px 0px;
+  font-size: 22px;
+  color: #3c3c3c;
+}
+.main .detailCaseRight .inoutContentBox p:first-child {
+  width: 100%;
+}
+.main .detailCaseRight .inoutContentBox p:first-child span {
+  display: inline-block;
+  width: 33%;
+  text-align: center;
+  color: #fff;
+  height: 42px;
+  line-height: 42px;
+  font-size: 16px;
+  background-color: #1fbba6;
+}
+.main .detailCaseRight .inoutContentBox p:first-child span:first-child {
+  background-color: #fe9601;
+}
+.main .detailCaseRight .inoutContentBox p:first-child span:last-child {
+  background-color: #76c80e;
+}
+.main .detailCaseRight .inoutContentBox div {
+  width: 90%;
+  margin: 20px auto;
+}
+.main .detailCaseRight .inoutContentBox div textarea {
+  width: 100%;
+  height: 164px;
+  resize: none;
+}
+.main .detailCaseRight .inoutContentBox .readingBox {
+  width: 155px;
+  height: 92px;
+  margin: 82px auto;
+  border: 2px solid #38adff;
+  text-align: center;
+  border-radius: 2px;
+}
+.main .detailCaseRight .inoutContentBox .readingBox p:first-child {
+  color: #38adff;
+  font-size: 32px;
+  margin-top: 5px;
+}
+.main .detailCaseRight .inoutContentBox .readingBox p:first-child b {
+  display: inline-block;
+  width: 50px;
+  height: 29px;
+  background: url(../img/readingIcon.png) no-repeat;
+  vertical-align: baseline;
+  margin-right: 5px;
+}
+.main .detailCaseRight .inoutContentBox .readingBox p:last-child {
+  color: #666;
+  font-size: 16px;
+}
+.main .col-md-3 {
+  padding-right: 0px;
+}
+.btnBox {
+  float: right;
+  margin-top: 20px;
+}
+.btnBox button {
+  margin-left: 30px;
+}
+/********案件管理*****************/
+.caseMain {
+  background-color: #e7e8eb;
+  border-top: 1px solid #e7e8eb;
+  overflow: hidden;
+  height: 100%;
+}
+.caseMain .tableBox table {
+  background-color: #fff;
+  text-align: center;
+}
+.caseMain .tableBox table thead {
+  background-color: #f5f5f5;
+}
+.caseMain .tableBox table thead th {
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+}
+.caseMain .tableBox table tbody {
+  color: #666;
+  font-size: 14px;
+}
+#caseMangement {
+  width: 100%;
+  height: 87px;
+  background-color: #fff;
+  margin-top: 40px;
+  overflow: hidden;
+}
+#caseMangement .container > span {
+  line-height: 87px;
+}
+#caseMangement .container > span b {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  background: url(../img/caseIcon.png) no-repeat;
+  vertical-align: text-bottom;
+}
+#caseMangement .container > span span {
+  font-size: 22px;
+}
+#caseMangement .container > p {
+  overflow: hidden;
+  margin-top: 24px;
+}
+#caseMangement .container > p span {
+  float: left;
+}
+#caseMangement .container > p span input {
+  height: 37px;
+  width: 278px;
+  border: 1px solid #999;
+  padding-left: 10px;
+  border-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+}
+#caseMangement .container > p span button {
+  width: 80px;
+  height: 37px;
+  color: #fff;
+  background-color: #44a9f3;
+  border-radius: 3px;
+  border: none;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}
+.arrangement {
+  margin: 30px 0px;
+}
+.arrangement p {
+  margin-right: 50px;
+}
+.modal .modal-body form {
+  color: #666;
+  font-size: 16px;
+}
+.leftBottom {
+  background-color: #fff;
+  border-top: 1px solid #fff;
+}
+.leftBottom .linkTitle {
+  color: #666;
+  font-size: 30px;
+  margin: 27px 0px 29px 15px;
+}
+.leftBottom .link ul li {
+  width: 98%;
+  height: 140px;
+  background-color: #b6dff1;
+  color: #0a96d1;
+  text-align: center;
+  border-top: 1px solid #b6dff1;
+  margin-bottom: 10px;
+  margin-left: 1%;
+}
+.leftBottom .link ul li a {
+  color: #0a96d1;
+}
+.leftBottom .link ul li a p:first-child {
+  font-size: 36px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.leftBottom .link ul li a p:last-child {
+  font-size: 26px;
+}
+.leftBottom .link ul li:hover {
+  background-color: #0a96d1;
+}
+.leftBottom .link ul li:hover a {
+  color: #fff;
+}
+.commentsBox {
+  background-color: #fff;
+}
+.commentsBox .commentsBoxContent {
+  padding: 40px 0px 40px 40px;
+  border-bottom: 1px solid #e7e8eb;
+}
+.commentsBox .commentsBoxContent > div {
+  overflow: hidden;
+}
+.commentsBox .commentsBoxContent > div > p {
+  float: left;
+}
+.commentsBox .commentsBoxContent > div > p img {
+  width: 102px;
+  height: 102px;
+  border-radius: 50%;
+}
+.commentsBox .commentsBoxContent > div div {
+  float: left;
+  width: 85%;
+  margin-left: 10px;
+}
+.commentsBox .commentsBoxContent > div div p:first-child b {
+  color: #000;
+  font-size: 16px;
+}
+.commentsBox .commentsBoxContent > div div p:first-child .ades {
+  font-size: 16px;
+  color: #666;
+  margin-left: 5px;
+}
+.commentsBox .commentsBoxContent > div div p:first-child .times {
+  color: #666;
+  font-size: 16px;
+}
+.commentsBox .commentsBoxContent > div div .content {
+  font-size: 14px;
+  color: #666;
+  margin-top: 10px;
+}
+.commentsBox .commentsBoxContent > p {
+  float: right;
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+}
+.commentsBox .commentsBoxContent .writeblock {
+  border: 1px solid #efefef;
+  width: 100%;
+  padding: 10px;
+  overflow: initial;
+  display: table;
+  position: relative;
+  top: 10px;
+}
+.commentsBox .commentsBoxContent .writeblock > b {
+  position: absolute;
+  top: -11px;
+  right: 50px;
+  background: url(../img/jiao_03.png) no-repeat;
+  width: 12px;
+  height: 12px;
+}
+.commentsBox .commentsBoxContent .writeblock div.commentList {
+  width: 100%;
+  margin-left: 0px;
+}
+.commentsBox .commentsBoxContent .writeblock div.commentList ul li {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0px;
+}
+.commentsBox .commentsBoxContent .writeblock div.commentList ul li p:first-child {
+  overflow: hidden;
+  width: 100%;
+}
+.commentsBox .commentsBoxContent .writeblock div.commentList ul li p:first-child span.name {
+  color: #44a9f3;
+  margin-right: 3px;
+  font-size: 14px;
+}
+.commentsBox .commentsBoxContent .writeblock div.commentList ul li p:last-child {
+  color: #44a9f3;
+  margin-right: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.commentsBox .commentsBoxContent .writeblock div.commentList ul li button {
+  font-size: 12px;
+}
+.commentsBox .commentsBoxContent .writeblock div.commentList ul li:last-child {
+  border-bottom: 1px solid transparent;
+}
+.commentsBox .commentsBoxContent .writeblock div.commentList #divComment {
+  width: 100%;
+  background-color: #F7F7F7;
+  padding: 15px;
+  text-align: right;
+  margin-left: 0px;
+}
+.commentsBox .commentsBoxContent .writeblock div.commentList #divComment textarea {
+  width: 100%;
+  height: 80px;
+}
+.commentsBox .commentsBoxContent .writeblock div.commentList #divComment button {
+  background-color: #44a9f3;
+  width: 60px;
+  height: 25px;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  margin-top: 5px;
+}

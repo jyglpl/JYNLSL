@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
+
+</head>
+<body>
+
+    <div class="layui-tab" lay-filter="test">
+
+        <ul class="layui-tab-title">
+            <li class="layui-this" lay-id="11">系统办公</li>
+            <li lay-id="22">公告通知</li>
+            <li lay-id="33">公文管理</li>
+
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <table class="layui-hide" id="test2"></table>
+                <script>
+
+                </script>
+            </div>
+            <div class="layui-tab-item">
+
+
+
+                <div class="demoTable">
+                    <form class="layui-form" action="">
+                        <div class="layui-inline">
+
+                            <div class="layui-input-inline">
+                                <select name="quiz3">
+                                    <option value="">请选择状态</option>
+                                    <option value="西湖区">西湖区</option>
+                                    <option value="余杭区">余杭区</option>
+                                    <option value="拱墅区">临安市</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="layui-inline">
+
+                            <div class="layui-input-inline">
+                                <select name="quiz3">
+                                    <option value="">请选择类别</option>
+                                    <option value="西湖区">西湖区</option>
+                                    <option value="余杭区">余杭区</option>
+                                    <option value="拱墅区">临安市</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        
+                        <div class="layui-inline">
+                            <label class="layui-form-label">日期范围</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="test6" placeholder=" 至 ">
+                            </div>
+                        </div>
+                        关键字：
+                        <div class="layui-inline">
+                            <input name="id" class="layui-input" id="demoReload" autocomplete="off">
+                        </div>
+                        <button class="layui-btn" data-type="reload">搜索</button>
+                    </form>
+                   
+
+                </div>
+                <table class="layui-hide" id="test" lay-filter="test"></table>
+
+                <script id="toolbarDemo" type="text/html">
+                    <div class="layui-btn-container">
+
+                        <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+
+                    </div>
+                </script>
+
+                <script id="barDemo" type="text/html">
+
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">提醒</a>
+
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                </script>
+            </div>
+            <div class="layui-tab-item">
+
+            </div>
+
+            </div>
+    </div>
+    <script src="~/Content/layui/layui.js" charset="utf-8"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<script>
+
+
+    function timeToStamp(datetime) {
+        if(datetime == '') {
+            return '';
+        }else{
+            var day = new Date(datetime)
+            var stamp = Date.parse(day)/1000;
+            return stamp; 
+        }
+    } 
+
+//  将时间戳转为格式化时间
+    function stampToTime(timestamp) {
+        if(timestamp == 0) {
+            return "";
+        }else{
+            var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            var Y = date.getFullYear();
+            var M = date.getMonth()+ 1;
+            var D = date.getDate();
+            var h = date.getHours();
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            var datestring = Y + "-";
+            if (M < 10) datestring += "0";
+            datestring += M + "-";
+            if (D < 10) datestring += "0";
+            datestring += D + " ";
+            if (h < 10) datestring += "0";
+            datestring += h + ":";
+            if (m < 10) datestring += "0"; 
+            datestring += m + ":";
+            if (s < 10) datestring += "0"; 
+            datestring += s;
+            return datestring;  
+        }
+    }
+
+    layui.use(['table', 'form', 'laydate', 'element'], function () {
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var form = layui.form;
+        var $ = layui.jquery
+            , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+
+        $('.site-demo-active').on('click', function () {
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+
+        //Hash地址的定位
+        var layid = location.hash.replace(/^#test=/, '');
+        element.tabChange('test', layid);
+
+        element.on('tab(test)', function (elem) {
+            location.hash = 'test=' + $(this).attr('lay-id');
+        });
+
+        //日期范围
+        laydate.render({
+            elem: '#test6'
+            ,range: true
+        });
+
+
+        form.render();
+
+        table.render({
+            elem: '#test', url: '@Url.Action("GetAllDoc", "OA")'
+            , toolbar: '#toolbarDemo'
+  
+            , defaultToolbar:[]
+            , title: '公告通知表'
+          
+            , cols: [[
+                { type: 'checkbox', fixed: 'left' }
+                , { field: 'Id', title: '编号', width: 80, fixed: 'left', align:'center', unresize: true, sort: true }
+                , { field: 'Title', title: '标题'}
+                , { field: 'Publisher', title: '发布人', width: 150, align: 'center'}
+               
+                , {
+                    field: 'ReleaseTime', title: '发布时间', width: 200 ,align: 'center'
+                    ,templet: function(d){
+                        return stampToTime(timeToStamp(d.ReleaseTime))
+                    }
+                }
+               
+                , {
+                    field: 'AplayState', title: '接受情况', width: 100 ,align: 'center'
+                    ,templet: function(d){
+                        return "接受";  
+                    }
+                }
+                , { field: 'Category', title: '类别', width: 80, align: 'center'}
+                , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 230, align: 'center'}
+            ]]
+            , page: true
+  
+        });
+
+
+
+
+        table.render({
+            elem: '#test2',
+            url: '@Url.Action("GetAllDoc", "OA")',
+            cols: [
+                [
+                    { field: 'Id', width: 80, title: 'ID', sort: true },
+                    { field: 'Id', width: 80, title: '用户名' },
+                    { field: 'Id', width: 80, title: '性别', sort: true },
+                    { field: 'Id', width: 80, title: '城市' },
+                    { field: 'Id', title: '签名', minWidth: 150 },
+                    { field: 'Id', width: 80, title: '积分', sort: true },
+                    { field: 'Id', width: 80, title: '评分', sort: true },
+                    { field: 'Id', width: 80, title: '职业' },
+                    { field: 'Id', width: 135, title: '财富', sort: true }
+                ]
+            ],
+            page: true
+        });
+
+        //头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+            case 'add':
+                layer.open({
+                    type: 2,
+                    title:'发布公告',
+                    area: ['900px', '550px'],
+                    fixed: false, //不固定
+                    maxmin: true,
+                    content: '@Url.Action("DocAdd", "OA")'
+                });
+                break;
+
+            };
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            //console.log(obj)
+            if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.prompt({
+                    formType: 2
+                    , value: data.email
+                }, function (value, index) {
+                    obj.update({
+                        email: value
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+
+        var $ = layui.$, active = {
+                             reload: function(){
+                                 var demoReload = $('#demoReload');
+      
+                                 //执行重载
+                                 table.reload('testReload', {
+                                     page: {
+                                         curr: 1 //重新从第 1 页开始
+                                     }
+                                     ,where: {
+                                         key: {
+                                             id: demoReload.val()
+                                         }
+                                     }
+                                 });
+                             }
+                         };
+  
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+
+
+</script>
+
+</body>
+</html>

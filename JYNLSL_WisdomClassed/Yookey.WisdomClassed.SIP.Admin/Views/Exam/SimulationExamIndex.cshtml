@@ -1,0 +1,388 @@
+﻿@{
+    ViewBag.Title = "SimulationExamIndex";
+    List<ExamInfoEntity> ExamData = ViewBag.ExamData as List<ExamInfoEntity>;
+}
+@using Yookey.WisdomClassed.SIP.Model.Exam;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>模拟考试</title>
+    <!--框架必需start-->
+    @*<link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />*@
+    @*    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>*@
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.9.1.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    @*<link href="@Url.Content("~/Librarys/casepic/css/style.css")" rel="stylesheet" />*@
+    <!--jqgrid表格组件start-->
+    @*<script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>*@
+    <!--jqgrid表格组件end-->
+
+    <!--日期组件start-->
+    @*<script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>*@
+    <!--日期组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+    <link href="@Url.Content("~/Content/Librarys/exam/chosen.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Librarys/exam/sipac.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Librarys/exam/scores.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Librarys/exam/blue.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/Librarys/exam/icheck.js")"></script>
+    <style type="text/css">
+        /*.ui-jqgrid .ui-jqgrid-htable th {
+            height: 28px;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+
+        .ui-th-column, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+            background: none;
+        }
+
+        .ui-jqgrid tr.jqgrow td {
+            white-space: normal !important;
+            height: 25px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }*/
+        .searchBox {
+            width: 100%;
+            margin: 10px;
+            overflow: hidden;
+        }
+
+            .searchBox > span {
+                float: left;
+            }
+
+                .searchBox > span.names {
+                    font-size: 14px;
+                    margin-right: 15px;
+                    color: #138cda;
+                    margin-top: 3.5px;
+                }
+
+                .searchBox > span.inputs input {
+                    width: 200px;
+                    height: 28px;
+                    border-radius: 3px;
+                    border: 1px solid #ddd;
+                    padding-left: 10px;
+                }
+
+        .btns {
+            margin-left: 10px;
+        }
+
+            .btns input {
+                display: inline-block;
+                border: none;
+                /* float: left; */
+                font: 16px/30px "微软雅黑","Microsoft YaHei";
+                color: #FFF;
+                background: #CBCBCB;
+                padding: 0 30px;
+                border-radius: 5px;
+                cursor: pointer;
+                background: #157DBf;
+            }
+
+        .statisticalBox .sipac_tableBox table tbody tr .left .red {
+            color: #e4393c;
+        }
+
+        .statisticalBox .sipac_tableBox table tbody tr .left .warning {
+            color: #03b096;
+        }
+
+        .statisticalBox .sipac_tableBox table tbody tr .left .def {
+            color: #ec971f;
+        }
+    </style>
+</head>
+<body>
+    <div id="layout" class="layout" style="border-bottom: none;">
+        <!--工具栏-->
+        <div id="grid_List">
+            @*<div class="bottomline QueryArea" style="margin: 1px; margin-top: 0px; margin-bottom: 0px;">
+                <table border="0" class="form-find" style="height: 45px;">
+                    <tr>
+                        <th>试卷名称：
+                        </th>
+                        <td>
+                            <input id="keywords" type="text" class="txt" style="width: 200px" value="@ViewBag.Keywords" />
+                        </td>
+                        <td>
+                            <input id="btnSearch" type="button" class="btnSearch" value="查 询" onclick="btn_Search()" />
+                        </td>
+                        <td>
+                            <input id="btnAdd" type="button" class="btnSearch" value="自定义模拟试卷" onclick="btn_add()" />
+                        </td>
+                    </tr>
+                </table>
+            </div>*@
+            <p class="searchBox">
+                <span class="names">试卷名称</span>
+                <span class="inputs">
+                    <input id="keywords" type="text" value="@ViewBag.Keywords" />
+                </span>
+                <span class="btns">
+                    <input id="btnSearch" type="button" value="查 询" onclick="btn_Search()" />
+                    <input id="btnAdd" type="button" value="自定义试卷" onclick="btn_add()" />
+                </span>
+            </p>
+            <div class="sipac_body">
+                @*<div class="sipac_container">*@
+                <div class="statisticalBox">
+                    <p>试卷列表</p>
+                    <div class="sipac_tableBox sipac_form">
+                        <table>
+                            @foreach (var item in ExamData)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td class="left">
+                                            <div>
+                                                <p class="paperTitle">@item.Title</p>
+                                                <p class="smallPaper">
+                                                    <span>考试时间：@item.Time 分钟；</span>
+                                                    <span>发布人：@item.Publisher；</span>
+                                                    <span>有效期：@(Convert.ToDateTime(item.StartDate).ToString("yyyy-MM-dd") == "0001-01-01" ? "无" : Convert.ToDateTime(item.StartDate).ToString("yyyy-MM-dd")) ~ @(Convert.ToDateTime(item.EndDate).ToString("yyyy-MM-dd") == "0001-01-01" ? "无" : Convert.ToDateTime(item.EndDate).ToString("yyyy-MM-dd"))；</span>
+                                                </p>
+                                            </div>
+                                            <a href="javascript:void(0);" class="btnStart" onclick="exam_view('@item.Tid');">查看成绩</a>
+                                            <a href="javascript:void(0);" class="btnStart red" onclick="exam_delete('@item.Tid');">删除</a>
+                                            <a href="javascript:void(0);" class="btnStart def" onclick="exam_edit('@item.Tid');">编辑</a>
+                                            <a href="javascript:void(0);" class="btnStart warning" onclick="exam_star('@item.Tid');">开始考试</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+                @*</div>*@
+            </div>
+
+            @*<table id="gridTable"></table>
+            <div id="gridPager"></div>*@
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    //$(function () {});
+
+    //加载表格
+    function GetGrid() {
+        $("#gridTable").jqGrid({
+            url: '@Url.Action("GetSimulationExamData", "Exam")',
+            datatype: "json",
+            postData: {},
+            height: $(window).height() - 155,
+            autowidth: true,
+            colModel: [
+                { label: "主键", name: "Tid", index: "Tid", hidden: true },
+                { label: "试卷名称", name: "Title", index: "Title", width: 550, align: 'center' },
+                { label: "考试时间", name: "Time", index: "Time", width: 80, align: 'center' },
+                { label: "发布人", name: "Publisher", index: "Publisher", width: 100, align: 'center' },
+                { label: "开始时间", name: "StartDate", index: "StartDate", width: 100, align: 'center' },
+                { label: "结束时间", name: "EndDate", index: "EndDate", width: 100, align: 'center' },
+                {
+                    label: "操作", name: "Tid", index: "Tid", width: 500, align: 'center', formatter: function (value, grid, rows, state) {
+                        var btns = "<input type='button'class='btnSearch' onclick='exam_star(\"" + value + "\")' value='开始考试'/>";
+                        btns += "&nbsp;<input type='button' class='btnSearch' onclick='exam_edit(\"" + value + "\")' value='编辑'/>";
+                        btns += "&nbsp;<input type='button' class='btnSearch' onclick='exam_delete(\"" + value + "\")' value='删除'/>";
+                        btns += "&nbsp;<input type='button' class='btnSearch' onclick='exam_view(\"" + value + "\")' value='查看成绩'/>";
+                        return btns;
+                    }
+                }
+            ],
+            viewrecords: true,
+            rowList: [30, 50, 100, 500, 1000],
+            pager: "#gridPager",
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            onSelectRow: function (rowid, iRow, iCol, e) {
+            },
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                showTempDetainDetail();
+            }
+        });
+    };
+
+    //搜索
+    function btn_Search() {
+        var keywords = $("#keywords").val();
+        location.href = '@Url.Action("SimulationExamIndex", "Exam")?keywords=' + keywords;
+        @*$("#gridTable").jqGrid('setGridParam', {
+            url: '@Url.Action("GetSimulationExamData", "Exam")',
+            postData:
+            {
+                keywords: keywords
+            },
+            page: 1
+        }).trigger('reloadGrid');*@
+        @*$.ajax({
+            cache: true,
+            type: 'POST',
+            url: '@Url.Action("SimulationExamIndex", "Exam")',
+            data: { keywords: keywords },
+            async: false,
+            dataType: "json",
+            success: function (data) { }
+        });*@
+    };
+
+    //自定义模拟试卷
+    function btn_add() {
+        @*AddTabMenu("SimulationExamDetail", '@Url.Action("SimulationExamDetail", "Exam")?Id=', '自定义模拟试卷', "messenger.png", 'true');*@
+            @*var url = '@Url.Action("SimulationExamDetail", "Exam")?Id=';
+            var width = $(window).width();
+            width = width - (width * 0.2);
+            var height = $(window).height();
+            openDialog(url, "SimulationExamDetail", "自定义模拟试卷", width, height, function (iframe) {
+                top.frames["SimulationExamDetail"].AcceptClick();
+            });*@
+        var url = '@Url.Action("SimulationExamDetail", "Exam")?Id=';
+        var width = $(window).width();
+        width = width - (width * 0.2);
+        var height = $(window).height();
+        top.$.dialog({
+            id: "FirstDialogWindow",
+            lock: true,
+            title: "新增模拟试卷",
+            max: false,
+            min: false,
+            width: 800,
+            height: 600,
+            content: 'url:' + url
+        });
+    }
+    //删除试卷
+    function exam_delete(id) {
+        getAjax('@Url.Action("DeleteExam", "Exam")', { "id": id }, function (data) {
+            var itemjson = JSON.parse(data);
+            if (itemjson.rtState == 1) {
+                tipDialog('数据删除成功', 1);
+                window.location.reload();
+            }
+        });
+    }
+
+    //编辑
+    function exam_edit(id) {
+        var url = '@Url.Action("SimulationExamDetail", "Exam")?Id=' + id;
+        var width = $(window).width();
+        width = width - (width * 0.2);
+        var height = $(window).height();
+        top.$.dialog({
+            id: "FirstDialogWindow",
+            lock: true,
+            title: "编辑模拟试卷",
+            max: false,
+            min: false,
+            width: width,
+            height: 600,
+            content: 'url:' + url
+        });
+    }
+
+    //查看成绩
+    function exam_view(id) {
+        var url = '@Url.Action("ExamInfomations", "Exam")?Id=' + id;
+        var width = $(window).width();
+        width = width - (width * 0.2);
+        var height = $(window).height();
+        top.$.dialog({
+            id: "FirstDialogWindow",
+            lock: true,
+            title: "历史记录列表",
+            max: false,
+            min: false,
+            width: 800,
+            height: 600,
+            content: 'url:' + url
+        });
+    }
+
+    //详细
+    function btn_Detail() {
+        var id = GetJqGridRowValue("#gridTable", "Id");
+        if (id != '' && id != undefined) {
+            var url = '@Url.Action("TempDetainDetail", "TempDetain")?id=' + id;
+            var width = $(window).width();
+            width = width - (width * 0.2);
+            var height = $(window).height();
+
+            Dialog(url, "TempDetainDetail", "暂扣详情", width, height);
+        } else {
+            tipDialog("您没有选中任何项，请选择后再操作。", 3, -2);
+        }
+    }
+
+
+    function showTempDetainDetail() {
+        var id = GetJqGridRowValue("#gridTable", "Id");
+        if (id != '' && id != undefined) {
+            var width = $(window).width();
+            width = width - (width * 0.2);
+            var height = $(window).height();
+            Dialog(('@Url.Action("TempDetainDetail")?id=' + id), "FirstDialogWindow", "暂扣详情", width, height);
+        } else {
+            tipDialog("您没有选中任何项，请选择后再操作。", 3, -2);
+        }
+    }
+
+
+    //刷新
+    function windowload() {
+        $("#gridTable").trigger("reloadGrid"); //重新载入  
+    }
+
+    //开始考试
+    function exam_star(Id) {
+        if (Id != '' && Id != undefined) {
+            var url = '@Url.Action("SimulationStartExam", "Exam")?Id=' + Id;
+            var width = $(window).width();
+            width = width - (width * 0.2);
+            var height = $(window).height();
+
+            Dialog(url, "SimulationStartExam", "开始考试", width, height);
+        } else {
+            tipDialog("您没有选中任何项，请选择后再操作。", 3, -2);
+        }
+    }
+
+</script>

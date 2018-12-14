@@ -1,0 +1,145 @@
+﻿@using Yookey.WisdomClassed.SIP.Model.DocumentManagement;
+@{
+    ViewBag.Title = "OfficialDetail";
+    @model DocumentOfficialEntity
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>发文详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <!--框架必需start-->
+    <link  href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link  href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--表格组件end-->
+    <!--树形组件start-->
+    <link  href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/tree/tree.js")"></script>
+    <!--树形组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件start-->
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+    <style type="text/css">
+        .form #fujian {
+            height: 200px;
+        }
+
+        .form #liucheng {
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="message" style="display: none; padding: 1px; padding-bottom: 0px;"></div>
+        <div class="bd" style="border-bottom: none; margin: 1px;">
+            <div class="tipstitle_title settingtable bold bd todayInfoPanelTab rightPanelTitle_normal">
+                <div class="tab_list_top" style="position: absolute">
+                    <div id="Tabbasic" class="tab_list bd actived">发文详情 </div>
+                </div>
+            </div>
+            <div class="ScrollBar" style="margin: 1px; overflow: hidden;">
+                <div class="tabPanel">
+                    <table class="form">
+                        <tr>
+                            <td style="text-align: right;" colspan="4">
+                                <input type="button" value="审批流程" class="casebtn" onclick="javascript: ShowCaseFlow();" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">标题：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.DOCUMENT_TITLE, new { @class = "txt", @datacol = "yes", @err = "标题" })
+                            </td>
+                            <th class="formTitle">文号： </th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.WH, new { @class = "txt", @datacol = "yes", @err = "文号" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">上传时间：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.LSSUED_STARTIME, new { @class = "txt", @datacol = "yes", @err = "上传时间" })
+                            </td>
+                            <th class="formTitle">份数：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.Volume, new { @class = "txt", @datacol = "yes", @err = "份数" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">起草人：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.QCR, new { @class = "txt", @datacol = "yes", @err = "起草人" })
+                            </td>
+                            <th class="formTitle">部门负责人：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.BMFZR, new { @class = "txt", @datacol = "yes", @err = "部门负责人" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">主送单位：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.LWDW, new { @class = "txt", @datacol = "yes", @err = "主送单位" })
+                            </td>
+                            <th class="formTitle">抄送单位：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.DISPATCH_CSDW, new { @class = "txt", @datacol = "yes", @err = "抄送单位" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle" style="height: 100px;">分管领导签发： </th>
+                            <td class="formValue" colspan="3">
+                                @Html.TextBoxFor(x => x.DISPATCH_FGLD, "", new { @class = "txt", @datacol = "yes", @err = "文件内容" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle" style="height: 100px;">领导签发： </th>
+                            <td class="formValue" colspan="3">
+                                @Html.TextBoxFor(x => x.DISPATCH_LDQF, "", new { @class = "txt", @datacol = "yes", @err = "文件内容" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle" id="fujian">文件附件： </th>
+                            <td class="formValue" colspan="3">
+                                @Html.Action("FilesTab", "DocumentManagement", new { resourceId = Model.ID, evtache = "case", isupload = "false", istime = "false" })
+                            </td>
+                        </tr>
+                    </table>
+                    @Html.HiddenFor(x => x.ID)
+                </div>
+            </div>
+        </div>
+        <style>
+            .ui-widget-content {
+                border-left: none;
+            }
+        </style>
+        <script>
+            //审批流程走到哪儿
+            function ShowCaseFlow() {
+                var id = $("#ID").val();  //案件编号
+                var caseHandle = '@Url.Content("~/PenaltyCase/CaseFlow")';
+                        var width = 640;
+                        var height = 540;
+                        Dialog((caseHandle + "?id=" + id + "&rnd=" + Math.random()), "CaseFlow", "审批流程", parseInt(width), parseInt(height));
+                    }
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "InspectionIndexDetail";
+    DataTable dt = ViewBag.Details as DataTable;
+    DataTable enterprise = ViewBag.Enterprise as DataTable;
+}
+@using System.Data;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>现场检查记录详情</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet"/>
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--树形组件start-->
+    <link href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" type="text/css"/>
+    <script src="@Url.Content("~/Librarys/tree/tree.js")" type="text/javascript"></script>
+    <!--树形组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Loading(false);
+        });
+    </script>
+</head>
+<body>
+    <form id="formmain" name="formmain">
+        <div id="message" style="display: none; padding: 1px; padding-bottom: 0px;"></div>
+        @if (dt.Rows.Count > 0)
+        {
+            <fieldset style="margin-left: 5px; margin-right: 5px; margin-top: 8px;">
+                <legend>企业详情</legend>
+                <table class="casedt">
+                    <tr>
+                        <th class="formTitle">被检查单位：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBox("txtCompany", dt.Rows[0]["企业名称"], new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "被检查单位" })
+                        </td>
+                        <th class="formTitle">地址：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBox("txtAddress", enterprise.Rows.Count > 0 ? enterprise.Rows[0]["注册地址"] : "", new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "地址" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">法定代表人：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBox("txtFr", enterprise.Rows.Count > 0 ? enterprise.Rows[0]["法定代表人"] : "", new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "法定代表人（负责人）" })
+                        </td>
+                        <th class="formTitle">职位：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBox("txtZw", "", new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "职位" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">所属区镇：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBox("txtArea", dt.Rows[0]["所属区镇"], new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "所属区镇" })
+                        </td>
+                        <th class="formTitle">监管类型：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBox("txtJglx", dt.Rows[0]["监管类型"], new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "监管类型" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">联系电话：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBox("txtPhone", enterprise.Rows.Count > 0 ? enterprise.Rows[0]["联系电话"] : "", new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "联系电话" })
+                        </td>
+                        <th class="formTitle">检查场所：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBox("txtPlace", dt.Rows[0]["检查场所"], new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "检查场所" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">检查部门：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBox("txtDept", dt.Rows[0]["检查部门"], new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "检查部门" })
+                        </td>
+                        <th class="formTitle">检查人员：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBox("txtPerson", dt.Rows[0]["检查人员"], new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "检查人员" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">检查开始时间：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBox("txtBegin", dt.Rows[0]["检查开始时间"], new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "检查开始时间" })
+                        </td>
+                       <th class="formTitle">检查结束时间：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBox("txtBegin", dt.Rows[0]["检查结束时间"], new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "检查结束时间" })
+                        </td>
+                    </tr>
+                    <tr>
+                         <th class="formTitle">企业类型：
+                        </th>
+                        <td class="formValue" colspan="3">
+                            @Html.TextBox("txtType", dt.Rows[0]["企业类型"], new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "企业类型" })
+                        </td>
+                        @*<th class="formTitle">监管类型：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBox("txtType", dt.Rows[0]["企业类型"], new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "企业类型" })
+                        </td>*@
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset style="margin-left: 5px; margin-right: 5px; margin-top: 1em;">
+                <legend>检查记录 </legend>
+                <table class="casedt">
+                    <tr>
+                        <th style="width: 100px;">检查情况：</th>
+                        <td colspan="4">
+                            @Html.TextBox("txtQk", dt.Rows[0]["检查情况"], new { @class = "txt ", @style = "width: 98%;height: 130px;", @datacol = "yes", @err = "检查情况" })
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        }
+    </form>
+</body>
+</html>

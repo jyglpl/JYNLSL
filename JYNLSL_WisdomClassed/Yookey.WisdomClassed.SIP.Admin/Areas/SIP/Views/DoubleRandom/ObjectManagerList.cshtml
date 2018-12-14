@@ -1,0 +1,103 @@
+﻿@using Yookey.WisdomClassed.SIP.Common
+@using Yookey.WisdomClassed.SIP.Model.DoubleRandom
+@{
+    List<DoubleRandomEnterpriseEntity> _enterpriseList = ViewData["EnterpriseList"] as List<DoubleRandomEnterpriseEntity>;
+    List<DoubleRandomRoadEntity> _roadList = ViewData["RoadList"] as List<DoubleRandomRoadEntity>;
+    List<DoubleRandomConstructionSiteEntity> _siteList = ViewData["SiteList"] as List<DoubleRandomConstructionSiteEntity>;
+    
+    @model PetaPoco.Page<DoubleRandomEnterpriseEntity>
+}
+<script type="text/javascript" src="@Url.Content("~/Librarys/js/jquery-1.9.1.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Librarys/js/avalon.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Librarys/js/gridProperty.js")"></script>
+
+
+@*<script type="text/javascript" src="@Url.Content("~/Content/Librarys/js/chosen.jquery.min.js")"></script>*@
+@*<script type="text/javascript" src="@Url.Content("~/Content/Librarys/js/bootstrap.min.js")"></script>*@
+@*<script type="text/javascript" src="@Url.Content("~/Content/Librarys/js/main.js")"></script>*@
+
+
+<link href="@Url.Content("~/Librarys/css/chosen.min.css")" rel="stylesheet">
+<link href="@Url.Content("~/Librarys/css/sipac.css")" rel="stylesheet">
+<link href= "@Url.Content("~/Content/Styles/common.css")" rel="stylesheet" />
+
+<script type="text/javascript">
+
+    var root = "";
+
+</script>
+
+<div class="sipac_tableBox" ms-controller="authorityRoleListModel">
+    <div class="sipac_tableBar">
+        <div class="sipac_table_menu">
+            <a href="javascript:void(0);">新建</a><em></em>
+            <a href="javascript:void(0);">修改</a><em></em>
+            <a href="javascript:void(0);">批量删除</a><em></em>
+            <a href="javascript:void(0);">通过</a><em></em>
+            <a href="javascript:void(0);">禁用</a><em></em>
+            <a href="javascript:void(0);">启用</a><em></em>
+            <a href="javascript:void(0);">刷新</a>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 40px;"><span>
+                    <input type="checkbox"></span></th>
+                <th><span>企业名称</span></th>
+                <th><span>社会统一信用代码</span></th>
+                <th><span>法定代表人</span></th>
+                <th><span>联系电话</span></th>
+                <th><span>注册地址</span></th>
+                <th><span>生产经营地址</span></th>
+                <th><span>行业类别大类名称</span></th>
+                <th><span>行业类别中类名称</span></th>
+                <th><span>行业类别小类名称</span></th>
+                <th style="width: 100px;" class="s_t_control"><span>操作项</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ms-for="(k,el) in @("@data")">
+                <td></td>
+                <td>{{el.CompanyName}}</td>
+                <td>{{el.OrganizationCode}}</td>
+                <td>{{el.LegalRepresentative}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="s_t_control">
+                    <a class="s_t_Btn stb_1" href="javascript:void(0);">编辑</a>
+                    <a class="s_t_Btn stb_2" href="javascript:void(0);">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="sipac_pagebox" ms-visible="@("@flag")">
+        <div class="s_p_info">第{{@("@grid.currentPage")}}页 / 共{{@("@grid.totlePage")}}页，共{{@("@grid.totalRecordNumber")}}条数据</div>
+        <div class="s_p_btn" id="authorityRoleListPage"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var department = "";
+    var authorityRoleListModel = avalon.define({
+        $id: "authorityRoleListModel",
+        grid: new gridProperty(),
+        data: [1, 2, 3, 4, 5],
+        pageId: "authorityRoleListPage",
+        url: "@Url.Action("GetCompany", "DoubleRandom")",
+        param: {},
+        flag: true,
+        detail: function (el) {
+
+        }
+    });
+
+    authorityRoleListModel.grid.build(authorityRoleListModel);
+
+</script>

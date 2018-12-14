@@ -1,0 +1,185 @@
+﻿@{
+    Layout = "~/Views/Shared/_PenaltyAnalysisLayout.cshtml.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    $(function () {
+        $("#rightDiv").width($(window).width() - 205);
+        $("#reportDiv").height($(window).height() - 160);
+    });
+</script>
+
+<div id="rightDiv" style="float: left;">
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <div class="box">
+                    <div class="box-title">
+                        <div style="width: 200px; float: left">
+                            按城市顽疾
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <table border="0" class="form-find" style="height: 45px;">
+                            <tr>
+                                <th>开始时间：
+                                </th>
+                                <td>
+                                    @Html.TextBox("StartDate", "", new { @class = "txt Wdate", Value = ViewBag.StartTime, @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:120px" })
+                                </td>
+                                <th>截止时间：
+                                </th>
+                                <td>
+                                    @Html.TextBox("EndDate", "", new { @class = "txt Wdate", Value = ViewBag.EndTime, @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:120px" })
+                                </td>
+                                <td>
+                                    <input id="btnSearch" type="button" class="btnSearch" value="搜 索" onclick="Search();" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="box">
+                    <div class="box-title">
+                        <div style="">
+                            <div style="width: 200px; float: left">
+                                <img src="@Url.Content("~/Content/Images/Icon32/chart_bar.png")" alt="" width="20" height="20" />
+                                数据统计
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-content" id="reportDiv">
+                        <div id="container" style="height: 100%; width: 60%; float: left;"></div>
+                        <div id="containerA" style="height: 100%; width: 40%; float: left;"></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        Search();
+    });
+
+    function Search() {
+        var stime = $('#StartDate').val();
+        var etime = $('#EndDate').val();
+
+        LoadBarChart(stime, etime);
+        LoadPieChart(stime, etime);
+    }
+
+    /*
+    * 按阶段-柱状图
+    * sTime：开始时间 
+    * eTime：截止时间
+    */
+    function LoadBarChart(sTime, eTime) {
+
+        var jo;
+        getAjax('@Url.Action("ReportCharByReportByCityIlls", "PenaltyAnalysis")', { chartType: "bar", type: "time", sTime: sTime, eTime: eTime }, function (data) {
+            jo = eval('(' + data + ')');
+        });
+
+        $('#container').highcharts({
+            chart: {
+                type: 'column',
+                margin: [50, 50, 100, 80]
+            },
+            title: {
+                text: '城市顽疾'
+            },
+            xAxis: {
+                categories: jo.cate,
+                labels: {
+                    rotation: -45,
+                    align: 'right',
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '案件量 (件)'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '{point.y:.1f} 件</b>',
+            },
+            series: [{
+                name: 'Population',
+                data: jo.data,
+                dataLabels: {
+                    enabled: true,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    x: 4,
+                    y: 10,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif',
+                        textShadow: '0 0 3px black'
+                    }
+                }
+            }]
+        });
+    }
+
+    /*
+    * 按阶段-饼图
+    * sTime：开始时间 
+    * eTime：截止时间
+    */
+    function LoadPieChart(sTime, eTime) {
+        var jo;
+        getAjax('@Url.Action("ReportCharByReportByCityIlls", "PenaltyAnalysis")', { chartType: "pie", type: "time", sTime: sTime, eTime: eTime }, function (data) {
+            jo = eval(data);
+        });
+        $('#containerA').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '城市顽疾'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '案件阶段',
+                data: jo
+            }]
+        });
+    }
+
+</script>

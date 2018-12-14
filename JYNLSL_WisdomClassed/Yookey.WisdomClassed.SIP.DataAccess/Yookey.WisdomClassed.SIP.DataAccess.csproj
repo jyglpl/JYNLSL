@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C1B64528-CBBB-4658-9783-FD1BDBBFAFF8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yookey.WisdomClassed.SIP.DataAccess</RootNamespace>
+    <AssemblyName>Yookey.WisdomClassed.SIP.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Yookey.WisdomClassed.SIP.Admin\bin\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.8.3\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Approval\TcAttachMentDal.cs" />
+    <Compile Include="Approval\TcAttachMentRefDal.cs" />
+    <Compile Include="Approval\TcDictionaryDataDal.cs" />
+    <Compile Include="Approval\TmEnterpriseDal.cs" />
+    <Compile Include="Approval\TmMatteApplyZYWJDal.cs" />
+    <Compile Include="Approval\TmMatterApplyCertificateDal.cs" />
+    <Compile Include="Approval\TmMatterApplyHWGGDal.cs" />
+    <Compile Include="Approval\TmMatterApplyHWGGDetailDal.cs" />
+    <Compile Include="Approval\TmMatterApplyMajorDal.cs" />
+    <Compile Include="Approval\TmMatterApplyZTYSDal.cs" />
+    <Compile Include="Approval\TmMatterApplyZTYSVehicleDal.cs" />
+    <Compile Include="Approval\TmMatterDal.cs" />
+    <Compile Include="Assessment\AssessmentAttachDal.cs" />
+    <Compile Include="Assessment\AssessmentDal.cs" />
+    <Compile Include="Assessment\AssessmentProcessDal.cs" />
+    <Compile Include="Attendance\AttendanceDal.cs" />
+    <Compile Include="Base\BaseCertificateDal.cs" />
+    <Compile Include="Base\BaseCertificateUseDal.cs" />
+    <Compile Include="Base\BaseCompanyDal.cs" />
+    <Compile Include="Base\BaseDal.cs" />
+    <Compile Include="Base\BaseDepartmentDal.cs" />
+    <Compile Include="Base\BaseGroupUserDal.cs" />
+    <Compile Include="Base\BasePostDal.cs" />
+    <Compile Include="Base\BaseRolesDal.cs" />
+    <Compile Include="Base\BaseUserDal.cs" />
+    <Compile Include="Base\IDal.cs" />
+    <Compile Include="Case\InfPunishCaseinfoDal.cs" />
+    <Compile Include="Case\InfPunishDataSourceDalcs.cs" />
+    <Compile Include="Case\InfPunishDecisionDal.cs" />
+    <Compile Include="Case\InfPunishFinishDal.cs" />
+    <Compile Include="Case\InfPunishHearDal.cs" />
+    <Compile Include="Case\InfPunishInformDal.cs" />
+    <Compile Include="Case\InfPunishItemDal.cs" />
+    <Compile Include="Case\InfPunishReceiptDal.cs" />
+    <Compile Include="Case\InfPunishRecordDal.cs" />
+    <Compile Include="Case\InfPunishSurveyDal.cs" />
+    <Compile Include="Case\InfPunishTargetDal.cs" />
+    <Compile Include="Case\InfPunishAttachDal.cs" />
+    <Compile Include="Case\InfCarAttachDal.cs" />
+    <Compile Include="Case\InfCarChecksignDal.cs" />
+    <Compile Include="Case\InfCarChecksignmiddleDal.cs" />
+    <Compile Include="Case\InfCarHandlerDal.cs" />
+    <Compile Include="Case\InfPunishDocumentDal.cs" />
+    <Compile Include="Case\InfPunishLegislationDal.cs" />
+    <Compile Include="Case\InfSimpleNumberDal.cs" />
+    <Compile Include="Case\InfCaseCollectDal.cs" />
+    <Compile Include="Case\InfPunishDiscussDal.cs" />
+    <Compile Include="Case\LegislationDal.cs" />
+    <Compile Include="Case\LegislationGistDal.cs" />
+    <Compile Include="Case\LegislationItemDal.cs" />
+    <Compile Include="Case\LegislationRuleDal.cs" />
+    <Compile Include="Case\PunishmentDal.cs" />
+    <Compile Include="Case\RoadManagerDal.cs" />
+    <Compile Include="Case\RoadOfDeptDal.cs" />
+    <Compile Include="Case\SimpleProgramDal.cs" />
+    <Compile Include="Case\SimpleProgram_AttachDal.cs" />
+    <Compile Include="Certificate\CertificateAttachDal.cs" />
+    <Compile Include="Certificate\CertificateInfoDal.cs" />
+    <Compile Include="Com\ComApiAccountDal.cs" />
+    <Compile Include="Com\ComArticleDal.cs" />
+    <Compile Include="Com\ComAttachmentDal.cs" />
+    <Compile Include="Com\ComAttributeDal.cs" />
+    <Compile Include="Com\ComAttributeValueDal.cs" />
+    <Compile Include="Com\ComHolidaysDal.cs" />
+    <Compile Include="Com\ComLoginLogDal.cs" />
+    <Compile Include="Com\ComMenuDal.cs" />
+    <Compile Include="Com\ComNoteDal.cs" />
+    <Compile Include="Com\ComNoticeAttachDal.cs" />
+    <Compile Include="Com\ComNoticeDal.cs" />
+    <Compile Include="Com\ComNoticeReceiveDal.cs" />
+    <Compile Include="Com\ComNumberDal.cs" />
+    <Compile Include="Com\ComOperationLogDal.cs" />
+    <Compile Include="Com\ComResourceDal.cs" />
+    <Compile Include="Com\ComVersionManagementDal.cs" />
+    <Compile Include="Com\ComWhiteListDal.cs" />
+    <Compile Include="Consent\ActivityDal.cs" />
+    <Compile Include="Consent\AdvertisingDal.cs" />
+    <Compile Include="Consent\Consent_AttachDal.cs" />
+    <Compile Include="Consent\ExcavationDal.cs" />
+    <Compile Include="Consent\TemporaryDal.cs" />
+    <Compile Include="Crm\CrmCompanyDal.cs" />
+    <Compile Include="Crm\CrmDailyOneProblemDal.cs" />
+    <Compile Include="Crm\CrmDailyOneProblemRecordDal.cs" />
+    <Compile Include="Crm\CrmDepartmentDal.cs" />
+    <Compile Include="Crm\CrmFeedBackDal.cs" />
+    <Compile Include="Crm\CrmIdeaListDal.cs" />
+    <Compile Include="Crm\CrmIssuanceModelDal.cs" />
+    <Compile Include="Crm\CrmMessageWorkDal.cs" />
+    <Compile Include="Crm\CrmOpinionsDal.cs" />
+    <Compile Include="Crm\CrmPostDal.cs" />
+    <Compile Include="Crm\CrmRoleDal.cs" />
+    <Compile Include="Crm\CrmRoleMenuDal.cs" />
+    <Compile Include="Crm\CrmUserDal.cs" />
+    <Compile Include="Crm\CrmUserMenuDal.cs" />
+    <Compile Include="Crm\CrmUserRoleDal.cs" />
+    <Compile Include="DalImp\BaseDalImp.cs" />
+    <Compile Include="DocumentManagement\DocumentAttachDal.cs" />
+    <Compile Include="DocumentManagement\DocumentIncomingDal.cs" />
+    <Compile Include="DocumentManagement\DocumentOfficialDal.cs" />
+    <Compile Include="DoubleRandom\DoubleRandomAttachDal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DoubleRandom\DoubleRandomConstructionSiteDal.cs" />
+    <Compile Include="DoubleRandom\DoubleRandomEnterpriseDal.cs" />
+    <Compile Include="DoubleRandom\DoubleRandomObjDal.cs" />
+    <Compile Include="DoubleRandom\DoubleRandomObjLogDal.cs" />
+    <Compile Include="DoubleRandom\DoubleRandomRoadDal.cs" />
+    <Compile Include="DoubleRandom\DoubleRandomSpotChecksDal.cs" />
+    <Compile Include="Education\EducationAttachDal.cs" />
+    <Compile Include="Education\EducationDal.cs" />
+    <Compile Include="Evidence\ProofAttachCaseDal.cs" />
+    <Compile Include="Evidence\ProofAttachDal.cs" />
+    <Compile Include="Evaluation\EvaluationAttachDal.cs" />
+    <Compile Include="Evaluation\EvaluationBasisDal.cs" />
+    <Compile Include="Evaluation\EvaluationLogDal.cs" />
+    <Compile Include="Evaluation\EvaluationProcDal.cs" />
+    <Compile Include="Exam\ExamInfoDal.cs" />
+    <Compile Include="Exam\ExamInfoMationDal.cs" />
+    <Compile Include="Exam\ExamQuestionsDal.cs" />
+    <Compile Include="Exam\ExamThemeDal.cs" />
+    <Compile Include="Exam\ExamTypeDal.cs" />
+    <Compile Include="Exam\OldAnswerDal.cs" />
+    <Compile Include="Exam\QuetionTitleDal.cs" />
+    <Compile Include="Exam\QuetionTypeDal.cs" />
+    <Compile Include="FingerPrint\FingerPrintDal.cs" />
+    <Compile Include="FlowEditor\FeActionDal.cs" />
+    <Compile Include="FlowEditor\FeActionInstanceDal.cs" />
+    <Compile Include="FlowEditor\FeActivityDal.cs" />
+    <Compile Include="FlowEditor\FePickupUserDal.cs" />
+    <Compile Include="FlowEditor\FeProcessDal.cs" />
+    <Compile Include="FlowEditor\FeRuleCodeDal.cs" />
+    <Compile Include="FlowEditor\FeWorkListDal.cs" />
+    <Compile Include="GridManagement\GridManagementDal.cs" />
+    <Compile Include="GridManagement\GridManagementFileInfoDal.cs" />
+    <Compile Include="GridManagement\GridManagementFileScoreInfoDal.cs" />
+    <Compile Include="Hr\AttendanceLeaveDal.cs" />
+    <Compile Include="Hr\AttendanceReportDal.cs" />
+    <Compile Include="Hr\AttendanceReportDetailsDal.cs" />
+    <Compile Include="Hr\EmployeeWageDal.cs" />
+    <Compile Include="Hr\FlightAlterationDal.cs" />
+    <Compile Include="Hr\FlightClassesOfDeptmentDal.cs" />
+    <Compile Include="Hr\FlightLochusAppearDal.cs" />
+    <Compile Include="Hr\FlightMonitorDal.cs" />
+    <Compile Include="Hr\FlightOfEmpDal.cs" />
+    <Compile Include="Hr\FlightParticularDal.cs" />
+    <Compile Include="Hr\WorkOvertimeDal.cs" />
+    <Compile Include="IDal\IBaseDal.cs" />
+    <Compile Include="IllegalConstruction\IllegalCaseAttachDal.cs" />
+    <Compile Include="IllegalConstruction\IllegalCaseInfoDal.cs" />
+    <Compile Include="IllegalConstruction\IllegalCaseRemoveDal.cs" />
+    <Compile Include="IllegalConstruction\IllegalCaseVerifyDal.cs" />
+    <Compile Include="IllegalConstruction\IllegalConstructionDal.cs" />
+    <Compile Include="IllegalConstruction\IllegalConstructionAttachDal.cs" />
+    <Compile Include="Instrument\WBRIGADEDal.cs" />
+    <Compile Include="Instrument\WDEPTSTORAGEDal.cs" />
+    <Compile Include="Instrument\WDESTROYBYDATEDal.cs" />
+    <Compile Include="Instrument\WDESTROYDal.cs" />
+    <Compile Include="Instrument\WLYCRECORDDal.cs" />
+    <Compile Include="Instrument\WLYRECORDDal.cs" />
+    <Compile Include="Instrument\WSTOCKCRECORDDal.cs" />
+    <Compile Include="Instrument\WSTOCKRECORDDal.cs" />
+    <Compile Include="Instrument\WSTOCKTABLEDal.cs" />
+    <Compile Include="Instrument\WTYPETABLEDal.cs" />
+    <Compile Include="Instrument\WUNITSTORAGEDal.cs" />
+    <Compile Include="Instrument\WUSERECORDDal.cs" />
+    <Compile Include="Instrument\WZDSTORAGEDal.cs" />
+    <Compile Include="LawPunishInformation\LegalPersonListDal.cs" />
+    <Compile Include="LawPunishInformation\NaturalPersonListDal.cs" />
+    <Compile Include="License\LicenseAttachDal.cs" />
+    <Compile Include="License\LicenseCheckSpecDal.cs" />
+    <Compile Include="License\LicenseHandUsersDal.cs" />
+    <Compile Include="License\LicenseInquestSizeDal.cs" />
+    <Compile Include="License\LicenseJeevesDal.cs" />
+    <Compile Include="License\LicenseMainDal.cs" />
+    <Compile Include="License\LicenseMaterialCatalogueDal.cs" />
+    <Compile Include="License\LicenseOutDoorDal.cs" />
+    <Compile Include="License\LicensePointPositionDal.cs" />
+    <Compile Include="License\LicensePulicityDal.cs" />
+    <Compile Include="License\LicenseSpecDal.cs" />
+    <Compile Include="Mobile\ApproveDal.cs" />
+    <Compile Include="Mobile\DsfxcDal.cs" />
+    <Compile Include="Mobile\MobileBasicDal.cs" />
+    <Compile Include="Mobile\MobileBasicVersionDal.cs" />
+    <Compile Include="Mobile\MobileUserMenuDal.cs" />
+    <Compile Include="Mobile\WSAllNumberDal.cs" />
+    <Compile Include="Mobile\WsspDal.cs" />
+    <Compile Include="OA\DocumentNotificationDal.cs" />
+    <Compile Include="OfficeIndex\OfficeIndexDal.cs" />
+    <Compile Include="OnlineClass\OnlineClassAttachmentDal.cs" />
+    <Compile Include="OnlineClass\OnlineClassCourseAttachDal.cs" />
+    <Compile Include="OnlineClass\OnlineClassCourseDal.cs" />
+    <Compile Include="OnlineClass\OnlineClassGroupDal.cs" />
+    <Compile Include="OnlineClass\OnlineClassProgressDal.cs" />
+    <Compile Include="OnlineClass\OnlineClassReceiveDal.cs" />
+    <Compile Include="OnlineClass\OnlineClassRecordDal.cs" />
+    <Compile Include="OnlineClass\OnlineClassStatisticDal.cs" />
+    <Compile Include="OnlineClass\OnlineClassUserGroupDal.cs" />
+    <Compile Include="PenaltyCaseSafty\CheckrectificationDal.cs" />
+    <Compile Include="PenaltyCaseSafty\CorrectiveReviewDal.cs" />
+    <Compile Include="PenaltyCaseSafty\EnterpriseDal.cs" />
+    <Compile Include="PenaltyCaseSafty\LawbasisDal.cs" />
+    <Compile Include="PenaltyCaseSafty\PunishCaseDal.cs" />
+    <Compile Include="PenaltyCaseSafty\InspectionDal.cs" />
+    <Compile Include="PenaltyCaseSafty\LawpersonnelDal.cs" />
+    <Compile Include="PenaltyCaseSafty\RectificationDal.cs" />
+    <Compile Include="Petition\PetitionProcessDal.cs" />
+    <Compile Include="Petition\PetitonDal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\CaseAnalysisDal.cs" />
+    <Compile Include="Report\CaseReportDal.cs" />
+    <Compile Include="SealUp\SealUpAttachDal.cs" />
+    <Compile Include="SealUp\SealUpDal.cs" />
+    <Compile Include="SealUp\SealUpGoodsDal.cs" />
+    <Compile Include="SealUp\SealUpLegislationDal.cs" />
+    <Compile Include="ShowVideo\ShowVideoDal.cs" />
+    <Compile Include="TeamManagement\TeamManagementAttachDal.cs" />
+    <Compile Include="TeamManagement\TeamManagementDal.cs" />
+    <Compile Include="TeamManagement\TeamManagementProcessDal.cs" />
+    <Compile Include="TeamManagement\TeamManagementStandardDal.cs" />
+    <Compile Include="TempDetain\TempDetainAttachDal.cs" />
+    <Compile Include="TempDetain\TempDetainGoodsDal.cs" />
+    <Compile Include="TempDetain\TempDetainInfoDal.cs" />
+    <Compile Include="TempDetain\TempDetainInfoLegislationDal.cs" />
+    <Compile Include="TempDetain\TempDetainInfoProcessDal.cs" />
+    <Compile Include="TempDetain\TempDetainNumDal.cs" />
+    <Compile Include="TestStatistic\TestStatisticDal.cs" />
+    <Compile Include="WorkFlow\WfProcessDal.cs" />
+    <Compile Include="WorkFlow\WfProcessInstanceDal.cs" />
+    <Compile Include="Work\FolderDal.cs" />
+    <Compile Include="Work\FolderPermitionDal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBHelper\DBHelper.csproj">
+      <Project>{068adb92-ba8f-4da4-bc0b-ae35f3921a32}</Project>
+      <Name>DBHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.Common\Yookey.WisdomClassed.SIP.Common.csproj">
+      <Project>{7ffbc8b4-d5d5-4478-98bb-ec0284d78444}</Project>
+      <Name>Yookey.WisdomClassed.SIP.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.Enumerate\Yookey.WisdomClassed.SIP.Enumerate.csproj">
+      <Project>{760a3b96-f7d6-48c5-91cb-6125e5858387}</Project>
+      <Name>Yookey.WisdomClassed.SIP.Enumerate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.Model\Yookey.WisdomClassed.SIP.Model.csproj">
+      <Project>{64765b1f-7e6e-4b1a-a440-dfd15c2112ec}</Project>
+      <Name>Yookey.WisdomClassed.SIP.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.PetaPoco\PetaPoco.csproj">
+      <Project>{8fbf860e-d32f-4168-bed5-4f67c34817de}</Project>
+      <Name>PetaPoco</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

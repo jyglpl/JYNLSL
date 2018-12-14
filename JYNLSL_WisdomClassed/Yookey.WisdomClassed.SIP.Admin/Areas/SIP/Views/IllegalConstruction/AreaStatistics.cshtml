@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "AreaStatistics";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>按责任部门统计</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link href="@Url.Content("~/Librarys/css/chosen.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/css/sipac.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/own/css/bootstrap-table.css")" rel="stylesheet" />
+    @*<script type="text/javascript" src="@Url.Content("~/Content/Librarys/js/jquery-1.9.1.min.js")"></script>*@
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/avalon.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/gridProperty.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/chosen.jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/main.js")"></script>
+    <!--[if lt IE 8]>
+    <![endif]-->
+    <script type="text/javascript">
+        var root = "";
+    </script>
+</head>
+<body class="sipac_full">
+    <!-- Wrap all page content here -->
+    <div class="sipac_wrap">
+        <!-- head style -->
+        <div class="sipac_head">
+            <div class="sipac_rtbox">
+                <ul class="sipac_adminbox">
+                    <li style="display: none;">
+                        <a class="help" title="帮助" href="javascript:void(0);"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="s_h_nav">
+                <ul>
+                    <li>
+                        <a class="active" href="javascript:void(0);">按责任部门统计</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- body style -->
+        <div class="sipac_body">
+            <div class="sipac_container">
+                <div class="sipac_rtbox">
+                    <div class="sipac_searchbar">
+                        @*<input class="s_s_text" type="text" placeholder="当前栏目搜索"><input class="s_s_btn" type="submit">*@
+                        <div class="s_s_mBox">
+                            <a title="点击下拉内容较多搜索" href="javascript:void(0);" class="s_s_morebtn"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sipac_searchBox sipac_form">
+                    <table>
+                        <tr>
+                            <th>执法中队</th>
+                            <td>
+                                <select class="s_select">
+                                    <option value="">全部</option>
+                                    <option value="">最近一个月</option>
+                                </select>
+                            </td>
+                            <th>违法区域</th>
+                            <td width="20%">
+                                <input class="s_input" placeholder="请输入关键字搜索" type="text" value="">
+                            </td>
+                            <th>案发时间</th>
+                            <td width="20%">
+                                <input class="s_input" id="start-time" type="text" value="" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })">&nbsp;至
+                                <input class="s_input" id="end-time" type="text" value="" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })">
+                            </td>
+                        </tr>
+
+                    </table>
+                    <div class="s_s_bar">
+                        <button class="sipac_btn s_b_submit">搜索</button>
+                    </div>
+                    <div class="s_s_close"><a href="javascript:void(0);"></a></div>
+                </div>
+                <div class="sipac_crumbs">
+                    <div class="s_c_cont">查询条件:</div>
+                </div>
+                <div class="sipac_tableBox">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><span>违法区域</span></th>
+                                <th><span>发现（数）</span></th>
+                                <th><span>认定（数）</span></th>
+                                <th><span>处理（数）</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="t_body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Search();
+        });
+        function Search() {
+            var tbody = "";
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: "@Url.Action("GetAreaStatistics", "IllegalConstruction")",
+                data: {},
+                datatype: 'json',
+                success: function (result) {
+                    //alert(jQuery.parseJSON(data)[5].ZF_DEPT_NAME);
+                    $.each(JSON.parse(result), function (index, item) {
+                        var trs = "";
+                        trs += "<tr><td>" + item.SS_DISTRICT_NAME + "</td> <td>" + item.FINDCOUNT + "</td><td>" + item.VERIFYCOUNT + "</td><td></td></tr>";
+                        tbody += trs;
+                    });
+                    $("#t_body").append(tbody);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

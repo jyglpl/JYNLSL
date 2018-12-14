@@ -1,0 +1,289 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml.cshtml";
+}
+@using System.Data;
+@model Yookey.WisdomClassed.SIP.Model.PageObject<DataTable>
+@using Yookey.WisdomClassed.SIP.Common
+@using Yookey.WisdomClassed.SIP.Enumerate
+@using Yookey.WisdomClassed.SIP.Model.Com;
+
+@{
+    var classify = ViewData["Classify"] as IList<ComResourceEntity>;
+}
+
+<style type="text/css">
+    .node1 ul {
+        list-style-type: none;
+        margin: 0;
+        height: 20px;
+    }
+
+        .node1 ul li {
+            text-align: left;
+            padding: 0 0 0 0px;
+            height: 20px;
+        }
+
+    .node1 .node2 ul li {
+        padding-left: 0;
+        margin: 0 0 0 0;
+        height: 20px;
+    }
+
+        .node1 .node2 ul li img {
+            margin: 0 5px 0 0;
+            height: 20px;
+        }
+</style>
+
+<table width="100%" style="margin-top: 12px;" border="0" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr valign="top">
+            <td width="203" align="center">
+                @*<table width="100%" bgcolor="#dddddd" border="0" cellspacing="4" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td align="center" valign="top" bgcolor="#ffffff">
+                                <table width="203" bgcolor="#ffffff" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td width="100%" height="25" background="@Url.Content("~/Content/Images/left_tb.jpg")"valign="top">
+                                                <table height="31" align="center" background="@Url.Content("~/Content/Images/notice_bg.jpg")" border="0" cellspacing="0" cellpadding="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td width="109" align="left">
+                                                                <span style="font-size: 14px; font-weight: bold; margin-left: 31px;">下载中心</span>
+                                                            </td>
+                                                            <td width="100" align="left">&nbsp;</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="50" align="center" valign="top">
+                                                <table width="100%" align="center" style="margin: 8px 15px 0px 0px;" border="0" cellspacing="0" cellpadding="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td width="10">&nbsp;</td>
+                                                            <td>
+                                                                <div id="channeldiv">
+                                                                    @{
+                                                                        if (classify != null && classify.Any())
+                                                                        {
+                                                                            foreach (var entity in classify)
+                                                                            {
+                                                                        <div style="margin: 10px 0px 0px;">
+                                                                            <div width="100%">
+                                                                                <img alt="" src="@Url.Content("~/Content/Images/minus.gif")">
+                                                                                <a id="0" href="DownLoadCenter?categoryId=@(entity.Id)">@(entity.RsKey)</a>
+                                                                            </div>
+                                                                        </div>
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>*@
+            </td>
+            <td align="center">
+                <table width="98%" align="center" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            @*<td height="30" align="left" class="font-hui" valign="middle"><strong>您当前的位置 ：</strong>
+                                <a href="~/Home/Index">首页</a>&gt; <a href="~/Course/CourseCenter">下载中心</a>
+                            </td>*@
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <table width="100%" align="center" border="0"
+                                    cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <table height="40" align="center" border="0" cellspacing="0" cellpadding="2">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <img width="65" height="26" src="@Url.Content("~/Content/Images/search_pic.gif")"></td>
+                                                            <td id="td1">
+                                                                <select name="selectSearch" id="select1">
+                                                                    <option selected="selected" value="txtKeyword">课程名称</option>
+                                                                </select>
+                                                            </td>
+                                                            <td align="center">
+                                                                <input class="input-login" id="txtKeyword" type="text" size="60" value="@ViewBag.Keyword">
+                                                            </td>
+                                                            <td>
+                                                                <img id="submitsearch" style="cursor: hand;" onclick="Search()" src="@Url.Content("~/Content/Images/btn_search.gif")" size="50" value="">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table width="98%" align="center" class="table" style="margin-top: 10px;" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td background="@Url.Content("~/Content/Images/title_bg.gif")" valign="bottom">
+                                                <table width="100%" height="29" background="@Url.Content("~/Content/Images/cen_menu_cen.gif")"border="0" cellspacing="0" cellpadding="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td width="8" align="left" valign="top">
+                                                                <img width="8" height="29" src="@Url.Content("~/Content/Images/cen_menu_left.gif")"></td>
+                                                            <td width="25" align="right">
+                                                                <img width="15" height="15" alt="" src="@Url.Content("~/Content/Images/icon.jpg")"></td>
+                                                            <td class="cen_title1"><span>下载库</span>
+                                                            </td>
+                                                            <td width="7" align="right" valign="top">
+                                                                <img width="7" height="29" src="@Url.Content("~/Content/images/cen_menu_right.gif")">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="34" align="center" valign="top">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <table style="width: 100%; border-collapse: collapse;" border="0" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th class="table1" style="font-size: 12px;" scope="col" align="left">&nbsp;&nbsp;名称</th>
+                                                            </tr>
+
+                                                            @{
+                                                                if (Model.Items != null && Model.Items.Rows.Count > 0)
+                                                                {
+                                                                    foreach (DataRow courserow in Model.Items.Rows)
+                                                                    {
+                                                                        var title = courserow["Title"].ToString();
+                                                                <tr>
+                                                                    <td align="left" class="table2" style="height: 30px;">
+                                                                       &nbsp;&nbsp; <a title="@(title)" href="CourseDown?courseId=@(courserow["Id"])" target="_blank">@(title)
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                    }
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div style="margin: 10px 0px;">
+                                                    @{
+                                                        if (Model != null)
+                                                        {
+                                                        <div class="btn_page">
+                                                            <span class="pageLeft">共<font>@Model.TotalRecords</font> 条数据 当前第<font>@Model.CurrentPage</font>页
+                            共<font>@Model.TotalPages</font>页</span>
+                                                            <div class="pager">
+                                                                @Html.Pager("page", Model.PageSize, Model.TotalRecords)
+                                                            </div>
+                                                        </div>
+                                                        }
+                                                    }
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+
+    /*
+     * 查询
+     * 添加人：周 鹏
+     * 添加时间：2014-11-14
+     * 修改描述：时间+作者+描述
+     */
+    function Search() {
+        var keyword = $("#txtKeyword").val();
+        location.href = "CourseCenter?keyword=" + keyword;
+    }
+
+    /*
+     * 全选
+     * 添加人：周 鹏
+     * 添加时间：2014-11-14
+     * 修改描述：时间+作者+描述
+     */
+    function AllSelect() {
+        $("input[name='checkcourse']").attr('checked', true);
+    }
+
+    /*
+     * 反选
+     * 添加人：周 鹏
+     * 添加时间：2014-11-14
+     * 修改描述：时间+作者+描述
+     */
+    function UnSelect() {
+        $("input[name='checkcourse']").attr('checked', false);
+    }
+
+    /*
+     * 批量选课
+     * 添加人：周 鹏
+     * 添加时间：2014-11-14
+     * 修改描述：时间+作者+描述
+     */
+    function SelectCourse() {
+        var arrChk = $("input[name='checkcourse']:checked");
+        var courses = "";   //将选择的课程进行拼接
+        $(arrChk).each(function () {
+            courses += this.value + ",";
+        });
+        if (courses == '') return;
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: '@Url.Action("BatchCourse")',
+            data: { courses: courses },
+            success: function (result) {
+                alert('批量选课成功！');
+                location.reload();
+            },
+            error: function () {
+                alert('批量选课出现异常，请联系管理员！');
+            }
+        });
+    }
+</script>

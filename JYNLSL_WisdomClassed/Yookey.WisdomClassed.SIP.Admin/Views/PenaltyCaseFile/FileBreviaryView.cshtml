@@ -1,0 +1,26 @@
+﻿@using Yookey.WisdomClassed.SIP.Common
+@using Yookey.WisdomClassed.SIP.Model.Case
+
+<div class="kePublic">
+    <!--效果html开始-->
+    <div class="mkeFocus">
+        <div class="mkeUl">
+            <ul>
+                @{
+                    var files = ViewData["Files"] as List<InfPunishAttachEntity>;
+                    if (files != null && files.Any())
+                    {
+                        foreach (var infPunishAttachEntity in files)
+                        {
+                    <li><a href="javascript:void(0);">
+                        <img src="@(AppConfig.FileViewLink + infPunishAttachEntity.FileAddress)" width="240" height="148" /></a></li>
+                        }
+                    }
+                }
+            </ul>
+            <div class="mkeLbtn"></div>
+            <div class="mkeRbtn"></div>
+        </div>
+    </div>
+</div>
+

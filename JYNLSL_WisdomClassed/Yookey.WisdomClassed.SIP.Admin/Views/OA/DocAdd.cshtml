@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+
+
+
+
+
+    <form class="layui-form" >
+        <div class="layui-form-item">
+            <label class="layui-form-label">通告标题:</label>
+            <div class="layui-input-block">
+                <input name="title" class="layui-input" type="text" placeholder="请输入标题" autocomplete="off" lay-verify="title">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">编辑器</label>
+            <div class="layui-input-block">
+                <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="editor"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="add" lay-submit="">确定</button>
+
+            </div>
+        </div>
+    </form>
+
+
+
+    <script src="~/Content/layui/layui.js" charset="utf-8"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+
+    layui.use(['form', 'layedit', 'laydate'],
+        function() {
+            var form = layui.form, layer = layui.layer, layedit = layui.layedit, $ = layui.jquery;
+            var index = parent.layer.getFrameIndex(window.name);
+
+            //创建一个编辑器
+            var editIndex = layedit.build('editor');
+
+            //自定义验证规则
+            form.verify({
+                title: function(value) {
+                    if (value.length < 5) {
+                        return '标题至少得5个字符啊';
+                    }
+                },
+                pass: [/(.+){6,12}$/, '密码必须6到12位'],
+                content: function(value) {
+                    layedit.sync(editIndex);
+                }
+            });
+
+            //监听提交
+            form.on('submit(add)',
+                function(data) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("AddDoc", "OA")",
+                        data: data.field,
+                        dataType: "json",
+                        success: function(data) {
+                            if (data == '1') {
+                                parent.layer.msg('保存成功');
+                                parent.layer.close(index);
+                            }
+                        }
+                    });
+                    return false;
+                });
+
+
+
+        });
+</script>
+
+</body>
+</html>

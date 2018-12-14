@@ -1,0 +1,881 @@
+﻿@{
+    Layout = null;
+    List<SealUpGoodsEntity> sealUpGoodsList = (List<SealUpGoodsEntity>)ViewData["SealUpGoodsList"];
+    List<ComResourceEntity> materiallist = ViewBag.Material as List<ComResourceEntity>;
+}
+@model Yookey.WisdomClassed.SIP.Model.SealUp.SealUpEntity
+@using Yookey.WisdomClassed.SIP.Model.Com
+@using Yookey.WisdomClassed.SIP.Model.SealUp
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>查封详情</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--树形组件start-->
+    <link href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" type="text/css"/>
+    <script src="@Url.Content("~/Librarys/tree/tree.js")" type="text/javascript"></script>
+    <!--树形组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Loadlayout();
+            Loading(false);
+            var classNo = '@ViewBag.ClassNo';
+            var legislationId = '@ViewBag.LegislationId';
+            var legislationItemId = '@ViewBag.LegislationItemId';
+            var legislationGistId = '@ViewBag.LegislationGistId';
+            $("#ClassNo").val(classNo);
+            ChangeClassNo(classNo, 'ItemActs', legislationId, legislationItemId, legislationGistId);
+            ChangeTargetType($("#TargetType").val());
+        });
+
+        $(function () {
+            ChangeTargetType($("#TargetType").val());
+        });
+
+        $(function () {
+            BindCompany();
+        });
+        //绑定单位（大队）
+        function BindCompany() {
+            var companyId = '@Model.CompanyId';
+            getAjax("@Url.Action("GetCompanyDropList", "Company", new { area = "CommonModule" })", { controlId: "drpCompany", defaultSelId: companyId }, function (cmsg) {
+                eval(cmsg);
+                BindDepartment();
+            });
+        }
+        //绑定部门（中队）
+        function BindDepartment() {
+            var departmentId = '@Model.DepartmentId';
+            getAjax("@Url.Action("GetDepartmentDropList", "Department", new { area = "CommonModule" })", { companyId: $("#drpCompany").val(), controlId: "drpDepartment", defaultSelId: departmentId }, function (dmsg) {
+                eval(dmsg);
+                BindUser(departmentId);
+            });
+        }
+
+        //绑定人员
+        function BindUser(departmentId) {
+            getAjax("@Url.Action("GetUserDropList", "User", new { area = "CommonModule" })", { deptId: departmentId, controls: "RePersonelIdFist,RePersonelIdSecond" }, function (dmsg) {
+                eval(dmsg);
+                var firstUserId = '@Model.RePersonelIdFist';
+                var secondUserId = '@Model.RePersonelIdSecond';
+                $("#RePersonelIdFist").val(firstUserId);
+                $("#RePersonelIdSecond").val(secondUserId);
+            });
+        }
+    </script>
+
+    <style type="text/css">
+        .form tr {
+            height: 28px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form id="formmain">
+            <div id="message" style="display: none; padding: 1px; padding-bottom: 0px;"></div>
+
+            <div class="ScrollBar" style="margin: 1px; overflow: hidden;">
+
+                <div id="basic" class="tabPanel">
+                    <table style="width: 100%; border: 0px;">
+                        <tr>
+                            <td style="text-align: right;">
+                                <input type="button" value="审批流程" class="casebtn" onclick="javascript: ShowLeaveFlow();" />
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%; border: 0px;">
+                        <tr>
+                            <td style="width: 50%; text-align: left;">案件编号 @Html.TextBoxFor(x => x.CaseInfoNo, new { @class = "casebottomtxt", @style = "width: 40%", @readonly = "true" })</td>
+                            <td style="width: 50%; text-align: right;">
+                                @if (ViewBag.Application)
+                                {
+                                    <input type="button" id="btnApplication" value="申请解除查封" class="btnSearch" style="font-size: 20px; color: red; font-weight: bold; height: 40px;" onclick="ApplyForFiled('apply', 0, '解封审批');" />
+                                }
+                            </td>
+                        </tr>
+                    </table>
+                    <fieldset>
+                        <legend>案件来源</legend>
+                        <table class="casedt">
+                            <tr>
+                                <th class="formTitle">案件来源<span style="color: Red;">*</span></th>
+                                <td class="formValue" colspan="3">
+                                    @{ 
+                                        var source = ViewData["Sources"] as List<ComResourceEntity>;
+                                        if (source != null && source.Any())
+                                        {
+                                            var resource = Model.ReSource;
+                                            foreach (var comResourceEntity in source)
+                                            {
+                                        <span class="item">
+                                            <input type="checkbox" name="sourcecheckbox" id="@comResourceEntity.Id" value="@comResourceEntity.Id" checked="@(resource.Contains(comResourceEntity.Id))" />
+                                            <label id="lab_@comResourceEntity.Id" for="@comResourceEntity.Id">@comResourceEntity.RsKey</label>
+                                        </span>
+                                            }
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">执法部门：<span style="color: Red;">*</span></th>
+                                <td class="formValue" colspan="3">
+                                    <select id="drpCompany" class="txtselect" style="height: 20px; width: 130px;" onchange="javascript:BindDepartment();"></select>
+                                    <select id="drpDepartment" class="txtselect" style="height: 20px; width: 130px;" onchange="javascript:BindUser(this.value);"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">执法队员：<span style="color: Red;">*</span></th>
+                                <td class="formValue" colspan="3">
+                                    <select id="RePersonelIdFist" name="RePersonelIdFist" class="txtselect" style="height: 20px; width: 130px;"></select>
+                                    <select id="RePersonelIdSecond" name="RePersonelIdSecond" class="txtselect" style="height: 20px; width: 130px;"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">承办人<span style="color: Red;">*</span></th>
+                                <td class="formValue" colspan="3">
+                                    @Html.DropDownListFor(x => x.UdPersonelIdFirst, (ViewData["Users"] as IEnumerable<SelectListItem>), new { @class = "txtselect required", @datacol = "yes", @err = "承办人", @style = "width: 130px", @checkexpession = "NotNull" })
+                                    @Html.DropDownListFor(x => x.UdPersonelIdSecond, (ViewData["Users"] as IEnumerable<SelectListItem>), new { @class = "txtselect required", @datacol = "yes", @err = "承办人", @style = "width: 130px", @checkexpession = "NotNull" })
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend>案件基本情况</legend>
+                        <table class="casedt">
+                            <tr>
+                                <th class="formTitle">案由编号：<span style="color: Red;">*</span></th>
+                                <td class="formValue" style="width: 130px;">
+                                    @Html.TextBox("ItemNo", "", new { @style = "width:100%", @class = "txt", @onblur = "GetItems(this.value)" })
+                                </td>
+                                <th class="formTitle">案件类别：</th>
+                                <td class="formValue">
+                                    @Html.DropDownList("ClassNo", (ViewData["ClassNos"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px", @onchange = "javascript:ChangeClassNo(this.value,'ItemActs')" })
+
+                                    <select id="ItemActs" class="txtselect" style="height: 20px; width: 40%" onchange="javascript:ChangetItemAct(this.value,'ItemNames');"></select>
+                                    <select id="ItemNames" class="txtselect" style="height: 20px; width: 25%" onchange="javascript:ChangeItemName(this.value,'GistNames','DutyNames');"></select>
+
+                                    @Html.Hidden("LegislationId")
+                                    @Html.Hidden("LegislationItemId")
+                                    @Html.Hidden("LegislationGistId")
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">管理依据：</th>
+                                <td class="formValue" colspan="3">
+                                    <select id="GistNames" class="txt" style="width: 100%" onchange="javascript:ChangeGist('GistNames');"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">法律责任：</th>
+                                <td class="formValue" colspan="3">
+                                    <select id="DutyNames" class="txt" style="width: 100%" onchange="javascript:ChangeGist('DutyNames');"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">登记日期<span style="color: Red;">*</span></th>
+                                <td class="formValue" colspan="3">
+                                    @Html.TextBoxFor(x => x.CaseDate, new { @class = "txt Wdate", @datacol = "yes", @err = "登记日期", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})", @Value = Model.CaseDate.ToString("yyyy-MM-dd HH:mm"), @style = "width:150px", @checkexpession = "NotNull" })</td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">登记地点<span style="color: Red;">*</span></th>
+                                <td class="formValue" colspan="3">
+                                    @Html.TextBoxFor(x => x.CaseAddress, new { @style = "width:100%", @class = "txt", @datacol = "yes", @err = "登记地点" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">证据情况<span style="color: Red;">*</span></th>
+                                <td class="formValue" colspan="3" id="EvidenceTD">
+                                    @Html.Action("FilesTab", "SealUp", new { resourceId = Model.Id, evtache = "SealUp", isupload = "true" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">案情摘要<span style="color: Red;">*</span></th>
+                                <td class="formValue" colspan="3">
+                                    @Html.TextAreaFor(x => x.CaseFact, new { @class = "txtArea", @datacol = "yes", @err = "案情摘要", @style = "width: 100%;", @rows = "3", @checkexpession = "NotNull" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">备　注</th>
+                                <td class="formValue" colspan="3">
+                                    @Html.TextAreaFor(x => x.Remark, new { @class = "txtArea", @style = "width: 100%;", @rows = "3" })
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend>当事人情况</legend>
+                        <table class="casedt">
+                            <tr>
+                                <th class="formTitle">当事人类型<span style="color: Red;">*</span></th>
+                                <td class="formValue" colspan="3">
+                                    @Html.DropDownListFor(x => x.TargetType, (ViewData["TargetTypes"] as IEnumerable<SelectListItem>), new { @class = "txtselect required", @datacol = "yes", @err = "当事人类型", @style = "height: 20px; width: 130px", @checkexpession = "NotNull", @onchange = "javascript:ChangeTargetType(this.value)" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">单位名称 <span style="color: Red;" id="spanCompany">*</span></th>
+                                <td class="formValue">
+                                    @Html.TextBoxFor(x => x.TargetUnit, new { @style = "width: 100%;", @class = "txt" })
+                                </td>
+                                <th class="formTitle">
+                                    <label id="labTargetName">当事人姓名</label>
+                                    <span style="color: Red;" id="spanUserName">*</span></th>
+                                <td class="formValue">
+                                    @Html.TextBoxFor(x => x.TargetName, new { @style = "width: 100%;", @class = "txt", @err = "当事人姓名", @datacol = "yes", @checkexpession = "NotNull" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">职　务</th>
+                                <td class="formValue">
+                                    @Html.TextBoxFor(x => x.TargetDuty, new { @style = "width:100%", @class = "txt" })
+                                </td>
+                                <th class="formTitle">联系电话<span style="color: Red;">*</span></th>
+                                <td class="formValue">
+                                    @Html.TextBoxFor(x => x.TargetMobile, new { @style = "width:100%", @class = "txt" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">性　别</th>
+                                <td class="formValue">
+                                    @Html.DropDownListFor(x => x.TargetGender, (ViewData["Sexs"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+
+                                </td>
+                                <th class="formTitle">证件类型<span style="color: Red;">*</span></th>
+                                <td class="formValue">
+                                    @Html.DropDownListFor(x => x.TargetPaperType, (ViewData["TargetPaperTypes"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px", @datacol = "yes", @checkexpession = "NotNull", @err = "证件类型", })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">证件号码<span style="color: Red;">*</span></th>
+                                <td class="formValue">
+                                    @Html.TextBoxFor(x => x.TargetPaperNum, new { @style = "width: 100%;", @class = "txt", @datacol = "yes", @err = "证件号码", @checkexpession = "NotNull", @maxlength = "18", @onblur = "javascript:PutCardId(this.value)" })
+                                </td>
+                                <th class="formTitle">年　龄</th>
+                                <td class="formValue">
+                                    @Html.TextBoxFor(x => x.TargetAge, new { @style = "width: 100%;", @class = "txt" })
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">地　址<span style="color: Red;">*</span></th>
+                                <td class="formValue" colspan="3">
+                                    @Html.TextBoxFor(x => x.TargetAddress, new { @style = "width: 100%;  required", @datacol = "yes", @err = "地　址", @class = "txt", @checkexpession = "NotNull" })
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <div style="width: 100%; text-align: right; margin-top: 10px;">
+                        <input type="button" value="新增查封违法建设、施工现场信息" class="btnSearch" onclick="javascript: addArticlesBox();" />
+                    </div>
+                    <fieldset style="">
+                        <legend>查封违法建设、施工现场清单</legend>
+                        <table class="form" id="ArticlesBox">
+                            <tr>
+                                <th class="formTitle" style="text-align: center; height: 30px;">名称<span style="color: Red;">*</span>
+                                </th>
+                                <th class="formTitle" style="text-align: center;">位置<span style="color: Red;">*</span>
+                                </th>
+                                <th class="formTitle" style="text-align: center;">方向<span style="color: Red;">*</span>
+                                </th>
+                                <th class="formTitle" style="text-align: center;">面积<span style="color: Red;">*</span>
+                                </th>
+                                <th class="formTitle" style="text-align: center;">材质<span style="color: Red;">*</span>
+                                </th>
+                                <th class="formTitle" style="text-align: center; width: 100px;">操  作
+                                </th>
+                            </tr>
+                            @if (sealUpGoodsList != null && sealUpGoodsList.Any())
+                            {
+                                int indexStr = 0;
+                                foreach (SealUpGoodsEntity item in sealUpGoodsList)
+                                {
+                                <tr>
+                                    <th class="formValue">
+                                        <input class="txt required" datacol="yes"  err = "名称" checkexpession = "NotNull" name="Name" type="text" value="@item.Name" style="text-align:center">
+                                    </th>
+                                    <th class="formValue">
+                                        <input class="txt required" datacol="yes"  err = "位置" checkexpession = "NotNull" name="Location" type="text" value="@item.Location" style="text-align:center">
+                                    </th>
+                                    <th class="formValue">
+                                        <input class="txt required" datacol="yes"  err = "方向" checkexpession = "NotNull" name="Direction" type="text" value="@item.Direction" style="text-align:center"></th>
+                                    <th class="formValue">
+                                        <input class="txt required" datacol="yes"  err = "面积" checkexpession = "NotNull" name="Area" type="text" value="@item.Area" style="text-align:center"></th>
+                                    <th class="formValue">
+                                        <select name="Material" class="select" style="height: 25px; width: 100%;">
+                                            @if (materiallist != null)
+                                            {
+                                                foreach (var unitEntity in materiallist)
+                                                {
+                                                <option value="@unitEntity.Id" @(unitEntity.Id == item.MaterialId ? "selected=\"selected\"" : "")>@unitEntity.RsKey</option>
+                                                }
+                                            }
+                                        </select>
+
+                                    </th>
+                                    <th class="formValue" style="text-align: center">
+                                        <input type="button" class="btnSearch" value="删除" onclick="deleteLeg(this);" style="text-align: center;" />
+                                    </th>
+                                </tr>
+                                            indexStr++;
+                                }
+                            }
+                            <tr id="ContentTR" style="display: none;">
+                                <th class="formValue">
+                                    <input checkexpession name="Name" type="text" value="" style="text-align: center;"></th>
+                                <th class="formValue">
+                                    <input checkexpession1 name="Location" type="text" value="" style="text-align: center;"></th>
+                                <th class="formValue">
+                                    <input checkexpession2 name="Direction" type="text" value="" style="text-align: center;"></th>
+                                <th class="formValue">
+                                    <input checkexpession3 name="Area" type="text" value="" style="text-align: center;"></th>
+                                <th class="formValue" style="text-align: center">
+                                    @Html.DropDownList("Material", (ViewData["Materials"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "height: 25px;width: 100%;" })
+                                </th>
+                                <th class="formValue" style="text-align: center">
+                                    <input type="button" class="btnSearch" value="删除" onclick="deleteLeg(this);" style="text-align: center;" />
+                                </th>
+                            </tr>
+                        </table>
+
+                    </fieldset>
+                    @{
+                        var UNFlowidea = ViewData["FlowIdeaNO"] as System.Data.DataTable;
+                        if (UNFlowidea != null && UNFlowidea.Rows.Count > 0)
+                        {
+                        <fieldset>
+                            <legend>查封审批退回</legend>
+                            <div>
+                                <table class="casedt">
+                                    @{
+                            foreach (System.Data.DataRow row in UNFlowidea.Rows)
+                            {
+                                        <tr>
+                                            <td class="formTitle" width="16%" rowspan="2">@(row["Duty"])：
+                                            </td>
+                                            <td class="formValue">
+                                                <textarea id="URemark" class="txtArea" cols="104" rows="4" readonly="readonly">@(row["Idea"])</textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="formTitle" align="right">签字：<input type="text" class="casebottomtxt" style="width: 120px;" value="@(row["UserName"])"  readonly="readonly"/>
+                                                日期：<input type="text" class="casebottomtxt" style="width: 120px;" value="@(Convert.ToDateTime(row["Adate"]).ToString(Yookey.WisdomClassed.SIP.Common.AppConst.DateFormat))" readonly="readonly"/>
+                                            </td>
+                                        </tr>
+                            }
+                                    }
+                                </table>
+
+                            </div>
+                        </fieldset>
+                        }
+                    }
+                    @{
+                        var ideas = ViewData["FlowIdea"] as System.Data.DataTable;
+                        if (ideas != null && ideas.Rows.Count > 0)
+                        {
+                        <fieldset>
+                            <legend>查封审批意见</legend>
+                            <div>
+                                <table class="casedt">
+
+                                    @{
+                            foreach (System.Data.DataRow row in ideas.Rows)
+                            {
+                                        <tr>
+                                            <td class="formTitle" width="16%" rowspan="2">@(row["Duty"])意见：
+                                            </td>
+                                            <td class="formValue">
+                                                <textarea id="Remark" class="txtArea" cols="104" rows="4" readonly="readonly">@(row["Idea"])</textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="formTitle" align="right">签字：<input type="text" class="casebottomtxt" style="width: 120px;" value="@(row["UserName"])"  readonly="readonly"/>
+                                                日期：<input type="text" class="casebottomtxt" style="width: 120px;" value="@(Convert.ToDateTime(row["Adate"]).ToString(Yookey.WisdomClassed.SIP.Common.AppConst.DateFormat))" readonly="readonly"/>
+                                            </td>
+                                        </tr>
+                            }
+                                    }
+                                </table>
+                            </div>
+                        </fieldset>
+                        }
+                    }
+                    @{
+                        var UNFlowideaNO = ViewData["UnFlowIdeaNO"] as System.Data.DataTable;
+                        if (UNFlowideaNO != null && UNFlowideaNO.Rows.Count > 0)
+                        {
+                        <fieldset>
+                            <legend>解封审批退回</legend>
+                            <div>
+                                <table class="casedt">
+                                    @{
+                            foreach (System.Data.DataRow row in UNFlowideaNO.Rows)
+                            {
+                                        <tr>
+                                            <td class="formTitle" width="16%" rowspan="2">@(row["Duty"])：
+                                            </td>
+                                            <td class="formValue">
+                                                <textarea id="URemark" class="txtArea" cols="104" rows="4" readonly="readonly">@(row["Idea"])</textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="formTitle" align="right">签字：<input type="text" class="casebottomtxt" style="width: 120px;" value="@(row["UserName"])"  readonly="readonly"/>
+                                                日期：<input type="text" class="casebottomtxt" style="width: 120px;" value="@(Convert.ToDateTime(row["Adate"]).ToString(Yookey.WisdomClassed.SIP.Common.AppConst.DateFormat))" readonly="readonly"/>
+                                            </td>
+                                        </tr>
+                            }
+                                    }
+                                </table>
+
+                            </div>
+                        </fieldset>
+                        }
+                    }
+                    @{
+                        var Unideas = ViewData["UnFlowIdea"] as System.Data.DataTable;
+                        if (ideas != null && Unideas.Rows.Count > 0)
+                        {
+                        <fieldset>
+                            <legend>解封审批意见</legend>
+                            <div>
+                                <table class="casedt">
+
+                                    @{
+                            foreach (System.Data.DataRow row in Unideas.Rows)
+                            {
+                                        <tr>
+                                            <td class="formTitle" width="16%" rowspan="2">@(row["Duty"])意见：
+                                            </td>
+                                            <td class="formValue">
+                                                <textarea id="txtRemark" class="txtArea" cols="104" rows="4" readonly="readonly">@(row["Idea"])</textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="formTitle" align="right">签字：<input type="text" class="casebottomtxt" style="width: 120px;" value="@(row["UserName"])"  readonly="readonly"/>
+                                                日期：<input type="text" class="casebottomtxt" style="width: 120px;" value="@(Convert.ToDateTime(row["Adate"]).ToString(Yookey.WisdomClassed.SIP.Common.AppConst.DateFormat))" readonly="readonly"/>
+                                            </td>
+                                        </tr>
+                            }
+                                    }
+                                </table>
+                            </div>
+                        </fieldset>
+                        }
+                    }
+
+
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="text-align: center;">
+                                @if (ViewBag.btnApplicationSealUp)
+                                {
+                                    <input type="button" value="申请查封" class="btnSearch" onclick="ApplyForFiled('apply', 0, '查封审批')" />
+                                }
+                                @if (ViewBag.BtnApply)
+                                {
+                                    <input type="button" value="同 意" class="btnSearch" onclick="ApplyForFiled('agree', 0, '查封审批')" />
+                                    <input type="button" value="退 回 " class="btnSearch" onclick="ApplyForFiled('disAgree', 0, '查封审批')" />
+                                }
+                                @if (ViewBag.BtnUnApply)
+                                {
+                                    <input type="button" value="同 意" class="btnSearch" onclick="ApplyForFiled('agree', 0, '解封审批')" />
+                                    <input type="button" value="退 回 " class="btnSearch" onclick="ApplyForFiled('disAgree', 0, '解封审批')" />
+                                }
+                                @if (ViewBag.Application)
+                                {
+                                    <input type="button" value="打印查封扣押清单" class="btnSearch" onclick="doPrint('SealUpList')" />
+                                    <input type="button" value="打印强制措施决定书" class="btnSearch" onclick="doPrint('ForceDecision')" />
+                                }
+                                @if (ViewBag.BtnEnd)
+                                {
+                                    <input type="button" value="打印退还清单" class="btnSearch" onclick="doPrint('ReturnSealUpList')" />
+                                    <input type="button" value="打印解除强制措施决定书" class="btnSearch" onclick="doPrint('RelieveForceDecision')" />
+                                }
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+            @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.State)
+            @Html.HiddenFor(x => x.ReSource)
+            @Html.HiddenFor(x => x.CaseInfoNo)
+            @Html.HiddenFor(x => x.ReSourceName)
+            @Html.HiddenFor(x => x.RePersonelNameFist)
+            @Html.HiddenFor(x => x.RePersonelNameSecond)
+            @Html.HiddenFor(x => x.UdPersonelNameFirst)
+            @Html.HiddenFor(x => x.UdPersonelNameSecond)
+            @Html.HiddenFor(x => x.CompanyId)
+            @Html.HiddenFor(x => x.CompanyName)
+            @Html.HiddenFor(x => x.DepartmentId)
+            @Html.HiddenFor(x => x.DepartmentName)
+            @Html.HiddenFor(x => x.RowStatus)
+        </form>
+    </div>
+</body>
+</html>
+
+<script>
+
+    //打印文书
+    function doPrint(writIdentify) {
+        var id = '@Model.Id';
+        getAjax('@Url.Action("GetCaseWrit", "PenaltyCaseWrit")', { writIdentify: writIdentify, resourceId: id }, function (url) {
+            var mydoc;
+            var myDocApp = new ActiveXObject("word.Application");
+            myDocApp.visible = true;
+            myDocApp.activate();
+            mydoc = myDocApp.documents.add(url);
+            try {
+                mydoc.PrintPreview();
+            } catch (e) {
+                alert("打印预览失败，请确认您的电脑上装有office！");
+            }
+        });
+    }
+    //更改大类
+    function ChangeClassNo(classNo, selectId, legislationId, legislationItemId, legislationGistId) {
+        getAjax("@Url.Action("AjLoadItemActs", "PenaltyCaseAjax")", { classNo: classNo, selectId: selectId }, function (msg) {
+            eval(msg);
+            if (legislationId != '' && legislationId != undefined) {
+                $("#" + selectId).val(legislationId);
+                $("#LegislationId").val(legislationId);
+                ChangetItemAct(legislationId, "ItemNames", legislationItemId, legislationGistId);
+            }
+        });
+    }
+
+    /*
+     * 更改违法行为
+     * legislationId:违法行为ID
+     * selectId:控件ID
+     * defaultVal:默认值
+     */
+    function ChangetItemAct(legislationId, selectId, legislationItemId, legislationGistId) {
+        SelectItem(legislationId);
+        $("#LegislationId").val(legislationId);
+        getAjax("@Url.Action("AjLoadItemNames", "PenaltyCaseAjax")", { legislationId: legislationId, selectId: selectId }, function (msg) {
+            eval(msg);
+            if (legislationItemId != '' && legislationItemId != undefined) {
+                $("#" + selectId).val(legislationItemId);
+
+                $("#LegislationId").val(legislationId);
+                $("#LegislationItemId").val(legislationItemId);
+            }
+            ChangeItemName($("#" + selectId).val(), "GistNames", "DutyNames", legislationGistId);
+        });
+    }
+
+    /*
+     * 更改适用案由
+     * legislationItemId:案由ID
+     * selectId:控件ID
+     * defaultVal:默认值
+     */
+    function ChangeItemName(legislationItemId, selectId, selectId2, legislationGistId) {
+        getAjax("@Url.Action("AjaxLoadGist", "PenaltyCaseAjax")", { legislationItemId: legislationItemId, selectId: selectId, selectId2: selectId2 }, function (msg) {
+            eval(msg);
+            $("#LegislationItemId").val(legislationItemId);
+            if (legislationGistId != '' && legislationGistId != undefined) {
+                $("#" + selectId).val(legislationGistId);
+                $("#" + selectId2).val(legislationGistId);
+                $("#LegislationGistId").val(legislationGistId);
+            } else {
+                $("#LegislationGistId").val($("#" + selectId).val());
+            }
+        });
+    }
+
+    /*
+     *  更改法律条文 
+     */
+    function ChangeGist(selectId) {
+        var sel = $("#" + selectId).val();
+        $("#GistNames").val(sel);
+        $("#DutyNames").val(sel);
+        $("#LegislationGistId").val(sel);
+    }
+
+    //选择小类
+    function SelectItem(itemId) {
+        AjaxJson("@Url.Action("LoadItemDetails", "PenaltyCaseAjax")", { itemId: itemId }, function (msg) {
+            $("#ItemNo").val(msg.rtObj.ItemNo);
+        });
+    }
+
+    //根据案由编号快速查询
+    function GetItems(itemNo) {
+        AjaxJson("@Url.Action("LoadItemDetails", "PenaltyCaseAjax")", { itemNo: itemNo }, function (msg) {
+            $("#ClassNo").val(msg.rtObj.ClassNo);
+            ChangeClassNo(msg.rtObj.ClassNo, 'ItemActs', msg.rtObj.Id);
+        });
+    }
+    var tempIndex = $("#ArticlesBox tr").length;
+    //添加物品
+    function addArticlesBox() {
+        tempIndex++;
+        var num = tempIndex;
+        var html = $('#ContentTR').html();
+        html = html.replace('checkexpession', "class=\"txt required\" datacol = \"yes\" err = \"名称\" checkexpession = \"NotNull\"");
+        html = html.replace('checkexpession1', "class=\"txt required\" datacol = \"yes\" err = \"位置\" checkexpession = \"NotNull\"");
+        html = html.replace('checkexpession2', "class=\"txt required\" datacol = \"yes\" err = \"方向\" checkexpession = \"NotNull\"");
+        html = html.replace('checkexpession3', "class=\"txt required\" datacol = \"yes\" err = \"面积\" checkexpession = \"NotNull\"");
+        html = "<tr>" + html + "</tr>";
+        $(html).insertBefore($("#ArticlesBox>tbody>tr:last"));
+    };
+
+    //删除物品
+    function deleteLeg(obj) {
+        $(obj).parent().parent().remove();
+    };
+</script>
+<script type="text/javascript">
+
+    //输入证件号码后计算
+    function PutCardId(cardId) {
+        if (isIdCardNo(cardId)) {
+            if ($("#TargetPaperType").val() == "00130001") {
+                if (parseInt(cardId.substr(16, 1)) % 2 == 1) {
+                    $("#TargetGender").val("1");  //男
+                } else {
+                    $("#TargetGender").val("0");  //女
+                }
+                //获取年龄 
+                var myDate = new Date();
+                var month = myDate.getMonth() + 1;
+                var day = myDate.getDate();
+
+                var age = myDate.getFullYear() - cardId.substring(6, 10) - 1;
+                if (cardId.substring(10, 12) < month || cardId.substring(10, 12) == month && cardId.substring(12, 14) <= day) {
+                    age++;
+                }
+                $("#TargetAge").val(age);
+            }
+        }
+    }
+    function isIdCardNo(num) {
+        num = num.toUpperCase();
+        //身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X。   
+        if (!(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num))) {
+            alert('输入的身份证号长度不对，或者号码不符合规定！\n15位号码应全为数字，18位号码末位可以为数字或X。');
+            return false;
+        }
+        //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+        //下面分别分析出生日期和校验位 
+        var len, re; len = num.length;
+        if (len == 18) {
+            re = new RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/);
+            var arrSplit = num.match(re);
+            //检查生日日期是否正确  
+            var dtmBirth = new Date(arrSplit[2] + "/" + arrSplit[3] + "/" + arrSplit[4]);
+            var bGoodDay;
+            bGoodDay = (dtmBirth.getFullYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+            if (!bGoodDay) {
+                alert('输入的身份证号里出生日期不对！');
+                return false;
+            } else {
+                //检验18位身份证的校验码是否正确。  
+                //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。 
+                var valnum; var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+                var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+                var nTemp = 0, i; for (i = 0; i < 17; i++) { nTemp += num.substr(i, 1) * arrInt[i]; }
+                valnum = arrCh[nTemp % 11]; if (valnum != num.substr(17, 1))
+                { alert('18位身份证的校验码不正确！应该为：' + valnum); return false; } return num;
+            }
+        } return false;
+    }
+
+
+    //更改当事人类型
+    function ChangeTargetType(targetType) {
+        if (targetType == "00120002") {     //法人
+            $("#labTargetName").text("负责人姓名");
+            $("#spanCompany").show();
+            $("#spanUserName").hide();
+        } else {
+            $("#labTargetName").text("当事人姓名");
+            $("#spanCompany").hide();
+            $("#spanUserName").show();
+        }
+    }
+    //生成案情摘要
+    function GenerateCaseAct() {
+        if ($("#CaseFact").val() == '') {
+            var casedate = $("#CaseDate").val();    //案发日期
+            var address = $("#CaseAddress").val();  //违章地址
+            // var itemact = $("#ItemNames").find('option:selected').text();      //违法行为
+            var targetType = $("#TargetType").val();//当事人类型
+            var targetName = "";
+            if (targetType == '00120002') {
+                targetName = $("#TargetUnit").val();
+            } else {
+                targetName = $("#TargetName").val();
+            }
+
+            if (casedate != '') {
+                casedate = casedate.replace(/-/g, "/");
+                var date = new Date(casedate);
+                var time = formatDate(date, 'yyyy年MM月dd日 hh时mm分');
+                $("#CaseFact").val(time + "，执法队员在巡查过程中发现" + targetName + "在" + address + "" + "。");
+            }
+        }
+    }
+    /**
+     * 更改执法部门
+     */
+    function ChangeCompany(companyId, selectIds) {
+        getAjax("@Url.Action("GetUsersByCompany", "SealUp")", { companyId: companyId, selectIds: selectIds }, function (msg) {
+            eval(msg);
+        });
+    }
+
+    //提交表单
+    function AcceptClick() {
+        if (!CheckDataValid('#formmain')) {
+            return false;
+        }
+        var istrue = true;
+        var reSource = "";    //案件来源
+        var reSourceName = "";//案件来源名称
+        $("input[name='sourcecheckbox']:checked").each(function () {
+            reSource += $(this).val() + ",";
+            reSourceName += $("#lab_" + $(this).val()).text() + ",";
+        });
+
+        if (reSource != '') {
+            reSource = reSource.substring(0, reSource.length - 1);
+            reSourceName = reSourceName.substring(0, reSourceName.length - 1);
+            $("#ReSource").val(reSource);           //赋值
+            $("#ReSourceName").val(reSourceName);
+        } else {
+            alertDialog('请选择案件来源！', -1);
+            $("input[name='sourcecheckbox']").focus();
+            istrue = false;
+        }
+        if (!istrue) return;
+        var cardId = $("#TargetPaperNum").val();
+        if (isIdCardNo(cardId)) {
+            $("#RePersonelNameFist").val($("#RePersonelIdFist").find("option:selected").text());
+            $("#RePersonelNameSecond").val($("#RePersonelIdSecond").find("option:selected").text());
+            $("#UdPersonelNameFirst").val($("#UdPersonelIdFirst").find("option:selected").text());
+            $("#UdPersonelNameSecond").val($("#UdPersonelIdSecond").find("option:selected").text());
+            $("#CompanyId").val($("#drpCompany").val());
+            $("#DepartmentId").val($("#drpDepartment").val());
+            $("#CompanyName").val($("#drpCompany").find("option:selected").text());
+            $("#DepartmentName").val($("#drpDepartment").find("option:selected").text());
+            window.setTimeout(function () {
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url: '@Url.Action("SaveSealUp")',
+                    data: $('#formmain').serialize(),
+                    async: false,
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data.rtState == 0) {
+                            tipDialog("保存成功！", 2, 2);
+                            top.frames[tabiframeId()].windowload();
+                            closeDialog();
+                        } else {
+                            tipDialog("保存出现异常，请联系管理员！", 2, 0);
+                        }
+                    }
+                });
+            }, 200);
+        }
+    }
+
+    //=================案件审批======================
+    //申请立案
+    var api = frameElement.api, w = api.opener;
+    function ApplyForFiled(htype, isFaster, flowName) {
+        var formId = '@Model.Id';
+        var worklistId = '@ViewBag.worklistId'
+        var accepturl = 'FirstDialogWindow';
+        if (htype == 'apply' && worklistId == '') {
+            accepturl = 'SealUp';
+        }
+        var url = '@Url.Action("SealUpWorkFlow", "WorkFlow")?formId=' + formId + '&flowName=' + flowName + '&eType=' + htype + '&worklistId=' + worklistId + '&isloadOp=0&isFaster=' + isFaster;
+        url = encodeURI(url);
+        var width = 500;
+        var height = 300;
+        top.$.dialog({
+            id: "WorkFlow", width: width, height: height, lock: true, max: false, resize: false, extendDrag: true,
+            title: "案件审批",
+            content: 'url:' + url,
+            button: [
+                {
+                    name: '确 定',
+                    className: 'green',
+                    callback: function () {
+                        top.frames["WorkFlow"].AcceptClick(accepturl);
+                    }
+                }, { name: '关 闭' }
+            ]
+        });
+    }
+
+    //=================案件审批成功后调用该方法======================
+    //审批后调用该方法,注：所有审批返回都需要调用该方法
+    function ApplyReturn(data) {
+        if (data.rtState == 0 || data.rtState == 1) {
+            //调用进行修改案件的状态
+            alertDialogCallBack(data.rtMsrg, 2, function () {
+                setTimeout(function () {
+                    top.frames[tabiframeId()].windowload();
+                    cancle();
+                }, 500);
+            });
+        } else {
+            alertDialog("审批过程中出现异常，请联系管理员！", -1);
+        }
+    }
+    //查看案件到哪儿
+    function ShowLeaveFlow() {
+        var id = $("#Id").val();  //案件编号
+        var caseHandle = '@Url.Action("CaseFlow", "PenaltyCase")';
+        var width = 640;
+        var height = 540;
+        Dialog((caseHandle + "?id=" + id), "CaseFlow", "案件在哪里", parseInt(width), parseInt(height));
+    }
+    var id = '@ViewBag.Id';
+    var worklistId = '@ViewBag.WorkListId';
+    //保存案件
+    function Archive() {
+        Loading(true, "正在提交数据...");
+        AjaxJson('@Url.Action("Archive", "SealUp")', { id: id, worklistId: worklistId }, function (data) {
+            tipDialog("结案成功！", 3, 1);
+            $("#btnArchive").hide();
+            top.frames[tabiframeId()].windowload();
+            closeDialog();
+        });
+    }
+
+    /*
+    * 取消
+    */
+    function cancle() {
+        api.close();
+    }
+
+    //=================案件审批======================
+</script>

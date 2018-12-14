@@ -1,0 +1,217 @@
+﻿@using Yookey.WisdomClassed.SIP.Common
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>违法建设</title>
+
+    <!--框架必需start-->
+    <link  href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link  href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--表格组件end-->
+
+    <!--树形组件start-->
+    <link href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/tree/tree.js")" type="text/javascript"></script>
+    <!--树形组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件start-->
+
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+
+    <style type="text/css">
+        .ui-jqgrid .ui-jqgrid-htable th {
+            height: 28px;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+
+        .ui-th-column, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+            background: none;
+        }
+
+        .ui-jqgrid tr.jqgrow td {
+            white-space: normal !important;
+            height: 25px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <div class="leftline" style="margin-left: 1px; margin-right: 1px;">
+            <div>
+                <table border="0" class="form-find" style="height: 45px;">
+                    <tr>
+                        <th>当事人：</th>
+                        <td>
+                            <input id="userName" type="text" class="txt" style="width: 150px" />
+                        </td>
+                        <th>地  点：
+                        </th>
+                        <td>
+                            <input id="address" type="text" class="txt" style="width: 150px" />
+                        </td>
+                        <th>状  态：
+                        </th>
+                        <td colspan="2">
+
+                            @Html.DropDownList("status", (ViewData["Statuses"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 150px" })
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>执法中队：</th>
+                        <td>
+                            @Html.DropDownList("dept", (ViewData["Depts"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 150px" })
+                        </td>
+                        <th>转交时间（开始）：
+                        </th>
+                        <td>
+                            <input id="beginTime" type="text" style="width: 150px" class="txt Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                        </td>
+                        <th>转交时间（开始）：
+                        </th>
+                        <td>
+                            <input id="endTime" type="text" style="width: 150px" class="txt Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                        </td>
+
+                        <td style="text-align: left;">
+                            <input type="button" class="btnSearch" value="查 询" onclick="search()" />
+                            <input type="button" class="btnSearch" value="登 记" onclick="register()" />
+                            <input type="button" class="btnSearch" value="导 出" onclick="exportExcel()" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="grid_List" class="topline">
+                <table id="gridTable"></table>
+                <div id="gridPager"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    $(function () {
+        GetGrid();
+    });
+
+    //加载表格
+    function GetGrid() {
+        $("#gridTable").jqGrid({
+            url: '@Url.Action("GetBuildData")',
+            datatype: "json",
+            height: $(window).height() - 125,
+            autowidth: true,
+            colModel: [
+                { label: "Id", name: "Id", index: "Id", width: 90, align: 'left', hidden: true },
+                { label: "当事人", name: "UserName", index: "UserName", width: 150, align: 'left' },
+                { label: "地点", name: "Address", index: "Address", width: 200, align: 'left' },
+                { label: "转交大队办理时间", name: "ReceiveTime", index: "ReceiveTime", width: 150, align: 'left' },
+                { label: "当前阶段", name: "StatusName", index: "StatusName", width: 150, align: 'left' },
+                { label: "处理中队", name: "DeptName", index: "DeptName", width: 150, align: 'left' },
+            ],
+            viewrecords: true,
+            rowList: [30, 50, 100, 500, 1000],
+            pager: "#gridPager",
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                var Id = GetJqGridRowValue("#gridTable", "Id");
+                if (Id != "" && Id != undefined) {
+                    editBuild(Id);
+                }
+                else {
+                    alertDialog("您当前没有选择任何记录！", 1);
+                }
+            }
+        });
+    }
+    /*登记*/
+    function register() {
+        var width = $(window).width();
+        width = width - (width * 0.2);
+        var height = $(window).height();
+        Dialog("@Url.Action("Register")", "", "登记", width, height);
+    }
+    /*编辑*/
+    function editBuild(Id) {
+        var width = $(window).width();
+        width = width - (width * 0.2);
+        var height = $(window).height();
+        Dialog("@Url.Action("Edit")?Id=" + Id, "", "登记", width, height);
+    }
+    /*查询*/
+    function search() {
+        var userName = $("#userName").val();
+        var deptId = $("#dept").val();
+        var status = $("#status").val();
+        var address = $("#address").val();
+        var beginTime = $("#beginTime").val();
+        var endTime = $("#endTime").val();
+        $("#gridTable").jqGrid('setGridParam', {
+            url: "@Url.Action("GetBuildData")?deptId=" + deptId + "&userName=" + escape(userName) + "&address=" + escape(address) + "&beginTime=" + beginTime + "&endTime=" + endTime + "&statusCode" + status
+        }).trigger('reloadGrid');
+    }
+
+    function reload() {
+        $("#gridTable").jqGrid('setGridParam', {
+            url: "@Url.Action("GetBuildData")"
+        }).trigger('reloadGrid');
+    }
+
+    function exportExcel() {
+        var userName = $("#userName").val();
+        var deptId = $("#dept").val();
+        var status = $("#status").val();
+        var address = $("#address").val();
+        var beginTime = $("#beginTime").val();
+        var endTime = $("#endTime").val();
+        window.open("@Url.Action("ExportExcel")?deptId=" + deptId + "&userName=" + userName + "&address=" + address + "&beginTime=" + beginTime + "&endTime=" + endTime + "&statusCode" + status, "_blank");
+    }
+
+</script>
+

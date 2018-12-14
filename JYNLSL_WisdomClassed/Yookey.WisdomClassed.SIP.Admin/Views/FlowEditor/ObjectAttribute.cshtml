@@ -1,0 +1,275 @@
+﻿@{
+    Layout = null;
+}
+@using Yookey.WisdomClassed.SIP.Model.FlowEditor;
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>对象编辑器</title>
+
+    <link href="@Url.Content("~/Content/Styles/Flow/ObjectAttribute.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/EasyUIStyle/style.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/EasyUIStyle/default/easyui.css")"rel="stylesheet" />
+
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/jquery.easyui.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/FlowEditor/ObjectAttribute.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/FlowEditor/json2.js")" type="text/javascript"></script>
+</head>
+<body>
+    <div class="easyui-tabs" style="width: 700px; height: 500px">
+        <div title="结点基本属性" style="padding: 10px; color: #CDCDFF">
+            <table width="100%" class="TableBlock">
+                <tr id="tr_Mess1" style="display: none;">
+                    <td style="height: 15px;" colspan="10" class="TableData">
+                        <div id="divMess1" style="z-index: 0; color: Red;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    @{
+                        var note = ViewData["note"] as List<FeActivityEntity>;
+                    }
+                    <td style="width: 15%; height: 20px;" align="right" class="TableData">结点ID:</td>
+                    <td style="width: 20%; height: 20px;" class="TableData">
+                        <input type="text" id="txtNoneID" class="TextBox" style="width: 100px;" readonly="readonly" value="@ViewData["noneID"]"/>
+                    </td>
+                    <td style="width: 15%; height: 20px;" align="right" class="TableData">结点名称:</td>
+                    <td style="width: 20%; height: 20px;" class="TableData">
+                        <input type="text" id="txtNoneName" class="TextBox" style="width: 100px;" value="@ViewData["noneName"]"/><label style="color: Red;">*</label>
+                    </td>
+                    <td style="width: 15%; height: 20px;" align="right" class="TableData">退回接收对象:</td>
+                    <td style="height: 20px; width: 130px;" class="TableData">
+                        <select id="drpSendORWithdrawalActivity" class="DropDownList">
+                            <option value="">--  请选择  --</option>
+                            <option value="3">发送人</option>
+                            <option value="1">至发启人</option>
+                            <option value="2">至发启人并结束流程</option>
+                            @{
+                                var list = ViewData["SendORWithdrawalActivity"] as List<FeActivityEntity>;
+                                if (list != null)
+                                {
+                                    foreach (var item in list)
+                                    {
+                                        <option value="@item.ActivityID">@item.NoneName</option>
+                                    }
+                                }
+                            }
+                        </select>
+                        
+                        <input type="hidden" id="inputSendORWithdrawalActivity" value="@note[0].SendORWithdrawalActivityID"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableData" align="right" style="height: 20px" class="TableData">页面地址:</td>
+                    <td colspan="5" style="height: 20px" class="TableData">
+                        <input id="txtFormAddress" class="TextBox" style="width: 87%" value="@note[0].FormAddress" />
+                        <label style="color: Red;">*</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="10" style="height: 35px;" class="TableData">
+
+                        <input type="checkbox" id="cbIsContrastCommunity" checked="@note[0].IsContrastCommunity" value="是否匹配部门" />
+                        <label for="cbIsContrastCommunity">是否匹配部门</label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" id="cbIsContrastRule" checked="@note[0].IsContrastRule" value="是否匹配规则" />
+                        <label for="cbIsContrastRule">是否匹配规则</label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" id="cbIsSendOnOpener" checked="@note[0].IsSendOnOpener" value="至发启人且结束流程" />
+                        <label for="cbIsSendOnOpener">至发启人且结束流程</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" style="height: 20px" class="TableData">结点处理方式:</td>
+                    <td align="left" colspan="10" valign="middle" class="TableData">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="height: 100%;" class="TableBlock">
+                            <tr>
+                                <td style="width: 250px; height: 20px;">
+                                    <input type="radio" value="0" id="renHandel" name="NoneDisposeManner" /><label for="renHandel">人工处理</label>
+                                    <input type="radio" value="1" id="serHandel" name="NoneDisposeManner" /><label for="serHandel">服务器处理</label>
+
+                                </td>
+                                <td style="display: none;" id="td_NoneDisposeTime">默认意见
+                                    <div style="display: none;">
+                                        小时后执行处理任务
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" class="TableData">成<br />
+                        功<br />
+                        规<br />
+                        则
+                    </td>
+                    <td colspan="10" align="left" valign="middle" class="TableData">
+                        <table width="100%" class="TableBlock" border="1">
+                            <tr>
+                                <td style="width: 15%;" align="right">AssemblyName:</td>
+                                <td>
+                                    <input type="text" id="txtFulfillAssemblyName" class="TextBox" style="width: 80%;"value="@note[0].FulfillAssemblyName" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">ClassFullName:</td>
+                                <td>
+                                    <input type="text" id="txtFulfillClassFullName" class="TextBox" style="width: 80%;" value="@note[0].FulfillClassFullName" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" class="TableData">过<br />
+                        期<br />
+                        规<br />
+                        则</td>
+                    <td colspan="10" align="left" valign="middle" class="TableData">
+                        <table width="100%" cellpadding="0" cellspacing="0" class="TableBlock">
+                            <tr>
+                                <td style="width: 15%;" align="right">AssemblyName:</td>
+                                <td>
+                                    <input type="text" id="txtOverdueAssemblyName" class="TextBox" style="width: 80%;" value="@note[0].OverdueAssemblyName"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">ClassFullName:</td>
+                                <td>
+                                    <input type="text" id="txtOverdueClassFullName" class="TextBox" style="width: 80%;" value="@note[0].OverdueClassFullName"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">结点过期时间:</td>
+                                <td align="left">
+                                    <input type="text" id="txtOverdueHour" class="TextBox" style="width: 50px;"  value="@note[0].OverdueHour"/>
+                                    小时后该结点过期
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" class="TableData">描<br />
+                        述
+                    </td>
+                    <td colspan="10" class="TableData">
+                        <textarea id="txtRemark" class="TextBox" style="width: 83%;" rows="4" textmode="MultiLine" value="@note[0].Remark"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div title="接收对象配置" style="padding: 10px">
+            <div align="center" style="padding-bottom: 10px;">
+                <input type="text" style="display:none" value="@note[0].ActivityID" id="txtActivityID"/>
+                <input type="text" id="txtProcessID"  style="display:none" value="@ViewData["processID"]"/>
+                <a href="javascript:;" id="btnAddRows" class="easyui-linkbutton">添加新行</a> &nbsp;&nbsp;
+                <a href="javascript:;" id="btnDeleteRows" class="easyui-linkbutton" onclick="DelActionInstance()">删除行</a>
+            </div>
+            <table id="ttt" class="easyui-datagrid" style="width: 500px; height: 200px;">
+            </table>
+        </div>
+
+        <div title="规则表达示配置" style="padding: 10px">
+            <table width="100%" class="TableBlock">
+                <tr id="tr_Mess3" style="display: none;">
+                    <td style="height: 15px;" colspan="10" class="TableData">
+                        <div id="divMess3" style="z-index: 0; color: Red;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" style="width: 16%; height: 20px;" class="TableData">规则表达式:</td>
+                    <td colspan="10" valign="middle" class="TableData">
+                        <textarea id="txtRuleClauses" class="TextBox" rows="1" textmode="MultiLine" style="width: 83%"></textarea>
+                        <label style="color: Red;">*</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 15%; height: 20px;" align="right" class="TableData">成功规则接收对象</td>
+                    <td style="height: 20px; width: 25%;" class="TableData">
+                        <select id="drpRiolationRuleI" class="DropDownList">
+                            <option value="">--  请选择  --</option>
+                            <option value="3">发送人</option>
+                            <option value="1">至发启人</option>
+                            <option value="2">至发启人并结束流程</option>
+                            @{
+                                foreach (var item in list)
+                                {
+                                <option value="@item.ActivityID">@item.NoneName</option>
+                                }
+                            }
+                        </select>
+
+                        <label style="color: Red;">*</label>
+                    </td>
+                    <td style="height: 20px;" align="left" class="TableData">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" id="cbIsUnlock" value="是否启用规则" />
+                        <label for="cbIsUnlock">是否启用规则</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" class="TableData">描<br />
+                        述
+                    </td>
+                    <td colspan="10" class="TableData">
+                        <textarea id="txtRemark_Rule" class="TextBox" rows="1" textmode="MultiLine" style="width: 83%"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" class="TableData">成<br />
+                        功<br />
+                        规<br />
+                        则
+                    </td>
+                    <td colspan="10" align="left" valign="middle" class="TableData">
+                        <table width="100%" class="TableBlock">
+                            <tr>
+                                <td style="width: 15%;" align="right" class="TableData">AssemblyName:</td>
+                                <td class="TableData">
+                                    <textarea id="txtFulfillAssemblyName_Rule" class="TextBox" textmode="MultiLine" style="width: 83%"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right" class="TableData">ClassFullName:</td>
+                                <td class="TableData">
+                                    <textarea id="txtFulfillClassFullName_Rule" class="TextBox" textmode="MultiLine" style="width: 83%"></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="10" class="TableData" style="height: 20px;">
+                        <a href="javascript:;" id="btnSaveToList" class="easyui-linkbutton" onclick="AddToList()">保存至列表</a>
+                        <a href="javascript:;" id="btnClear" class="easyui-linkbutton" onclick="ClearRuleCon()">置 空</a>
+                        <a href="javascript:;" id="btnDeleteRuleCode" class="easyui-linkbutton" onclick="DeleteRuleCode()">删除规则</a>
+
+                        <!--当前双击规则的索引行-->
+                        <input type="hidden" value="" id="ruledgSelectIndex" />
+
+                    </td>
+                </tr>
+            </table>
+            <table id="rule" class="easyui-datagrid">
+            </table>
+        </div>
+
+    </div>
+
+
+    <div align="center" style="width: 700px; padding-top: 20px;">
+        <a href="javascript:;" id="btnSave" class="easyui-linkbutton" onclick="Save()">保存并返回</a>
+        <a href="javascript:;" id="btnClose" class="easyui-linkbutton" onclick="javascript:window.close();">关 闭</a>
+    </div>
+    <div style="display: none">
+        <input  id="txtOldNoneName" value="@note[0].NoneName"/>
+        <input id="txtRuleCodeId" />
+        <input id="txtFeRuleCodeId" />
+        <input id="txtFeRuleVersion" />
+    </div>
+</body>
+</html>

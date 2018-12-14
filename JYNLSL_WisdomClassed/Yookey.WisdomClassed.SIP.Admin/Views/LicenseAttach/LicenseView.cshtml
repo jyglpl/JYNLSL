@@ -1,0 +1,131 @@
+﻿@using Yookey.WisdomClassed.SIP.Model.License;
+<table class="childrentable" style="width: 959px; margin-bottom: 5px;">
+    <tr>
+        <td style="width: 80px; background: #F7F7F7;">序号</td>
+        <td style="width: 140px; background: #F7F7F7;">材料收取</td>
+        <td style="width: auto; background: #F7F7F7;">材料名称</td>
+        <td style="width: 130px; background: #F7F7F7;">收件操作</td>
+        <td style="width: 130px; background: #F7F7F7;">拍照</td>
+    </tr>
+
+    @{
+        var materials = ViewData["Material"] as List<LicenseMaterialCatalogueEntity>;
+        var licenseAttach = ViewData["LicenseAttach"] as List<LicenseAttachEntity>;
+        var i = 1;
+        foreach (var entity in materials)
+        {
+        <tr>
+            <td>@i</td>
+            @if (licenseAttach == null || licenseAttach.FindIndex(z => z.FileType.Equals(entity.Id)) == -1)
+            {
+                <td>
+                    <div id='Material@(i)'>未收取</div>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <div>
+                        <img src="~/Content/Images/Icon32/tick.png" />
+                    </div>
+                </td>     
+            }
+            <td><a style="cursor:pointer;" onclick="ShowPreviewImageList('@entity.Id','@i')">@entity.MaterialName</a></td>
+            <td>
+                <div>
+                    <img style="cursor:pointer;" src="~/Content/Images/Icon32/saved_imports.png" onclick="ShowUpLoadImageList('@entity.Id','@i');"/>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <img style="cursor:pointer;" src="~/Content/Images/Icon32/camera_black.png" onclick="ShowPhotograph('@entity.Id','@i');"/>
+                </div>
+            </td>
+        </tr>
+            i++;
+        }
+    }
+</table>
+<script type="text/javascript">
+    //操作附件相关
+    //改变附件目录状态
+    function ChangeMaterial(index, count) {
+        if (count > 0) {
+            $('#Material' + index).html('<img src="/Content/Images/Icon32/tick.png" />');
+        }
+        else {
+            $('#Material' + index).html('未收取');
+        }
+    }
+
+    function ShowUpLoadImageList(fileType, index) {
+        var url = '@Url.Action("UpLoadImageList", "LicenseAttach")' + "?resourceId=@ViewBag.licenseId" + "&itemCode=@ViewBag.itemCode";
+        url += "&fileType=" + fileType;
+        var width = $(window).width();
+        width = width - (width * 0.5);
+        var height = $(window).height() * 0.5;
+        top.$.dialog({
+            id: "UpLoadImageList",
+            lock: false,
+            title: "文档内容管理",
+            max: false,
+            min: false,
+            width: width,
+            height: height,
+            content: 'url:' + url,
+            close: function () {
+                $.get('../LicenseAttach/GetAttachCount', { resouceId: '@ViewBag.licenseId', fileType: fileType, Ran: Math.random() }, function (count) {
+                    ChangeMaterial(index, count);
+                })
+
+            }
+        });
+    }
+
+    function ShowPhotograph(fileType, index) {
+        var url = '@Url.Action("Photograph", "LicenseAttach")' + "?resourceId=@ViewBag.licenseId" + "&itemCode=@ViewBag.itemCode";
+        url += "&fileType=" + fileType;
+        var width = $(window).width();
+        width = width - (width * 0.58);
+        var height = $(window).height() * 0.75;
+        top.$.dialog({
+            id: "Photograph",
+            lock: false,
+            title: "拍照",
+            max: false,
+            min: false,
+            width: 710,
+            height: 620,
+            content: 'url:' + url,
+            close: function () {
+                $.get('../LicenseAttach/GetAttachCount', { resouceId: '@ViewBag.licenseId', fileType: fileType, Ran: Math.random() }, function (count) {
+                    ChangeMaterial(index, count);
+                })
+
+            }
+        });
+    }
+
+    function ShowPreviewImageList(fileType, index) {
+        var url = '@Url.Action("PreviewImageList", "LicenseAttach")' + "?resourceId=@ViewBag.licenseId" + "&itemCode=@ViewBag.itemCode";
+        url += "&fileType=" + fileType;
+        var width = $(window).width();
+        width = width - (width * 0.3);
+        var height = $(window).height() * 0.9;
+        top.$.dialog({
+            id: "PreviewImageList",
+            lock: false,
+            title: "材料预览",
+            max: false,
+            min: false,
+            width: width,
+            height: height,
+            content: 'url:' + url,
+            close: function () {
+                $.get('../LicenseAttach/GetAttachCount', { resouceId: '@ViewBag.licenseId', fileType: fileType, Ran: Math.random() }, function (count) {
+                    ChangeMaterial(index, count);
+                });
+            }
+        });
+    }
+</script>

@@ -1,0 +1,94 @@
+
+.block {
+    display: block;
+}
+
+.none {
+    display: none;
+}
+
+.float-left {
+    float: left;
+}
+
+.select-port {
+    width: 310px !important;
+}
+
+.mb0 {
+    margin-bottom: 0;
+}
+
+    .mb0 li a {
+        color: black;
+        text-decoration-line: none;
+    }
+
+.mf0 {
+    margin-left: 0;
+}
+
+.mf20 {
+    margin-left: 20px;
+}
+
+.wd80 {
+    width: 80px !important;
+}
+
+.no_border {
+    border: none !important;
+}
+
+.sipac_editbox.wd8 th {
+    width: 8% !important;
+}
+
+.wd170 {
+    width: 170px !important;
+}
+
+.doubleRandomDiv {
+    width: 35%;
+    height: 300px;
+    float: left;
+    margin-top: 20px;
+    margin-left: 180px;
+    border: 1px solid #666666;
+}
+
+.doubleRandomDivHeader {
+    height: 10%;
+    margin-top: 10px;
+}
+
+
+.doubleRandomDivImg {
+    height: 40%;
+    width: 200px;
+    background-image: url(../../Content/Images/NoPersonObject.png);
+    background-repeat: no-repeat;
+    margin: 20px 0 0 40%;
+}
+
+.doubleRandomDivTitle {
+    height: 10%;
+    margin-top: 10px;
+}
+
+.doubleRandomDivHeader span {
+    color: #666666;
+    font-size: 19px;
+    margin-left: 10px;
+    margin-left: 20px;
+}
+
+.doubleRandomDivTitle span {
+    color: #666666;
+    font-size: 19px;
+    margin: 0 0 0 25%;
+}
+
+a {
+    cursor: pointer;
+}

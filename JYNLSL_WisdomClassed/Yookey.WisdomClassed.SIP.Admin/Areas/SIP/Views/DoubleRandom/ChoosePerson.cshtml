@@ -1,0 +1,471 @@
+﻿<!--内容开始-->
+<style>
+    #objList li {
+        float: left;
+        width: 108px;
+        height: 30px;
+        margin-left: 30px;
+        margin-top: 10px;
+        border: 1px dashed #000;
+        padding-left: 15px;
+        padding-top: 6px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .select {
+        padding-top: 0px;
+        border: 1px solid #A8A8A8;
+        height: 23px;
+        line-height: 21px;
+        border-radius: 6px;
+    }
+
+    #objList li.active {
+        border: 1px #2567c1 solid;
+        color: #2567c1;
+    }
+
+        #objList li.active .choName {
+            color: #2567c1;
+        }
+</style>
+<script>
+    //绑定部门（中队）
+    function BindDepartment() {
+        var comp = $("#companyDropList").val();
+        if (comp != null & comp != "") {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: '@Url.Action("GetDepartmentDropList", "Department")',
+                data: { companyId: $("#companyDropList").val(), controlId: "departmentDropList" },
+                async: false,
+                datatype: 'json',
+                success: function (data) {
+                    eval(data);
+                    $(".s_textarea").empty();
+                    BindUser();
+                }
+            });
+        } else {
+            $("#departmentDropList").html("");
+            BindUser();
+        }
+
+    }
+    //绑定人员
+    function BindUser() {
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: '@Url.Action("GetUserDropList", "DoubleRandom")',
+            data: { companyId: $("#companyDropList").val(), deptid: $("#departmentDropList").val() },
+            async: false,
+            datatype: 'json',
+            success: function (data) {
+                //清空类中数据
+                $("#objList").empty();
+                var str = '';
+                var xqo = eval('(' + data + ')');
+                //alert(xqo.length);
+                for (var i = 0; i < xqo.length; i++) {
+
+                    str += '<li class=' + xqo[i].CompanyId + ' onclick="isLichk(this)">';
+                    str += '<a class=' + xqo[i].DepartmentId + ' title=' + xqo[i].RealName + ' style="color:black; ">';
+                    str += ' <div class="un-chk choose" id=' + xqo[i].Id + ' name=' + xqo[i].RealName + ' onclick="IsChk(e,this);"></div>';
+                    str += '<div class="choName">' + xqo[i].RealName + '</div>';
+                    str += '</a>';
+                    str += '<i></i>';
+                    str += '</li>';
+
+
+
+
+
+
+
+
+                    //str += ' <li  onclick="isLichk(this)" class=' + '\'' + xqo[i].CompanyId + '\'';
+                    //str += '>';
+                    //str += ' <a class= ' + '\'' + xqo[i].DepartmentId + '\'';
+                    //str += 'title=' + '\'' + xqo[i].RealName + '\'' + 'style="color:black;">';
+                    //str += '<img class="un-chk"  id="' + xqo[i].Id + '" name="' + xqo[i].RealName + '"  onclick="IsChk(this);" />' + xqo[i].RealName;
+                    //str += '</a><i></i> </li> ';
+                }
+                //重新加载数据
+                $("#objList").append(str);
+            }
+        });
+
+    }
+
+    function isLichk(obj) {
+        if ($(obj).find('.choose').hasClass('un-chk')) {
+            $(obj).addClass('active')
+            $(obj).find('.choose').removeClass('un-chk');
+            $(obj).find('.choose').addClass('chk');
+            var zhi = $("#objNames").val();
+            var ids = $("#objIdTeams").val();
+            zhi += $(obj).find('.choose').attr('name') + ';';
+            ids += $(obj).find('.choose').attr('Id') + ';';
+            $("#objNames").val(zhi);
+            $("#objIdTeams").val(ids);
+        } else {
+            $(obj).find('.choose').removeClass('chk');
+            $(obj).removeClass('active')
+            $(obj).find('.choose').addClass('un-chk');
+            var zhi = $("#objNames").val();
+            var objArr = zhi.split(";");
+            var obIds = $("#objIdTeams").val();
+            var idArr = obIds.split(";");
+            var newZhi = "";
+            var newIds = "";
+            for (var i = 0; i < objArr.length - 2; i++) {
+                newZhi += objArr[i] + ";";
+            }
+            for (var j = 0; j < idArr.length - 2; j++) {
+                newIds += idArr[i] + ";";
+            }
+            $("#objNames").val(newZhi);//对抽查人员赋新值
+            $("#objIdTeams").val(newIds);//对隐藏input赋新的ids值
+        }
+    }
+    function IsChk(e, obj) {
+        if (e && e.stopPropagation) {
+            e.stopPropagation();
+        } else {
+            window.event.cancelBubble = true;
+        }
+        if ($(obj).hasClass('un-chk')) {
+            $(obj).addClass('active')
+            $(obj).addClass('chk');
+            $(obj).removeClass('un-chk');
+            //$(obj).removeClass('un-chk');
+            //$(obj).addClass('chk');
+            var zhi = $("#objNames").val();
+            var ids = $("#objIdTeams").val();
+            zhi += $(obj).attr('name') + ';';
+            ids += $(obj).attr('Id') + ';';
+            $("#objNames").val(zhi);
+            $("#objIdTeams").val(ids);
+            //$("#x").append($(obj).attr('id') + ';');
+        }
+        else {
+
+            $(obj).removeClass('active')
+            $(obj).removeClass('chk');
+            $(obj).addClass('un-chk');
+            var zhi = $("#objNames").val();
+            var objArr = zhi.split(";");
+            var obIds = $("#objIdTeams").val();
+            var idArr = obIds.split(";");
+            var newZhi = "";
+            var newIds = "";
+            for (var i = 0; i < objArr.length - 2; i++) {
+                newZhi += objArr[i] + ";";
+            }
+            for (var j = 0; j < idArr.length - 2; j++) {
+                newIds += idArr[i] + ";";
+            }
+            $("#objNames").val(newZhi);//对抽查人员赋新值
+            $("#objIdTeams").val(newIds);//对隐藏input赋新的ids值
+        }
+    }
+    //function IsChk(obj) {
+    //    if ($(obj).hasClass('un-chk')) {
+    //        $(obj).removeClass('un-chk');
+    //        $(obj).addClass('chk');
+    //        var zhi = $("#ccry").val();
+    //        var ids = $("#objIds").val();
+    //        zhi += $(obj).attr('name') + ';';
+    //        ids += $(obj).attr('Id') + ';';
+    //        $("#ccry").val(zhi);
+    //        $("#objIds").val(ids);
+    //        //$("#x").append($(obj).attr('id') + ';');
+    //    }
+    //    else {
+    //        $(obj).removeClass('chk');
+    //        $(obj).addClass('un-chk');
+    //        var zhi = $("#ccry").val();
+    //        var objArr = zhi.split(";");
+    //        var obIds = $("#objIds").val();
+    //        var idArr = obIds.split(";");
+    //        var newZhi = "";
+    //        var newIds = "";
+    //        for (var i = 0; i < objArr.length - 2; i++) {
+    //            newZhi += objArr[i] + ";";
+    //        }
+    //        for (var j = 0; j < idArr.length - 2; j++) {
+    //            newIds += idArr[i] + ";";
+    //        }
+    //        $("#ccry").val(newZhi);//对抽查人员赋新值
+    //        $("#objIds").val(newIds);//对隐藏input赋新的ids值
+    //    }
+    //}
+    function Grouping() {
+        var numb = $("#num").val();
+        var ids = $("#objIds").val();
+        var idArr = ids.split(";");
+        if (idArr.length - 1 < numb) {
+            alert('提示：所选人员不满足搭档数，请继续添加！');
+            return;
+        }
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: '@Url.Action("RandomPerson", "DoubleRandom")',
+                data: { ids: ids, num: numb },
+                async: false,
+                datatype: 'json',
+                success: function (data) {
+                    if (data.rtState == 1) {
+                        $("#groups").val(data.rtObj.groupName);
+                        $("#CheckGroupIds").val(data.rtObj.groupID);
+                    }
+                    else {
+                        alert(data.rtMsrg);
+                    }
+
+                }
+            });
+        }
+        function clearGroup() {
+            $(".s_textarea").val("");
+            $("#CheckGroupIds").val("");
+            $("#objList li a img").removeClass('chk');
+            $("#objList li a img").addClass('un-chk');
+            $("#objIds").val("");
+            $("#personNum").val(0);
+            $("#objNames").val("");
+            $("#objIdTeams").val("");
+        }
+
+        function Save() {
+
+            $("#checkMembers").val("");
+            $("#GroupIds").val("");
+            $("#GroupMembers").val("1");
+            if ($(".appendPer")) {
+                $(".appendPer").remove();
+            }
+
+
+            var str = $("#groups").val();
+            var checkGroupIds = $("#CheckGroupIds").val();
+            //document.getElementById("memberImg").style.display = "none";
+            //document.getElementById("memberCQ").style.display = "none";
+            var html = '';
+            var htm = '<div style=" height:240px;overflow:auto;font-size:20px;margin-top:10px" class="appendPer">' + str + '</div>';
+            $("#checkMembers").append(htm);
+            $("#GroupIds").val(checkGroupIds);
+            $("#GroupMembers").val(str);
+            $('.imgzhezhao').hide();
+            $("#reCQ").show();
+            //alert(.attr("displye"));
+        }
+        function ch_all() {
+            $('#objList li').addClass('active');
+            $('.choose').addClass('chk').removeClass('un-chk')
+            $('.choose').each(function (i, n) {
+                var zhi = $("#objNames").val();
+                var ids = $("#objIdTeams").val();
+                zhi += $(this).attr('name') + ';';
+                ids += $(this).attr('Id') + ';';
+                $("#objNames").val(zhi);
+                $("#objIdTeams").val(ids);
+            });
+            //$('.un-chk').each(function (i, n) {
+            //    IsChk(n);
+            //    //$(n).removeClass('un-chk');
+            //    //$(n).addClass('chk');
+            //});
+        }
+
+        function un_ch_all() {
+            $('#objList li').removeClass('active');
+            $('.choose').removeClass('chk').addClass('un-chk')
+            //$('.choose').each(function (i, n) {
+            //    var zhi = $("#objNames").val();
+            //    var ids = $("#objIdTeams").val();
+            //    zhi += $(this).attr('name') + ';';
+            //    ids += $(this).attr('Id') + ';';
+            //    $("#objNames").val(zhi);
+            //    $("#objIdTeams").val(ids);
+            //});
+            //$('.chk').each(function (i, n) {
+            //    //IsChk(n);
+            //    $(n).removeClass('chk');
+            //    $(n).addClass('un-chk');
+            //});
+
+            //$("#ccry").val("");//对抽查人员赋新值
+            //$("#objIds").val("");//对隐藏input赋新的ids值
+        }
+
+        function GetPerson() {
+
+            var num = $("#personNum").val();
+            var companyId = $("#companyDropList").val();
+            var deptId = $("#departmentDropList").val();
+            var names = $("#objNames").val();
+            var ids = $("#objIdTeams").val();
+            if (num.length != 0) {
+                reg = /^[-+]?\d*$/;
+                if (!reg.test(num)) {
+                    alert("对不起，您输入的数据格式不正确，请重新输入!");
+                    return;
+                }
+            }
+
+            if (num == 0) {
+                alert('提示：请填写随机人数！');
+                return;
+            }
+            if (ids == null || ids == "") {
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url: '@Url.Action("GetRandomPerson", "DoubleRandom")',
+                data: { companyId: companyId, deptId: deptId, num: num },
+                async: false,
+                datatype: 'json',
+                success: function (data) {
+                    var result = eval("(" + data + ")");
+                    $("#ccry").val(result.groupName);
+                    $("#objIds").val(result.groupID);
+                }
+            });
+        } else {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: '@Url.Action("GetRandomPersonFrom", "DoubleRandom")',
+                data: { names: names, ids: ids, num: num },
+                async: false,
+                datatype: 'json',
+                success: function (data) {
+                    var result = eval("(" + data + ")");
+                    $("#ccry").val(result.groupName);
+                    $("#objIds").val(result.groupID);
+                }
+            });
+        }
+
+        return;
+
+    }
+</script>
+<style type="text/css">
+    .un-chk {
+        /*background: url("../../Content/Images/checknomark.gif") no-repeat;*/
+        background: url("../../Content/Images/choN.png") no-repeat;
+        background-size: 100% 100%;
+        width: 20px;
+        height: 20px;
+        margin-right: 2px;
+        float: left;
+    }
+
+    .chk {
+        /*background: url("../../Content/Images/checkokmark.gif");*/
+        background: url("../../Content/Images/choY.png") no-repeat;
+        background-size: 100% 100%;
+        width: 20px;
+        height: 20px;
+        margin-right: 2px;
+        float: left;
+    }
+
+    .choName {
+        float: left;
+        font-size: 16px;
+        width: 85px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .btnSearch {
+        display: inline-block;
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        border-width: initial;
+        border-style: none;
+        border-color: initial;
+        border-image: initial;
+        font: 16px/30px 微软雅黑, "Microsoft YaHei";
+        padding: 0px 30px;
+        border-radius: 5px;
+        background: #0b659e;
+    }
+
+        .btnSearch:hover {
+            background: #0576bf;
+        }
+</style>
+<div style="width: 900px; height: 500px; margin-top: -30px">
+    <div style="margin-top: 20px;">
+        <span style="margin-left: 20px; font-size: 20px;">选择部门</span>
+        @Html.DropDownList("companyDropList", (ViewData["CompanyList"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "height: 30px; width: 130px", @onchange = "javascript:BindDepartment();" })
+        <select id="departmentDropList" class="select" style="height: 30px; width: 130px; display: none;" onchange="javascript:BindUser();"></select>
+        <button onclick="ch_all()" class="btnSearch">全选</button>
+        <button onclick="un_ch_all()" class="btnSearch">反选</button>
+
+    </div>
+    <input type="hidden" id="num" value="@ViewBag.Num"/>
+    <input type="hidden" id="objIds" value="" />
+    <input type="hidden" id="objNames" value="" />
+    <input type="hidden" id="objIdTeams" value="" />
+
+    <div style="float: none; margin-top: 10px; height: 147px; overflow: auto" class="clearfix">
+        <ul id="objList">
+            @foreach (var item in ViewBag.PersonList)
+            {
+                <li class='@item.CompanyId' onclick="isLichk(this)">
+                    <a class='@item.DepartmentId' @*id='@item.Id'*@ title='@item.RealName' style="color:black; ">
+                        <div class="un-chk choose" id="@item.Id" name="@item.RealName" onclick="IsChk(e,this);"></div>
+                        <div class="choName">@item.RealName</div>
+                    </a>
+                    <i></i>
+                </li>
+            }
+        </ul>
+    </div>
+    <br />
+    <div>
+
+        <span style="margin-left: 20px; font-size: 20px">随机人数</span>
+        <input id="personNum" class="select" style="width: 60px; height: 30px" value="0" />
+        <input type="button" class="btnSearch" style="margin-left: 25px; display: inline-block" onclick="GetPerson()" value="抽取人员" />
+    </div>
+    <div class="s_sb_cont sipac_editbox sipac_form" style="margin-top: 0px; height: 270px">
+        <table style="height: 170px">
+            <tr>
+                <th style="width: 10%; vertical-align: middle">抽查人员</th>
+                <td style="width: 50%;">
+                    <textarea class="s_textarea" style="width: 700px" id="ccry" readonly="readonly"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="width: 60%; position: relative; height: 50px;">
+                    <p style="position: absolute; margin-left: 50%;">
+                        <button class="sipac_btn s_b_submit" style="margin-top: -15px; margin-left: -100px;" onclick="Grouping()">人员分组</button>
+                        <button class="sipac_btn s_b_submit" style="margin-top: -15px;" onclick="clearGroup()">清除分组</button>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 10%; vertical-align: middle">分组情况</th>
+                <td style="width: 50%;">
+                    @*@Html.TextArea("CheckGroups", new { @class = "txtArea", @style = "width: 80%;", @rows = "6", @readonly = "readonly" })*@
+
+                    <textarea class="s_textarea" style="width: 700px" id="groups" readonly="readonly"></textarea></td>
+                @Html.Hidden("CheckGroupIds")
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<!--内容结束-->

@@ -1,0 +1,778 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data
+@using System.Web.Mvc.Html
+
+@using Yookey.WisdomClassed.SIP.Common
+@using Yookey.WisdomClassed.SIP.Model.Com
+@model Yookey.WisdomClassed.SIP.Model.Petition.PetitionEntity
+@using Yookey.WisdomClassed.SIP.Membership
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>案件基本信息</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+    <!--树形组件start-->
+    <link href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" type="text/css"/>
+    <script src="@Url.Content("~/Librarys/tree/tree.js")" type="text/javascript"></script>
+    <!--树形组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <script src="@Url.Content("~/Librarys/jquery_form_min.js")"></script>
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+    <!--图片预览-->
+    <script src="@Url.Content("~/Librarys/viewerjs/viewer.js")"></script>
+    <link href="@Url.Content("~/Librarys/viewerjs/viewer.css")" rel="stylesheet" />
+    <!--图片预览end-->
+
+    <!--固定元素-->
+    <script src="~/Librarys/stickUp/stickUp.min.js"></script>
+    <!--固定元素end-->
+
+    <!--上传文件start-->
+    <script src="@Url.Content("~/Librarys/uploadHelper.js")"></script>
+    <script src="@Url.Content("~/Librarys/uploadify-v2.1.4/swfobject.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/uploadify-v2.1.4/jquery.uploadify.v2.1.4.js")" type="text/javascript"></script>
+    <!--上传文件end-->
+
+    <style type="text/css">
+        table.gridtable {
+            font-family: verdana,arial,sans-serif;
+            font-size: 11px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+        }
+
+            table.gridtable th {
+                border-width: 1px;
+                padding: 8px;
+                border-style: solid;
+                border-color: #666666;
+                background-color: #dedede;
+            }
+
+            table.gridtable td {
+                border-width: 1px;
+                padding: 8px;
+                border-style: solid;
+                border-color: #666666;
+                background-color: #ffffff;
+            }
+    </style>
+
+
+    <script>
+
+        $(function () {
+            Loading(false);
+            SetCompanyDrop();
+            BindSour();
+            StartUploadify("txtFile", "Petition", true, function (a, b, c, d, e) {
+                var result = d.split('|');
+                if (result.length > 0) {
+                    AddUpResult(result);
+                }
+            });
+            StartUploadify("txtFileReply", "PetitionReply", true, function (a, b, c, d, e) {
+                var result = d.split('|');
+                if (result.length > 0) {
+                    AddUpResult(result);
+                }
+            });
+        });
+
+        //jQuery(function ($) {
+        //    $(document).ready(function () {
+        //        $('#head').stickUp();
+        //    });
+        //});
+
+        //绑定单位（大队）
+        function BindCompany() {
+
+            var companyId = '';
+
+            getAjax("@Url.Action("GetCompanyDropList", "Company", new { area = "CommonModule" })", { controlId: "drpCompany", defaultSelId: companyId }, function (cmsg) {
+                eval(cmsg);
+            });
+
+
+            var company = $("#PetitionCompany").val();
+            $("#drpCompany").val(company);
+
+            var content = $("#PetitionContent").val();
+            $("#yj").val(content);
+
+        }
+
+        //保存案件
+        function SaveApply() {
+            if (CheckForm()) {
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url: '@Url.Action("SubmitForm", "Petition")',
+                    data: $('#formmain').serialize(),
+                    async: false,
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data.rtState == 0) {
+                            tipDialog("编辑保存成功！", 2, 2);
+                            top.frames[tabiframeId()].windowload();
+                            closeDialog();
+                        } else {
+                            tipDialog("保存出现异常，请联系管理员！", 2, 0);
+                        }
+                    }
+                });
+            }
+
+        }
+
+        //案件走到哪儿
+        function ShowCaseFlow() {
+            var id = $("#Id").val();  //案件编号
+            var caseHandle = '@Url.Action("CaseFlow", "PenaltyCase")';
+            var width = 640;
+            var height = 540;
+            Dialog((caseHandle + "?id=" + id + "&rnd=" + Math.random()), "CaseFlow", "案件在哪里", parseInt(width), parseInt(height));
+        }
+
+
+        function CheckForm() {
+            var istrue = true;
+
+            var company = $("#drpCompany").val();
+            if (company != '' && company != 'all') {
+                $("#PetitionCompany").val(company);
+            } else {
+                alertDialog('请选择投诉来源！', -1);
+                istrue = false;
+            }
+
+            if ($("#PetitionSource").val() == '') {
+                alertDialog('请填写投诉来源！', -1);
+                istrue = false;
+            }
+
+            if ($("#ReceiveDate").val() == '') {
+                alertDialog('请填写接收日期！', -1);
+                istrue = false;
+            }
+
+            if ($("#EndDate").val() == '') {
+                alertDialog('请填写应结日期！', -1);
+                istrue = false;
+            }
+
+            if ($("#PetitionContent").val() == '') {
+                alertDialog('请填写投诉内容！', -1);
+                istrue = false;
+            }
+
+            return istrue;
+        }
+
+        function BHChange() {
+
+            var names = $("#PetitionSource option:selected").text();
+
+         @*   var companyName = '@Url.Action("GetBh", "Petition")?Name=' + names;
+            alert(companyName);*@
+
+
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: "@Url.Action("GetBh", "Petition")",
+                data: { Name: names },
+                datatype: 'json',
+                success: function (data) {
+                    $("#SourceNo").val(data);
+                }
+            });
+
+            @*getAjax("@Url.Action("GetBh", "Petition", new { area = "" })", { Name: names}, function (cmsg) {
+                alert(eval(cmsg));
+            });*@
+
+
+
+
+
+        }
+
+        /*
+           *  上传成功后返回
+           */
+        function AddUpResult(result) {
+            var newLi = $('<li></li>');
+            $('<input type="hidden" name="upfileinfo" class="upfileinfo" value="' + result + '" />').appendTo(newLi);
+            $('<label>' + result[2] + '　　</label>').appendTo(newLi);
+            $('<a href="javascript:;" onclick="del(this);">删除</a>').appendTo(newLi);
+
+            newLi.appendTo("#show ul");
+        }
+
+
+        /*
+      * 删除上传的附件
+      */
+        function del(obj) {
+            var node = $(obj).parent(); //要删除的LI节点
+            node.remove(); //删除DOM元素
+        }
+
+    </script>
+
+</head>
+<body>
+    <div>
+        <form id="formmain">
+            <div style="margin-left: 5px; margin-right: 5px;">
+
+                <div style="margin-left: 5px; margin-right: 5px;">
+
+
+                    <table style="width: 1000px; border: 0px;" id="head" align="center">
+                        <tr>
+                            <td style="width: 50%; text-align: left;"></td>
+                            <td style="width: 50%; text-align: right;">
+                                <input type="button" value="办件流程" class="casebtn" onclick=" javascript: ShowCaseFlow(); " />
+                                <input type="button" value="文书打印" class="casebtn" onclick=" javascript: DocPrint(); " />
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+
+                    <table class="casedt" style="width: 1000px; border-right: 1px solid #ccc; line-height: 40px;" align="center">
+                        <tr>
+
+                            <th class="formTitle"><span style="color: Red;">*</span>&nbsp;投诉来源：</th>
+                            <td class="formValue">
+                                @Html.TextBox("SourceName", "", new { @class = "txt icontree" })
+                                @*@Html.DropDownListFor(x => x.PetitionSource, (ViewData["TSSource"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "width: 130px", @onchange = "BHChange()" })*@
+                            </td>
+                            <th class="formTitle">来源单号：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.SourceNo, new { @style = "width:100%", @class = "txt" })
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <th class="formTitle"><span style="color: Red;">*</span>&nbsp;受理时间：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.ReceiveDate, new { @class = "txt Wdate", Value = Model.ReceiveDate.Year == 1900 ? "" : Model.ReceiveDate.ToString("yyyy-MM-dd"), @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:80%" })
+                            </td>
+
+                            <th class="formTitle"><span style="color: Red;">*</span>&nbsp;回复时间：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.EndDate, new { @class = "txt Wdate", Value = Model.EndDate.Year == 1900 ? "" : Model.EndDate.ToString("yyyy-MM-dd"), @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:80%" })
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <th class="formTitle">信访编号：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.PetitionNo, new { @style = "width:100%", @class = "txt" })
+                            </td>
+
+                            <th class="formTitle">优先级：</th>
+                            <td class="formValue">
+                                @Html.DropDownListFor(x => x.Priority, (ViewData["priorityList"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "width: 130px" })
+                            </td>
+                        </tr>
+
+
+                    </table>
+
+                    <table class="casedt" style="width: 1000px; border-right: 1px solid #ccc; line-height: 40px;" align="center">
+                        <tr>
+                            <th class="formTitle">投诉人：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.PetitionUser, new { @style = "width:100%", @class = "txt" })
+                            </td>
+                            <th class="formTitle">联系电话：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.Phone, new { @style = "width:100%", @class = "txt" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">联系地址：<span style="color: Red;"></span></th>
+                            <td class="formValue" colspan="3">
+                                @Html.TextBoxFor(x => x.Address, new { @style = "width:100%", @class = "txt" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">投诉主题：<span style="color: Red;"></span></th>
+                            <td class="formValue" colspan="3">
+                                @Html.TextBoxFor(x => x.PetitionTitile, new { @style = "width:100%", @class = "txt" })
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+                    <table class="casedt" style="width: 1000px; border-right: 1px solid #ccc; line-height: 40px;" align="center">
+                        <tr>
+                            <th class="formTitle">部门是否盖章：</th>
+                            <td class="formValue">
+                                <input type="radio" value="1" name="DeptSeal"  @(Model.DeptSeal == 1 ? "checked='checked'" : "") />是
+                                <input type="radio" value="0" name="DeptSeal"  @(Model.DeptSeal == 0 ? "checked='checked'" : "")  />否
+                                @* @Html.RadioButton("DeptSeal", "1")
+                                <span>是</span>
+                                 @Html.RadioButton("DeptSeal", "2")
+                                <span>否</span>*@
+                            </td>
+                            <th class="formTitle">信访处是否盖章：</th>
+                            <td class="formValue">
+                                <input type="radio" value="1" name="OfficeSeal"  @(Model.OfficeSeal == 1 ? "checked='checked'" : "") />是
+                                <input type="radio" value="0" name="OfficeSeal"  @(Model.OfficeSeal == 0 ? "checked='checked'" : "")  />否
+                                @*@Html.RadioButton(x => x.OfficeSeal, new { @style = "width:100%", @class = "txt" })*@
+                            </td>
+                        </tr>
+                        <tr id="QyShowss">
+                            <td class="formTitle">是否终审</td>
+                            <td class="formValue">
+                                <input type="radio" value="1" name="IsLastProcess"  @(Model.IsLastProcess == 1 ? "checked='checked'" : "") />是
+                                <input type="radio" value="0" name="IsLastProcess"  @(Model.IsLastProcess == 0 ? "checked='checked'" : "")  />否
+                            </td>
+                            <td class="formTitle"></td>
+                            <td class="formValue"></td>
+                        </tr>
+                        <tr>
+
+                            <th class="formTitle">投诉类型：</th>
+                            <td class="formValue">
+
+
+                                @Html.DropDownListFor(x => x.PetitionType, (ViewData["petitionTypes"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "width: 130px" })
+
+                            </td>
+
+                            <th class="formTitle"><span style="color: Red;">*</span>&nbsp;受理部门：</th>
+                            <td class="formValue">
+                                <select id="drpCompany" class="txtselect" style="width: 200px;"></select>
+                            </td>
+                        </tr>
+                        @if (ViewBag.RegisteredFile)
+                        { 
+                            <tr>
+                                <th class="formTitle">上传登记材料：</th>
+                                <td class="formValue" colspan="3">
+                                    <input id="txtFile" type="file" name="txtFile">
+                                    <div id="show">
+                                        <ul>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>    
+                        }
+                        @{
+                            if (ViewData["Files"] != null)
+                            {
+                            <tr>
+                                <th class="formTitle">登记材料：</th>
+                                <td class="formValue" colspan="3">
+                                    <div>
+                                        <table class="gridtable" id="RegisteredFiles">
+                                            @{
+                                var files = ViewData["Files"] as List<Yookey.WisdomClassed.SIP.Model.Com.ComAttachmentEntity>;
+                                if (files != null && files.Any())
+                                {
+                                                <tr>
+                                                    <th>附件名称</th>
+                                                    <th>上传人</th>
+                                                    <th>上传时间</th>
+                                                </tr>
+                                    foreach (var entity in files)
+                                    {
+                                                <tr>
+                                                    <td>
+                                                        <input type="hidden" name="upfileinfo" value="@("," + entity.FileAddress + "," + entity.FileName + "," + entity.FileReName)" />
+
+                                                        @{
+                                        //验证上传文件为图片
+                                        if (AppConst.PictureExt.Contains(CommonMethod.FileExt(entity.FileName)))
+                                        {
+                                                            <a href="javascript:void(0)" target="_blank">@entity.FileName
+                                                                <img src="@(AppConfig.FileViewLink + entity.FileAddress)" style="width: 120px;height: 120px;"/></a>
+                                                            
+                                        }
+                                        else
+                                        {
+                                                            <a href="@(AppConfig.FileViewLink + entity.FileAddress)" target="_blank">@entity.FileName</a>
+                                        }
+                                                        }
+                                                    </td>
+                                                    <td>@entity.CreateBy</td>
+                                                    <td>@entity.CreateOn.ToString()</td>
+                                                </tr>                               
+                                                 
+@* <a href="javascript:;" onclick="del(this);">删除</a>*@                                                
+                                    }
+                                }
+                                            }
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                        }
+                        <tr>
+                            <th class="formTitle"><span style="color: Red;">*</span>&nbsp;投诉内容：</th>
+                            <td class="formValue" colspan="3">
+                                @Html.TextAreaFor(x => x.PetitionContent, new { @class = "txtborder", @style = "width: 781px;height:50px;", @checkexpession = "NotNull", @err = "投诉内容", @datacol = "no" })
+                            </td>
+                        </tr>
+
+
+                        @{
+                            var ideas = ViewData["FlowIdea"] as DataTable;
+                            if (ideas != null && ideas.Rows.Count > 0)
+                            {
+                            <tr>
+                                <td rowspan="1" class="formValue" style="width: 85px; text-align: center;">审<br />
+                                    批<br />
+                                    意<br />
+                                    见
+                                </td>
+                                <td class="formValue" colspan="3">
+                                    <table class="casedt">
+                                        @{
+                                foreach (DataRow row in ideas.Rows)
+                                {
+                                            <tr>
+                                                <td class="formValue">
+                                                    <textarea id="Remark" class="txtArea" cols="104" rows="4" readonly="readonly">@(row["Idea"])</textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fromtitle" align="right" style="background-color: #f4f4f4; font-size: 16px; color: #666">签字：<input type="text" class="casebottomtxt" style="width: 120px; font-size:14px; color:#666" value="@(row["UserName"])"  readonly="readonly"/>
+                                                    日期：<input type="text" class="casebottomtxt" style="width: 120px;font-size:14px; color:#666;" value="@(Convert.ToDateTime(row["Adate"]).ToString(AppConst.DateFormat))" readonly="readonly"/>
+                                                </td>
+                                            </tr>
+                                }
+                                        }
+                                    </table>
+
+                                </td>
+                            </tr>
+                            }
+                        }
+                        @if (ViewBag.IdealFile)
+                        { 
+                            <tr>
+                                <th class="formTitle">上传回复材料：</th>
+                                <td class="formValue" colspan="3">
+                                    <input id="txtFileReply" type="file" name="txtFileReply">
+                                    <div id="show">
+                                        <ul>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        }
+
+                        @if (ViewData["Idealfiles"] != null)
+                        {
+                            <tr>
+                                <th class="formTitle">历史回复材料：</th>
+                                <td class="formValue" colspan="3">
+                                    <div>
+                                        <table class="gridtable" id="ReplyFiles">
+
+                                            @{
+                            var files = ViewData["Idealfiles"] as List<Yookey.WisdomClassed.SIP.Model.Com.ComAttachmentEntity>;
+
+                            var isFinalExamine = ViewBag.IsFinalExamine;
+
+                            if (files != null && files.Any())
+                            {
+                                                <tr>
+                                                    <th>附件名称</th>
+                                                    <th>上传人</th>
+                                                    <th>上传时间</th>
+                                                </tr>
+
+                                int tempIndex = 1;
+                                foreach (var entity in files)
+                                {
+                                    var fileViewLink = AppConfig.FileViewLink + entity.FileAddress;
+                                    if (isFinalExamine == true && tempIndex == files.Count && !string.IsNullOrEmpty(entity.FileConvertAddress))
+                                    {
+                                        fileViewLink = AppConfig.FileViewLink + entity.FileConvertAddress;
+                                    }
+                                    tempIndex++;
+                                                <tr>
+                                                    <td>
+                                                        <input type="hidden" name="upfileinfo" value="@("," + entity.FileAddress + "," + entity.FileName + "," + entity.FileReName)" />
+                                                        @{
+                                    //验证上传文件为图片
+                                    if (AppConst.PictureExt.Contains(CommonMethod.FileExt(entity.FileName)))
+                                    {
+                                                            <a href="javascript:void(0)" target="_blank">@entity.FileName
+                                                                <img src="@(fileViewLink)" style="width: 120px;height: 120px;"/></a>
+                                    }
+                                    else
+                                    {
+                                                            <a href="@(fileViewLink)" target="_blank">@entity.FileName</a>
+                                    }
+                                                        }
+                                                    </td>
+                                                    <td>@entity.CreateBy</td>
+                                                    <td>@entity.CreateOn.ToString()</td>
+                                                </tr>
+@* <a href="javascript:;" onclick="del(this);">删除</a>*@ 
+                                }
+                            }
+                                            }
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding-top: 50px; border-right: 1px solid white;">
+                                @if (ViewBag.BtnSave)
+                                {
+                                    <input type="button" class="btnSearch" value="保 存" onclick="SaveApply()" />
+                                }
+                                @if (ViewBag.BtnApply)
+                                {
+                              
+                                    <input type="button" class="btnSearch" value="发　送" id="btnApply" onclick=" ApplyForFiled('apply', 1, 0) " />    
+                                }
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            @if (ViewBag.BtnAgree)
+                            {
+                                <input type="button" value='下一步' class="btnSearch" onclick=" ApplyForFiled('agree', 1, 0) " />
+                            }
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            @if (ViewBag.BtnDisAgree)
+                            {
+                                <input type="button" value="退  回" class="btnSearch" onclick=" ApplyForFiled('disAgree', 1, 0) " />
+                            }
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            @if (ViewBag.BtnClosed)
+                            {
+                                <input type="button" value="办　结" class="btnSearch" id="btnClose" onclick=" PetetionColsed() " />
+                            }
+                                <input type="button" class="btnSearch" value="关  闭" onclick="btn_back();" />
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+                <table style="width: 1050px;">
+                    <tr>
+                        <td style="text-align: center;"></td>
+                    </tr>
+                </table>
+            </div>
+
+            @Html.Hidden("Id", Model.Id)
+            @Html.Hidden("Status", Model.Status)
+            @Html.Hidden("PetitionCompany", Model.PetitionCompany)
+            @Html.Hidden("PetitionCompanyName", Model.PetitionCompanyName)
+            @Html.Hidden("PetitionContent", Model.PetitionContent)
+            @Html.Hidden("Attachment", Model.Attachment)
+            @Html.Hidden("PetitionSource", Model.PetitionSource)
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+
+    //关闭
+    function btn_back() {
+        //var api = parent.frameElement.api;
+        //api.close();
+    }
+
+    function SaveApply() {
+        if (CheckForm()) {
+            var attacs = $(".upfileinfo"); //获取上传的附件            
+            var arrchsrting = "";
+            for (var i = 0; i < attacs.length; i++) {
+                var fileAddr = $(attacs[i]).val();
+                arrchsrting = arrchsrting + fileAddr + "|";
+            }
+            if (arrchsrting != '') {
+                arrchsrting = arrchsrting.substr(0, arrchsrting.length - 1); //截取附件最后一个逗号
+            }
+            $("#Attachment").val(arrchsrting);
+
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: '@Url.Action("SubmitForm", "Petition")',
+                data: $('#formmain').serialize(),
+                async: false,
+                datatype: 'json',
+                success: function (data) {
+                    if (data.rtState == 0) {
+                        $("#save").hide();
+                        tipDialog("编辑保存成功！", 2, 2);
+                        top.frames[tabiframeId()].windowload();
+                        closeDialog();
+                    } else {
+                        tipDialog("保存出现异常，请联系管理员！", 2, 0);
+                    }
+                }
+            });
+        }
+    }
+
+    //=================Start 办件审批======================
+
+    // 跳转到文书打印页面
+    function DocPrint() {
+        var url = '@Url.Action("DocReportPrint", "Petition")';
+        var width = $(window).width() * 0.7;
+        var height = $(window).height() * 0.9;
+        var id = $("#Id").val();  //案件编号
+        Dialog((url + "?id=" + id), "DocReportPrint", "文书打印", width, height);
+    }
+
+    var worklistid = '@ViewBag.WorkListId';
+    function ApplyForFiled(htype, isloadOp, isFaster) {
+        var formId = '@Model.Id';
+        var url = '@Url.Action("PetitionWorkFlow", "WorkFlow")?formId=' + formId + '&flowName=&eType=' + htype + '&worklistId=' + worklistid + '&isloadOp=' + isloadOp + '&isFaster=' + isFaster;
+        url = encodeURI(url);
+        var width = 700;
+        var height = 500;
+        $.dialog({
+            id: "WorkFlow", width: width, height: height, lock: true, max: false, resize: false, extendDrag: true,
+            title: "信访审批",
+            content: 'url:' + url,
+            button: [
+                {
+                    name: '确 定',
+                    className: 'green',
+                    callback: function () {
+                        top.frames["WorkFlow"].AcceptClick();
+                        if (top.frames['tabs_iframe_' + "tabworklist"]) {
+                            top.frames['tabs_iframe_' + "tabworklist"].btn_Refresh();
+                        }
+                        return true;
+                    }
+                }, { name: '关 闭' }
+            ]
+        });
+    }
+
+    //审批后调用该方法,注：所有审批返回都需要调用该方法
+    //data:返回的状态,isFaster:是否是一键审批
+    function ApplyReturn(data, isFaster) {
+        if (data.rtState == 0 || data.rtState == 1) {
+            if (isFaster == '0' || isFaster == undefined) {
+                //调用进行修改案件的状态
+                alertDialogCallBack(data.rtMsrg, 2, function () {
+                    setTimeout(function () {
+                        closepage();
+                    }, 500);
+                });
+            } else {
+                //调用进行修改案件的状态
+                alertDialogCallBack(data.rtMsrg, 2, function () {
+                    setTimeout(function () {
+                        closepage();
+                    }, 500);
+                });
+            }
+        } else {
+            alertDialog("审批过程中出现异常，请联系管理员！", -1);
+        }
+    }
+
+    function closepage() {
+        parent.ThisCloseTab();
+    }
+
+    //案件走到哪儿
+    function ShowCaseFlow() {
+        var id = $("#Id").val();  //案件编号
+        var caseHandle = '@Url.Action("CaseFlow", "PenaltyCase")';
+        var width = 640;
+        var height = 540;
+        Dialog((caseHandle + "?id=" + id + "&rnd=" + Math.random()), "CaseFlow", "案件在哪里", parseInt(width), parseInt(height));
+    }
+
+    //=================End  办件审批======================
+
+
+    //办件办结操作
+    function PetetionColsed() {
+        Loading(true, "正在提交数据...");
+        AjaxJson('@Url.Action("PetetionColsed", "Petition")', {
+            licenseId: '@Model.Id'
+        }, function (data) {
+            alertDialog(data.rtMsrg, 1);
+            if (data.rtState == 1) {
+                $("#btnClose").hide();
+            }
+        });
+    }
+
+    //设置信访片区
+    function SetCompanyDrop() {
+        $.get('GetAreaList', function (data) {
+            var companyList = data;
+            for (var i = 0; i < companyList.length; i++) {
+                $('#drpCompany').append('<option value="' + companyList[i].Value + '">' + companyList[i].Name + '</option>');
+            }
+            var company = $("#PetitionCompany").val(); //默认选择
+            $("#drpCompany").val(company);
+        });
+    }
+
+    //投诉来源下拉框
+    function BindSour() {
+        $('#SourceName').val('@ViewBag.SourceName');
+        //加载公司
+        $("#SourceName").focus(function () {
+            var objId = this.id;
+            comboBoxTree(objId, "150px");
+            var itemtree = {
+                onnodeclick: function (item) {
+                    $("#SourceName").val(item.text);
+                    $("#PetitionSource").val(item.id);
+                },
+                url: "@Url.Action("TreeJson", "Petition")"
+            };
+            $("#comboBoxTree" + objId).treeview(itemtree);
+        });
+    }
+
+    $(function () {
+        var viewernUp = new Viewer(document.getElementById('RegisteredFiles'), { backdrop: false });
+        var viewernUps = new Viewer(document.getElementById('ReplyFiles'), { backdrop: false });
+        
+    });
+
+</script>

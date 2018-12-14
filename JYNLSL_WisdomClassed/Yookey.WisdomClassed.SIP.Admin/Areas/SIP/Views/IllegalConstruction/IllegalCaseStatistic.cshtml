@@ -1,0 +1,394 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>案件基本情况</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="@Url.Content("~/Librarys/js/css/bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Librarys/js/css/togeither.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Librarys/js/css/law.css")">
+    <script src="@Url.Content("~/Librarys/js/jqueryStatistic.js")"></script>
+    <script src="@Url.Content("~/Librarys/js/echarts.common.min.js")"></script>
+</head>
+<body>
+    <div class="contentBox">
+        <div class="container-fluid contentCase">
+            <div style="padding-left: 0px;">
+                <div class="contenForm homeChart">
+
+
+                    <div class="homeTopI" style="padding-bottom: 20px;">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-2" style="margin-left: 8.5%;">
+                                    <div>
+                                        <span>@ViewBag.Verify</span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <div>
+                                        <span>@ViewBag.Plan</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div>
+                                        <span>@ViewBag.Remove</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div>
+                                        <span>@ViewBag.End</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div>
+                                        <span>@ViewBag.AllCount</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="homeTopU" style="background-color: inherit; padding-bottom: 0px;">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-7" style="background-color: #fff;">
+                                    <p>案件事件走势</p>
+                                    <div class="chartBoxOne" id="chartBoxOne">
+                                    </div>
+                                </div>
+                                <div class="col-md-5" style="background-color: #fff;">
+                                    <p>案件来源占比</p>
+                                    <div class="chartBoxTwo" id="chartBoxTwo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="homeTopU" style="background-color: inherit;">
+                        <div class="container-fluid">
+                            <div class="row">
+
+                                <div class="col-md-12" style="background-color: #fff;">
+                                    <p>违法违建案件</p>
+                                    <div class="chartBoxThree" id="chartBoxThree" style="width: 100%; height: 500px">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="@Url.Content("~/Librarys/js/echarts.common.min.js")"></script>
+    <script>
+        $(".liTopParent ul li a").each(function () {
+            $(this).click(function () {
+                $(".liTopParent ul li a").removeClass("colorChoose");
+                $(this).addClass("colorChoose");
+            })
+        })
+    </script>
+    <script>
+        $(function () {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("GetLineData", "IllegalConstruction")',
+                data: {
+                }, //无参数
+                dataType: 'json', //返回数据形式为json
+                success: function (result) {
+                    if (result) {
+                        //把result(即Json数据)以参数形式放入代码中
+                        bindMonth(result);
+                    }
+                },
+                error: function (errorMsg) {
+                }
+            });
+        });
+
+        function bindMonth(result) {
+            var myChartOne = echarts.init(document.getElementById('chartBoxOne'));
+            var parintOne = {
+                title: {
+                    // text: '未来一周气温变化',
+                    subtext: '案件数(起)'
+                },
+                grid: {
+                    x: 40,
+                    y: 40
+                },
+                calculable: true,
+                tooltip: {
+                    trigger: 'axis',
+                    formatter: "案件数 : <br/>{b}: {c}起"
+                },
+                xAxis: {
+                    type: 'category',
+                    data: (function () {
+                        var res = [];
+                        var len = result.length;
+                        for (var i = 0; i < len; i++) {
+                            res.push({
+                                value: result[i].Month,
+                            });
+                        }
+                        return res;
+                    })()
+                    //['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: (function () {
+                        var res = [];
+                        var len = result.length;
+                        for (var i = 0; i < len; i++) {
+                            res.push({
+                                value: result[i].Value,
+                            });
+                        }
+                        return res;
+                    })(),
+                    //[12, 3, 2, 5, 2, 8, 2, 3, 6, 1, 4, 7, 11, 7, 6, 1, 4],
+                    type: 'line'
+                }]
+            };
+            myChartOne.setOption(parintOne);
+        }
+    </script>
+    <script>
+        $(function () {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("GetEchartsDate", "IllegalConstruction")',
+                data: {
+                    ParentId: "0010"
+                }, //无参数
+                dataType: 'json', //返回数据形式为json
+                success: function (result) {
+                    if (result) {
+                        //把result(即Json数据)以参数形式放入代码中
+                        bind(result);
+                    }
+                },
+                error: function (errorMsg) {
+                    alert("案件来源占比,加载数据失败");
+                }
+            });
+        });
+
+        function bind(result) {
+            var myChartTwo = echarts.init(document.getElementById('chartBoxTwo'));
+            var printTwo = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
+                grid: {
+                    x: 30,
+                    y: 10
+                },
+                legend: {
+                    data: (function () {
+                        var res = [];
+                        var len = result.length;
+                        for (var i = 0; i < len; i++) {
+                            res.push({
+                                name: result[i].Name,
+                            });
+                        }
+                        return res;
+                    })()
+                    //data: ['巡查', '申诉', '媒体曝光', '申报', '移送', '上级交办', '其他', ]
+                },
+                series: [
+                    {
+                        name: '案件状态分析',
+                        type: 'pie',
+                        radius: ['50%', '70%'],
+                        data: (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                if (parseInt(result[i].Value) == 0) {
+                                    res.push({
+                                        //通过把result进行遍历循环来获取数据并放入Echarts中
+                                        value: result[i].Value,
+                                        name: result[i].Name,
+                                        itemStyle: {
+                                            normal: {
+                                                label: {
+                                                    show: false,
+                                                    formatter: function (params, option) {
+                                                        if (params.data.value == 0) {
+                                                            params.data.itemStyle.normal.labelLine.show = false;
+                                                            params.data.itemStyle.normal.label.show = false;
+                                                        }
+                                                    },
+                                                },
+                                                labelLine: {
+                                                    show: true
+                                                }
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    res.push({
+                                        //通过把result进行遍历循环来获取数据并放入Echarts中
+                                        value: result[i].Value,
+                                        name: result[i].Name,
+                                    });
+                                }
+                            }
+                            return res;
+                        })()
+                        //    [
+                        //    { value: 335, name: '巡查' },
+                        //    { value: 310, name: '申诉' },
+                        //    { value: 234, name: '媒体曝光' },
+                        //    { value: 135, name: '申报' },
+                        //    { value: 148, name: '移送' },
+                        //    { value: 234, name: '上级交办' },
+                        //    { value: 135, name: '其他' },
+                        //]
+                    }
+                ]
+            };
+            myChartTwo.setOption(printTwo);
+        }
+    </script>
+    <script>
+
+        $(function () {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("GetThreeData", "IllegalConstruction")',
+                data: {
+                }, //无参数
+                dataType: 'json', //返回数据形式为json
+                success: function (result) {
+                    if (result) {
+                        //把result(即Json数据)以参数形式放入代码中
+                        bindDept(result);
+                    }
+                },
+                error: function (errorMsg) {
+                    //alert("案件来源占比,加载数据失败");
+                }
+            });
+        });
+
+        function bindDept(result) {
+            var chartBoxThree = echarts.init(document.getElementById('chartBoxThree'));
+            var printThree = {
+                xAxis: {
+                    type: 'category',
+                    //data: res,
+                    axisLabel: {
+                        interval: 0,
+                        rotate: 40
+                    },
+                    data: (function () {
+                        var res = [];
+                        var len = result.length;
+                        for (var i = 0; i < len; i++) {
+                            res.push(
+                                //通过把result进行遍历循环来获取数据并放入Echarts中
+                                result[i].deptName
+                            );
+                        }
+                        return res;
+                    })(),
+                    //data: ["湖东社工委综合执法大队", "湖西社工委综合执法大队", "月亮湾社工委综合执法大队", "娄葑街道综合执法大队", '湖东社工委综合执法大队', '湖东社工委综合执法大队', '湖东社工委综合执法大队', '综合一大队', '综合一大队']
+                },
+                legend: {
+                    data: ['案件数', '拆除处数', '拆除面积']
+                },
+                grid: {
+                    borderWidth: 0,
+                    y: 50,
+                    y2: 130,
+                    x: 40,
+                    x2: 40
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    name: '案件数',
+                    data: (function () {
+                        var res = [];
+                        var len = result.length;
+                        for (var i = 0; i < len; i++) {
+                            res.push(
+                                //通过把result进行遍历循环来获取数据并放入Echarts中
+                                result[i].caseNum
+                            );
+                        }
+                        return res;
+                    })(),
+                    //[120, 200, 150, 80, 70, 110, 80, 70, 110],
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            color: "#db3434"
+                        }
+                    }
+                },
+                {
+                    name: '拆除处数',
+                    type: 'bar',
+                    data: (function () {
+                        var res = [];
+                        var len = result.length;
+                        for (var i = 0; i < len; i++) {
+                            res.push(
+                                //通过把result进行遍历循环来获取数据并放入Echarts中
+                                result[i].verityNum
+                            );
+                        }
+                        return res;
+                    })(),
+                    //[220, 182, 191, 234, 290, 700, 234, 290, 700],
+                    itemStyle: {
+                        normal: {
+                            color: "#34db4c"
+                        }
+                    }
+                },
+                {
+                    name: '拆除面积',
+                    type: 'bar',
+                    data: (function () {
+                        var res = [];
+                        var len = result.length;
+                        for (var i = 0; i < len; i++) {
+                            res.push(
+                                //通过把result进行遍历循环来获取数据并放入Echarts中
+                                result[i].areaNum
+                            );
+                        }
+                        return res;
+                    })(),
+                    //[320, 183, 123, 234, 290, 700, 234, 290, 700],
+                    itemStyle: {
+                        normal: {
+                            color: "#34b5db"
+                        }
+                    }
+                },
+                ]
+            };
+            chartBoxThree.setOption(printThree);
+        }
+    </script>
+</body>
+</html>

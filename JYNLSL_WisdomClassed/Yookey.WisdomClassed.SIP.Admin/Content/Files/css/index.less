@@ -1,0 +1,632 @@
+body{
+    font-family:"微软雅黑","Arial";
+    margin: 0px;
+    padding: 0px; 
+    box-sizing: border-box;
+    height: 100%;
+    overflow-y:hidden;  
+}
+div,p,ul,li,h1,h2,h3,h4,h5,h6{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    &:hover{
+        text-decoration: none;
+        color: #fff;
+    }
+    &:active{
+        text-decoration: none;
+    }
+}
+.lf{float: left;}
+.rt{float: right;}
+.clearfix:before{
+    content: "";
+    display: table;
+    clear: both;
+    height: 0px;
+}
+.clearfix:after{
+    content: "";
+    display: table;
+    clear: both;
+    height: 0px;
+}
+.clearfix{
+    width: 100%;
+    zoom: 1;
+}
+.clear{
+    clear: both;
+}
+/*******************/
+.contentBox{
+   width: 100%;
+   height: 100%; 
+   background-color: #eef1f5;
+   .tool{
+       width: 98%;
+       margin: 1% auto;
+       height: 56px;
+       background-color: #fff;
+       border-bottom: 1px solid #dddfe1;
+       
+       p{
+           border: 2px solid #5275bd;
+           width: 125px;
+           height: 40px;
+           margin-top: 8px;
+           margin-left: 15px;
+           border-radius: 5px;
+           display: inline-block;
+           box-sizing: border-box;
+         padding: 8px 0px 0px 10px;
+            cursor: pointer;
+           b{
+               display: inline-block;
+               width: 24px;
+               height: 24px;
+               background: url(../img/xiugaiIcon.png) no-repeat;
+               vertical-align: bottom;
+           }
+           .file{
+            background: url(../img/fileIcon.png) no-repeat;
+           }
+           .downLoad{
+               width: 26px;
+               height: 23px;
+            background: url(../img/downLoadIcon.png) no-repeat; 
+           } 
+           .delete{
+               width: 21px;
+               vertical-align: sub;
+               height: 21px;
+            background: url(../img/deleteIcon.png) no-repeat;
+           }
+           span{
+               font-size: 18px;
+               color: #5275bd;
+               font-weight: 600;
+               margin-left: 14px;
+           }
+       }
+   }
+   .navHeader{
+       width: 100%;
+       height: 50px;
+       background-color: #f4f6f9;
+       border-bottom: 1px solid #dddfe1;
+       overflow: hidden;
+       line-height: 50px;
+       padding:0px 10px;
+       box-sizing: border-box;
+       overflow: hidden;
+       p:first-child{
+            float: left;
+            a.homeIcon{
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                background: url(../img/homeIcon.png) no-repeat;
+                vertical-align: middle;
+                
+            }
+            b{
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                background: url(../img/goIcon.png) no-repeat;
+                margin-left: 2px;
+                vertical-align: middle;
+            }
+            a{
+                color: #0244bf;
+                font-size: 14px;
+                font-weight: 600;
+            }
+       }
+       p.lastP{
+           float: right;
+           margin-top: 10px;
+         .spanOne{
+             position: relative;
+             width: 200px;
+         }
+           span{
+               display: block;
+               float: left;
+               height: 30px;
+               
+               input{
+                   width: 200px;
+                   height: 30px;
+                  border:none;
+                  background-color: #fff;
+                  position: absolute;
+                  top: 0px;
+                  left: 0px;
+               }
+               button{
+                   width: 30px;
+                   height: 30px;
+                   background: #0244bf url(../img/searchIcon.png) no-repeat center;
+                   border: none;
+               }
+           }
+       }
+   }
+   .allDistrict{
+       width: 98%;
+       margin: 1% auto;
+       border: 1px solid #e7e9eb;
+       &>p{
+           width: 100%;
+           height: 48px;
+           line-height: 48px;
+           box-sizing: border-box;
+           padding-left: 20px;
+           background-color: #f2f6fc;
+           color: #8b8b8b;
+           font-size: 18px;
+           border-bottom: 1px solid #e7e9eb;
+           &>span{
+               width: 90px;
+               height: 30px;
+               border: 1px solid #5275bd;
+               line-height: 30px;
+               text-align: center;
+               margin-right: 15px;
+               cursor: pointer;
+               border-radius: 5px;
+               margin-top: 8px;
+               b{
+                   display: inline-block;
+                   width: 14px;
+                   height: 15px;
+                   background: url(../img/newIcon.png) no-repeat;
+                   vertical-align: middle;
+               }
+               span{
+                   color: #7a95cd;
+                   font-size: 16px;
+                   margin-left: 12px;
+               }
+           }
+       }
+       .unitList{
+        width: 100%;
+        background-color: #fff;
+        height: 75%;
+        &>ul{
+            width: 96%;
+           height: 90%;;
+           margin: 2% 2%;
+            float: left;
+            .nthLiMargin{
+                margin-right: 0px;
+            }
+            .marginBot{
+                margin-bottom: 5%;
+            }
+            .colorChoose{
+                background-color: #cbecfb;
+            }
+            li{
+                width: 10%;
+                height: 24%;
+                border: 4px solid #e4e4e4;
+                border-radius: 5px;
+                margin-right: 7.2%;
+                float: left;
+                a{
+                    color: #939393;
+                }
+                p{
+                    width: 100%;
+                    text-align: center;
+                    margin-top: 20px;
+                    img{
+                        width: 46%;
+                        height: 45%;
+                        border: none;
+                    }
+                }
+                .textUnit{
+                    width: 60%;
+                    margin: 10% auto;
+                    font-size: 0.8vw;
+                }
+                .itemTitle{
+                    font-size: 1vw;
+                    width: 65%;
+                }
+            }
+        }
+       }
+       .allDistrictContent{
+           width: 100%;
+           background-color: #e2e9eb;
+           height: 75%;
+           table{
+               width: 96%;
+              margin: 2% auto;
+             border: 1px solid #dcdcdc;
+             thead{
+                 tr{
+                     background-color: #f5f5f5;
+                     height: 40px;
+                     th{
+                       
+                         text-align: center;
+                         color: #212529;
+                         
+                     }
+                 }
+             }
+             tbody{
+                 tr{
+                    height: 40px;
+                    
+                     td{
+                        border-bottom: 1px solid #ddd;
+                        text-align: center;
+                        color: #b1b4ba;
+                        .fileName{
+                            color: #e65404;
+                        }
+                        .blues{
+                            color: #62a1eb;
+                        }
+                     }
+                 }
+                 tr:nth-child(2n){
+                     background-color: #f5f5f5;
+                 }
+             }
+           }
+           &>ul{
+               width: 96%;
+              height: 100%;;
+              margin: 2% 2%;
+               float: left;
+               li{
+                   float: left;
+                   width: 27.3%;
+                   height: 34%;
+                   position: relative;
+                   margin-right: 9%;
+                   &>div{
+                       width: 100%;
+                       height: 100%;
+                       background-color: #fff;
+                       box-sizing: border-box;
+                       padding: 20px;
+                       border-bottom: 4px solid #ffe9c8;
+                       .state{
+                           font-size: 0.5vw;
+                           margin-bottom: 5%;
+
+                       }
+                       .success{
+                           color: #339900;
+                       }
+                       .title{
+                           margin-bottom: 5%;
+                           font-size: 1.5vw;
+                           color: #000;
+                       }
+                       div{
+                           p{
+                               margin-bottom: 10px;
+                               color: #8b8b8b;
+                               font-size: 0.7vw;
+                               span:first-child{
+                                    margin-right: 5%;
+                               }
+                           }
+                       }
+                   }
+                   a{
+                       position: absolute;
+                       bottom: 0px;
+                       right: 0px;
+                       display: block;
+                       width: 130px;
+                       height: 40px;
+                       line-height: 40px;
+                       text-align: center;
+                       font-size: 18px;
+                       color: #8b8b8b;
+                       background-color: #ffe9c8;
+                       border: 1p solid #ffdeae;
+                   }
+
+               }
+               .nthLast{
+                   margin-right: 0px;
+               }
+               .maginBottomS{
+                   margin-bottom: 8%;
+               }
+           }
+       }
+       .tableStrictBox{
+           background-color: #fff;
+       }
+   }
+}
+.constructionBox{
+    width: 100%;
+    height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-color: rgba(0, 0, 0, 0.3);
+        display: none;
+        .construction{
+            background-color: #fff;
+            width: 600px;
+            position: absolute;
+            height: 550px;
+            top: 10%;
+            left: 50%;
+            margin-left: -300px;
+            .constructionTop{
+                width: 100%;
+                height: 55px;
+                line-height: 55px;
+                background-color: #f3f3f3;
+                box-sizing: border-box;
+              padding: 0px 10px;
+              span{
+                  font-size: 22px;
+                  color: #000000;
+                  float: left;
+              }
+              b{
+                  float: right;
+                  color: #8b8b8b;
+                  font-size: 14px;
+                cursor: pointer;
+                &:hover{
+                    color: #939393;
+                }
+              }
+            }
+            .constructionCenter{
+                width: 100%;
+                height: 550px-55px-55px;
+               &>div{
+                   width: 90%;
+                   margin:0px auto;
+                   padding: 10% 0px;
+                   form{
+                       p{
+                           overflow:hidden;
+                           margin-bottom: 10px;
+                           &>label{
+                               float: left;
+                               margin-right: 20px;
+                           }
+                           .labelArea{
+                            height: 40px;
+                           }
+                           span{
+                               float: left;
+                              input.inputText{
+                                  width: 400px;
+                                  border: 1px solid #a5a5a5;
+                                  height: 30px;
+                              }
+                              textarea{
+                                  width: 400px;
+                                  height: 70px;
+                                  border: 1px solid #a5a5a5;
+                                  resize: none;
+                              }
+                              select{
+                                  width: 400px;
+                                  height: 30px;
+                              }
+                        }
+                        &>span{
+                            margin-right: 10px;
+                            margin-bottom: 10px;
+                            label{
+                                font-size: 16px;
+                                color: #606060;
+                            }
+                        }
+                       }
+                       div{
+                           width: 100%;
+                           &>.sez{
+                               float: left;
+                               height: 50px;
+                               margin-right: 20px;
+                           }
+                           p{
+                            label{
+                                float: none;
+                            }
+                           }
+                          
+                       }
+                   }
+               }
+            }
+            .constructionBottom{
+                
+                height: 55px;
+                width: 100%;
+                background-color: #f3f3f3;
+                box-sizing: border-box;
+              padding: 0px 10px;
+              text-align: right;
+              padding-top: 7.5px;
+              .sureBtn{
+                  width: 120px;
+                  height: 40px;
+                    border: none;
+                    background-color: #44a9f3;
+                    color: #fff;
+                    border-radius: 5px;
+                    font-size: 16px;
+              }
+              .edits{
+                width: 120px;
+                height: 40px;
+                  border: none;
+                  background-color: #eceaea;
+                  color: #a7a7a7;
+                  border-radius: 5px;
+                  font-size: 16px;
+              }
+            }
+        }
+}
+/****文件上传******/
+.fileContentBox{
+    width: 100%;
+    height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-color: rgba(0, 0, 0, 0.3);
+        display: none;
+        // display: none;
+        .filEContent{
+            width: 600px;
+            height: 400px;
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            margin-left: -300px;
+            background-color: #fff;
+            border-radius: 10px;
+            .fileContentTop{
+                width: 100%;
+                height: 45px;
+                border-bottom: 1px solid #e5e5e5;
+                line-height: 45px;
+                span{
+                  margin-left: 10px;
+                  font-size: 16px;
+                }
+                b{
+                    font-weight: normal;
+                    font-size: 14px;
+                    margin-right: 10px;
+                    color: #8b8b8b;
+                    cursor: pointer;
+                }
+            }
+            .fileContentCenter{
+                width: 100%;
+                overflow: hidden;
+                .choosePictureBox{
+                    width: 50%;
+                    margin: 20px auto;
+                    border: 1px dotted #a7a7a7;
+                    height: 40px;
+                    p{
+                        text-align: center;
+                    }
+                    img{
+                        width: 80px;
+                        height: 80px;
+                       
+                    }
+                    .chooseFile{
+                        width: 80%;
+                        margin: 0px auto;
+                        height: 40px;
+                        line-height: 40px;
+                        color: #fff;
+                        font-size: 18px;
+                        background-color: #44a9f3;
+                        margin-bottom: 10px;
+                    }
+                }
+                .contentFile{
+                    width: 100%;
+                    height: 160px;
+                    border: 1px solid #ddd;
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                }
+            }
+        }
+}
+._filelist li{/*这个选择器一定要有宽高，否则图片显示不出来，因为它里面的内容是绝对定位的*/
+    width: 180px;
+    height: 160px;
+}
+._filelist{
+    width: 200%;
+
+}
+.webuploader-pick{
+    line-height: 40px;
+}
+.fileContentBottom{
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    width: 100%;
+    &>div{
+        margin-left: 10px;
+        &>span{
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        select{
+            width: 100px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            height: 30px;
+            color: #666;
+            float: left;
+        }
+        p{
+            font-size: 12px;
+            color: #e46f47;
+            width: 50px;
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            background-color: #fefbee;
+            border: 1px solid #e46f47;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 5px;
+            margin-left: 10px;
+        }
+        .upfile{
+            width: 90px;
+            height: 30px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            background-color: #00a2ca;
+            border: none;
+            cursor: pointer;
+        }
+        .closeDown{
+            width: 90px;
+            height: 30px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: #666666;
+            background-color: #ffffff;
+            border: 1px solid #666666;
+            cursor: pointer;
+        }
+    }
+}

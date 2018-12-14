@@ -1,0 +1,238 @@
+﻿@using Yookey.WisdomClassed.SIP.Model.DocumentManagement;
+@{
+    ViewBag.Title = "AddresseeRegistrtion";
+    @model DocumentIncomingEntity
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>收文登记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link href="@Url.Content("~/Librarys/css/chosen.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/css/sipac.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Styles/common.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/own/css/bootstrap-table.css")" rel="stylesheet" />
+    @*<script type="text/javascript" src="@Url.Content("~/Content/Librarys/js/jquery-1.9.1.min.js")"></script>*@
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/avalon.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/gridProperty.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/chosen.jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/main.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <!--jqgrid表格组件end-->
+    @* <script type="text/javascript" src="@Url.Content("~/Content/Scripts/common.js")"></script>*@
+
+    <link href="~/Content/Scripts/common.css" rel="stylesheet" />
+    <!--[if lt IE 8]>
+    <![endif]-->
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+        var root = "";
+    </script>
+</head>
+<body class="sipac_full">
+    <!-- Wrap all page content here -->
+    <div class="sipac_wrap">
+        <!-- head style -->
+        <div class="sipac_body">
+            <div class="sipac_container">
+                <div class="sipac_selectbox" style="margin-top: 10px;">
+                    @*<div class="s_sb_nav" style="height:0px;">
+                        <a id="dj" class="active" href='@Url.Action("AddresseeRegistrtion", "DocumentManagement")' class="active">收文登记</a>
+                        <a id="wwc"  href='@Url.Action("UnfinishedAddressee", "DocumentManagement")'>未完成收文</a>
+                        <a id="cx"  href='@Url.Action("DocumentIndex", "DocumentManagement")' >查询收文</a>
+                    </div>*@
+                    <div class="s_sb_cont" style="margin-top: -10px;">
+                        <div class="s_cont_box">
+                            @*收文登记*@
+                            <div id="swdj" class="none">
+                                <div class="dispacthBox">
+                                    <div class="s_sb_cont sipac_editbox sipac_form">
+                                        <input  id="SwId" value="@ViewBag.Id" type="hidden"/>
+                                        <input id="IsInitials" value="@ViewBag.IsInitial" type="hidden" />
+                                        <input id="types" value="@ViewBag.types" type="hidden" />
+                                        <table>
+                                            <tr>
+                                                <td style="text-align: right;" colspan="4">
+                                                    <input type="button" value="案件流程" class="casebtn" onclick="javascript: ShowCaseFlow();" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>来文单位：</th>
+                                                <td>
+                                                    @Html.TextBoxFor(x => x.INCOMING_UNIT, new { @class = "s_input" })<span style="color: red; font-size: 15px;">*</span>
+                                                    <span class="leftM" style="margin-left: 120px;">文号：</span>
+                                                    <span>@Html.TextBoxFor(x => x.DOCUMENT_HAO, new { @class = "s_input" })</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>收文时间：</th>
+                                                <td>
+                                                    @Html.TextBoxFor(x => x.INCOMING_DATE, new { @class = "s_input", Value = DateTime.Now.ToString("yyyy-MM-dd"), @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})" })
+                                                    <span class="leftM" style="margin-left: 77px;">限定回复时间：</span>
+                                                    <span>@Html.TextBoxFor(x => x.QUALIFIED_DATE, new { @class = "s_input", Value = DateTime.Now.ToString("yyyy-MM-dd"), @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})" })</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>文件内容：</th>
+                                                <td>
+                                                    @Html.TextAreaFor(x => x.DOCUMENT_CONTENT, new { @class = "s_textarea" })<span style="color: red; font-size: 15px;">*</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="to_do">
+                                                <th>拟办意见：</th>
+                                                <td>
+                                                    @Html.TextAreaFor(x => x.INCOMING_NBYJ, new { @class = "s_textarea" })
+                                                </td>
+                                            </tr>
+                                            <tr class="to_do">
+                                                <th>领导批示<br>
+                                                    和会办意见：</th>
+                                                <td>
+                                                    @Html.TextAreaFor(x => x.INCOMING_PS, new { @class = "s_textarea" })
+                                                </td>
+                                            </tr>
+
+                                            <tr class="to_do">
+                                                <th>处理结果：</th>
+                                                <td>
+                                                    @Html.TextAreaFor(x => x.CLJG, new { @class = "s_textarea" })
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th>附件：</th>
+                                                <td>
+                                                    @Html.Action("FilesTab", "DocumentManagement", new { resourceId = @ViewBag.Id, evtache = "case", isupload = "true", istime = "false" })
+                                                </td>
+                                            </tr>
+                                            @*  <tr>
+                                                <th>提醒：</th>
+                                                <td>
+                                                    <span class="s_checkbox">
+                                                        <input type="checkbox" id="idea">
+                                                        <label for="idea">短信提醒部门负责人（转交时候发送）</label>
+                                                    </span>
+                                                </td>
+                                            </tr>*@
+                                            <tr>
+                                                <th></th>
+                                                <td>
+                                                    <div id="judge">
+                                                        <button id="" class="btnSearch" onclick="repoRtData()">保存</button>
+                                                        <button id="confirm1" class="btnSearch" style="margin-left:10px" onclick="btn_Member();">发送</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        @Html.HiddenFor(x => x.ID)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- body style -->
+    </div>
+
+    <script type="text/javascript">
+
+        $(function () {
+            var IsInitial = $("#IsInitials").val();
+            var addtype=$("#types").val();
+            if (IsInitial == 1) {
+                $("#judge").addClass("hide");
+            }
+            else if (addtype==1) {
+                $(".to_do").addClass("hide");
+            }
+            else {
+                $("#judge").removeClass("hide");
+            }
+        });
+
+        //选择发送角色
+        function btn_Member() {
+            var formaddress = window.location.pathname;
+            var roleId = "d71af92f-e814-49d9-b8db-c315ea630e49";
+            var SwId = $("#SwId").val();//收文主键Id
+            var conttypeId = "00050020";
+            var Address = formaddress + '?conttypeId=' + conttypeId;//路径地址
+            var titles = $("#DOCUMENT_CONTENT").val();
+            var Unit = $("#INCOMING_UNIT").val();
+            var CBR = $("#CBR").val();
+            var ShouWenTime = $("#INCOMING_DATE").val();
+            var XiandinTime = $("#QUALIFIED_DATE").val();
+            var Content = $("#DOCUMENT_CONTENT").val();
+            var State = $("#INCOMING_STATE").val();
+            var WenHao = $("#DOCUMENT_HAO").val();
+            if (IsChecked(roleId)) {
+                var url = "@Url.Action("AllotMember", "Permission")?ObjectId=" + roleId + '&SwId=' + SwId + '&conttypeId=' + conttypeId + '&titles=' + titles + '&Unit=' + Unit + '&CBR=' + CBR + '&ShouWenTime=' + ShouWenTime + '&XiandinTime=' + XiandinTime + '&Content=' + Content + '&State=' + State + '&Address=' + Address + '&WenHao=' + WenHao;
+                openDialog(url, "AllotMember", "角色用户", 820, 400, function (iframe) {
+                    top.frames["AllotMember"].AcceptClick();
+                });
+            }
+        }
+
+        //案件审批流程
+        function ShowCaseFlow() {
+            var id = $("#ID").val();  //案件编号
+            var caseHandle = '@Url.Action("CaseFlow")';
+            var width = 640;
+            var height = 540;
+            Dialog((caseHandle + "?id=" + id + "&rnd=" + Math.random() + "&types=2"), "CaseFlow", "审批流程", parseInt(width), parseInt(height));
+        }
+
+        //收文登记
+        function repoRtData() {
+            var Unit = $("#INCOMING_UNIT").val();
+            var ShouWenTime = $("#INCOMING_DATE").val();
+            var XiandinTime = $("#QUALIFIED_DATE").val();
+            var Content = $("#DOCUMENT_CONTENT").val();
+            var State = $("#INCOMING_STATE").val();
+            var Simulation = $("#INCOMING_NBYJ").val();
+            var Instructions = $("#INCOMING_PS").val();
+            var Results = $("#CLJG").val();
+            var WenHao = $("#DOCUMENT_HAO").val();
+            if (Unit == "" & Content == "") {
+                alert("有必输项为空！")
+            }
+            else {
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url: "@Url.Action("SubmitCaseData", "DocumentManagement")",
+                    data: { PK_ID: '@ViewBag.Id', Unit: Unit,  ShouWenTime: ShouWenTime, XiandinTime: XiandinTime, Content: Content, State: State, Simulation: Simulation, Instructions: Instructions, Results: Results, WenHao: WenHao },
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data.rtState == 1) {
+                            alert('保存成功！');
+                        }
+                        else {
+                            alert('保存失败！');
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

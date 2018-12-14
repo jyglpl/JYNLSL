@@ -1,0 +1,253 @@
+﻿<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@(Yookey.WisdomClassed.SIP.Common.AppConfig.SystemName)</title>
+    <link href="@Url.Content("~/Content/Main/css/border.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/Main/js/learunui-framework.js")"></script>
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <!--[if lt IE 8]>
+    <script src="js/ie8.js"></script>
+<![endif]-->
+    <script>
+        $(document).ready(function () {
+            var getUrlParam = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return null;
+            };
+            if (getUrlParam('type') == 'xfts') {
+                AddTabMenu('petition', '@Url.Action("Index", "Petition")');
+                $("#menu li").removeClass('active');
+                $("#menu .xf").addClass('active');
+            }
+            else if (getUrlParam('type') == 'pxgl') {
+                AddTabMenu('CourseManager', '@Url.Action("CourseManager", "System")');
+                $("#menu li").removeClass('active');
+                $("#menu .px").addClass('active');
+            }
+            else if (getUrlParam('type') == 'ksgl') {
+                AddTabMenu('formalexam', '@Url.Action("FormalExamIndex", "Exam")');
+                $("#menu li").removeClass('active');
+                $("#menu .ks").addClass('active');
+            }
+            else if (getUrlParam('type') == 'gwgl') {
+                AddTabMenu('document', '@Url.Content("~/SIP/DocumentManagement/DocumentIndex")');
+                $("#menu li").removeClass('active');
+                $("#menu .gw").addClass('active');
+            }
+            else if (getUrlParam('type') == 'zfjcxx') {
+                AddTabMenu('petition', '@Url.Action("Index", "Role", new { Area = "CommonModule" })');
+                $("#menu li").removeClass('active');
+                $("#menu .zfjc").addClass('active');
+            }
+            else {
+                AddTabMenu('Imain', '@Url.Action("OfficeRight")');
+            }
+
+        });
+//返回首页
+function homeBox() {
+    AddTabMenu('homeBox', '@Url.Action("OfficeRight")');
+}
+//学习管理中心
+function CourseManager() {
+    AddTabMenu('CourseManager', '@Url.Action("CourseManager", "System")');
+}
+//学习课件中心
+function CourseCenter() {
+    AddTabMenu('CourseCenter', '@Url.Action("CourseCenter", "Course")');
+}
+//学习个人中心
+function PersonalCenter() {
+    AddTabMenu('PersonalCenter', '@Url.Action("PersonalCenter", "Course")');
+}
+//模拟考试
+function SimulationExam() {
+    AddTabMenu('exam', '@Url.Action("SimulationExamIndex", "Exam")');
+}
+//正式考试
+function FormalExam() {
+    AddTabMenu('formalexam', '@Url.Action("FormalExamIndex", "Exam")');
+        }
+        //正式考试成绩
+        function PersonalFormalExam() {
+            AddTabMenu('personalformalexam', '@Url.Action("PersonalAchievementStatistics", "Exam")');
+        }
+        //试卷管理
+        function ExamManagement() {
+            AddTabMenu('management', '@Url.Action("ExamManagement", "Exam")');
+        }
+        //题库管理
+        function QuestionBank() {
+            AddTabMenu('management', '@Url.Action("QuestionBankManagement", "Exam")');
+        }
+        //收文管理
+        function DocumentIndex() {
+            @*AddTabMenu('document', '@Url.Content("~/SIP/DocumentManagement/DocumentIndex")');*@
+            AddTabMenu('document', '@Url.Action("DocumentIndex", "DocumentManagement", new { Area = "SIP" })');
+        }
+        //发文管理
+        function DocumentOfficial() {
+            AddTabMenu('official', '@Url.Content("~/SIP/DocumentManagement/DocumentOfficial")');
+        }
+        function Statistical() {
+            AddTabMenu('Statistical', '@Url.Content("~/SIP/DocumentManagement/Statistical")');
+        }
+
+        $(function () {
+            //待办数
+            GetUntreatedCount();
+        });
+
+        //待办事宜条数
+        function GetUntreatedCount() {
+            getAjax('@Url.Action("GetUntreatedCount", "WorkList")', {}, function (data) {
+                $("#Untreated").html(data);
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="headerTop">
+        <p>
+            <img src="~/Content/Main/images/logoTwo.png" alt="">
+        </p>
+        <ul>
+            <li>
+                <a href="@Url.Action("Index", "HomeIndex")">
+                    <img src="~/Content/Main/images/home.png" alt="" />
+                    <div>系统首页</div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:AddTabMenu('WorkList', '@Url.Action("Index", "WorkList")');">
+                    <div style="position: relative">
+                        <div class='newsIcon' id="Untreated">0</div>
+                        <img src="~/Content/Main/images/news.png" alt="" />
+                    </div>
+                    <div>待办事宜</div>
+                </a>
+            </li>
+            <li><a href="javascript:void(0);">
+                <img src="~/Content/Main/images/nav2.png" alt="" />
+                <div>帮助中心</div>
+            </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="~/Content/Main/images/nav3.png" alt="" />
+                    <div>操作手册</div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="~/Content/Main/images/nav4.png" alt="" />
+                    <div>个人中心</div>
+                </a>
+            </li>
+            <li><a href="@Url.Action("Index", "HomeIndex")">
+                <img src="~/Content/Main/images/nav5.png" alt="" />
+                <div>安全退出</div>
+            </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 内容 -->
+    <div id="content" class="clearfixed">
+        <!-- 内容左侧导航 -->
+        <div class="leftListNav">
+            <p class="headImg">
+                <b></b>
+                <span>@ViewBag.UserName</span>
+            </p>
+            <p class="homeBox">
+                <a onclick="homeBox()" href="javascript:void(0);">
+                    <img src="~/Content/Images/homeIcon.png" alt="" />
+                    首页
+
+                </a>
+            </p>
+            <div class="liContent">
+                <ul id="menu">
+                    <li class="xf">
+                        <a href="javascript:AddTabMenu('petition', '@Url.Action("Index", "Petition")');">信访管理</a>
+                    </li>
+                    <li class="px">
+                        <a href="javascript:void(0);">培训中心</a>
+                        <div class="secList">
+                            <a onclick="CourseManager()" href="javascript:void(0);">课件维护</a>
+                            <a onclick="CourseCenter()" href="javascript:void(0);">课件中心</a>
+                            <a onclick="PersonalCenter()" href="javascript:void(0);">个人中心</a>
+                        </div>
+                    </li>
+                    <li class="ks">
+                        <a href="javascript:void(0);">考试中心</a>
+                        <div class="secList">
+                            <a onclick="QuestionBank()" href="javascript:void(0);">题库管理</a>
+                            <a onclick="ExamManagement()" href="javascript:void(0);">试卷管理</a>
+                            <a onclick="SimulationExam()" href="javascript:void(0);">模拟考试</a>
+                            <a onclick="FormalExam()" href="javascript:void(0);">正式考试</a>
+                            <a onclick="PersonalFormalExam()" href="javascript:void(0);">正式考试成绩</a>
+                        </div>
+                    </li>
+                    <li class="gw"><a href="javascript:void(0);">公文管理</a>
+                        <div class="secList">
+                            <a onclick="DocumentIndex()" href="javascript:void(0);">收文管理</a>
+                            <a onclick="DocumentOfficial();" href="javascript:void(0);">发文管理</a>
+                            <a onclick="Statistical();" href="javascript:void(0);">数据统计</a>
+                        </div>
+                    </li>
+                    <li class="zfjc"><a href="javascript:void(0);">基础信息管理</a>
+                        <div class="secList">
+                            <a onclick="javascript:AddTabMenu('petition', '@Url.Action("Index", "Role", new { Area = "CommonModule" })');" href="javascript:void(0);">动态权限管理</a>
+                            <a onclick="javascript:AddTabMenu('petition', '@Url.Action("Index", "FlowEditor")');" href="javascript:void(0);">工作流管理</a>
+                            <a onclick="javascript:AddTabMenu('petition', '@Url.Action("Login", "SystemLog")');" href="javascript:void(0);">日志管理</a>
+                            <a onclick="javascript:AddTabMenu('petition', '@Url.Action("Index", "User", new { Area = "CommonModule" })');" href="javascript:void(0);">系统配置</a>
+                            <a onclick="javascript:AddTabMenu('petition', '@Url.Action("Index", "Holidays")');" href="javascript:void(0);">节假日设置</a>
+                            <a onclick="javascript:AddTabMenu('petition', '@Url.Action("Index", "Menu", new { Area = "CommonModule" })');" href="javascript:void(0);">菜单管理</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 右侧内容 -->
+        <div class="rightContent clearfix" id="ContentPanel" style="border: none; background-color: white;">
+        </div>
+        <div id="footer">
+            技术支持:江苏中越科技发展有限公司
+        </div>
+    </div>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/echarts.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/jQuery.js")"></script>
+    <script>
+        $('.leftListNav').height($(".rightContent").outerHeight());
+        $('#menu li').click(function () {
+            $(this).addClass('active').siblings().removeClass('active')
+        })
+        var A_num1 = parseInt($('.manTol1').parent().siblings('.manText').find('.man1').text());
+        var A_num2 = parseInt($('.total_num').text());
+        var A_num = ((A_num1 / A_num2) * 100).toFixed(2);
+        $('.manTol1').height(A_num + "%");
+
+        var B_num1 = parseInt($('.manTol2').parent().siblings('.manText').find('.man1').text());
+        var B_num2 = parseInt($('.total_num').text());
+        var B_num = ((B_num1 / B_num2) * 100).toFixed(2);
+
+        $('.manTol2').height(B_num + "%");
+
+        $('#menu li').hover(function () {
+            $(this).find('.secList').show();
+        }, function () {
+            $(this).find('.secList').hide();
+        });
+
+    </script>
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")"></script>
+    <!--引入弹窗组件end-->
+</body>
+</html>

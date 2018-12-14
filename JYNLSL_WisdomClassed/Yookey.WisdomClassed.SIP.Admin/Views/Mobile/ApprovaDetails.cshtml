@@ -1,0 +1,344 @@
+﻿@{
+    ViewBag.Title = "ApprovaDetails";
+    TmEnterpriseEntity enterprise = ViewBag.Enterprise as TmEnterpriseEntity;
+    TmMatterEntity matter = ViewBag.Matter as TmMatterEntity;
+    TmMatterApplyHWGGEntity hwgg = ViewBag.TmMatterApplyHwgg as TmMatterApplyHWGGEntity;
+    List<TmMatterApplyHWGGDetailEntity> hwggdetail = ViewBag.TmMatterApplyHwggDetail as List<TmMatterApplyHWGGDetailEntity>;
+    TmMatterApplyZTYSEntity ztys = ViewBag.TmMatterApplyZTYS as TmMatterApplyZTYSEntity;
+    List<TmMatterApplyZTYSVehicleEntity> ztysvehicle = ViewBag.TmMatterApplyZTYSVehicle as List<TmMatterApplyZTYSVehicleEntity>;
+    TmMatteApplyZYWJEntity zywj = ViewBag.TmMatteApplyZYWJ as TmMatteApplyZYWJEntity;
+    List<TcAttachMentEntity> attach = ViewBag.Attach as List<TcAttachMentEntity>;
+}
+@using Yookey.WisdomClassed.SIP.Model.Approval;
+@using Yookey.WisdomClassed.SIP.Common;
+@model TmMatterApplyMajorEntity
+<!DOCTYPE HTML>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="~/Librarys/H5/sipui/global.css" rel="stylesheet" />
+    <link href="~/Librarys/H5/static/demo.css" rel="stylesheet" />
+    <script src="~/Librarys/H5/sipjs/zepto.min.js"></script>
+    <script src="~/Librarys/H5/sipjs/sip.js"></script>
+    <link href="~/Librarys/H5/css/index.css" rel="stylesheet" />
+</head>
+<body>
+    <style type="text/css">
+        .flowPathContent ul li .titleSmall {
+            width: 60%;
+        }
+
+        .flowPathContent ul li span {
+            width: 40%;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: white;
+        }
+
+        .down a {
+            display: block;
+        }
+
+            .down a img {
+                display: none;
+            }
+
+        .zhezhao {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #333;
+            padding: 40px 0;
+            display: none;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+            .zhezhao img {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+    </style>
+    <div class="content">
+        <div class="flowPathContent">
+            <ul>
+                @if (matter.POWER_NO == "0100170001" || matter.POWER_NO == "0100170002" || matter.POWER_NO == "0100177000" || matter.POWER_NO == "0100178000" || matter.POWER_NO == "0600064000" || matter.POWER_NO == "0700114000")
+                {
+                    <li>
+                        <b class="titleSmall">事项名称</b>
+                        <span>@matter.MATTER_NAME</span>
+                    </li> 
+                }
+                <li>
+                    <b class="titleSmall">单位名称</b>
+                    <span>@enterprise.ENTERPRISE_NAME</span>
+                </li>
+                <li>
+                    <b class="titleSmall">法人代表</b>
+                    <span>@enterprise.LEGAL_PERSON</span>
+                </li>
+                <li>
+                    <b class="titleSmall">联系地址</b>
+                    <span>@Model.APPLY_DEPT_ADDR</span>
+                </li>
+                <li>
+                    <b class="titleSmall">经办人</b>
+                    <span>@Model.APPLY_LINKMAN</span>
+                </li>
+                <li>
+                    <b class="titleSmall">经办人联系电话</b>
+                    <span>@Model.APPLY_LINKMAN_PHONE</span>
+                </li>
+                @if (matter.POWER_NO == "0100215000")
+                { 
+                    <li>
+                        <b class="titleSmall">联系人</b>
+                        <span>@enterprise.ENTERPRISE_LINKMAN</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">联系电话</b>
+                        <span>@enterprise.ENTERPRISE_LINKMAN_MOBILE</span>
+                    </li>
+                }
+                @if (matter.POWER_NO == "0100214000")
+                {
+                    <li>
+                        <b class="titleSmall">项目负责人</b>
+                        <span>@ztys.PROJECT_LEADER_NAME</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">项目负责人联系电话</b>
+                        <span>@ztys.PROJECT_LEADER_PHONE</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">现场联系人</b>
+                        <span>@ztys.SCENE_LINKMAN</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">现场联系人联系电话</b>
+                        <span>@ztys.SCENE_LINKMAN_PHONE</span>
+                    </li>
+                }
+                @if (matter.POWER_NO == "0100209003")
+                {
+                    <li>
+                        <b class="titleSmall">现场联系人</b>
+                        <span>@zywj.SCENE_LINKMAN</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">现场联系人联系电话</b>
+                        <span>@zywj.SCENE_LINKMAN_PHONE</span>
+                    </li> 
+                }
+            </ul>
+            @*<p class="titleTwo">申请登记情况</p>*@
+            <ul>
+                @if (matter.POWER_NO == "0100215000")
+                {   
+                    <li>
+                        <b class="titleSmall">设置时间（起）</b>
+                        <span>@hwgg.VALIDITY_BEGIN_TIME</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">设置时间（止）</b>
+                        <span>@hwgg.VALIDITY_BEGIN_TIME</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">数量</b>
+                        <span>@hwgg.ADVERT_NUM</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">广告位置</b>
+                        <span>@hwgg.LOCATION</span>
+                    </li>
+                    
+                    if (hwggdetail.Any())
+                    {
+                        foreach (var item in hwggdetail)
+                        {
+                    <li>
+                        <b class="titleSmall">广告类别</b>
+                        <span>@item.ADVERT_TYPE_TWO</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">广告内容</b>
+                        <span>@item.ADVERT_COMMENT</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">规格（宽*高*厚）米</b>
+                        <span>宽：@item.ADVERT_WIDTH 高：@item.ADVERT_HEIGHT 厚 @item.ADVERT_DEPTH</span>
+                    </li>    
+                        }
+                    }
+
+                }
+                @if (matter.POWER_NO == "0100214000")
+                {
+                    <li>
+                        <b class="titleSmall">工程名称</b>
+                        <span>@ztys.PROJECT_NAME</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">建筑垃圾量（立方米）</b>
+                        <span>@ztys.CONSTRUCTION_WASTES</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">工程渣土量（立方米）</b>
+                        <span>@ztys.CONSTRUCTION_DREGS</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">承运单位</b>
+                        <span>@ztys.CONSTRUCTION_DREGS</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">处置场地</b>
+                        <span>@ztys.DISPOSAL_SITES</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">承运车辆（辆）</b>
+                        <span>@ztys.TRANSPORT_VEHICLES</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">消纳土方总量（立方米）</b>
+                        <span>@ztys.DISPOSE_DREGS</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">运输路线及处置地点</b>
+                        <span>@ztys.TRANSPORT_ROUTE</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">核实土方总量（立方米）</b>
+                        <span>@ztys.ACTUAL_SOIL_TOTAL</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">核实建筑垃圾外运量（立方米）</b>
+                        <span>@ztys.ACTUAL_WASTES_TRANSPORT</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">申报单位负责人</b>
+                        <span>@ztys.APPLY_DEPT_CHARGER</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">有效期（起）</b>
+                        <span>@ztys.VALIDITY_BEGIN_TIME</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">有效期（止）</b>
+                        <span>@ztys.VALIDITY_END_TIME</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">其他核实情况</b>
+                        <span>@ztys.OTHER_SITUATION</span>
+                    </li>
+                    if (ztysvehicle.Any())
+                    {
+                        foreach (var ztysitem in ztysvehicle)
+                        {
+                    <li>
+                        <b class="titleSmall">车牌号</b>
+                        <span>@ztysitem.VEHICLE_NO</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">处置证编号</b>
+                        <span>@ztysitem.CERT_ID</span>
+                    </li>
+                        }
+                    }
+
+                }
+                @if (matter.POWER_NO == "0100209003")
+                {
+                    <li>
+                        <b class="titleSmall">涉及设施</b>
+                        <span>@zywj.UTILITY</span>
+                    </li>
+                    <li>
+                        <b class="titleSmall">涉及其它的设施</b>
+                        <span>@zywj.OTHER_UTILITY</span>
+                    </li> 
+                    <li>
+                        <b class="titleSmall">申请施工工期</b>
+                        <span>@zywj.ZYWJ_PERIOD</span>
+                    </li> 
+                    <li>
+                        <b class="titleSmall">挖掘（占用地点）</b>
+                        <span>@zywj.ZYWJ_ADDR</span>
+                    </li> 
+                    <li>
+                        <b class="titleSmall">申报时间</b>
+                        <span>@Model.APPLY_TIME</span>
+                    </li>  
+                    <li>
+                        <b class="titleSmall">计划开工时间</b>
+                        <span>@zywj.ZYWJ_BEGIN_TIME</span>
+                    </li> 
+                    <li>
+                        <b class="titleSmall">申请理由</b>
+                        <span>@Model.APPLY_REASON</span>
+                    </li> 
+                }
+                @if (matter.POWER_NO == "0100170001" || matter.POWER_NO == "0100170002" || matter.POWER_NO == "0100177000" || matter.POWER_NO == "0100178000" || matter.POWER_NO == "0600064000" || matter.POWER_NO == "0700114000")
+                {
+                    <li>
+                        <b class="titleSmall">申请理由</b>
+                        <span>@Model.APPLY_REASON</span>
+                    </li> 
+                }
+                @if (attach.Any() && attach != null)
+                {
+                    <li>
+                        <b class="titleSmall">申请材料</b>
+                    </li>
+                    <li class="imgLi">
+                        <div class="down">
+                            @foreach (var item in attach)
+                            {
+                                if (item.SUFFIXATION.Contains("jpg") || item.SUFFIXATION.Contains("png") || item.SUFFIXATION.Contains("jpeg"))
+                                {
+                                <a href="javascript:;" class="pic">
+                                    @(item.REAL_NAME + "." + item.SUFFIXATION)
+                                    <img src="@(AppConfig.FileViewLink + item.PATH + item.REAL_NAME + "." + item.SUFFIXATION)" alt="">
+                                </a>
+                                }
+                                else
+                                {
+                                <a href="@(AppConfig.FileViewLink + item.PATH + item.REAL_NAME + "." + item.SUFFIXATION)" download="">@(item.REAL_NAME + "." + item.SUFFIXATION)</a>
+                                }
+                            }
+                        </div>
+                    </li>
+                }
+                <li>
+                    <b class="titleSmall">当前状态</b>
+                    <span class="finish">@Model.APPLY_STATUS</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="zhezhao">
+        <img src="" alt="">
+    </div>
+    <script type="text/javascript">
+        $('.pic').click(function () {
+            var src = $(this).find('img').attr('src');
+            $('.zhezhao img').attr('src', src);
+            $(".zhezhao").show();
+        })
+        $('.zhezhao').click(function () {
+            $(this).hide()
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "CaseManagementDetail";
+    List<InfPunishAttachEntity> attach = ViewBag.Attach as List<InfPunishAttachEntity>;
+}
+@using Yookey.WisdomClassed.SIP.Model.Case;
+@using Yookey.WisdomClassed.SIP.Common;
+@model InfPunishCaseinfoEntity
+<!DOCTYPE HTML>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="~/Librarys/H5/sipui/global.css" rel="stylesheet" />
+    <link href="~/Librarys/H5/static/demo.css" rel="stylesheet" />
+    <script src="~/Librarys/H5/sipjs/zepto.min.js"></script>
+    <script src="~/Librarys/H5/sipjs/sip.js"></script>
+    <link href="~/Librarys/H5/css/index.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="content">
+        <div class="flowPathContent">
+            <ul>
+                <li>
+                    <b class="titleSmall">执法部门</b>
+                    <span>@Model.DeptName</span>
+                </li>
+                <li>
+                    <b class="titleSmall">执法人员</b>
+                    <span>@Model.FirstTrialPersonelNameFirst、@Model.FirstTrialPersonelNameSecond</span>
+                </li>
+                <li>
+                    <b class="titleSmall">案发日期</b>
+                    <span>@Model.CaseDate</span>
+                </li>
+                <li>
+                    <b class="titleSmall">当事人</b>
+                    <span>@Model.TargetName</span>
+                </li>
+                <li>
+                    <p class="titleTwo liChildren">案情摘要</p>
+                </li>
+                <li class="textContent">@Model.CaseFact
+                </li>
+                <li>
+                    <p class="titleTwo liChildren">证据材料</p>
+                </li>
+                @if (attach.Any())
+                {
+                    <li class="imgLi">
+                        <div>
+                            @foreach (var item in attach)
+                            {
+                                <img src="@(AppConfig.FileViewLink + item.FileAddress)" alt="">
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

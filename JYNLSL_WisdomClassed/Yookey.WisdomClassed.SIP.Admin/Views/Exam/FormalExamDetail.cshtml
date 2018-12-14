@@ -1,0 +1,375 @@
+﻿@{
+    ViewBag.Title = "FormalExamDetail";
+}
+@model ExamInfoEntity
+@using Yookey.WisdomClassed.SIP.Model.Exam
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>试卷详情</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--树形组件start-->
+    <link href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" type="text/css"/>
+    <script src="@Url.Content("~/Librarys/tree/tree.js")" type="text/javascript"></script>
+    <!--树形组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <script type="text/javascript">
+        $(document).ready(function () { });
+
+        //提交试卷
+        function SubmitExam() {
+            if (CheckExamType()) {
+                var Fraction = $("#Fraction").val();//试卷总分
+                var ZongFra = $("#txtZongFra").val();//已选总分
+                var Title = $("#Title").val();//试卷名称
+                var PassRido = $("#PassRatio").val();//及格分数
+                var Time = $("#Time").val();//考试时间
+                var str = "";
+                if (parseInt($("#hfDanCount").val()) < parseInt($("#SingleQuantity").val())) {
+                    str += "'单选题',";
+                }
+                if (parseInt($("#hfDuoCount").val()) < parseInt($("#MultipleQuantity").val())) {
+                    str += "'多选题',";
+                }
+                if (parseInt($("#hfPanCount").val()) < parseInt($("#JudgeQuantity").val())) {
+                    str += "'判断题',";
+                }
+                if (str != "") {
+                    alert(str + "超出题库数量请重新选择！");
+                    return false;
+                }
+                if ($("#Title").val() == "") {
+                    alert("试卷名称不能为空！")
+                    return false;
+                }
+                if ($("#Fraction").val() == "") {
+                    alert("试卷总分不能为空！")
+                    return false;
+                }
+                if ($("#PassRatio").val() == "") {
+                    alert("及格分数不能为空！")
+                    return false;
+                }
+                if ($("#Time").val() == "") {
+                    alert("考试时间不能为空！")
+                    return false;
+                }
+                if (parseInt($("#Fraction").val()) != parseInt($("#txtZongFra").val())) {
+                    alert("已选总分与试卷总分不相等！！！")
+                    return false;
+                }
+                var ids = '';
+                $("input[name='checkbox']").each(function () {
+                    if ($(this).attr("checked")) {
+                        var id = $(this).val();
+                        ids += id + ",";
+                    }
+                });
+                //是否阅读、允许立即得分
+                $("#isMarking").val($("#ExamReadType").val());
+                $("#Pass").val($("#ExamScoreType").val());
+                //提交数据
+                getAjax('@Url.Action("FormalExamData", "Exam")?ids=' + ids, $('#formmain').serialize(), function (data) {
+                    if (JSON.parse(data).rtState == 1) {
+                        alertDialog("创建成功！", 1);
+                        cancle();
+                    }
+                    else {
+                        alertDialog("创建失败！", -1);
+                    }
+                });
+                return true;
+            }
+            else { return false; }
+        }
+
+        //关闭
+        function cancle() {
+            var api = frameElement.api;
+            api.close();
+        }
+
+        //验证题库是否选中
+        function CheckExamType() {
+            var a = 1;
+            $("input[name='checkbox']").each(function () {
+                if ($(this).attr("checked")) {
+                    a++;
+                }
+            });
+            if (a <= 1) {
+                alert('请先导入题库！', -1);
+                return false;
+            }
+            return true;
+        }
+
+        //选择checkbox获取相应的题数
+        function checkPeriodCount() {
+            var ids = '';
+            $("input[name='checkbox']").each(function () {
+                if ($(this).attr("checked")) {
+                    var id = $(this).val();
+                    ids += id + ",";
+                }
+            });
+            getAjax('@Url.Action("GetItemCount", "Exam")', { Id: ids }, function (data) {
+                var itemjson = JSON.parse(data);
+                if (itemjson.rtState == 1) {
+                    $("#lblDan").html(itemjson.rtData[0]);//单选题
+                    $("#lblDuo").html(itemjson.rtData[1]);//多选题
+                    $("#lblPan").html(itemjson.rtData[2]);//判断题
+                    $("#hfDanCount").val(itemjson.rtData[0]);
+                    $("#hfDuoCount").val(itemjson.rtData[1]);
+                    $("#hfPanCount").val(itemjson.rtData[2]);
+                    $("#Title").val(itemjson.rtData[3]);//试卷名称
+                }
+            });
+        }
+
+        //用于改变已选总分
+        function textChange() {
+            var dan = $("#SingleQuantity").val();
+            if (parseInt(dan) == 0) {
+                $("#ScoreScore").val(0);
+            }
+            var duo = $("#MultipleQuantity").val();
+            if (parseInt(duo) == 0) {
+                $("#MultipleScore").val(0);
+            }
+            var pan = $("#JudgeQuantity").val();
+            if (parseInt(pan) == 0) {
+                $("#JudgeScore").val(0);
+            }
+            var danNum = dan * $("#ScoreScore").val();
+            var duoNum = duo * $("#MultipleScore").val();
+            var panNum = pan * $("#JudgeScore").val();
+            var total = parseInt(danNum) + parseInt(duoNum) + parseInt(panNum);
+            //已选总分
+            $("#txtZongFra").val(total);
+        }
+    </script>
+
+    <style type="text/css">
+        .form tr {
+            height: 28px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form id="formmain">
+            <div id="message" style="display: none; padding: 1px; padding-bottom: 0px;"></div>
+            <div class="ScrollBar" style="margin: 1px; overflow: hidden;">
+                <div id="basic" class="tabPanel">
+                    <fieldset>
+                        <legend>试卷基本参考设置</legend>
+                        <table class="casedt">
+                            <tr>
+                                <th class="formTitle">考试题库：</th>
+                                <td class="formValue" colspan="7">
+                                    @{ 
+                                        var source = ViewData["Sources"] as List<ExamTypeEntity>;
+                                        if (source != null && source.Any())
+                                        {
+                                            var resource = ViewBag.ChkType;
+                                            foreach (var sourcesEntity in source)
+                                            {
+                                        <span class="item">
+                                            <input type="checkbox" name="checkbox" id="@sourcesEntity.SubJectId" value="@sourcesEntity.SubJectId" checked="@(resource.Contains(sourcesEntity.SubJectId))" onchange="checkPeriodCount();" />
+                                            <label id="lab_@sourcesEntity.SubJectId" for="@sourcesEntity.SubJectId">@sourcesEntity.SubJectName</label>
+                                        </span>
+                                            }
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">试卷名称：</th>
+                                <td class="formValue" colspan="7">
+                                    @Html.TextBoxFor(x => x.Title, new { @style = "width:100%", @class = "txt" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">试卷总分：</th>
+                                <td class="formValue" style="position: relative;">
+                                    @if (!string.IsNullOrEmpty(Model.Fraction))
+                                    {
+                                        @Html.TextBoxFor(x => x.Fraction, new { @style = "width:100%", @class = "txt" })
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBox("Fraction", "100", new { @style = "width:100%", @class = "txt" })
+                                    }
+                                    <span style="position: absolute; right: 0; top: 5px;">分</span>
+                                </td>
+                                <th class="formTitle">及格分数：</th>
+                                <td class="formValue" style="position: relative;">
+                                    @Html.TextBoxFor(x => x.PassRatio, new { @style = "width:100%", @class = "txt" })
+                                    <span style="position: absolute; right: 0; top: 5px;">分</span>
+                                </td>
+                                <th class="formTitle">考试时间1：</th>
+                                <td class="formValue" style="position: relative;">
+                                    @Html.TextBoxFor(x => x.Time, new { @style = "width:100%", @class = "txt" })
+                                    <span style="position: absolute; right: 0; top: 5px;">（分钟）</span>
+                                </td>
+                                <th class="formTitle">考试次数：</th>
+                                <td class="formValue">
+                                    @Html.TextBoxFor(x => x.Frequency, new { @style = "width:100%", @class = "txt" })
+                                </td>
+                            </tr>
+                            <tr>
+                                @if (ViewBag.Flag)
+                                {
+                                    <th class="formTitle">是否阅卷 ：</th>
+                                    <td class="formValue">
+                                        @Html.DropDownListFor(x => x.isMarking, (ViewData["ExamReadType"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 140px" })
+                                    </td>
+                                    <th class="formTitle">允许立即得分 ：</th>
+                                    <td class="formValue" colspan="5">
+                                        @Html.DropDownListFor(x => x.Pass, (ViewData["ExamScoreType"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 175px" })
+                                    </td> 
+                                }
+                                else
+                                {
+                                    <th class="formTitle">是否阅卷 ：</th>
+                                    <td class="formValue">
+                                        @Html.DropDownList("ExamReadType", (ViewData["ExamReadType"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 140px" })
+                                    </td>
+                                    <th class="formTitle">允许立即得分 ：</th>
+                                    <td class="formValue" colspan="5">
+                                        @Html.DropDownList("ExamScoreType", (ViewData["ExamScoreType"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 175px" })
+                                    </td>
+                                }
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend>试卷题型参考设置</legend>
+                        <table class="casedt">
+                            <tr>
+                                <th class="formTitle">单选题：</th>
+                                <td class="formValue" style="position: relative;">
+                                    @Html.TextBoxFor(x => x.SingleQuantity, new { @style = "width:100%", @class = "txt", @onblur = "textChange()" })
+                                    <span style="position: absolute; right: 0; top: 5px;">道</span>
+                                </td>
+                                <th class="formTitle">每题</th>
+                                <td class="formValue" style="position: relative;">
+                                    @Html.TextBoxFor(x => x.ScoreScore, new { @style = "width:100%", @class = "txt", @onblur = "textChange()" })
+                                    <span style="position: absolute; right: 0; top: 5px;">分</span>
+                                </td>
+                                <th class="formTitle">操作说明</th>
+                                <td class="formValue">
+                                    @Html.Label("lblSing", "选择一项正确答案")
+                                    <span id="lblDan"></span>
+                                    条
+                                    @Html.Hidden("hfDanCount", "")
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">多选题：</th>
+                                <td class="formValue" style="position: relative;">
+                                    @Html.TextBoxFor(x => x.MultipleQuantity, new { @style = "width:100%", @class = "txt", @onblur = "textChange()" })
+                                    <span style="position: absolute; right: 0; top: 5px;">道</span>
+                                </td>
+                                <th class="formTitle">每题</th>
+                                <td class="formValue" style="position: relative;">
+                                    @Html.TextBoxFor(x => x.MultipleScore, new { @style = "width:100%", @class = "txt", @onblur = "textChange()" })
+                                    <span style="position: absolute; right: 0; top: 5px;">分</span>
+                                </td>
+                                <th class="formTitle">操作说明</th>
+                                <td class="formValue">
+                                    @Html.Label("lblSing", "选择多项正确答案")
+                                    <span id="lblDuo"></span>
+                                    条
+                                    @Html.Hidden("hfDuoCount", "")
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">判断题：</th>
+                                <td class="formValue" style="position: relative;">
+                                    @Html.TextBoxFor(x => x.JudgeQuantity, new { @style = "width:100%", @class = "txt", @onblur = "textChange()" })
+                                    <span style="position: absolute; right: 0; top: 5px;">道</span>
+                                </td>
+                                <th class="formTitle">每题</th>
+                                <td class="formValue" style="position: relative;">
+                                    @Html.TextBoxFor(x => x.JudgeScore, new { @style = "width:100%", @class = "txt", @onblur = "textChange()" })
+                                    <span style="position: absolute; right: 0; top: 5px;">分</span>
+                                </td>
+                                <th class="formTitle">操作说明</th>
+                                <td class="formValue">
+                                    @Html.Label("lblSing", "选择一项正确答案")
+                                    <span id="lblPan"></span>
+                                    条
+                                    @Html.Hidden("hfPanCount", "")
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">已选总分：</th>
+                                <td class="formValue" colspan="5">
+                                    @Html.TextBox("txtZongFra", "", new { @style = "width:100%", @class = "txt" })
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend>试卷其他参数设置</legend>
+                        <table class="casedt">
+                            <tr>
+                                <th class="formTitle">有效期限：</th>
+                                <td class="formValue" colspan="5">
+                                    @Html.TextBoxFor(x => x.StartDate, new { @class = "txt Wdate", @datacol = "yes", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @Value = @Model.StartDate.ToString("yyyy-MM-dd") == "0001-01-01" ? DateTime.Now.ToString("yyyy-MM-dd") : Model.StartDate.ToString("yyyy-MM-dd"), @style = "width:150px", @checkexpession = "NotNull" })
+                                    至
+                                    @Html.TextBoxFor(x => x.EndDate, new { @class = "txt Wdate", @datacol = "yes", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @Value = @Model.EndDate.ToString("yyyy-MM-dd") == "0001-01-01" ? DateTime.Now.ToString("yyyy-MM-dd") : Model.EndDate.ToString("yyyy-MM-dd"), @style = "width:150px", @checkexpession = "NotNull" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">考生须知：</th>
+                                <td class="formValue" colspan="5">
+                                    @Html.TextAreaFor(x => x.Know, new { @style = "width: 100%;", @class = "txtArea", @rows = 10 })
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </div>
+            </div>
+            @Html.HiddenFor(x => x.Tid)
+            @Html.HiddenFor(x => x.PaperType)
+            @Html.HiddenFor(x => x.ZHQuantity)
+            @Html.HiddenFor(x => x.ZHScore)
+            @Html.HiddenFor(x => x.NYCD)
+            @Html.HiddenFor(x => x.SHName)
+            @Html.HiddenFor(x => x.isDeleted)
+            @Html.HiddenFor(x => x.Pass)
+            @Html.HiddenFor(x => x.ZHSc)
+            @Html.HiddenFor(x => x.CreateDate)
+            @Html.HiddenFor(x => x.isMarking)
+        </form>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="text-align: center;">
+                        <input type="button" value="保 存" class="btnSearch" onclick="SubmitExam()" id="btnSave">
+                        <input type="button" value="关 闭" class="btnSearch" onclick="cancle();">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

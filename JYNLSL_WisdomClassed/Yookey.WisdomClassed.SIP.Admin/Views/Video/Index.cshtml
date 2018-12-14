@@ -1,0 +1,195 @@
+﻿@using Yookey.WisdomClassed.SIP.Model.Evidence
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选择执法全过程</title>
+
+    <link href="@Url.Content("~/Librarys/css/border.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/css/chosen.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <link href="@Url.Content("~/Librarys/casepic/css/style.css")" rel="stylesheet" />
+    <!--[if lt IE 8]>
+    <script src="js/ie8.js"></script>
+<![endif]-->
+    <style>
+        .picRel {
+            position: relative;
+            float: left;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            width: 180px;
+        }
+
+        .choAbs {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ccc;
+            width: 16px;
+            height: 16px;
+        }
+
+            .choAbs img {
+                display: none;
+                width: 100%;
+                height: 100%;
+            }
+
+            .choAbs.active img {
+                display: block;
+            }
+
+        .clearfixed:after {
+            content: '';
+            width: 0;
+            height: 0;
+            display: block;
+            visibility: visible;
+            clear: both;
+        }
+
+        .picBox {
+            width: 800px;
+            margin: 20px auto;
+        }
+
+        .picVideo {
+            display: block;
+            width: 180px;
+            height: 135px;
+        }
+
+        .yesBtn {
+            display: block;
+            width: 80px;
+            margin: 0 auto;
+        }
+
+        .daily, .adress {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding-top: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video" style="height:100%; overflow:auto;">
+        <table style="margin: 0 auto; margin-top: 15px;">
+            <tr>
+                <td>日期范围：</td>
+                <td>
+                @Html.TextBox("startDate", "", new { @class = "txtborder Wdate", Value = @ViewData["stratTime"], @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:131px" })
+                <td>&nbsp;&nbsp;至&nbsp;&nbsp;</td>
+                <td>@Html.TextBox("endDate", "", new { @class = "txtborder Wdate", Value = @ViewData["endTime"], @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:131px" })</td>
+                <td>&nbsp;&nbsp;地址：&nbsp;&nbsp;</td>
+                <td>
+                    <input id="address" type="text" class="txtborder" style="width: 150px" /></td>
+                <td>&nbsp;
+                    <input id="btnSearch" type="button" class="btnSearch" value="搜 索" onclick="Search()" /></td>
+            </tr>
+        </table>
+        <div class="picBox clearfixed">
+            @{
+                var data = ViewData["attList"] as List<ProofAttachEntity>;
+
+                if (data != null && data.Any())
+                {
+                    foreach (var item in data)
+                    {
+                <div class="picRel">
+                    <div class="choAbs" id="@item.SYS_ID">
+                        <img src="@Url.Content("~/Content/Images/cho.png")" alt="" >
+                    </div>
+                    <img src="@item.FILETHUMBNAIL" alt="" class="picVideo" onclick="showVideo('@item.SYS_ID')">
+                    <div class="adress">@item.ADDRESS</div>
+                    <div>@item.USERID&nbsp;&nbsp;@item.CTIME</div>
+                </div>
+                    }
+                }
+            }
+        </div>
+        <!--分页start-->
+            <div class="applay-select">
+            </div>
+    </div>
+
+    <script>
+
+        function AcceptClick() {
+            for (var i = 0; i < $('.choAbs').size() ; i++) {
+                if ($('.choAbs').eq(i).hasClass('active')) {
+                    id += $('.choAbs').eq(i).eq(0).attr('id') + ",";
+                }
+            }
+
+            var caseId = '@ViewData["caseId"]';
+            var penaltyCase = '@ViewData["penaltyCase"]';
+            var penalty = '@ViewData["penalty"]';
+
+            var api = frameElement.api, w = api.opener;
+
+            $.ajax({
+                url: '@Url.Action("Submit", "Video")',
+                type: "post",
+                data: { videoIds: id, caseId: caseId, penaltyCase: penaltyCase, penalty: penalty },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    api.close();
+                },
+                error: function (data) {
+
+                }
+            });
+        }
+
+
+
+        var id = "";
+        $('.picBox ').on('click', '.choAbs', function () {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+            } else {
+                $(this).addClass('active');
+            }
+        });
+        var arr = [];
+
+
+        function Search() {
+            var stratTime = $('#startDate').val();
+            var endTime = $('#endDate').val();
+            var address = $('#address').val();
+            var userId = '@ViewData["userId"]';
+            var caseId = '@ViewData["caseId"]';
+            var penaltyCase = '@ViewData["penaltyCase"]';
+            var penalty = '@ViewData["penalty"]';
+
+
+            window.location.href = "@Url.Action("Index")?userId=" + userId + "&startTime=" + stratTime + "&endTime=" + endTime + "&address=" + address + "&caseId=" + caseId + "&penaltyCase=" + penaltyCase + "&penalty=" + penalty;
+        }
+
+        function showVideo(id) {
+            Dialog('@Url.Action("VideoPlay", "Evidence")?sid=' + id, "", "", 720, 520);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,884 @@
+﻿body {
+    font-family: "微软雅黑", "Arial";
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    height: 97%;
+}
+
+div,
+p,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    a:active {
+        text-decoration: none;
+    }
+
+.lf {
+    float: left;
+}
+
+.rt {
+    float: right;
+}
+
+.clearfix:before {
+    content: "";
+    display: table;
+    clear: both;
+    height: 0px;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+    height: 0px;
+}
+
+.clearfix {
+    width: 100%;
+    zoom: 1;
+}
+
+.clear {
+    clear: both;
+}
+/*******************/
+.contentBox {
+    width: 100%;
+    background-color: #eef1f5;
+    padding-bottom: 30px;
+    min-height: 98%;
+}
+
+    .contentBox .tool {
+        width: 98%;
+        margin: 1% auto;
+        height: 56px;
+        background-color: #fff;
+        border-bottom: 1px solid #dddfe1;
+    }
+
+        .contentBox .tool p {
+            border: 2px solid #5275bd;
+            width: 125px;
+            height: 40px;
+            margin-top: 8px;
+            margin-left: 15px;
+            border-radius: 5px;
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 8px 0px 0px 10px;
+            cursor: pointer;
+        }
+
+            .contentBox .tool p b {
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                background: url(../images/xiugaiIcon.png) no-repeat;
+                vertical-align: middle;
+            }
+
+            .contentBox .tool p .file {
+                background: url(../images/fileIcon.png) no-repeat;
+            }
+
+            .contentBox .tool p .downLoad {
+                width: 26px;
+                height: 23px;
+                background: url(../images/downLoadIcon.png) no-repeat;
+            }
+
+            .contentBox .tool p .delete {
+                width: 21px;
+                height: 24px;
+                background: url(../images/deleteIcon.png) no-repeat;
+            }
+
+            .contentBox .tool p span {
+                font-size: 14px;
+                color: #5275bd;
+                font-weight: 600;
+                margin-left: 14px;
+            }
+
+    .contentBox .navHeader {
+        width: 100%;
+        height: 50px;
+        background-color: #f4f6f9;
+        border-bottom: 1px solid #dddfe1;
+        line-height: 50px;
+        padding: 0px 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+        .contentBox .navHeader p:first-child {
+            float: left;
+        }
+
+            .contentBox .navHeader p:first-child a.homeIcon {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                background: url(../images/homeIcon.png) no-repeat;
+                vertical-align: middle;
+            }
+
+            .contentBox .navHeader p:first-child b {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                background: url(../images/goIcon.png) no-repeat;
+                margin-left: 2px;
+                vertical-align: middle;
+            }
+
+            .contentBox .navHeader p:first-child a {
+                color: #0244bf;
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+        .contentBox .navHeader p.lastP {
+            float: right;
+            margin-top: 10px;
+        }
+
+            .contentBox .navHeader p.lastP .spanStatistics {
+                height: 50px;
+                line-height: 30px;
+                position: relative;
+                width: 80px;
+            }
+
+                .contentBox .navHeader p.lastP .spanStatistics a {
+                    color: #0244bf;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+
+            .contentBox .navHeader p.lastP .spanOne {
+                position: relative;
+                width: 200px;
+            }
+
+            .contentBox .navHeader p.lastP span {
+                display: block;
+                float: left;
+                height: 30px;
+            }
+
+                .contentBox .navHeader p.lastP span input {
+                    width: 200px;
+                    height: 30px;
+                    border: none;
+                    background-color: #fff;
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                }
+
+                .contentBox .navHeader p.lastP span button {
+                    width: 30px;
+                    height: 30px;
+                    background: #0244bf url(../images/searchIcon.png) no-repeat center;
+                    border: none;
+                }
+
+    .contentBox .allDistrict {
+        width: 98%;
+        margin: 1% auto;
+        border: 1px solid #e7e9eb;
+    }
+
+        .contentBox .allDistrict > p {
+            width: 100%;
+            height: 48px;
+            line-height: 48px;
+            box-sizing: border-box;
+            padding-left: 20px;
+            background-color: #f2f6fc;
+            color: #8b8b8b;
+            font-size: 18px;
+            border-bottom: 1px solid #e7e9eb;
+        }
+
+            .contentBox .allDistrict > p > span {
+                width: 90px;
+                height: 30px;
+                border: 1px solid #5275bd;
+                line-height: 30px;
+                text-align: center;
+                margin-right: 15px;
+                cursor: pointer;
+                border-radius: 5px;
+                margin-top: 8px;
+            }
+
+                .contentBox .allDistrict > p > span b {
+                    display: inline-block;
+                    width: 14px;
+                    height: 15px;
+                    background: url(../images/newIcon.png) no-repeat;
+                    vertical-align: middle;
+                }
+
+                    .contentBox .allDistrict > p > span b.upload {
+                        background: url(../images/fileIcon.png) no-repeat;
+                        background-size: 100% 100%;
+                    }
+
+                    .contentBox .allDistrict > p > span b.detele {
+                        background: url(../images/deleteIcon.png) no-repeat;
+                        background-size: 100% 100%;
+                    }
+
+                    .contentBox .allDistrict > p > span b.dudctIcon {
+                        width: 24px;
+                        height: 24px;
+                        background: url(../images/dudctIcon.png) no-repeat;
+                        background-size: 100% 100%;
+                    }
+
+                .contentBox .allDistrict > p > span span {
+                    color: #7a95cd;
+                    font-size: 16px;
+                    margin-left: 12px;
+                }
+
+        .contentBox .allDistrict .unitList {
+            width: 100%;
+            background-color: #fff;
+            /*height: 75%;*/
+        }
+
+            .contentBox .allDistrict .unitList > ul {
+                width: 96%;
+                margin: 2% 2%;
+                float: left;
+            }
+
+                .contentBox .allDistrict .unitList > ul .nthLiMargin {
+                    /*margin-right: 0px;*/
+                }
+
+                .contentBox .allDistrict .unitList > ul .marginBot {
+                    margin-bottom: 5%;
+                }
+
+                .contentBox .allDistrict .unitList > ul .colorChoose {
+                    background-color: #cbecfb;
+                }
+
+                .contentBox .allDistrict .unitList > ul li {
+                    width: 179px;
+                    height: 154px;
+                    border: 4px solid #e4e4e4;
+                    border-radius: 5px;
+                    margin-right: 6.2%;
+                    float: left;
+                }
+
+#btnSearch {
+    background-color: #3087e1;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.contentBox .allDistrict .unitList > ul li a {
+    color: #939393;
+}
+
+.contentBox .allDistrict .unitList > ul li p {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .contentBox .allDistrict .unitList > ul li p img {
+        width: 46%;
+        /*height: 45%;*/
+        border: none;
+    }
+
+.contentBox .allDistrict .unitList > ul li .textUnit {
+    width: 60%;
+    margin: 10% auto;
+    font-size: 0.8vw;
+}
+
+.contentBox .allDistrict .unitList > ul li .itemTitle {
+    font-size: 1vw;
+    width: 65%;
+}
+
+.contentBox .allDistrict .allDistrictContent {
+    width: 100%;
+    background-color: #e2e9eb;
+    height: 590px;
+}
+
+    .contentBox .allDistrict .allDistrictContent table {
+        width: 96%;
+        margin: 2% auto;
+        border: 1px solid #dcdcdc;
+    }
+
+        .contentBox .allDistrict .allDistrictContent table thead tr {
+            background-color: #f5f5f5;
+            height: 40px;
+        }
+
+            .contentBox .allDistrict .allDistrictContent table thead tr th {
+                text-align: center;
+                color: #212529;
+            }
+
+        .contentBox .allDistrict .allDistrictContent table tbody tr {
+            height: 40px;
+        }
+
+            .contentBox .allDistrict .allDistrictContent table tbody tr td {
+                border-bottom: 1px solid #ddd;
+                text-align: center;
+                color: #b1b4ba;
+            }
+
+                .contentBox .allDistrict .allDistrictContent table tbody tr td .fileName {
+                    color: #e65404;
+                }
+
+                .contentBox .allDistrict .allDistrictContent table tbody tr td .blues {
+                    color: #62a1eb;
+                }
+
+            .contentBox .allDistrict .allDistrictContent table tbody tr:nth-child(2n) {
+                background-color: #f5f5f5;
+            }
+
+    .contentBox .allDistrict .allDistrictContent > ul {
+        width: 96%;
+        height: 100%;
+        margin: 2% 2%;
+        /*float: left;*/
+    }
+
+        .contentBox .allDistrict .allDistrictContent > ul li {
+            float: left;
+            width: 27.3%;
+            height: 35%;
+            position: relative;
+            margin-right: 9%;
+        }
+
+            .contentBox .allDistrict .allDistrictContent > ul li > div {
+                width: 100%;
+                height: 210px;
+                background-color: #fff;
+                box-sizing: border-box;
+                padding: 20px;
+                border-bottom: 4px solid #ffe9c8;
+            }
+
+                .contentBox .allDistrict .allDistrictContent > ul li > div .state {
+                    /*font-size: 0.5vw;*/
+                    font-size: 14px;
+                    margin-bottom: 5%;
+                }
+
+                .contentBox .allDistrict .allDistrictContent > ul li > div .success {
+                    color: #339900;
+                }
+
+                .contentBox .allDistrict .allDistrictContent > ul li > div .title {
+                    margin-bottom: 5%;
+                    font-size: 1.5vw;
+                    color: #000;
+                }
+
+                .contentBox .allDistrict .allDistrictContent > ul li > div div p {
+                    margin-bottom: 10px;
+                    color: #8b8b8b;
+                    /*font-size: 0.7vw;*/
+                    font-size: 13px;
+                }
+
+                    .contentBox .allDistrict .allDistrictContent > ul li > div div p span:first-child {
+                        margin-right: 5%;
+                    }
+
+            .contentBox .allDistrict .allDistrictContent > ul li a {
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+                display: block;
+                width: 130px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                font-size: 18px;
+                color: #8b8b8b;
+                background-color: #ffe9c8;
+                border: 1px solid #ffdeae;
+            }
+
+        .contentBox .allDistrict .allDistrictContent > ul .nthLast {
+            margin-right: 0px;
+        }
+
+        .contentBox .allDistrict .allDistrictContent > ul .maginBottomS {
+            margin-bottom: 5%;
+        }
+
+.contentBox .allDistrict .tableStrictBox {
+    background-color: #fff;
+}
+
+@media screen and (min-width:1749px) and (max-width:1910px) {
+    .contentBox .allDistrict .unitList > ul li:nth-child(6n) {
+        margin-right: 0px;
+    }
+}
+
+@media screen and (max-width:1749px) and (min-width:1630px) {
+    .contentBox .allDistrict .unitList > ul li {
+        margin-right: 5.2%;
+    }
+
+        .contentBox .allDistrict .unitList > ul li:nth-child(6n) {
+            margin-right: 0px;
+        }
+}
+
+@media screen and (max-width:1457px) and (min-width:1290px) {
+    .contentBox .allDistrict .unitList > ul li:nth-child(5n) {
+        margin-right: 0px;
+    }
+
+    .contentBox .allDistrict .unitList > ul li {
+        margin-right: 4.2%;
+    }
+}
+
+.constructionBox {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /*background-color: rgba(0, 0, 0, 0.3);*/
+    /*display: none;*/
+}
+
+    .constructionBox .construction {
+        background-color: #fff;
+        width: 500px;
+        /*position: absolute;*/
+        height: 350px;
+        /*top: 10%;
+        left: 50%;*/
+        /*margin-left: -300px;*/
+    }
+
+        .constructionBox .construction .constructionTop {
+            width: 100%;
+            height: 55px;
+            line-height: 55px;
+            background-color: #f3f3f3;
+            box-sizing: border-box;
+            padding: 0px 10px;
+        }
+
+            .constructionBox .construction .constructionTop span {
+                font-size: 22px;
+                color: #000000;
+                float: left;
+            }
+
+            .constructionBox .construction .constructionTop b {
+                float: right;
+                color: #8b8b8b;
+                font-size: 14px;
+                cursor: pointer;
+            }
+
+                .constructionBox .construction .constructionTop b:hover {
+                    color: #939393;
+                }
+
+        .constructionBox .construction .constructionCenter {
+            width: 100%;
+            height: 280px;
+        }
+
+            .constructionBox .construction .constructionCenter > div {
+                width: 90%;
+                margin: 0px auto;
+                padding: 10% 0px;
+            }
+
+                .constructionBox .construction .constructionCenter > div form p {
+                    overflow: hidden;
+                    margin-bottom: 10px;
+                }
+
+                    .constructionBox .construction .constructionCenter > div form p > label {
+                        float: left;
+                        margin-right: 20px;
+                    }
+
+                    .constructionBox .construction .constructionCenter > div form p .labelArea {
+                        height: 40px;
+                    }
+
+                    .constructionBox .construction .constructionCenter > div form p span {
+                        float: left;
+                    }
+
+                        .constructionBox .construction .constructionCenter > div form p span input.inputText {
+                            width: 300px;
+                            border: 1px solid #a5a5a5;
+                            height: 30px;
+                        }
+
+                        .constructionBox .construction .constructionCenter > div form p span textarea {
+                            width: 300px;
+                            height: 70px;
+                            border: 1px solid #a5a5a5;
+                            resize: none;
+                        }
+
+                        .constructionBox .construction .constructionCenter > div form p span select {
+                            width: 300px;
+                            height: 30px;
+                        }
+
+                    .constructionBox .construction .constructionCenter > div form p > span {
+                        margin-right: 10px;
+                        margin-bottom: 10px;
+                    }
+
+                        .constructionBox .construction .constructionCenter > div form p > span label {
+                            font-size: 16px;
+                            color: #606060;
+                        }
+
+                .constructionBox .construction .constructionCenter > div form div {
+                    width: 100%;
+                }
+
+                    .constructionBox .construction .constructionCenter > div form div > .sez {
+                        float: left;
+                        height: 50px;
+                        margin-right: 20px;
+                    }
+
+                    .constructionBox .construction .constructionCenter > div form div p label {
+                        float: none;
+                    }
+
+        .constructionBox .construction .constructionBottom {
+            height: 55px;
+            width: 100%;
+            /*background-color: #f3f3f3;*/
+            box-sizing: border-box;
+            padding: 0px 10px;
+            text-align: right;
+            padding-top: 7.5px;
+        }
+
+            .constructionBox .construction .constructionBottom .sureBtn {
+                width: 120px;
+                height: 40px;
+                border: none;
+                background-color: #44a9f3;
+                color: #fff;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+
+            .constructionBox .construction .constructionBottom .edits {
+                width: 120px;
+                height: 40px;
+                border: none;
+                background-color: #eceaea;
+                color: #a7a7a7;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+
+/****文件上传******/
+.fileContentBox {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+    .fileContentBox .filEContent {
+        width: 440px;
+        height: 200px;
+        position: absolute;
+        /*left: 50%;
+        top: 10%;*/
+        /*margin-left: -300px;*/
+        background-color: #fff;
+        /*border-radius: 10px;*/
+        padding-left: 10px;
+        padding-top: 30px;
+    }
+
+        .fileContentBox .filEContent .fileContentTop {
+            width: 100%;
+            height: 45px;
+            border-bottom: 1px solid #e5e5e5;
+            line-height: 45px;
+        }
+
+            .fileContentBox .filEContent .fileContentTop span {
+                margin-left: 10px;
+                font-size: 16px;
+            }
+
+            .fileContentBox .filEContent .fileContentTop b {
+                font-weight: normal;
+                font-size: 14px;
+                margin-right: 10px;
+                color: #8b8b8b;
+                cursor: pointer;
+            }
+
+        .fileContentBox .filEContent .fileContentCenter {
+            width: 100%;
+            overflow: hidden;
+        }
+
+            .fileContentBox .filEContent .fileContentCenter .choosePictureBox {
+                width: 50%;
+                margin: 20px auto;
+                border: 1px dotted #a7a7a7;
+                height: 40px;
+            }
+
+                .fileContentBox .filEContent .fileContentCenter .choosePictureBox p {
+                    text-align: center;
+                }
+
+                .fileContentBox .filEContent .fileContentCenter .choosePictureBox img {
+                    width: 80px;
+                    height: 80px;
+                }
+
+                .fileContentBox .filEContent .fileContentCenter .choosePictureBox .chooseFile {
+                    width: 80%;
+                    margin: 0px auto;
+                    height: 40px;
+                    line-height: 40px;
+                    color: #fff;
+                    font-size: 18px;
+                    background-color: #44a9f3;
+                    margin-bottom: 10px;
+                }
+
+            .fileContentBox .filEContent .fileContentCenter .contentFile {
+                width: 100%;
+                height: 160px;
+                border: 1px solid #ddd;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+
+._filelist li {
+    /*这个选择器一定要有宽高，否则图片显示不出来，因为它里面的内容是绝对定位的*/
+    width: 180px;
+    height: 160px;
+}
+
+._filelist {
+    width: 200%;
+}
+
+.webuploader-pick {
+    line-height: 40px;
+}
+
+.fileContentBottom {
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    width: 100%;
+}
+
+    .fileContentBottom > div {
+        margin-left: 10px;
+    }
+
+        .fileContentBottom > div > span {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .fileContentBottom > div select {
+            width: 100px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            height: 30px;
+            color: #666;
+            float: left;
+        }
+
+        .fileContentBottom > div p {
+            font-size: 12px;
+            color: #e46f47;
+            width: 50px;
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            background-color: #fefbee;
+            border: 1px solid #e46f47;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 5px;
+            margin-left: 10px;
+        }
+
+        .fileContentBottom > div .upfile {
+            width: 90px;
+            height: 30px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            background-color: #00a2ca;
+            border: none;
+            cursor: pointer;
+        }
+
+        .fileContentBottom > div .closeDown {
+            width: 90px;
+            height: 30px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: #666666;
+            background-color: #ffffff;
+            border: 1px solid #666666;
+            cursor: pointer;
+        }
+
+
+.pagination.pagination-custom {
+    height: 28px;
+    margin-top: -1px;
+}
+
+    .pagination.pagination-custom li.active a {
+        background: #368ee0;
+        color: #fff;
+    }
+
+        .pagination.pagination-custom li.active a:hover {
+            background: #368ee0;
+        }
+
+    .pagination.pagination-custom li a {
+        background: #eee;
+        text-decoration: none;
+        color: #333;
+        border: 0;
+        padding: 5px 12px;
+    }
+
+        .pagination.pagination-custom li a:hover {
+            background: #ddd;
+        }
+
+.pagination {
+    float: right;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+    .pagination a {
+        text-decoration: none;
+        border: 1px solid #AAE;
+        color: #15B;
+        cursor: pointer;
+    }
+
+    .pagination a, .pagination span {
+        display: inline-block;
+        padding: 4px 8px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+
+    .pagination .current {
+        background: #368ee0;
+        color: #fff;
+        border: 1px solid #AAE;
+    }
+
+        .pagination .current.prev, .pagination .current.next {
+            border: 1px solid #AAE;
+            background: #368ee0;
+        }
+
+
+.btn-group .dropdown, .btn-group .pagination {
+    font-size: 13px;
+}
+
+.btn-group .pagination {
+    margin: 0;
+}
+
+    .btn-group .pagination ul {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+
+.pagination-large ul > li:first-child > a, .pagination-large ul > li:first-child > span, .pagination-large ul > li:last-child > a, .pagination-large ul > li:last-child > span, .pagination ul > li:first-child > a, .pagination ul > li:first-child > span, .pagination-mini ul > li:first-child > a, .pagination-small ul > li:first-child > a, .pagination-mini ul > li:first-child > span, .pagination-small ul > li:first-child > span, .pagination ul > li:last-child > a, .pagination ul > li:last-child > span, .pagination-mini ul > li:last-child > a, .pagination-small ul > li:last-child > a, .pagination-mini ul > li:last-child > span, .pagination-small ul > li:last-child > span {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+
+.drpselect {
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    height: 30px;
+    color: #666;
+    float: left;
+}

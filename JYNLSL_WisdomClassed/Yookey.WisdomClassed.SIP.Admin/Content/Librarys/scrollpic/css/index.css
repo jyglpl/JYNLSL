@@ -1,0 +1,71 @@
+﻿@charset "utf-8";
+
+/*======== scrollMap start =======*/
+.bgBlack{background:#000;}
+.bgBlackS{background:#fff;}
+.c_c1c1{color:#c1c1c1;}
+.thPadTB8{padding:8px 0;}
+.deleteLine{text-decoration:line-through;}
+
+.ipadHeader{width:100%;margin:0 auto;height:36px;background:#000;border-bottom:1px solid #383838}
+.ipadHeader .logo {float:left;width:104px;height:24px;margin:5px 34px 0px 32px;_display:inline}
+.ipadHeader .nav {float:left;font-size:12px;color:#fff;height:24px;margin-top:5px;line-height:24px;}
+.ipadHeader .nav a {color:#fff;}
+.ipadHeader .nav span {padding:0 8px;}
+.ipadHeader .mainNav {float:right;color:#B3B3B3;font-size:12px;height:24px;line-height:24px;margin:5px 40px 0 0;_display:inline}
+.ipadHeader .mainNav span {color:#747474;padding:0 8px;}
+.ipadHeader .mainNav a {color:#9A9A9A;}
+
+.scrollBox {width:800px;height:600px;background:#000;min-width:320px;max-width:980px;margin:0 auto;-webkit-border-radius:5px;-moz-border-radius:5px;-o-border-radius:5px;border-radius:5px;-webkit-box-shadow: 0 1px 4px rgba(0,0,0,.2);-moz-box-shadow: 0 1px 4px rgba(0,0,0,.2);-o-box-shadow: 0 1px 4px rgba(0,0,0,.2);}
+
+.scrollBoxS {width:800px;height:690px;background:#FFF;min-width:320px;max-width:980px;margin:0 auto;-webkit-border-radius:5px;-moz-border-radius:5px;-o-border-radius:5px;border-radius:5px;-webkit-box-shadow: 0 1px 4px rgba(0,0,0,.2);-moz-box-shadow: 0 1px 4px rgba(0,0,0,.2);-o-box-shadow: 0 1px 4px rgba(0,0,0,.2);}
+
+.toolBar {overflow:hidden;width:100%;margin-top:10px;}
+.toolBar .toolBarL li{float:left;font-size:12px;padding-right:7px;margin-top:2px;}
+.toolBar .toolBarL li.c_5c{color:#5C5C5C;}
+.toolBar .toolBarL li .btnApply{background:#55b647;padding:4px 10px;color:#fff;}
+
+.scrollMap{width:100%;height:100%;}
+.scrollMap .picWrap{width:100%;position:relative;}
+.scrollMap .picWrap li{position:absolute;}
+.scrollMap .picWrap img{min-width:320px;max-width:980px;width:800px;height:500px;}
+
+.scrollMap .picWrapS img{min-width:320px;max-width:980px;width:800px;height:690px;}
+
+.slidePre,.slideNext{background:url(../images/ipadRight.png) repeat;width:102px;height:95px;text-indent:-99999px;position:absolute;top:40%;margin-left:24px;z-index:200;}
+.slideNext{right:0;background:url(../images/ipadLeft.png) repeat;margin:0 12px 0 0;margin:0 24px 0 0;}
+.slidePre a, .slideNext a{display:block;position:relative;width:102px;height:95px;}
+.slideTxtMore,.slideTxtReturn{height:26px;line-height:26px;position:absolute;right:0; bottom:60px;z-index:200;}
+.slideTxtMore a,.slideTxtReturn a{display:block;background:url(../images/ipad-btn.png) no-repeat;_background:url(../images/ipad-btn.gif) no-repeat;padding-left:30px;}
+.slideTxtMore a span,.slideTxtReturn a span{background:#55b647;color:#fff;display:block;padding-right:10px;}
+.slideTxtMore a:hover,.slideTxtReturn a:hover{text-decoration:none;background-position:left -27px;}
+.slideTxtMore a:hover span,.slideTxtReturn a:hover span{background-color:#70d063;}
+.slideTxtReturn a{background-position:left -54px;}
+.slideTxtReturn a:hover,.slideTxtReturn a:hover span{background-position:left -81px;}
+
+.sliderTextBox{color:#fff;padding-bottom:10px;color:#fff;width:100%;position:absolute;bottom:0px;left:0;z-index:4;}
+.sliderTextBg{background:url(../images/ipd-mapBg.png) repeat;opacity:0.8;filter:alpha(opacity=80);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";position:absolute;z-index:1;}
+.sliderTextAll{position:absolute;z-index:10;}
+.sliderText{z-index:5;position:relative;}
+.sliderTxtBot{color:#fff;position:relative;z-index:5;padding-top:10px;}
+.sliderText h2{color:#fff;margin:12px 10px 10px 10px;font-size:1.8em;line-height:1.1;font-weight:bold;text-transform:uppercase;}
+.sliderText p,.sliderTxtBot p{line-height:1.7;margin:0 10px;width:80%;}
+.sliderText a{color:#fff;}
+.sliderText .sLine{border-left:5px solid #55b647;padding-left:10px;margin-bottom:4px;}
+.SliderSignBox{background:url(../images/ipd-navBg.png) repeat-x;height:42px;width:100%;position:absolute;bottom:0px;left:0;z-index:4;}
+.sliderSign{padding:15px 0; float:left; position:absolute; left:40%;}
+.sliderSign li{text-indent:-999999px;cursor:pointer;background:url(../images/ipd-navDot.png) no-repeat left -24px;width:12px;height:12px;margin-right:5px;}
+.sliderSign li a{display:block;background:url(../images/ipd-navDot.png) no-repeat left -24px;width:12px;height:12px;overflow:hidden;}
+.sliderSign li a:hover{background-position:right -12px;}
+.sliderSign li.current{background-position:right 0;}
+.ipadFooter{width:100%;height:30px;line-height:30px;color:#4C4C4C;text-align:center;font-size:12px;margin-top:10px;margin-bottom:5px;font-family:Arial;}
+.sliderTxtBot a{text-decoration:none;cursor:default;}
+
+/*======== scrollMap end =======*/
+
+/*======== padFooter start =========*/
+.padFooter{background:#131216;height:50px;line-height:50px;width:100%;margin-top:20px;}
+.padFooter .padFinfor{padding:0 30px 0 15px;color:#888;}
+.padFooter .padFinfor a{padding:0 15px;}
+.padFooter .padFinfor a:link,.padFooter .padFinfor a:visited,.padFooter .padFinfor a:hover{color:#888;};
+/*======== padFooter end =========*/

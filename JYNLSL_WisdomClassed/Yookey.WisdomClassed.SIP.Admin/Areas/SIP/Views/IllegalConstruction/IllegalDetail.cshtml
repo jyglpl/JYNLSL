@@ -1,0 +1,1357 @@
+﻿@using Yookey.WisdomClassed.SIP.Model.IllegalConstruction;
+@using Yookey.WisdomClassed.SIP.Common
+@{
+    ViewBag.Title = "IllegalDetail";
+    @model IllegalCaseInfoEntity
+    IllegalCaseVerifyEntity VerityEntity = ViewBag.verityEntity;
+    IllegalCaseRemoveEntity RemoveEntity = ViewBag.removeEntity;
+    var LeadStartIdea = ViewData["FlowStartIdea"] as List<CrmIdeaListEntity>;
+    var LeadIdea = ViewData["FlowIdea"] as List<CrmIdeaListEntity>;
+    var filePath = AppConfig.FileViewLink;
+}
+@using Yookey.WisdomClassed.SIP.Model.Crm;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>案件详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    @*    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />*@
+    <!--框架必需end-->
+    <link href="@Url.Content("~/Librarys/css/chosen.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/css/sipac.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/common.css")" rel="stylesheet" />
+    @*<script type="text/javascript" src="@Url.Content("~/Librarys/js/jquery-1.9.1.min.js")"></script>*@
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/chosen.jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/main.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+</head>
+<body>
+    <!-- Wrap all page content here -->
+    <div class="sipac_wrap">
+        <div class="sipac_body">
+            <div class="sipac_container mf0">
+                <div class="s_cont_box">
+                    @if (!string.IsNullOrEmpty(ViewBag.Module))
+                    {
+                        if (ViewBag.Module == "Detail")
+                        {
+                        <div class="s_cont_tit">
+                            @*<h1>案件基本详情</h1>*@
+                            <div class="s_sb_cont sipac_editbox sipac_form no_border wd8">
+                                <table>
+                                    <tr>
+                                        <th>上报人：</th>
+                                        <td>@Html.TextBoxFor(x => x.REPORT_NAME, new { @class = "s_input", @readonly = "readonly" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>联系电话：</th>
+                                        <td>@Html.TextBoxFor(x => x.REPORT_PHONE, new { @class = "s_input", @readonly = "readonly" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>问题来源：</th>
+                                        <td>
+                                            @Html.DropDownListFor(x => x.CASE_SOURCES, (ViewData["Sources"] as IEnumerable<SelectListItem>), new { @class = "s_select", @style = "width:250px;", disabled = "disabled" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>上报时间：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.REPORT_CASE_DATE, new { @class = "s_input", @readonly = "readonly", Value = Convert.ToDateTime(Model.REPORT_CASE_DATE).ToString("yyyy-MM-dd") })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>所属部门</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.ZF_DEPT_NAME, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>承办人</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.HANDLE_NAME, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>所属区域</th>
+                                        <td>接入城方地图
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>问题描述：</th>
+                                        <td>
+                                            @Html.TextAreaFor(x => x.CASE_FACT, new { @class = "s_textarea", @style = "width:90%", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>地址描述：</th>
+                                        <td>
+                                            @Html.TextAreaFor(x => x.DETAIL_ADDRESS, new { @class = "s_textarea", @style = "width:90%", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>附件：</th>
+                                        <td>
+                                            @Html.Action("FilesTab", "FileUpload", new { resourceId = Model.ID, evtache = "case", isupload = "true", istime = "false" })
+                                        </td>
+                                    </tr>
+                                    @if (Model.CASE_STATUS == "0")
+                                    {
+                                        <tr class="trsave">
+                                            <th></th>
+                                            <td class="s_sb_bar">
+                                                <button class="sipac_btn s_b_submit" onclick="handle('Verify');">核实认定</button>
+                                            </td>
+                                        </tr> 
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                        }
+                        if (ViewBag.Module == "Verify")
+                        {
+                        <div class="s_cont_tit">
+                            @*<h1>核实认定</h1>*@
+                            <div class="s_sb_cont sipac_editbox sipac_form no_border wd8">
+                                <table>
+                                    <tr>
+                                        <th>长：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => VerityEntity.LONG, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>宽：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => VerityEntity.WIDE, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>高：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => VerityEntity.HIGH, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>违建类型：</th>
+                                        <td>
+                                            @Html.DropDownListFor(x => VerityEntity.BUILDTYPEID, (ViewData["BuildType"] as IEnumerable<SelectListItem>), new { @class = "s_select", @style = "width:250px;", disabled = "disabled" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>违建结构：</th>
+                                        <td>
+                                            @Html.DropDownListFor(x => VerityEntity.STRUCTUREID, (ViewData["Structure"] as IEnumerable<SelectListItem>), new { @class = "s_select", @style = "width:250px;", disabled = "disabled" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>违建处数：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => VerityEntity.COVERSAREA, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>违建面积：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => VerityEntity.BUILDAREA, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>现场照片：</th>
+                                        <td>
+                                            @Html.Action("FilesTab", "FileUpload", new { resourceId = Model.ID, evtache = "verify", isupload = "true", istime = "false" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>备注描述：</th>
+                                        <td>
+                                            @Html.TextAreaFor(x => VerityEntity.DESCRIBE, new { @class = "s_textarea", @style = "width:91%", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>核实时间：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => VerityEntity.VERIFYTIME, new { @class = "s_input", @readonly = "readonly", Value = Convert.ToDateTime(VerityEntity.VERIFYTIME).ToString("yyyy-MM-dd") })
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>核实结果：</th>
+                                        <td>
+                                            @Html.TextAreaFor(x => VerityEntity.VERIFYRESULTS, new { @class = "s_textarea", @style = "width:91%", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    @if (VerityEntity.VERIFYSTATE == "1")
+                                    {
+                                        <tr>
+                                            <th>建造时间：</th>
+                                            <td>
+                                                @Html.TextBoxFor(x => VerityEntity.BUILDTIME, new { @class = "s_input", @readonly = "readonly", Value = Convert.ToDateTime(VerityEntity.BUILDTIME).ToString("yyyy-MM-dd") })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) > 0 && Convert.ToInt32(Model.CASE_STATUS) <= 10)
+                                    {
+                                        <tr class="trsave">
+                                            <th></th>
+                                            <td class="s_sb_bar">
+                                                <button class="sipac_btn s_b_submit" onclick="handle('Planning');">规划认定</button>
+                                            </td>
+                                        </tr> 
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                        }
+                        if (ViewBag.Module == "Planning")
+                        {
+                        <div class="s_cont_tit">
+                            @*<h1>规划认定</h1>*@
+                            <div class="s_sb_cont sipac_editbox sipac_form no_border wd8">
+                                <table>
+                                    <tr>
+                                        <th style="width: 15% !important;">查档材料：</th>
+                                        <td>
+                                            @Html.Action("FilesTab", "FileUpload", new { resourceId = Model.ID, evtache = "whthin", isupload = "true", istime = "true" })
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <th style="width: 15% !important;">停止违法行为通知书材料：</th>
+                                        <td>
+                                            @Html.Action("FilesTab", "FileUpload", new { resourceId = Model.ID, evtache = "stop", isupload = "true", istime = "true" })
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <th style="width: 15% !important;">规划认定材料：</th>
+                                        <td>
+                                            @Html.Action("FilesTab", "FileUpload", new { resourceId = Model.ID, evtache = "planning", isupload = "true", istime = "false" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 15% !important;">认定时间：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.PLAN_CUTOFF_DATE, new { @class = "s_input", @readonly = "readonly", Value = Convert.ToDateTime(Model.PLAN_CUTOFF_DATE).ToString("yyyy-MM-dd") })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 15% !important;">认定编号：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.PLAN_FILE_NUMBER, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    @if (ViewBag.IsPlan && (Convert.ToUInt32(Model.CASE_STATUS) > 10 && Convert.ToUInt32(Model.CASE_STATUS) <= 20))
+                                    {
+                                        <tr>
+                                            <th style="width: 15% !important;"></th>
+                                            <td>
+                                                <span class="s_checkbox">
+                                                    <input type="checkbox" class="Illegaltrue">
+                                                    <label>组织拆除</label>
+                                                </span>
+                                                <span class="s_checkbox">
+                                                    <input type="checkbox" class="Illegalfalse">
+                                                    <label>进入行政处罚流程</label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr class="trsave">
+                                            <th></th>
+                                            <td class="s_sb_bar">
+                                                <button class="sipac_btn s_b_submit" style="display: none;" id="btnplan" onclick="handle('Remove');">确定</button>
+                                                <button class="sipac_btn s_b_submit" style="display: none;" id="btnpunish" onclick="planData();">确定</button>
+                                                <button class="sipac_btn s_b_cancel" style="display: none;" id="btncancle" onclick="cancle();">取消</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                        }
+                        if (ViewBag.Module == "Documents")
+                        {
+                        <div class="s_cont_tit">
+                            @*<h1>行政处罚</h1>*@
+                            <div class="s_sb_cont sipac_editbox sipac_form no_border wd8">
+                                <table>
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 21)
+                                    {
+                                        <tr>
+                                            <th>立案审批：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "LASP", isupload = "true", istime = "true" })
+                                                <input type="button" class="sipac_btn s_b_submit" style="float: right; margin-right: 90px;" onclick="upLoadMB('LASP')" value="下载模板" />
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 22)
+                                    {
+                                        <tr>
+                                            <th>当事人笔录或旁证笔录：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "XWBL", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 23)
+                                    {
+                                        <tr>
+                                            <th>测绘报告：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CHBG", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 24)
+                                    {
+                                        <tr>
+                                            <th>集体讨论记录：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "JTTL", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 25)
+                                    {
+                                        <tr>
+                                            <th>法制审核意见：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "FZSHYJ", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 26)
+                                    {
+                                        <tr>
+                                            <th>处理审批意见：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CLSPYJ", isupload = "true", istime = "true" })
+                                                <input type="button" class="sipac_btn s_b_submit" style="float: right; margin-right: 90px;" onclick="upLoadMB('CLSPYJ')" value="下载模板" />
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 27)
+                                    {
+                                        <tr>
+                                            <th>行政处罚告知书：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CFGZS", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 28)
+                                    {
+                                        <tr>
+                                            <th>行政处罚决定书：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CFJDS", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 29)
+                                    {
+                                        <tr>
+                                            <th>申请行政强制文书：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "XZQZS", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 30)
+                                    {
+                                        <tr>
+                                            <th>履行行政处罚催告书：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CFCGS", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 31)
+                                    {
+                                        <tr>
+                                            <th>行政处罚强制决定书：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CFQZJDS", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 32)
+                                    {
+                                        <tr>
+                                            <th>履行行政处罚强制催告书：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CFQZCGS", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 33)
+                                    {
+                                        <tr>
+                                            <th>其他：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "other", isupload = "true", istime = "true" })
+                                                @*@Html.Hidden("hidStatus", "50")*@
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) > 20 && Convert.ToInt32(Model.CASE_STATUS) <= 33)
+                                    {
+                                        <tr class="trsave">
+                                            <th></th>
+                                            <td class="s_sb_bar">
+                                                <button class="sipac_btn s_b_submit" onclick="nextLink();">下一步</button>
+                                                @*<button class="sipac_btn s_b_cancel">取消</button>*@
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) == 34)
+                                    {
+                                        <tr class="trsave">
+                                            <th></th>
+                                            <td class="s_sb_bar">
+                                                <button class="sipac_btn s_b_submit" onclick="handle('Remove');">组织拆除</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div> 
+                        }
+                        if (ViewBag.Module == "Remove")
+                        {
+                        <div class="s_cont_tit">
+                            @*<h1>组织拆除</h1>*@
+                            <div class="s_sb_cont sipac_editbox sipac_form no_border wd8">
+                                <table>
+                                    <tr>
+                                        <th>附件材料：</th>
+                                        <td>
+                                            @Html.Action("FilesTab", "FileUpload", new { resourceId = Model.ID, evtache = "remove", isupload = "true", istime = "false" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>拆除状态：</th>
+                                        <td>
+                                            @Html.DropDownListFor(x => RemoveEntity.REMOVAL_METHOD_ID, (ViewData["Remove"] as IEnumerable<SelectListItem>), new { @class = "s_select", @style = "width:250px;", disabled = "disabled" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>实际拆除面积：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => RemoveEntity.REMOVE_AREA, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>清运垃圾（吨）：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => RemoveEntity.KEEP_GARBAGE, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>全过程索引编号：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => RemoveEntity.REMOVE_NO, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>拆除情况描述：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => RemoveEntity.REMOVE_DESCRIPTION, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>拆除时间：</th>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(RemoveEntity.REMOVE_FINISH_DATE))
+                                            {
+                                                @Html.TextBoxFor(x => RemoveEntity.REMOVE_FINISH_DATE, new { @class = "s_input", Value = Convert.ToDateTime(RemoveEntity.REMOVE_FINISH_DATE).ToString("yyyy-MM-dd"), @readonly = "readonly" })
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBoxFor(x => RemoveEntity.REMOVE_FINISH_DATE, new { @class = "s_input", Value = "", @readonly = "readonly" })
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr class="trsave">
+                                        <th></th>
+                                        <td class="s_sb_bar">
+                                            @if (Convert.ToInt32(Model.CASE_STATUS) == 50 && ViewBag.btnApplay)
+                                            {
+                                                <button class="sipac_btn s_b_submit" onclick="ApplyForFiled('apply', 0, 0)" id="btnApply">申请结案</button>
+                                            }
+                                            @if (ViewBag.BtnAgree)
+                                            {
+                                                <button class="sipac_btn s_b_submit" onclick="ApplyForFiled('agree', 1, 0)">同 意</button>
+                                            }
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        }
+                        if (ViewBag.Module == "End")
+                        {     
+                        <div class="s_cont_tit">
+                            @*<h1>案件基本详情</h1>*@
+                            <div class="s_sb_cont sipac_editbox sipac_form no_border wd8">
+                                <table>
+                                    <tr>
+                                        <th>上报人：</th>
+                                        <td>@Html.TextBoxFor(x => x.REPORT_NAME, new { @class = "s_input", @readonly = "readonly" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>联系电话：</th>
+                                        <td>@Html.TextBoxFor(x => x.REPORT_PHONE, new { @class = "s_input", @readonly = "readonly" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>问题来源：</th>
+                                        <td>
+                                            @Html.DropDownListFor(x => x.CASE_SOURCES, (ViewData["Sources"] as IEnumerable<SelectListItem>), new { @class = "s_select", @style = "width:250px;", disabled = "disabled" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>上报时间：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.REPORT_CASE_DATE, new { @class = "s_input", @readonly = "readonly", Value = Convert.ToDateTime(Model.REPORT_CASE_DATE).ToString("yyyy-MM-dd") })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>所属部门</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.ZF_DEPT_NAME, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>承办人</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.HANDLE_NAME, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>问题描述：</th>
+                                        <td>
+                                            @Html.TextAreaFor(x => x.CASE_FACT, new { @class = "s_textarea", @style = "width:90%", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>地址描述：</th>
+                                        <td>
+                                            @Html.TextAreaFor(x => x.DETAIL_ADDRESS, new { @class = "s_textarea", @style = "width:90%", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    @if (LeadStartIdea.Any())
+                                    {
+                                        <tr>
+                                            <th>承办人意见：</th>
+                                            <td>
+
+                                                <textarea class="s_textarea" style="width: 90%">@(LeadStartIdea[0].Idea)</textarea>
+                                                <div style="text-align: right; width: 90%;">
+                                                    <span>签字：</span>
+                                                    <span style="display: inline-block; width: 120px; border-bottom: 1px solid #ccc; text-align: left">@(LeadStartIdea[0].UserName)</span>
+                                                    <span>日期：</span>
+                                                    <span style="display: inline-block; width: 120px; border-bottom: 1px solid #ccc; text-align: left">@(Convert.ToDateTime(LeadStartIdea[0].CreateOn).ToString("yyyy-MM-dd"))</span>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (LeadIdea.Any())
+                                    {
+                                        <tr>
+                                            <th>中队意见：</th>
+                                            <td>
+
+                                                <textarea class="s_textarea" style="width: 55%">@(LeadIdea[0].Idea)</textarea>
+                                                <div style="text-align: right; width: 55%;">
+                                                    <span>签字：</span>
+                                                    <span style="display: inline-block; width: 120px; border-bottom: 1px solid #ccc; text-align: left">@(LeadIdea[0].UserName)</span>
+                                                    <span>日期：</span>
+                                                    <span style="display: inline-block; width: 120px; border-bottom: 1px solid #ccc; text-align: left">@(Convert.ToDateTime(LeadIdea[0].CreateOn).ToString("yyyy-MM-dd"))</span>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                    <tr class="trsave">
+                                        <th></th>
+                                        <td class="s_sb_bar">
+                                            @if (Convert.ToInt32(Model.CASE_STATUS) == 50 && ViewBag.btnApplay)
+                                            {
+                                                <button class="sipac_btn s_b_submit" onclick="ApplyForFiled('apply', 0, 0)" id="btnApply">申请结案</button>
+                                            }
+                                            @if (ViewBag.BtnAgree)
+                                            {
+                                                <button class="sipac_btn s_b_submit" onclick="ApplyForFiled('agree', 1, 0)">同 意</button>
+                                            }
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>                
+                        
+                        
+                        
+                        }
+                    }
+                    else
+                    {
+                        if ((Convert.ToUInt32(Model.CASE_STATUS) == 0))
+                        {
+                        <div class="s_cont_tit">
+                            @*<h1>案件基本详情</h1>*@
+                            <div class="s_sb_cont sipac_editbox sipac_form no_border wd8">
+                                <table>
+                                    <tr>
+                                        <th>上报人：</th>
+                                        <td>@Html.TextBoxFor(x => x.REPORT_NAME, new { @class = "s_input", @readonly = "readonly" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>联系电话：</th>
+                                        <td>@Html.TextBoxFor(x => x.REPORT_PHONE, new { @class = "s_input", @readonly = "readonly" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>问题来源：</th>
+                                        <td>
+                                            @Html.DropDownListFor(x => x.CASE_SOURCES, (ViewData["Sources"] as IEnumerable<SelectListItem>), new { @class = "s_select", @style = "width:250px;", disabled = "disabled" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>上报时间：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.REPORT_CASE_DATE, new { @class = "s_input", @readonly = "readonly", Value = Convert.ToDateTime(Model.REPORT_CASE_DATE).ToString("yyyy-MM-dd") })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>所属部门</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.ZF_DEPT_NAME, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>承办人</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.HANDLE_NAME, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>所属区域</th>
+                                        <td>接入城方地图
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>问题描述：</th>
+                                        <td>
+                                            @Html.TextAreaFor(x => x.CASE_FACT, new { @class = "s_textarea", @style = "width:90%", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>地址描述：</th>
+                                        <td>
+                                            @Html.TextAreaFor(x => x.DETAIL_ADDRESS, new { @class = "s_textarea", @style = "width:90%", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>附件：</th>
+                                        <td>
+                                            @Html.Action("FilesTab", "FileUpload", new { resourceId = Model.ID, evtache = "case", isupload = "true", istime = "false" })
+                                        </td>
+                                    </tr>
+                                    @if (Model.CASE_STATUS == "0")
+                                    {
+                                        <tr class="trsave">
+                                            <th></th>
+                                            <td class="s_sb_bar">
+                                                <button class="sipac_btn s_b_submit" onclick="handle('Verify');">核实认定</button>
+                                            </td>
+                                        </tr> 
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                        }
+                        if ((Convert.ToUInt32(Model.CASE_STATUS) > 0 && Convert.ToUInt32(Model.CASE_STATUS) <= 10))
+                        {
+                        <div class="s_cont_tit">
+                            @*<h1>核实认定</h1>*@
+                            <div class="s_sb_cont sipac_editbox sipac_form no_border wd8">
+                                <table>
+                                    <tr>
+                                        <th>长：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => VerityEntity.LONG, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>宽：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => VerityEntity.WIDE, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>高：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => VerityEntity.HIGH, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>违建类型：</th>
+                                        <td>
+                                            @Html.DropDownListFor(x => VerityEntity.BUILDTYPEID, (ViewData["BuildType"] as IEnumerable<SelectListItem>), new { @class = "s_select", @style = "width:250px;", disabled = "disabled" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>违建结构：</th>
+                                        <td>
+                                            @Html.DropDownListFor(x => VerityEntity.STRUCTUREID, (ViewData["Structure"] as IEnumerable<SelectListItem>), new { @class = "s_select", @style = "width:250px;", disabled = "disabled" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>违建处数：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => VerityEntity.COVERSAREA, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>违建面积：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => VerityEntity.BUILDAREA, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>现场照片：</th>
+                                        <td>
+                                            @Html.Action("FilesTab", "FileUpload", new { resourceId = Model.ID, evtache = "verify", isupload = "true", istime = "false" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>备注描述：</th>
+                                        <td>
+                                            @Html.TextAreaFor(x => VerityEntity.DESCRIBE, new { @class = "s_textarea", @style = "width:91%", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>核实时间：</th>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(VerityEntity.VERIFYTIME))
+                                            {
+                                                @Html.TextBoxFor(x => VerityEntity.VERIFYTIME, new { @class = "s_input", @readonly = "readonly", Value = Convert.ToDateTime(VerityEntity.VERIFYTIME).ToString("yyyy-MM-dd") })
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBoxFor(x => VerityEntity.VERIFYTIME, new { @class = "s_input", @readonly = "readonly", Value = "" })
+                                            }
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>核实结果：</th>
+                                        <td>
+                                            @Html.TextAreaFor(x => VerityEntity.VERIFYRESULTS, new { @class = "s_textarea", @style = "width:91%", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    @if (VerityEntity.VERIFYSTATE == "1")
+                                    {
+                                        <tr>
+                                            <th>建造时间：</th>
+                                            <td>
+                                                @Html.TextBoxFor(x => VerityEntity.BUILDTIME, new { @class = "s_input", @readonly = "readonly", Value = Convert.ToDateTime(VerityEntity.BUILDTIME).ToString("yyyy-MM-dd") })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) > 0 && Convert.ToInt32(Model.CASE_STATUS) <= 10)
+                                    {
+                                        <tr class="trsave">
+                                            <th></th>
+                                            <td class="s_sb_bar">
+                                                <button class="sipac_btn s_b_submit" onclick="handle('Planning');">规划认定</button>
+                                            </td>
+                                        </tr> 
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                        }
+                        if ((Convert.ToUInt32(Model.CASE_STATUS) > 10 && Convert.ToUInt32(Model.CASE_STATUS) <= 20))
+                        {
+                        <div class="s_cont_tit">
+                            @*<h1>规划认定</h1>*@
+                            <div class="s_sb_cont sipac_editbox sipac_form no_border wd8">
+                                <table>
+                                    <tr>
+                                        <th style="width: 15% !important;">查档材料：</th>
+                                        <td>
+                                            @Html.Action("FilesTab", "FileUpload", new { resourceId = Model.ID, evtache = "whthin", isupload = "true", istime = "true" })
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <th style="width: 15% !important;">停止违法行为通知书材料：</th>
+                                        <td>
+                                            @Html.Action("FilesTab", "FileUpload", new { resourceId = Model.ID, evtache = "stop", isupload = "true", istime = "true" })
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <th style="width: 15% !important;">规划认定材料：</th>
+                                        <td>
+                                            @Html.Action("FilesTab", "FileUpload", new { resourceId = Model.ID, evtache = "planning", isupload = "true", istime = "false" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 15% !important;">认定时间：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.PLAN_CUTOFF_DATE, new { @class = "s_input", @readonly = "readonly", Value = Convert.ToDateTime(Model.PLAN_CUTOFF_DATE).ToString("yyyy-MM-dd") })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 15% !important;">认定编号：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.PLAN_FILE_NUMBER, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    @if (ViewBag.IsPlan && (Convert.ToUInt32(Model.CASE_STATUS) > 10 && Convert.ToUInt32(Model.CASE_STATUS) <= 20))
+                                    {
+                                        <tr>
+                                            <th style="width: 15% !important;"></th>
+                                            <td>
+                                                <span class="s_checkbox">
+                                                    <input type="checkbox" class="Illegaltrue">
+                                                    <label>组织拆除</label>
+                                                </span>
+                                                <span class="s_checkbox">
+                                                    <input type="checkbox" class="Illegalfalse">
+                                                    <label>进入行政处罚流程</label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr class="trsave">
+                                            <th></th>
+                                            <td class="s_sb_bar">
+                                                <button class="sipac_btn s_b_submit" style="display: none;" id="btnplan" onclick="handle('Remove');">确定</button>
+                                                <button class="sipac_btn s_b_submit" style="display: none;" id="btnpunish" onclick="planData();">确定</button>
+                                                <button class="sipac_btn s_b_cancel" style="display: none;" id="btncancle" onclick="cancle();">取消</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                        }
+                        if ((Convert.ToUInt32(Model.CASE_STATUS) > 20 && Convert.ToUInt32(Model.CASE_STATUS) < 50 && Convert.ToUInt32(Model.ISPUNISH) == 1))
+                        {
+                        <div class="s_cont_tit">
+                            @*<h1>行政处罚</h1>*@
+                            <div class="s_sb_cont sipac_editbox sipac_form no_border wd8">
+                                <table>
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 21)
+                                    {
+                                        <tr>
+                                            <th>立案审批：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "LASP", isupload = "true", istime = "true" })
+                                                <input type="button" class="sipac_btn s_b_submit" style="float: right; margin-right: 90px;" onclick="upLoadMB('LASP')" value="下载模板" />
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 22)
+                                    {
+                                        <tr>
+                                            <th>当事人笔录或旁证笔录：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "XWBL", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 23)
+                                    {
+                                        <tr>
+                                            <th>测绘报告：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CHBG", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 24)
+                                    {
+                                        <tr>
+                                            <th>集体讨论记录：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "JTTL", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 25)
+                                    {
+                                        <tr>
+                                            <th>法制审核意见：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "FZSHYJ", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 26)
+                                    {
+                                        <tr>
+                                            <th>处理审批意见：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CLSPYJ", isupload = "true", istime = "true" })
+                                                <input type="button" class="sipac_btn s_b_submit" style="float: right; margin-right: 90px;" onclick="upLoadMB('CLSPYJ')" value="下载模板" />
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 27)
+                                    {
+                                        <tr>
+                                            <th>行政处罚告知书：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CFGZS", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 28)
+                                    {
+                                        <tr>
+                                            <th>行政处罚决定书：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CFJDS", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 29)
+                                    {
+                                        <tr>
+                                            <th>申请行政强制文书：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "XZQZS", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 30)
+                                    {
+                                        <tr>
+                                            <th>履行行政处罚催告书：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CFCGS", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 31)
+                                    {
+                                        <tr>
+                                            <th>行政处罚强制决定书：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CFQZJDS", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 32)
+                                    {
+                                        <tr>
+                                            <th>履行行政处罚强制催告书：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "CFQZCGS", isupload = "true", istime = "true" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) >= 33)
+                                    {
+                                        <tr>
+                                            <th>其他：</th>
+                                            <td>
+                                                @Html.Action("FilesTab", "FileUpload", new { resourceId = ViewBag.Id, evtache = "other", isupload = "true", istime = "true" })
+                                                @*@Html.Hidden("hidStatus", "50")*@
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) > 20 && Convert.ToInt32(Model.CASE_STATUS) <= 33)
+                                    {
+                                        <tr class="trsave">
+                                            <th></th>
+                                            <td class="s_sb_bar">
+                                                <button class="sipac_btn s_b_submit" onclick="nextLink();">下一步</button>
+                                                @*<button class="sipac_btn s_b_cancel">取消</button>*@
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (Convert.ToInt32(Model.CASE_STATUS) == 34)
+                                    {
+                                        <tr class="trsave">
+                                            <th></th>
+                                            <td class="s_sb_bar">
+                                                <button class="sipac_btn s_b_submit" onclick="handle('Remove');">组织拆除</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div> 
+                        }
+                        //if ((Convert.ToUInt32(Model.CASE_STATUS) >= 50 && Convert.ToUInt32(Model.CASE_STATUS) < 90))
+                        if ((Convert.ToUInt32(Model.CASE_STATUS) == 50))
+                        {
+                        <div class="s_cont_tit">
+                            @*<h1>组织拆除</h1>*@
+                            <div class="s_sb_cont sipac_editbox sipac_form no_border wd8">
+                                <table>
+                                    <tr>
+                                        <th>附件材料：</th>
+                                        <td>
+                                            @Html.Action("FilesTab", "FileUpload", new { resourceId = Model.ID, evtache = "remove", isupload = "true", istime = "false" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>拆除状态：</th>
+                                        <td>
+                                            @Html.DropDownListFor(x => RemoveEntity.REMOVAL_METHOD_ID, (ViewData["Remove"] as IEnumerable<SelectListItem>), new { @class = "s_select", @style = "width:250px;", disabled = "disabled" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>实际拆除面积：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => RemoveEntity.REMOVE_AREA, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>清运垃圾（吨）：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => RemoveEntity.KEEP_GARBAGE, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>全过程索引编号：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => RemoveEntity.REMOVE_NO, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>拆除情况描述：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => RemoveEntity.REMOVE_DESCRIPTION, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>拆除时间：</th>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(RemoveEntity.REMOVE_FINISH_DATE))
+                                            {
+                                                @Html.TextBoxFor(x => RemoveEntity.REMOVE_FINISH_DATE, new { @class = "s_input", Value = Convert.ToDateTime(RemoveEntity.REMOVE_FINISH_DATE).ToString("yyyy-MM-dd"), @readonly = "readonly" })
+                                            }
+                                            else
+                                            {@Html.TextBoxFor(x => RemoveEntity.REMOVE_FINISH_DATE, new { @class = "s_input", Value = "", @readonly = "readonly" })
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr class="trsave">
+                                        <th></th>
+                                        <td class="s_sb_bar">
+                                            @if (Convert.ToInt32(Model.CASE_STATUS) == 50 && ViewBag.btnApplay)
+                                            {
+                                                <button class="sipac_btn s_b_submit" onclick="ApplyForFiled('apply', 0, 0)" id="btnApply">申请结案</button>
+                                            }
+                                            @if (ViewBag.BtnAgree)
+                                            {
+                                                <button class="sipac_btn s_b_submit" onclick="ApplyForFiled('agree', 1, 0)">同 意</button>
+                                            }
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        }
+                        if ((Convert.ToUInt32(Model.CASE_STATUS) > 50))
+                        {     
+                        <div class="s_cont_tit">
+                            @*<h1>案件基本详情</h1>*@
+                            <div class="s_sb_cont sipac_editbox sipac_form no_border wd8">
+                                <table>
+                                    <tr>
+                                        <th>上报人：</th>
+                                        <td>@Html.TextBoxFor(x => x.REPORT_NAME, new { @class = "s_input", @readonly = "readonly" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>联系电话：</th>
+                                        <td>@Html.TextBoxFor(x => x.REPORT_PHONE, new { @class = "s_input", @readonly = "readonly" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>问题来源：</th>
+                                        <td>
+                                            @Html.DropDownListFor(x => x.CASE_SOURCES, (ViewData["Sources"] as IEnumerable<SelectListItem>), new { @class = "s_select", @style = "width:250px;", disabled = "disabled" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>上报时间：</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.REPORT_CASE_DATE, new { @class = "s_input", @readonly = "readonly", Value = Convert.ToDateTime(Model.REPORT_CASE_DATE).ToString("yyyy-MM-dd") })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>所属部门</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.ZF_DEPT_NAME, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>承办人</th>
+                                        <td>
+                                            @Html.TextBoxFor(x => x.HANDLE_NAME, new { @class = "s_input", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>问题描述：</th>
+                                        <td>
+                                            @Html.TextAreaFor(x => x.CASE_FACT, new { @class = "s_textarea", @style = "width:90%", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>地址描述：</th>
+                                        <td>
+                                            @Html.TextAreaFor(x => x.DETAIL_ADDRESS, new { @class = "s_textarea", @style = "width:90%", @readonly = "readonly" })
+                                        </td>
+                                    </tr>
+                                    @if (LeadStartIdea.Any())
+                                    {
+                                        <tr>
+                                            <th>承办人意见：</th>
+                                            <td>
+
+                                                <textarea class="s_textarea" style="width: 90%">@(LeadStartIdea[0].Idea)</textarea>
+                                                <div style="text-align: right; width: 90%;">
+                                                    <span>签字：</span>
+                                                    <span style="display: inline-block; width: 120px; border-bottom: 1px solid #ccc; text-align: left">@(LeadStartIdea[0].UserName)</span>
+                                                    <span>日期：</span>
+                                                    <span style="display: inline-block; width: 120px; border-bottom: 1px solid #ccc; text-align: left">@(Convert.ToDateTime(LeadStartIdea[0].CreateOn).ToString("yyyy-MM-dd"))</span>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (LeadIdea.Any())
+                                    {
+                                        <tr>
+                                            <th>中队意见：</th>
+                                            <td>
+
+                                                <textarea class="s_textarea" style="width: 55%">@(LeadIdea[0].Idea)</textarea>
+                                                <div style="text-align: right; width: 55%;">
+                                                    <span>签字：</span>
+                                                    <span style="display: inline-block; width: 120px; border-bottom: 1px solid #ccc; text-align: left">@(LeadIdea[0].UserName)</span>
+                                                    <span>日期：</span>
+                                                    <span style="display: inline-block; width: 120px; border-bottom: 1px solid #ccc; text-align: left">@(Convert.ToDateTime(LeadIdea[0].CreateOn).ToString("yyyy-MM-dd"))</span>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    }
+
+                                    <tr class="trsave">
+                                        <th></th>
+                                        <td class="s_sb_bar">
+                                            @if (Convert.ToInt32(Model.CASE_STATUS) == 50 && ViewBag.btnApplay)
+                                            {
+                                                <button class="sipac_btn s_b_submit" onclick="ApplyForFiled('apply', 0, 0)" id="btnApply">申请结案</button>
+                                            }
+                                            @if (ViewBag.BtnAgree)
+                                            {
+                                                <button class="sipac_btn s_b_submit" onclick="ApplyForFiled('agree', 1, 0)">同 意</button>
+                                            }
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>                
+                        
+                        
+                        
+                        
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+
+    var id = "@ViewBag.Id";
+    var title = ""
+
+    //模板下载
+    function upLoadMB(obj) {
+        var url = "@AppConfig.FileViewLink";
+        if (obj == "LASP") {
+            url = url + "Template/违建立案审批表.doc";
+            window.open(url);
+        }
+        else if (obj == "CLSPYJ") {
+            url = url + "Template/违建处理审批表.doc";
+            window.open(url);
+        };
+    };
+
+    function handle(obj) {
+        var url = "";
+        if (obj == "Verify") {
+            url = '@Url.Action("IllegalVerify", "IllegalConstruction")?Pk_Id=' + id;
+            title = "核实认定";
+        }
+        else if (obj == "Planning") {
+            url = '@Url.Action("IllegalPlanning", "IllegalConstruction")?Pk_Id=' + id;
+            title = "规划认定";
+        }
+        else if (obj == "Remove") {
+            url = '@Url.Action("IllegalRemove", "IllegalConstruction")?Pk_Id=' + id;
+                title = "组织拆除";
+            }
+    var width = $(window).width();
+    width = width - (width * 0.1);
+    var height = $(window).height();
+    top.$.dialog({
+        id: "Dialog",
+        lock: true,
+        title: title,
+        max: false,
+        min: false,
+        width: 1200,
+        height: height,
+        content: 'url:' + url
+    });
+}
+
+
+//=================案件审批======================
+//结案审批
+var worklistid = '@ViewBag.WorkListId';
+    function ApplyForFiled(htype, isloadOp, isFaster) {
+        var formId = '@ViewBag.Id';
+        var url = '@Url.Action("IllegalWorkFlow", "WorkFlow", new { Area = "" })?formId=' + formId + '&flowName=违建结案审批&eType=' + htype + '&worklistId=' + worklistid + '&isloadOp=' + isloadOp + '&isFaster=' + isFaster + '&hidden=false';
+        url = encodeURI(url);
+        var width = 500;
+        var height = 300;
+        top.$.dialog({
+            id: "WorkFlow", width: width, height: height, lock: true, max: false, resize: false, extendDrag: true,
+            title: "案件审批",
+            content: 'url:' + url,
+            button: [
+                {
+                    name: '确 定',
+                    className: 'green',
+                    callback: function () {
+                        top.frames["WorkFlow"].AcceptClick('MainDialog');
+                        return true;
+                    }
+                }, { name: '关 闭' }
+            ]
+        });
+    }
+
+
+    function nextLink() {
+        var updata = "";
+        var hidStatus = $("#hidStatus").val();
+        var status = '@ViewBag.Status';
+        if (status == "21") {
+            var Lasp = $("#LASPuploadTime").val();
+            if (Lasp == "") {
+                tipDialog('请输入立案审批日期！', 2, 0);
+                return;
+            }
+            updata = Lasp;
+        }
+        else if (status == "28") {
+            var Cfjd = $("#CFJDSuploadTime").val();
+            if (Cfjd == "") {
+                tipDialog('请输入处罚决定日期！', 2, 0);
+                return;
+            }
+            updata = Cfjd;
+        }
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: "@Url.Action("UpdateNextIllegalCase", "IllegalConstruction")",
+            data: { Pk_Id: '@ViewBag.Id', hidStatus: hidStatus, status: status, updata: updata },
+            datatype: 'json',
+            success: function (data) {
+                if (data.rtState == 1) {
+                    if (status == "35") {
+                        //window.location.href = "@Url.Action("IllegalRemove", "IllegalConstruction")?Pk_Id=" + '@ViewBag.CaseInfoNo';
+                        var api = frameElement.api, w = api.opener;
+                        api.get('MainDialog').location.reload();
+                    } else {
+                        window.location.reload();
+                    }
+                }
+            }
+        });
+    }
+
+
+    $(".Illegaltrue").click(function () {
+        $(this).attr('checked', 'checked');
+        $(".Illegalfalse").removeAttr('checked');
+        $("#btnplan").css("display", "block");
+        $("#btnpunish").css("display", "none");
+        $("#btncancle").css("display", "block");
+    });
+    $(".Illegalfalse").click(function () {
+        $(this).attr('checked', 'checked');
+        $(".Illegaltrue").removeAttr('checked');
+        $("#btnplan").css("display", "none");
+        $("#btnpunish").css("display", "block");
+        $("#btncancle").css("display", "block");
+    });
+
+
+    function planData() {
+        var txtPlanTime = $("#PLAN_CUTOFF_DATE").val();
+        var txtPlanNo = $("#PLAN_FILE_NUMBER").val();
+        var isPunish = "";
+        if ($(".Illegaltrue").attr('checked') == "checked") {
+            isPunish = 0;
+        }
+        else {
+            isPunish = 1;
+        }
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: "@Url.Action("SubmitPlanData", "IllegalConstruction")",
+            data: { CaseId: '@ViewBag.Id', txtPlanTime: txtPlanTime, txtPlanNo: txtPlanNo, isPunish: isPunish },
+            datatype: 'json',
+            success: function (data) {
+                if (data.rtState == 1) {
+                    if (isPunish == "0") {
+                        tipDialog("进入组织拆除！", 2, 2);
+                        window.location.reload();
+                    }
+                    else {
+                        tipDialog("进入行政处罚流程！", 2, 2);
+                        window.location.reload();
+                    }
+                }
+                else {
+                    //tipDialog("规划认定成功！", 2, 1);
+                }
+            }
+        });
+    }
+</script>
+</html>
+
+
+
