@@ -19,10 +19,18 @@
         <div class="layui-form-item">
             <label class="layui-form-label">通告标题:</label>
             <div class="layui-input-block">
-                <input name="title" class="layui-input" type="text" placeholder="请输入标题" autocomplete="off" lay-verify="title">
+                <input name="title" class="layui-input" type="text"  placeholder="请输入标题" autocomplete="off" lay-verify="title">
             </div>
         </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">附件:</label>
+            <div class="layui-input-block">
 
+                <button type="button" class="layui-btn layui-btn-normal" id="fileupload">选择</button>
+                <label id="filename" name="filename"></label>
+                <input name="filepath" id="filepath" hidden="true"/>
+            </div>
+        </div>
 
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">编辑器</label>
@@ -44,9 +52,9 @@
     <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
 
-    layui.use(['form', 'layedit', 'laydate'],
+    layui.use(['form', 'layedit', 'laydate','upload'],
         function() {
-            var form = layui.form, layer = layui.layer, layedit = layui.layedit, $ = layui.jquery;
+            var form = layui.form, layer = layui.layer, layedit = layui.layedit, $ = layui.jquery, upload = layui.upload;;
             var index = parent.layer.getFrameIndex(window.name);
 
             //创建一个编辑器
@@ -83,6 +91,17 @@
                     });
                     return false;
                 });
+
+
+
+            upload.render({
+                elem: '#fileupload'
+                ,url: '@Url.Action("UploadFile", "OA")'
+                , done: function (res) {
+                    
+                    layer.alert(res.src)
+                }
+            });
 
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -30,6 +31,68 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
             return View();
         }
 
+        /// <summary>
+        /// 文件上传
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult UploadFile()
+        {
+            try
+            {
+                var file = Request.Files[0]; //获取选中文件  
+                var filecombin = file.FileName.Split('.');
+                if (file == null || String.IsNullOrEmpty(file.FileName) || file.ContentLength == 0 || filecombin.Length < 2)
+                {
+                    return Json(new
+                    {
+                        fileid = 0,
+                        src = "",
+                        name = "",
+                        msg = "上传出错 请检查文件名 或 文件内容"
+                    });
+                }
+                //定义本地路径位置
+                string local = "Upload\\Contract";
+                string filePathName = string.Empty;
+                string localPath = Path.Combine(HttpRuntime.AppDomainAppPath, local);
+
+                var tmpName = Server.MapPath("~/Upload/Contract/");
+                var tmp = file.FileName;
+                var tmpIndex = 0;
+                //判断是否存在相同文件名的文件 相同累加1继续判断
+                while (System.IO.File.Exists(tmpName + tmp))
+                {
+                    tmp = filecombin[0] + "_" + ++tmpIndex + "." + filecombin[1];
+                }
+
+                //不带路径的最终文件名
+                filePathName = tmp;
+
+                if (!System.IO.Directory.Exists(localPath))
+                    System.IO.Directory.CreateDirectory(localPath);
+                string localURL = Path.Combine(local, filePathName);
+                file.SaveAs(Path.Combine(localPath, filePathName));   //保存图片（文件夹）
+                return Json(new
+                {
+                    code = 0,
+                    src = localURL.Trim().Replace("\\", "|"),
+                    name = Path.GetFileNameWithoutExtension(file.FileName),   // 获取文件名不含后缀名
+                    msg = "上传成功"
+                });
+            }
+            catch { }
+            return Json(new
+            {
+               
+                src = "",
+                name = "",   // 获取文件名不含后缀名
+                msg = "上传出错"
+            });
+        }
+
+
+
+        
         /// <summary>
         /// 获取公告通知表数据
         /// add by lpl
@@ -67,6 +130,9 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
         {
             return "1";
         }
+
+
+       
 
     }
 }
