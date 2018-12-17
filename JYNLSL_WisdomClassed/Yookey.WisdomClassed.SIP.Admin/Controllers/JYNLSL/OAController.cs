@@ -7,9 +7,11 @@ using System.Web.Mvc;
 using System.Web.Services;
 using Newtonsoft.Json;
 using Yookey.WisdomClassed.SIP.Admin.Models;
+using Yookey.WisdomClassed.SIP.Business.Crm;
 using Yookey.WisdomClassed.SIP.Business.OA;
 using Yookey.WisdomClassed.SIP.DataAccess.OA;
 using Yookey.WisdomClassed.SIP.Model.Base;
+using Yookey.WisdomClassed.SIP.Model.Crm;
 using Yookey.WisdomClassed.SIP.Model.OA;
 
 namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
@@ -119,20 +121,59 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
                 count = pagecount,
                 data = data
             };
-            string temp = JsonConvert.SerializeObject(result);
+
             return JsonConvert.SerializeObject(result);
 
         }
 
 
-   
-        public string AddDoc(string title,string content)
+
+        /// <summary>
+        /// 添加通告
+        /// add by lpl
+        /// 2018-12-17
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="content">内容</param>
+        /// <param name="sendname">发送人</param>
+        /// <param name="iszd">是否置顶</param>
+        /// <param name="filepath">附件路径</param>
+        /// <param name="tglx">通告类型</param>
+        /// <returns></returns>
+        public string AddDoc(string title,string content, string sendname,string iszd,string filepath,string tglx)
         {
-            return "1";
+            DocumentNotificationEntity entity = new DocumentNotificationEntity()
+            {
+                Id=Guid.NewGuid().ToString(),
+                Title = title,
+
+            
+
+                
+            };
+
+            if (new DocumentNotificationBll().Insert(entity))
+            {
+                return "1";
+            }
+            else
+            {
+                return "0";
+            }
+
+
         }
 
-
-       
+        /// <summary>
+        /// 绑定接收人
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult BindUser(string id)
+        {
+            List<CrmUserEntity> department = new CrmUserBll().GetAllUsers();
+            return Json(department, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

@@ -494,10 +494,10 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.Crm
                 if (userDeparment != null)
                 {
                     var userCompany = new CrmCompanyBll().Get(userDeparment.CompanyId);
-                    if (userCompany != null)
-                    {
-                        isArea = userCompany.IsArea;
-                    }
+                    //if (userCompany != null)
+                    //{
+                    //    isArea = userCompany.IsArea;
+                    //}
                 }
 
 
@@ -927,10 +927,10 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.Crm
                 if (userDeparment != null)
                 {
                     var userCompany = new CrmCompanyBll().Get(userDeparment.CompanyId);  //获取人员所属单位
-                    if (userCompany != null)
-                    {
-                        isArea = userCompany.IsArea;
-                    }
+                    //if (userCompany != null)
+                    //{
+                    //    isArea = userCompany.IsArea;
+                    //}
                 }
 
                 var ideaTitle = "";

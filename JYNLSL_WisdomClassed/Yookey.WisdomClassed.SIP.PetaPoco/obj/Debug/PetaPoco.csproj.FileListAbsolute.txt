@@ -28,3 +28,9 @@ D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\obj\Debug\P
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\obj\Debug\PetaPoco.csproj.CoreCompileInputs.cache
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\obj\Debug\PetaPoco.dll
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\obj\Debug\PetaPoco.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\bin\Debug\PetaPoco.dll.config
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\bin\Debug\PetaPoco.dll
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\bin\Debug\PetaPoco.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\obj\Debug\PetaPoco.csproj.CoreCompileInputs.cache
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\obj\Debug\PetaPoco.dll
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\obj\Debug\PetaPoco.pdb

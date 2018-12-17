@@ -74,7 +74,7 @@ namespace Yookey.WisdomClassed.SIP.Business.GridManagement
             try
             {
                 //获取所有单位
-                var companyList = new CrmCompanyBll().GetAllCompany(new CrmCompanyEntity() { IsLedger = 1 });
+                var companyList = new CrmCompanyBll().GetAllCompany(new CrmCompanyEntity() { });
 
                 //获取所有部门
                 var departmentList = new CrmDepartmentBll().GetAllDepartment(new CrmDepartmentEntity() { IsLedger = 1 });

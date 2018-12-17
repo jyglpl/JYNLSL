@@ -110,72 +110,10 @@ namespace Yookey.WisdomClassed.SIP.DataAccess.OA
         //         return WriteDatabase.Execute(strSql);
         //     }
 
-        //     /// <summary>
-        //     /// 根据主键获取实体
-        //     /// </summary>
-        //     /// <param name="Id"></param>
-        //     /// <returns></returns>
-        //     public EvaluationAttachEntity Get(string Id)
-        //     {
-        //         var strSql = string.Format(@"SELECT * FROM EvaluationAttach WHERE Id='{0}'", Id);
-        //         return WriteDatabase.Single<EvaluationAttachEntity>(strSql);
-        //     }
 
 
-        //     /// <summary>
-        //     /// 根据主键更新附件备注
-        //     /// </summary>
-        //     /// <param name="Id"></param>
-        //     /// <returns></returns>
-        //     public int UpdateRemark(string Id, string Remark)
-        //     {
-        //         var strSql = string.Format(@"UPDATE EvaluationAttach SET FileRemark='{0}' WHERE Id='{1}'", Remark, Id);
-        //         return WriteDatabase.Execute(strSql);
-        //     }
 
-        //     /// <summary>
-        //     /// 修改附件
-        //     /// </summary>
-        //     /// <param name="entity"></param>
-        //     /// <returns></returns>
-        //     public int Update(EvaluationAttachEntity entity)
-        //     {
-        //         var strSqlLink = new StringBuilder();
-        //         if (!string.IsNullOrEmpty(entity.FileName))
-        //         {
-        //             strSqlLink.AppendFormat(@" FileName = '{0}',", entity.FileName);
-        //         }
-        //         if (!string.IsNullOrEmpty(entity.FileReName))
-        //         {
-        //             strSqlLink.AppendFormat(@" FileReName = '{0}',", entity.FileReName);
-        //         }
-        //         if (!string.IsNullOrEmpty(entity.FileType))
-        //         {
-        //             strSqlLink.AppendFormat(@" FileType = '{0}',", entity.FileType);
-        //         }
-        //         if (!string.IsNullOrEmpty(entity.FileTypeName))
-        //         {
-        //             strSqlLink.AppendFormat(@" FileTypeName = '{0}',", entity.FileTypeName);
-        //         }
-        //         if (!string.IsNullOrEmpty(entity.FileRemark))
-        //         {
-        //             strSqlLink.AppendFormat(@" FileRemark = '{0}',", entity.FileRemark);
-        //         }
 
-        //         if (!string.IsNullOrEmpty(entity.UpdateId))
-        //         {
-        //             strSqlLink.AppendFormat(@" UpdateId = '{0}',", entity.UpdateId);
-        //         }
-        //         if (!string.IsNullOrEmpty(entity.UpdateBy))
-        //         {
-        //             strSqlLink.AppendFormat(@" UpdateBy = '{0}',", entity.UpdateBy);
-        //         }
-        //         if (!string.IsNullOrEmpty(entity.UpdateOn.ToString()))
-        //         {
-        //             strSqlLink.AppendFormat(@" UpdateOn = '{0}',", entity.UpdateOn);
-        //         }
-        //         var strSql = string.Format(@"UPDATE [dbo].[EvaluationAttach] SET {0} RowStatus=1  WHERE Id='{1}'", strSqlLink, entity.Id);
-        //         return WriteDatabase.Execute(strSql);
-        //     }
+       
     }
 }

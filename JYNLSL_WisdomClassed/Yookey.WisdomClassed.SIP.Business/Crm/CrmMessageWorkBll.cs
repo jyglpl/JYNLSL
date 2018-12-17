@@ -533,7 +533,7 @@ namespace Yookey.WisdomClassed.SIP.Business.Crm
         /// <returns>数量</returns>
         public List<HandTimeArea> GetWorkListByHandTimeSub(HandTimeSearch searchModel)
         {
-            var companyList = new CrmCompanyBll().GetAllCompany(new CrmCompanyEntity() { IsAcceptLicense = 1 });
+            var companyList = new CrmCompanyBll().GetAllCompany(new CrmCompanyEntity() { });
             var handTimeAreaList = new List<HandTimeArea>();
             foreach (var item in companyList)//循环片区
             {

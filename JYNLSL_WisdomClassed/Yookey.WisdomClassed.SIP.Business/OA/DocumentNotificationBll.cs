@@ -37,14 +37,18 @@ namespace Yookey.WisdomClassed.SIP.Business.OA
         //{
         //    return Dal.GetSearchResult(search);
         //}
-        // /// <summary>
-        ///// 新增附件材料
-        ///// </summary>
-        ///// <param name="search"></param>
-        ///// <returns></returns>
-        //public bool Insert(DocumentNotificationEntity search)
+        /// <summary>
+        /// 新增实体
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
+        public bool Insert(DocumentNotificationEntity search)
+        {
+            return Dal.PersistNewItem(search);
+        }
+        //public virtual bool PersistNewItem(T item, SgDatabase.DatabaseKind databaseKind = SgDatabase.DatabaseKind.Platform)
         //{
-        //    return Dal.Insert(search);
+        //    return Dal.PersistNewItem(item, databaseKind);
         //}
         ///// <summary>
         ///// 根据主键删除附件

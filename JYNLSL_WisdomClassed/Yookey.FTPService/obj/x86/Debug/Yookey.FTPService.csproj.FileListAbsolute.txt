@@ -33,3 +33,12 @@ D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPSer
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.csproj.CoreCompileInputs.cache
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.exe
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\bin\Debug\Yookey.FTPService.exe.config
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\bin\Debug\Yookey.FTPService.exe
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\bin\Debug\Yookey.FTPService.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.csprojAssemblyReference.cache
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.ProjectInstaller.resources
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.csproj.GenerateResource.cache
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.csproj.CoreCompileInputs.cache
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.exe
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.pdb

@@ -78,7 +78,7 @@ namespace Yookey.WisdomClassed.SIP.Business.Crm
         /// <returns></returns>
         public List<CrmCompanyEntity> GetAllLicenseUnit()
         {
-            return GetAllCompany(new CrmCompanyEntity() { IsAcceptLicense = 1 });
+            return GetAllCompany(new CrmCompanyEntity() {  });
         }
 
         /// <summary>

@@ -90,12 +90,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        [Column("Version")]
-        [DataMember]
-        public byte[] Version { get; set; }
+
 
 
 
@@ -162,6 +157,53 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
         [Column("UpdateOn")]
         [DataMember]
         public DateTime? UpdateOn { get; set; }
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Column("GGContent")]
+        [DataMember]
+        public string GGContent { get; set; }
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Column("Sendname")]
+        [DataMember]
+        public string Sendname { get; set; }
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Column("FilePath")]
+        [DataMember]
+        public string FilePath { get; set; }
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Column("Iszd")]
+        [DataMember]
+        public string Iszd { get; set; }
 
 
         private Page _page;

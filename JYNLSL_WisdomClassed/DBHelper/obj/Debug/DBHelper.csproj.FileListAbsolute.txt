@@ -26,3 +26,10 @@ D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csproj.CoreCompil
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csproj.CopyComplete
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.dll
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\bin\Debug\DBHelper.dll
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\bin\Debug\DBHelper.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\bin\Debug\MySql.Data.dll
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csproj.CoreCompileInputs.cache
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csproj.CopyComplete
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.dll
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.pdb

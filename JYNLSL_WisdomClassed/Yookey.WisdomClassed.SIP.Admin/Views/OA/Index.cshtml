@@ -149,10 +149,7 @@
             , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
 
 
-        $('.site-demo-active').on('click', function () {
-            var othis = $(this), type = othis.data('type');
-            active[type] ? active[type].call(this, othis) : '';
-        });
+
 
         //Hash地址的定位
         var layid = location.hash.replace(/^#test=/, '');
@@ -177,10 +174,12 @@
   
             , defaultToolbar:[]
             , title: '公告通知表'
+            , size: 'sm'
           
             , cols: [[
                 { type: 'checkbox', fixed: 'left' }
-                , { field: 'Id', title: '编号', width: 80, fixed: 'left', align:'center', unresize: true, sort: true }
+                , { field: 'Id', title: 'Id', width: 80, fixed: 'left', align: 'center', unresize: true, sort: true, hide: true }
+                , { field: 'Id', title: '编号', width: 80, fixed: 'left', align: 'center', type: 'numbers', unresize: true, sort: true }
                 , { field: 'Title', title: '标题'}
                 , { field: 'Publisher', title: '发布人', width: 150, align: 'center'}
                
@@ -207,24 +206,6 @@
 
 
 
-        table.render({
-            elem: '#test2',
-            url: '@Url.Action("GetAllDoc", "OA")',
-            cols: [
-                [
-                    { field: 'Id', width: 80, title: 'ID', sort: true },
-                    { field: 'Id', width: 80, title: '用户名' },
-                    { field: 'Id', width: 80, title: '性别', sort: true },
-                    { field: 'Id', width: 80, title: '城市' },
-                    { field: 'Id', title: '签名', minWidth: 150 },
-                    { field: 'Id', width: 80, title: '积分', sort: true },
-                    { field: 'Id', width: 80, title: '评分', sort: true },
-                    { field: 'Id', width: 80, title: '职业' },
-                    { field: 'Id', width: 135, title: '财富', sort: true }
-                ]
-            ],
-            page: true
-        });
 
         //头工具栏事件
         table.on('toolbar(test)', function (obj) {

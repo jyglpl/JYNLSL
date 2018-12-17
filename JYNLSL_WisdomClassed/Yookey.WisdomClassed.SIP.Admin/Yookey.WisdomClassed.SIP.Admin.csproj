@@ -8459,6 +8459,7 @@
     <Content Include="Content\img\IconImages\my_file_073.png" />
     <Content Include="Content\img\IconImages\nogs.gif" />
     <Content Include="Content\img\IconImages\wjj.png" />
+    <Content Include="Content\layui\css\formSelects-v4.css" />
     <Content Include="Content\layui\css\layui.css" />
     <Content Include="Content\layui\css\layui.mobile.css" />
     <Content Include="Content\layui\css\modules\code.css" />
@@ -10648,6 +10649,7 @@
     <Content Include="Views\Video\VideoIndex.cshtml" />
     <Content Include="Views\OA\Index.cshtml" />
     <Content Include="Views\OA\DocAdd.cshtml" />
+    <Content Include="Views\OA\SelectPeople.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -10661,7 +10663,9 @@
     <Folder Include="Views\Synthesize\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml.cshtml" />

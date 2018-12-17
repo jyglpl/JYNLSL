@@ -389,10 +389,10 @@ namespace Yookey.WisdomClassed.SIP.Business.Hr
                     if (userDeparment != null)
                     {
                         var userCompany = new CrmCompanyBll().Get(userDeparment.CompanyId);
-                        if (userCompany != null)
-                        {
-                            isArea = userCompany.IsArea;
-                        }
+                        //if (userCompany != null)
+                        //{
+                        //    isArea = userCompany.IsArea;
+                        //}
                     }
 
                     feProcessBll.RuleCode.Add("@IsArea", isArea.ToString());   //是否是片区大队

@@ -66,10 +66,7 @@ namespace Yookey.WisdomClassed.SIP.DataAccess.Crm
             {
                 queryCondition.AddEqual(CrmCompanyEntity.Parm_CrmCompany_Enforcement, search.Enforcement.ToString());
             }
-            if (search.IsAcceptLicense > 0)
-            {
-                queryCondition.AddEqual(CrmCompanyEntity.Parm_CrmCompany_IsAcceptLicense, search.IsAcceptLicense.ToString());
-            }
+
 
             //排序
             queryCondition.AddOrderBy(CrmCompanyEntity.Parm_CrmCompany_SortCode, true);

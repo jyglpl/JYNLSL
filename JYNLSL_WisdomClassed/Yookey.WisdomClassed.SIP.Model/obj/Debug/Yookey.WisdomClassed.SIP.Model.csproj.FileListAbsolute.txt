@@ -43,3 +43,15 @@ D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\obj\Debug\Yook
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\obj\Debug\Yookey.WisdomClassed.SIP.Model.csproj.CopyComplete
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\obj\Debug\Yookey.WisdomClassed.SIP.Model.dll
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\obj\Debug\Yookey.WisdomClassed.SIP.Model.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\bin\Debug\Yookey.WisdomClassed.SIP.Model.dll
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\bin\Debug\Yookey.WisdomClassed.SIP.Model.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\bin\Debug\DBHelper.dll
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\bin\Debug\PetaPoco.dll
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\bin\Debug\DBHelper.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\bin\Debug\PetaPoco.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\bin\Debug\PetaPoco.dll.config
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\obj\Debug\Yookey.WisdomClassed.SIP.Model.csprojAssemblyReference.cache
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\obj\Debug\Yookey.WisdomClassed.SIP.Model.csproj.CoreCompileInputs.cache
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\obj\Debug\Yookey.WisdomClassed.SIP.Model.csproj.CopyComplete
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\obj\Debug\Yookey.WisdomClassed.SIP.Model.dll
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Model\obj\Debug\Yookey.WisdomClassed.SIP.Model.pdb

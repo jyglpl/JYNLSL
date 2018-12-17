@@ -42,3 +42,12 @@ D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\obj\Debug\
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\obj\Debug\Yookey.WisdomClassed.SIP.Enumerate.csproj.CopyComplete
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\obj\Debug\Yookey.WisdomClassed.SIP.Enumerate.dll
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\obj\Debug\Yookey.WisdomClassed.SIP.Enumerate.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\bin\Debug\Yookey.WisdomClassed.SIP.Enumerate.dll
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\bin\Debug\Yookey.WisdomClassed.SIP.Enumerate.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\bin\Debug\System.Web.Mvc.dll
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\bin\Debug\System.Web.Mvc.xml
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\obj\Debug\Yookey.WisdomClassed.SIP.Enumerate.csproj.CoreCompileInputs.cache
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\obj\Debug\Yookey.WisdomClassed.SIP.Enumerate.csproj.CopyComplete
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\obj\Debug\Yookey.WisdomClassed.SIP.Enumerate.dll
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\obj\Debug\Yookey.WisdomClassed.SIP.Enumerate.pdb

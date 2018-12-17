@@ -29066,159 +29066,6 @@ namespace SQLConnStringRead
 }
     
 
-	[TableName("dbo.DocumentNotification")]
-
-
-
-	[PrimaryKey("Id", AutoIncrement=false)]
-
-	[ExplicitColumns]
-    public partial class DocumentNotification : SQLConnStringReadDB.Record<DocumentNotification>  
-    {
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("Id")] 
-		public string Id { get; set; }
-
-
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("Title")] 
-		public string Title { get; set; }
-
-
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("Publisher")] 
-		public string Publisher { get; set; }
-
-
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("ReleaseTime")] 
-		public DateTime? ReleaseTime { get; set; }
-
-
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("AplayState")] 
-		public string AplayState { get; set; }
-
-
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("Category")] 
-		public string Category { get; set; }
-
-
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("RowStatus")] 
-		public int? RowStatus { get; set; }
-
-
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("Version")] 
-		public byte[] Version { get; set; }
-
-
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("CreatorId")] 
-		public string CreatorId { get; set; }
-
-
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("CreateBy")] 
-		public string CreateBy { get; set; }
-
-
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("CreateOn")] 
-		public DateTime? CreateOn { get; set; }
-
-
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("UpdateId")] 
-		public string UpdateId { get; set; }
-
-
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("UpdateBy")] 
-		public string UpdateBy { get; set; }
-
-
-
-
-
-		/// <summary>
-        /// 
-        /// </summary>
-		[Column("UpdateOn")] 
-		public DateTime? UpdateOn { get; set; }
-
-
-
-}
-    
-
 	[TableName("dbo.Legislation")]
 
 
@@ -30065,6 +29912,199 @@ namespace SQLConnStringRead
         /// </summary>
 		[Column("UpdateOn")] 
 		public DateTime? UpdateOn { get; set; }
+
+
+
+}
+    
+
+	[TableName("dbo.DocumentNotification")]
+
+
+
+	[PrimaryKey("Id", AutoIncrement=false)]
+
+	[ExplicitColumns]
+    public partial class DocumentNotification : SQLConnStringReadDB.Record<DocumentNotification>  
+    {
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Id")] 
+		public string Id { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Title")] 
+		public string Title { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Publisher")] 
+		public string Publisher { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("ReleaseTime")] 
+		public DateTime? ReleaseTime { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("AplayState")] 
+		public string AplayState { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Category")] 
+		public string Category { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("RowStatus")] 
+		public int? RowStatus { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CreatorId")] 
+		public string CreatorId { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CreateBy")] 
+		public string CreateBy { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CreateOn")] 
+		public DateTime? CreateOn { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("UpdateId")] 
+		public string UpdateId { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("UpdateBy")] 
+		public string UpdateBy { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("UpdateOn")] 
+		public DateTime? UpdateOn { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Version")] 
+		public byte[] Version { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("GGContent")] 
+		public string GGContent { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Sendname")] 
+		public string Sendname { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("FilePath")] 
+		public string FilePath { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Iszd")] 
+		public string Iszd { get; set; }
 
 
 

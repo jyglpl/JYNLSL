@@ -355,7 +355,7 @@ namespace Yookey.WisdomClassed.SIP.Business.License
         /// <returns></returns>
         public List<HandTimeArea> GetAcceptancedateCount(HandTimeSearch handTimeSearch)
         {
-            var companyList = new CrmCompanyBll().GetAllCompany(new CrmCompanyEntity() { IsAcceptLicense = 1 });
+            var companyList = new CrmCompanyBll().GetAllCompany(new CrmCompanyEntity() {  });
             var handTimeAreaList = new List<HandTimeArea>();
             var data = new LicenseMainDal().GetAcceptancedateCount(handTimeSearch);
             foreach (var item in companyList)//循环片区
