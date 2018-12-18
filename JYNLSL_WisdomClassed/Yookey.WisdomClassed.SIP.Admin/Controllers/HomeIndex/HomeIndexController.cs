@@ -189,30 +189,30 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.HomeIndex
         /// 获取前10学习 时长
         /// </summary>
         /// <returns></returns>
-        public JsonResult GetLongTime()
-        {
-            List<LongEntity> dic = new List<LongEntity>();
-            var getCompany = _crmCompanyBll.GetAllEnforcementUnit().Where(x => x.Id == "def6350f-adf1-417c-b7a8-a09c3299d6c9").ToList();
+        //public JsonResult GetLongTime()
+        //{
+        //    List<LongEntity> dic = new List<LongEntity>();
+        //    var getCompany = _crmCompanyBll.GetAllEnforcementUnit().Where(x => x.Id == "def6350f-adf1-417c-b7a8-a09c3299d6c9").ToList();
 
-            var deptList = _crmDepartmentBll.GetAllDepartment(new CrmDepartmentEntity() { CompanyId = getCompany[0].Id });
-            var userList = _crmUserBll.GetAllUsers(new CrmUserEntity() { }).Where(x => deptList.Any(y => y.Id == x.DepartmentId)).ToList();
-            foreach (var user in userList)
-            {
-                int userLong = 0;
-                _onlineClassProgressBll.GetSearchResult(new OnlineClassProgressEntity() { UserId = user.Id }).ForEach(x => userLong += Convert.ToInt32(x.TotalTime));
-                user.timeLong = userLong;
-            }
-            var userAny = userList.OrderByDescending(x => x.timeLong).ToList();
-            for (int i = 0; i < 10; i++)
-            {
-                dic.Add(new LongEntity()
-                {
-                    Name = userAny[i].RealName,
-                    Time = (double)userAny[i].timeLong / 60
-                });
-            }
-            return Json(dic, JsonRequestBehavior.AllowGet);
-        }
+        //    var deptList = _crmDepartmentBll.GetAllDepartment(new CrmDepartmentEntity() { CompanyId = getCompany[0].Id });
+        //    var userList = _crmUserBll.GetAllUsers(new CrmUserEntity() { }).Where(x => deptList.Any(y => y.Id == x.DepartmentId)).ToList();
+        //    foreach (var user in userList)
+        //    {
+        //        int userLong = 0;
+        //        _onlineClassProgressBll.GetSearchResult(new OnlineClassProgressEntity() { UserId = user.Id }).ForEach(x => userLong += Convert.ToInt32(x.TotalTime));
+        //        user.timeLong = userLong;
+        //    }
+        //    var userAny = userList.OrderByDescending(x => x.timeLong).ToList();
+        //    for (int i = 0; i < 10; i++)
+        //    {
+        //        dic.Add(new LongEntity()
+        //        {
+        //            Name = userAny[i].RealName,
+        //            Time = (double)userAny[i].timeLong / 60
+        //        });
+        //    }
+        //    return Json(dic, JsonRequestBehavior.AllowGet);
+        //}
 
         public class LongEntity
         {

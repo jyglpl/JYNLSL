@@ -30108,6 +30108,16 @@ namespace SQLConnStringRead
 
 
 
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Xh")] 
+		public int Xh { get; set; }
+
+
+
 }
     
 

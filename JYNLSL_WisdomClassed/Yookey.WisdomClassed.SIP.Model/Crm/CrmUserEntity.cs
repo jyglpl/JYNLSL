@@ -121,12 +121,6 @@ namespace Yookey.WisdomClassed.SIP.Model.Crm
         /// Parm IsCityManager
         /// </summary>
         public const string Parm_CrmUser_IsCityManager = "IsCityManager";
-
-        /// <summary>
-        /// Parm IsBorrow
-        /// </summary>
-        public const string Parm_CrmUser_IsBorrow = "IsBorrow";
-
         /// <summary>
         /// Parm LastVisit
         /// </summary>
@@ -175,12 +169,6 @@ namespace Yookey.WisdomClassed.SIP.Model.Crm
         /// Parm SortCode
         /// </summary>
         public const string Parm_CrmUser_SortCode = "SortCode";
-
-        /// <summary>
-        /// Parm FlightSortCode
-        /// </summary>
-        public const string Parm_CrmUser_FlightSortCode = "FlightSortCode";
-
         /// <summary>
         /// Parm Spell
         /// </summary>
@@ -208,11 +196,11 @@ namespace Yookey.WisdomClassed.SIP.Model.Crm
         /// <summary>
         /// Insert Query Of CrmUser
         /// </summary>
-        public const string Sql_CrmUser_Insert = "insert into CrmUser(Account,AuditDateTime,AuditStatus,AuditUserId,AuditUserName,Birthday,ChangePasswordDate,Code,CompanyId,CreateBy,CreateOn,CreatorId,DepartmentId,Email,Enabled,FirstVisit,Gender,InnerUser,IsCityManager,LastVisit,LogOnCount,Mobile,OICQ,OpenId,Password,PreviousVisit,RealName,Remark,RowStatus,Secretkey,SortCode,FlightSortCode,Spell,Telephone,UpdateBy,UpdateId,UpdateOn,IsBorrow,Id) values(@Account,@AuditDateTime,@AuditStatus,@AuditUserId,@AuditUserName,@Birthday,@ChangePasswordDate,@Code,@CompanyId,@CreateBy,@CreateOn,@CreatorId,@DepartmentId,@Email,@Enabled,@FirstVisit,@Gender,@InnerUser,@IsCityManager,@LastVisit,@LogOnCount,@Mobile,@OICQ,@OpenId,@Password,@PreviousVisit,@RealName,@Remark,@RowStatus,@Secretkey,@SortCode,@FlightSortCode,@Spell,@Telephone,@UpdateBy,@UpdateId,@UpdateOn,@IsBorrow,@Id);select @@identity;";
+        public const string Sql_CrmUser_Insert = "insert into CrmUser(Account,AuditDateTime,AuditStatus,AuditUserId,AuditUserName,Birthday,ChangePasswordDate,Code,CompanyId,CreateBy,CreateOn,CreatorId,DepartmentId,Email,Enabled,FirstVisit,Gender,InnerUser,IsCityManager,LastVisit,LogOnCount,Mobile,OICQ,OpenId,Password,PreviousVisit,RealName,Remark,RowStatus,Secretkey,SortCode,Spell,Telephone,UpdateBy,UpdateId,UpdateOn,Id) values(@Account,@AuditDateTime,@AuditStatus,@AuditUserId,@AuditUserName,@Birthday,@ChangePasswordDate,@Code,@CompanyId,@CreateBy,@CreateOn,@CreatorId,@DepartmentId,@Email,@Enabled,@FirstVisit,@Gender,@InnerUser,@IsCityManager,@LastVisit,@LogOnCount,@Mobile,@OICQ,@OpenId,@Password,@PreviousVisit,@RealName,@Remark,@RowStatus,@Secretkey,@SortCode,@Spell,@Telephone,@UpdateBy,@UpdateId,@UpdateOn,@Id);select @@identity;";
         /// <summary>
         /// Update Query Of CrmUser
         /// </summary>
-        public const string Sql_CrmUser_Update = "update CrmUser set Account=@Account,AuditDateTime=@AuditDateTime,AuditStatus=@AuditStatus,AuditUserId=@AuditUserId,AuditUserName=@AuditUserName,Birthday=@Birthday,ChangePasswordDate=@ChangePasswordDate,Code=@Code,CompanyId=@CompanyId,CreateBy=@CreateBy,CreateOn=@CreateOn,CreatorId=@CreatorId,DepartmentId=@DepartmentId,Email=@Email,Enabled=@Enabled,FirstVisit=@FirstVisit,Gender=@Gender,InnerUser=@InnerUser,IsCityManager=@IsCityManager,LastVisit=@LastVisit,LogOnCount=@LogOnCount,Mobile=@Mobile,OICQ=@OICQ,OpenId=@OpenId,Password=@Password,PreviousVisit=@PreviousVisit,RealName=@RealName,Remark=@Remark,RowStatus=@RowStatus,Secretkey=@Secretkey,SortCode=@SortCode,FlightSortCode=@FlightSortCode,Spell=@Spell,Telephone=@Telephone,UpdateBy=@UpdateBy,UpdateId=@UpdateId,UpdateOn=@UpdateOn,IsBorrow=@IsBorrow where Id=@Id;select @@rowcount;";
+        public const string Sql_CrmUser_Update = "update CrmUser set Account=@Account,AuditDateTime=@AuditDateTime,AuditStatus=@AuditStatus,AuditUserId=@AuditUserId,AuditUserName=@AuditUserName,Birthday=@Birthday,ChangePasswordDate=@ChangePasswordDate,Code=@Code,CompanyId=@CompanyId,CreateBy=@CreateBy,CreateOn=@CreateOn,CreatorId=@CreatorId,DepartmentId=@DepartmentId,Email=@Email,Enabled=@Enabled,FirstVisit=@FirstVisit,Gender=@Gender,InnerUser=@InnerUser,IsCityManager=@IsCityManager,LastVisit=@LastVisit,LogOnCount=@LogOnCount,Mobile=@Mobile,OICQ=@OICQ,OpenId=@OpenId,Password=@Password,PreviousVisit=@PreviousVisit,RealName=@RealName,Remark=@Remark,RowStatus=@RowStatus,Secretkey=@Secretkey,SortCode=@SortCode,Spell=@Spell,Telephone=@Telephone,UpdateBy=@UpdateBy,UpdateId=@UpdateId,UpdateOn=@UpdateOn where Id=@Id;select @@rowcount;";
         /// <summary>
         /// Set RowStatus=0
         /// </summary>
@@ -454,12 +442,6 @@ namespace Yookey.WisdomClassed.SIP.Model.Crm
             get { return _isCityManager ?? string.Empty; }
             set { _isCityManager = value; }
         }
-
-        /// <summary>
-        /// 是否是“外借人员”
-        /// </summary>
-        public int IsBorrow { get; set; }
-
         private string _remark = string.Empty;
         /// <summary>
         /// 
@@ -489,11 +471,6 @@ namespace Yookey.WisdomClassed.SIP.Model.Crm
         }
 
         /// <summary>
-        /// 排班排序号
-        /// </summary>
-        public int FlightSortCode { get; set; }
-
-        /// <summary>
         /// 是否设置角色 
         /// </summary>
         public int IsSetRole { get; set; }
@@ -507,12 +484,6 @@ namespace Yookey.WisdomClassed.SIP.Model.Crm
         /// 部门名称
         /// </summary>
         public string DepartmentName { get; set; }
-
-        /// <summary>
-        /// 学习时长
-        /// </summary>
-        public int timeLong { get; set; }
-
         #endregion
 
         /// <summary>
@@ -595,8 +566,6 @@ namespace Yookey.WisdomClassed.SIP.Model.Crm
                 tmp.IsCityManager = dr[Parm_CrmUser_IsCityManager].ToString();
             if (dr.Table.Columns.Contains(Parm_CrmUser_SortCode) && !string.IsNullOrEmpty(dr[Parm_CrmUser_SortCode].ToString()))
                 tmp.SortCode = int.Parse(dr[Parm_CrmUser_SortCode].ToString());
-            if (dr.Table.Columns.Contains(Parm_CrmUser_FlightSortCode) && !string.IsNullOrEmpty(dr[Parm_CrmUser_FlightSortCode].ToString()))
-                tmp.FlightSortCode = int.Parse(dr[Parm_CrmUser_FlightSortCode].ToString());
             if (dr.Table.Columns.Contains(Parm_CrmUser_RowStatus))
                 tmp.RowStatus = int.Parse(dr[Parm_CrmUser_RowStatus].ToString());
             if (dr.Table.Columns.Contains(Parm_CrmUser_Version))
@@ -627,11 +596,6 @@ namespace Yookey.WisdomClassed.SIP.Model.Crm
             {
                 tmp.DepartmentName = dr["DepartmentName"].ToString();
             }
-            if (dr.Table.Columns.Contains(Parm_CrmUser_IsBorrow))
-            {
-                tmp.IsBorrow = int.Parse(dr[Parm_CrmUser_IsBorrow].ToString());
-            }
-
             return tmp;
         }
 
@@ -672,16 +636,14 @@ namespace Yookey.WisdomClassed.SIP.Model.Crm
             parms[26].Value = crmuser.Remark;
             parms[27].Value = crmuser.Enabled;
             parms[28].Value = crmuser.SortCode;
-            parms[29].Value = crmuser.FlightSortCode;
-            parms[30].Value = crmuser.RowStatus;
-            parms[31].Value = crmuser.CreatorId;
-            parms[32].Value = crmuser.CreateBy;
-            parms[33].Value = crmuser.CreateOn;
-            parms[34].Value = crmuser.UpdateId;
-            parms[35].Value = crmuser.UpdateBy;
-            parms[36].Value = crmuser.UpdateOn;
-            parms[37].Value = crmuser.IsBorrow;
-            parms[38].Value = crmuser.Id;
+            parms[29].Value = crmuser.RowStatus;
+            parms[30].Value = crmuser.CreatorId;
+            parms[31].Value = crmuser.CreateBy;
+            parms[32].Value = crmuser.CreateOn;
+            parms[33].Value = crmuser.UpdateId;
+            parms[34].Value = crmuser.UpdateBy;
+            parms[35].Value = crmuser.UpdateOn;
+            parms[36].Value = crmuser.Id;
 
             return parms;
         }
@@ -744,7 +706,6 @@ namespace Yookey.WisdomClassed.SIP.Model.Crm
 					new SqlParameter(Parm_CrmUser_Remark, SqlDbType.NVarChar, 200),
 					new SqlParameter(Parm_CrmUser_Enabled, SqlDbType.Int, 10),
 					new SqlParameter(Parm_CrmUser_SortCode, SqlDbType.Int, 10),
-                    new SqlParameter(Parm_CrmUser_FlightSortCode, SqlDbType.Int, 10),
 					new SqlParameter(Parm_CrmUser_RowStatus, SqlDbType.Int, 10),
 					new SqlParameter(Parm_CrmUser_CreatorId, SqlDbType.NVarChar, 50),
 					new SqlParameter(Parm_CrmUser_CreateBy, SqlDbType.NVarChar, 50),
@@ -752,7 +713,6 @@ namespace Yookey.WisdomClassed.SIP.Model.Crm
 					new SqlParameter(Parm_CrmUser_UpdateId, SqlDbType.NVarChar, 50),
 					new SqlParameter(Parm_CrmUser_UpdateBy, SqlDbType.NVarChar, 50),
 					new SqlParameter(Parm_CrmUser_UpdateOn, SqlDbType.DateTime, 23),
-                    new SqlParameter(Parm_CrmUser_IsBorrow, SqlDbType.Int, 10),
                     new SqlParameter(Parm_CrmUser_Id, SqlDbType.NVarChar, 50)
 				};
                     SqlHelperParameterCache.CacheParameterSet(SqlHelper.SqlConnStringWrite, Sql_CrmUser_Insert, parms);

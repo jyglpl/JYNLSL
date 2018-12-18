@@ -1082,302 +1082,302 @@ namespace Yookey.WisdomClassed.SIP.WebService.License
             }
         }
 
-        #region  派发相关
+        //#region  派发相关
 
-        //返回片区所有人员
-        [WebMethod]
-        public string GetCompanysUsers(string context)
-        {
-            bool Status = false;
-            var msg = "";
-            object obj = null;
-            try
-            {
-                context = Regex.Replace(context, @"[\{\}]", "");
-                context += ",";
-                var companyId = Regex.Match(context, @"(?<=""companyId""\:"").*?(?="",)").Value;
-                var WorkListId = Regex.Match(context, @"(?<=""WorkListId""\:"").*?(?="",)").Value;
-                var checkResult = CommonMethod.ProcessSqlStr(companyId);
-                var checkResult2 = CommonMethod.ProcessSqlStr(WorkListId);
-                if (!checkResult || !checkResult2)
-                {
-                    //return "有SQL攻击嫌疑！";
-                    Status = false;
-                    msg = "有SQL攻击嫌疑！";
-                }
+        ////返回片区所有人员
+        //[WebMethod]
+        //public string GetCompanysUsers(string context)
+        //{
+        //    bool Status = false;
+        //    var msg = "";
+        //    object obj = null;
+        //    try
+        //    {
+        //        context = Regex.Replace(context, @"[\{\}]", "");
+        //        context += ",";
+        //        var companyId = Regex.Match(context, @"(?<=""companyId""\:"").*?(?="",)").Value;
+        //        var WorkListId = Regex.Match(context, @"(?<=""WorkListId""\:"").*?(?="",)").Value;
+        //        var checkResult = CommonMethod.ProcessSqlStr(companyId);
+        //        var checkResult2 = CommonMethod.ProcessSqlStr(WorkListId);
+        //        if (!checkResult || !checkResult2)
+        //        {
+        //            //return "有SQL攻击嫌疑！";
+        //            Status = false;
+        //            msg = "有SQL攻击嫌疑！";
+        //        }
 
-                var search = new CrmUserEntity() { CompanyId = companyId };
-                var companysUsers = new CrmUserBll().GetCompanysUsers(search);
-                CrmMessageWorkEntity messageWork = null;
-                var processId = string.Empty;
-                var userIds = new List<string>();
-                if (!string.IsNullOrEmpty(WorkListId))
-                {
-                    var crmMessageWorkBll = new CrmMessageWorkBll();
-                    messageWork = crmMessageWorkBll.Get(WorkListId);
-                    if (messageWork != null && !string.IsNullOrEmpty(messageWork.ProcessInstanceID))
-                    {
-                        var flowName = crmMessageWorkBll.GetFlowName(messageWork.Id);//流程名称
-                        if (!string.IsNullOrEmpty(flowName))
-                            userIds = new FeActionInstanceBll().GetProcessUser(flowName);
-                    }
-                }
-                if (userIds.Count > 0)
-                {
-                    companysUsers = companysUsers.Where(i => userIds.FindIndex(z => i.Id == z) == -1).ToList();//在流程人员名单里面没有找到
-                }
-                //return JsonConvert.SerializeObject(companysUsers.Select(i => new { Id = i.Id, Name = i.RealName }));
-                Status = true;
-                obj = companysUsers.Select(i => new { Id = i.Id, Name = i.RealName });
-            }
-            catch (Exception)
-            {
-                //return JsonConvert.SerializeObject(new { });
-                Status = false;
-            }
-            var result = new StatusModel()
-            {
-                Status=Status,
-                msg=msg,
-                Content=obj
-            };
-            return JsonConvert.SerializeObject(result);
-        }
+        //        var search = new CrmUserEntity() { CompanyId = companyId };
+        //        var companysUsers = new CrmUserBll().GetCompanysUsers(search);
+        //        CrmMessageWorkEntity messageWork = null;
+        //        var processId = string.Empty;
+        //        var userIds = new List<string>();
+        //        if (!string.IsNullOrEmpty(WorkListId))
+        //        {
+        //            var crmMessageWorkBll = new CrmMessageWorkBll();
+        //            messageWork = crmMessageWorkBll.Get(WorkListId);
+        //            if (messageWork != null && !string.IsNullOrEmpty(messageWork.ProcessInstanceID))
+        //            {
+        //                var flowName = crmMessageWorkBll.GetFlowName(messageWork.Id);//流程名称
+        //                if (!string.IsNullOrEmpty(flowName))
+        //                    userIds = new FeActionInstanceBll().GetProcessUser(flowName);
+        //            }
+        //        }
+        //        if (userIds.Count > 0)
+        //        {
+        //            companysUsers = companysUsers.Where(i => userIds.FindIndex(z => i.Id == z) == -1).ToList();//在流程人员名单里面没有找到
+        //        }
+        //        //return JsonConvert.SerializeObject(companysUsers.Select(i => new { Id = i.Id, Name = i.RealName }));
+        //        Status = true;
+        //        obj = companysUsers.Select(i => new { Id = i.Id, Name = i.RealName });
+        //    }
+        //    catch (Exception)
+        //    {
+        //        //return JsonConvert.SerializeObject(new { });
+        //        Status = false;
+        //    }
+        //    var result = new StatusModel()
+        //    {
+        //        Status=Status,
+        //        msg=msg,
+        //        Content=obj
+        //    };
+        //    return JsonConvert.SerializeObject(result);
+        //}
 
-        /// <summary>
-        /// 获取已选派送人员
-        /// </summary>
-        /// <param name="licenseId">案件编号</param>
-        /// <param name="handType">处理类型（1.踏勘 2.验收）</param>
-        /// <returns></returns>
-        [WebMethod]
-        public string GetLicenseHandUserIds(string licenseId, int handType)
-        {
-            try
-            {
-                var checkResult = CommonMethod.ProcessSqlStr(licenseId);
-                if (!checkResult)
-                {
-                    return "有SQL攻击嫌疑！";
-                }
+        ///// <summary>
+        ///// 获取已选派送人员
+        ///// </summary>
+        ///// <param name="licenseId">案件编号</param>
+        ///// <param name="handType">处理类型（1.踏勘 2.验收）</param>
+        ///// <returns></returns>
+        //[WebMethod]
+        //public string GetLicenseHandUserIds(string licenseId, int handType)
+        //{
+        //    try
+        //    {
+        //        var checkResult = CommonMethod.ProcessSqlStr(licenseId);
+        //        if (!checkResult)
+        //        {
+        //            return "有SQL攻击嫌疑！";
+        //        }
 
-                if (string.IsNullOrEmpty(licenseId) || handType == 0)
-                    return "[]";
-                return JsonConvert.SerializeObject(new LicenseHandUsersBll().GetLicenseHandUserIds(licenseId, handType));
-            }
-            catch (Exception)
-            {
-                return JsonConvert.SerializeObject(new { });
-            }
-        }
+        //        if (string.IsNullOrEmpty(licenseId) || handType == 0)
+        //            return "[]";
+        //        return JsonConvert.SerializeObject(new LicenseHandUsersBll().GetLicenseHandUserIds(licenseId, handType));
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return JsonConvert.SerializeObject(new { });
+        //    }
+        //}
 
 
-        /// <summary>
-        /// 设置派送人员
-        /// </summary>
-        /// <param name="context">请求JSON</param>       
-        /// <returns></returns>
-        [WebMethod]
-        public string SetLicenseHandUserIds(string context)
-        {
-            bool Status = false;
-            var msg = "";
-            object obj = null;
-            try
-            {
-                var checkResult = CommonMethod.ProcessSqlStr(context);
-                if (!checkResult)
-                {
-                    //return "有SQL攻击嫌疑！";
-                    Status = false;
-                    msg = "有SQL攻击嫌疑！";
-                }
+        ///// <summary>
+        ///// 设置派送人员
+        ///// </summary>
+        ///// <param name="context">请求JSON</param>       
+        ///// <returns></returns>
+        //[WebMethod]
+        //public string SetLicenseHandUserIds(string context)
+        //{
+        //    bool Status = false;
+        //    var msg = "";
+        //    object obj = null;
+        //    try
+        //    {
+        //        var checkResult = CommonMethod.ProcessSqlStr(context);
+        //        if (!checkResult)
+        //        {
+        //            //return "有SQL攻击嫌疑！";
+        //            Status = false;
+        //            msg = "有SQL攻击嫌疑！";
+        //        }
 
-                if (string.IsNullOrEmpty(context))
-                {
-                    //return false.ToString().ToLower();
-                    Status = false;
-                    obj = false.ToString().ToLower();
-                }
-                var entity = JsonConvert.DeserializeObject<LicenseHandUserIdRequest>(context);
-                //return new LicenseHandUsersBll().SetLicenseHandUserIds(entity).ToString().ToLower();
-                Status = true;
-                obj = new LicenseHandUsersBll().SetLicenseHandUserIds(entity).ToString().ToLower();
-            }
-            catch (Exception ex)
-            {
-                //return "[]";
-                Status = false;
-                msg = ex.Message;
-            }
-            var result = new StatusModel()
-            {
-                Status=Status,
-                msg=msg,
-                Content=obj
-            };
-            return JsonConvert.SerializeObject(result);
-        }
+        //        if (string.IsNullOrEmpty(context))
+        //        {
+        //            //return false.ToString().ToLower();
+        //            Status = false;
+        //            obj = false.ToString().ToLower();
+        //        }
+        //        var entity = JsonConvert.DeserializeObject<LicenseHandUserIdRequest>(context);
+        //        //return new LicenseHandUsersBll().SetLicenseHandUserIds(entity).ToString().ToLower();
+        //        Status = true;
+        //        obj = new LicenseHandUsersBll().SetLicenseHandUserIds(entity).ToString().ToLower();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //return "[]";
+        //        Status = false;
+        //        msg = ex.Message;
+        //    }
+        //    var result = new StatusModel()
+        //    {
+        //        Status=Status,
+        //        msg=msg,
+        //        Content=obj
+        //    };
+        //    return JsonConvert.SerializeObject(result);
+        //}
 
-        /// <summary>
-        /// 获取是否有转派的操作权限
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        [WebMethod]
-        public string GetLicenseHandLimits(string context)
-        {
-            bool Status = false;
-            var msg = "";
-            object obj = null;
-            try
-            {
-                var checkResult = CommonMethod.ProcessSqlStr(context);
-                if (!checkResult)
-                {
-                    //return "有SQL攻击嫌疑！";
-                    Status = false;
-                    msg = "有SQL攻击嫌疑！";
-                }
-                if (string.IsNullOrEmpty(context))
-                {
-                    //return false.ToString().ToLower();
-                    Status = false;
-                    obj = false.ToString().ToLower();
-                }
-                var entity = JsonConvert.DeserializeObject<LicenseHandLimitsRequest>(context);
-                //return new LicenseHandUsersBll().GetLicenseHandLimits(entity).ToString().ToLower();
-                Status = true;
-                obj = new LicenseHandUsersBll().GetLicenseHandLimits(entity).ToString().ToLower();
-            }
-            catch (Exception)
-            {
-                //return JsonConvert.SerializeObject(new { });
-                Status = false;
-            }
-            var result = new StatusModel()
-            {
-                Status=Status,
-                msg=msg,
-                Content=obj
-            };
-            return JsonConvert.SerializeObject(result);
-        }
+        ///// <summary>
+        ///// 获取是否有转派的操作权限
+        ///// </summary>
+        ///// <param name="userId"></param>
+        ///// <returns></returns>
+        //[WebMethod]
+        //public string GetLicenseHandLimits(string context)
+        //{
+        //    bool Status = false;
+        //    var msg = "";
+        //    object obj = null;
+        //    try
+        //    {
+        //        var checkResult = CommonMethod.ProcessSqlStr(context);
+        //        if (!checkResult)
+        //        {
+        //            //return "有SQL攻击嫌疑！";
+        //            Status = false;
+        //            msg = "有SQL攻击嫌疑！";
+        //        }
+        //        if (string.IsNullOrEmpty(context))
+        //        {
+        //            //return false.ToString().ToLower();
+        //            Status = false;
+        //            obj = false.ToString().ToLower();
+        //        }
+        //        var entity = JsonConvert.DeserializeObject<LicenseHandLimitsRequest>(context);
+        //        //return new LicenseHandUsersBll().GetLicenseHandLimits(entity).ToString().ToLower();
+        //        Status = true;
+        //        obj = new LicenseHandUsersBll().GetLicenseHandLimits(entity).ToString().ToLower();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        //return JsonConvert.SerializeObject(new { });
+        //        Status = false;
+        //    }
+        //    var result = new StatusModel()
+        //    {
+        //        Status=Status,
+        //        msg=msg,
+        //        Content=obj
+        //    };
+        //    return JsonConvert.SerializeObject(result);
+        //}
 
-        /// <summary>
-        /// 获取处理权限
-        /// </summary>
-        /// <param name="userId">人员ID</param>
-        /// <param name="licenseId">案件编号</param>
-        /// <returns></returns>
-        [WebMethod]
-        public string GetUnHandleMessageId(string context)
-        {
-            context = Regex.Replace(context, @"[\{\}]", "");
-            context += ",";
-            var licenseId = Regex.Match(context, @"(?<=""licenseId""\:"").*?(?="",)").Value;
-            var userId = Regex.Match(context, @"(?<=""userId""\:"").*?(?="",)").Value;
-            var checkResult = CommonMethod.ProcessSqlStr(userId);
-            var checkResult2 = CommonMethod.ProcessSqlStr(licenseId);
-            bool Status = false;
-            var msg = "";
-            object obj = null;
-            if (!checkResult || !checkResult2)
-            {
-                //return "有SQL攻击嫌疑！";
-                Status = false;
-                msg = "有SQL攻击嫌疑！";
-            }
+        ///// <summary>
+        ///// 获取处理权限
+        ///// </summary>
+        ///// <param name="userId">人员ID</param>
+        ///// <param name="licenseId">案件编号</param>
+        ///// <returns></returns>
+        //[WebMethod]
+        //public string GetUnHandleMessageId(string context)
+        //{
+        //    context = Regex.Replace(context, @"[\{\}]", "");
+        //    context += ",";
+        //    var licenseId = Regex.Match(context, @"(?<=""licenseId""\:"").*?(?="",)").Value;
+        //    var userId = Regex.Match(context, @"(?<=""userId""\:"").*?(?="",)").Value;
+        //    var checkResult = CommonMethod.ProcessSqlStr(userId);
+        //    var checkResult2 = CommonMethod.ProcessSqlStr(licenseId);
+        //    bool Status = false;
+        //    var msg = "";
+        //    object obj = null;
+        //    if (!checkResult || !checkResult2)
+        //    {
+        //        //return "有SQL攻击嫌疑！";
+        //        Status = false;
+        //        msg = "有SQL攻击嫌疑！";
+        //    }
 
-            try
-            {
-                var user = new CrmUserBll().Get(userId);
-                if (user != null && !string.IsNullOrEmpty(user.Id))
-                {
-                    if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(licenseId))
-                    {
-                        //return false.ToString().ToLower();
-                        Status = false;
-                        obj = false.ToString().ToLower();
-                    }
-                    var worklistId = new CrmMessageWorkBll().GetUnHandleMessageId(userId, licenseId);
-                    //return string.IsNullOrEmpty(worklistId).ToString().ToLower();
-                    Status = true;
-                    obj = string.IsNullOrEmpty(worklistId).ToString().ToLower();
-                }
-                else
-                {
-                    //return "用户ID不正确";
-                    msg = "用户ID不正确";
-                }
-            }
-            catch (Exception)
-            {
-                //return "[]";
-                Status = false;
-            }
-            var result = new StatusModel()
-            {
-                Status=Status,
-                msg=msg,
-                Content=obj
-            };
-            return JsonConvert.SerializeObject(result);
-        }
+        //    try
+        //    {
+        //        var user = new CrmUserBll().Get(userId);
+        //        if (user != null && !string.IsNullOrEmpty(user.Id))
+        //        {
+        //            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(licenseId))
+        //            {
+        //                //return false.ToString().ToLower();
+        //                Status = false;
+        //                obj = false.ToString().ToLower();
+        //            }
+        //            var worklistId = new CrmMessageWorkBll().GetUnHandleMessageId(userId, licenseId);
+        //            //return string.IsNullOrEmpty(worklistId).ToString().ToLower();
+        //            Status = true;
+        //            obj = string.IsNullOrEmpty(worklistId).ToString().ToLower();
+        //        }
+        //        else
+        //        {
+        //            //return "用户ID不正确";
+        //            msg = "用户ID不正确";
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        //return "[]";
+        //        Status = false;
+        //    }
+        //    var result = new StatusModel()
+        //    {
+        //        Status=Status,
+        //        msg=msg,
+        //        Content=obj
+        //    };
+        //    return JsonConvert.SerializeObject(result);
+        //}
 
-        #endregion
+        //#endregion
 
-        #region 判断许可领导
+        //#region 判断许可领导
 
-        /// <summary>
-        /// 判断许可领导
-        /// </summary>
-        /// <param name="userId">人员ID</param>
-        /// <returns></returns>
-        [WebMethod]
-        public string GetIsLicenseDirector(string context)
-        {
-            bool Status = false;
-            var msg = "";
-            object obj = null;
-            try
-            {
-                context = Regex.Replace(context, @"[\{\}]", "");
-                context += ",";
-                var userId = Regex.Match(context, @"(?<=""userId""\:"").*?(?="",)").Value;
-                var checkResult = CommonMethod.ProcessSqlStr(userId);
-                if (!checkResult)
-                {
-                    //return "有SQL攻击嫌疑！";
-                    Status = false;
-                    msg = "有SQL攻击嫌疑！";
-                }
+        ///// <summary>
+        ///// 判断许可领导
+        ///// </summary>
+        ///// <param name="userId">人员ID</param>
+        ///// <returns></returns>
+        //[WebMethod]
+        //public string GetIsLicenseDirector(string context)
+        //{
+        //    bool Status = false;
+        //    var msg = "";
+        //    object obj = null;
+        //    try
+        //    {
+        //        context = Regex.Replace(context, @"[\{\}]", "");
+        //        context += ",";
+        //        var userId = Regex.Match(context, @"(?<=""userId""\:"").*?(?="",)").Value;
+        //        var checkResult = CommonMethod.ProcessSqlStr(userId);
+        //        if (!checkResult)
+        //        {
+        //            //return "有SQL攻击嫌疑！";
+        //            Status = false;
+        //            msg = "有SQL攻击嫌疑！";
+        //        }
 
-                if (string.IsNullOrEmpty(userId))
-                {
-                    //return false.ToString().ToLower();
-                    Status = false;
-                    obj = false.ToString().ToLower();
-                }
-                //return new CrmUserBll().GetIsLicenseDirector(userId).ToString().ToLower();
-                Status = true;
-                obj = new CrmUserBll().GetIsLicenseDirector(userId).ToString().ToLower();
-            }
-            catch (Exception)
-            {
-                //return JsonConvert.SerializeObject(new { });
-                Status = false;
-            }
-            var result = new StatusModel()
-            {
-                Status=Status,
-                msg=msg,
-                Content=obj
-            };
-            return JsonConvert.SerializeObject(result);
-        }
+        //        if (string.IsNullOrEmpty(userId))
+        //        {
+        //            //return false.ToString().ToLower();
+        //            Status = false;
+        //            obj = false.ToString().ToLower();
+        //        }
+        //        //return new CrmUserBll().GetIsLicenseDirector(userId).ToString().ToLower();
+        //        Status = true;
+        //        obj = new CrmUserBll().GetIsLicenseDirector(userId).ToString().ToLower();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        //return JsonConvert.SerializeObject(new { });
+        //        Status = false;
+        //    }
+        //    var result = new StatusModel()
+        //    {
+        //        Status=Status,
+        //        msg=msg,
+        //        Content=obj
+        //    };
+        //    return JsonConvert.SerializeObject(result);
+        //}
 
-        #endregion
+        //#endregion
     }
 
     #region  附件返回信息

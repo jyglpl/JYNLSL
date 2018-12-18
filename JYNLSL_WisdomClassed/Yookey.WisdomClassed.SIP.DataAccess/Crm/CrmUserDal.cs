@@ -404,6 +404,30 @@ LEFT JOIN CrmRole ON CrmRole.Id=CrmUser.RoleId WHERE CrmUser.RowStatus=1 AND Dep
         }
 
         /// <summary>
+        /// 查找除了管理员之外的用户
+        /// add by lpl
+        /// 2018-12-18
+        /// </summary>
+        /// <returns></returns>
+        public List<CrmUserEntity> GetUsers()
+        {
+            try
+            {
+                var strSql = new StringBuilder("");
+                strSql.AppendFormat(
+                    @"SELECT * FROM dbo.CrmUser WHERE RowStatus = 1 AND CompanyId = 'f31af89b-d6d3-4c37-8864-f1a29313173a'");
+
+                var list = DataTableToList(SqlHelper.ExecuteDataset(SqlHelper.SqlConnStringRead, CommandType.Text, strSql.ToString()).Tables[0]);
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
+
+        /// <summary>
         /// 根据用户名、编号查询用户信息
         /// </summary>
         /// <history> 

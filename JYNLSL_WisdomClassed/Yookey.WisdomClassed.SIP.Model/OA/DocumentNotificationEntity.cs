@@ -17,7 +17,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// Id
         /// </summary>
         [Column("Id")]
         [DataMember]
@@ -28,7 +28,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 标题
         /// </summary>
         [Column("Title")]
         [DataMember]
@@ -39,7 +39,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 发布人
         /// </summary>
         [Column("Publisher")]
         [DataMember]
@@ -50,7 +50,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 发布时间
         /// </summary>
         [Column("ReleaseTime")]
         [DataMember]
@@ -61,7 +61,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 接受状态
         /// </summary>
         [Column("AplayState")]
         [DataMember]
@@ -70,7 +70,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 通告类型
         /// </summary>
         [Column("Category")]
         [DataMember]
@@ -92,12 +92,8 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
 
-
-
-
-
         /// <summary>
-        /// 
+        /// 创建人Id
         /// </summary>
         [Column("CreatorId")]
         [DataMember]
@@ -108,7 +104,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 创建人
         /// </summary>
         [Column("CreateBy")]
         [DataMember]
@@ -119,7 +115,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 创建时间
         /// </summary>
         [Column("CreateOn")]
         [DataMember]
@@ -130,7 +126,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 更新人Id
         /// </summary>
         [Column("UpdateId")]
         [DataMember]
@@ -141,7 +137,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 更新人
         /// </summary>
         [Column("UpdateBy")]
         [DataMember]
@@ -152,7 +148,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 更新时间
         /// </summary>
         [Column("UpdateOn")]
         [DataMember]
@@ -166,7 +162,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 内容
         /// </summary>
         [Column("GGContent")]
         [DataMember]
@@ -177,7 +173,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 接受人
         /// </summary>
         [Column("Sendname")]
         [DataMember]
@@ -188,7 +184,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 附件地址
         /// </summary>
         [Column("FilePath")]
         [DataMember]
@@ -199,7 +195,7 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
         /// <summary>
-        /// 
+        /// 是否置顶
         /// </summary>
         [Column("Iszd")]
         [DataMember]

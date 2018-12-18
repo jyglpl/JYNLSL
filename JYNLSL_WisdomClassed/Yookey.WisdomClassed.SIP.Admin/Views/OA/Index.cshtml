@@ -32,26 +32,15 @@
 
                 <div class="demoTable">
                     <form class="layui-form" action="">
-                        <div class="layui-inline">
 
-                            <div class="layui-input-inline">
-                                <select name="quiz3">
-                                    <option value="">请选择状态</option>
-                                    <option value="西湖区">西湖区</option>
-                                    <option value="余杭区">余杭区</option>
-                                    <option value="拱墅区">临安市</option>
-                                </select>
-                            </div>
-
-                        </div>
                         <div class="layui-inline">
 
                             <div class="layui-input-inline">
                                 <select name="quiz3">
                                     <option value="">请选择类别</option>
-                                    <option value="西湖区">西湖区</option>
-                                    <option value="余杭区">余杭区</option>
-                                    <option value="拱墅区">临安市</option>
+                                    <option value="1">通知</option>
+                                    <option value="2">公告</option>
+                                  
                                 </select>
                             </div>
 
@@ -174,11 +163,11 @@
   
             , defaultToolbar:[]
             , title: '公告通知表'
-            , size: 'sm'
-          
+            //, size: 'sm'
+
             , cols: [[
-                { type: 'checkbox', fixed: 'left' }
-                , { field: 'Id', title: 'Id', width: 80, fixed: 'left', align: 'center', unresize: true, sort: true, hide: true }
+                //{ type: 'checkbox', fixed: 'left' }
+                { field: 'Id', title: 'Id', width: 80, fixed: 'left', align: 'center', unresize: true, sort: true, hide: true }
                 , { field: 'Id', title: '编号', width: 80, fixed: 'left', align: 'center', type: 'numbers', unresize: true, sort: true }
                 , { field: 'Title', title: '标题'}
                 , { field: 'Publisher', title: '发布人', width: 150, align: 'center'}
@@ -196,10 +185,23 @@
                         return "接受";  
                     }
                 }
-                , { field: 'Category', title: '类别', width: 80, align: 'center'}
+                , {
+                    field: 'Category', title: '类别', width: 80 ,align: 'center'
+                    ,templet: function(d){
+                        if (d.Category == '1') {
+                            return "通知";  
+                        }
+                        else if (d.Category == '2') {
+                            return "公告";  
+                        }
+                    }
+                }
+              
                 , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 230, align: 'center'}
             ]]
+            , id: 'ggtz'
             , page: true
+            ,height: 'full-140'
   
         });
 
@@ -218,12 +220,29 @@
                     area: ['900px', '550px'],
                     fixed: false, //不固定
                     maxmin: true,
-                    content: '@Url.Action("DocAdd", "OA")'
+                    content: '@Url.Action("DocAdd", "OA")',
+                    end: function () {
+                        //location.reload();
+                        //执行重载
+                        table.reload('ggtz', {
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                            ,where: {
+                                key: {
+                                    //id: demoReload.val()
+                                }
+                            }
+                        });
+                    }
+
                 });
                 break;
 
             };
         });
+
+
 
         //监听行工具事件
         table.on('tool(test)', function (obj) {

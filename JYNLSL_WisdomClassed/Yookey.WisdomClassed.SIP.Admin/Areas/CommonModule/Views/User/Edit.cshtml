@@ -67,8 +67,7 @@
                             </td>
                             <th class="formTitle">登录密码：</th>
                             <td class="formValue">
-                                <span style="color: red">初始密码：123456</span>
-                                @*@Html.PasswordFor(x => x.Password, new { @class = "txt required", Value = DESHelper.ToDESDecrypt(Model.Password, AppConst.EncryptKey), @datacol = "yes", @err = "登录密码", @checkexpession = "NotNull" })*@
+                                @Html.PasswordFor(x => x.Password, new { @class = "txt required", Value = DESHelper.ToDESDecrypt(Model.Password, AppConst.EncryptKey), @datacol = "yes", @err = "登录密码", @checkexpession = "NotNull" })
                             </td>
                         </tr>
                         <tr>
@@ -108,35 +107,25 @@
                             </td>
                             <th class="formTitle">所在部门：</th>
                             <td class="formValue">
-                                <select id="DepartmentName" class="txtselect" datacol="yes" err="所在部门" checkexpession="NotNull" onchange="javascript:SelectDepartment();"></select>
+                                <select id="DepartmentName"  datacol="yes" err="所在部门" checkexpession="NotNull" onchange="javascript:SelectDepartment();"></select>
                             </td>
                         </tr>
                         <tr>
                             <th class="formTitle">排序编号</th>
-                            <td class="formValue" colspan="3">
-                                @Html.TextBoxFor(x => x.SortCode, new { @class = "txt" })
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="formTitle">排序（排班）</th>
-                            <td class="formValue" colspan="3">
-                                @Html.TextBoxFor(x => x.FlightSortCode, new { @class = "txt" })
+                            <td class="formValue" colspan="2">
+                                @Html.TextBoxFor(x => x.SortCode, new { @class = "txt" })                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
                             </td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td class="formValue" colspan="3">
+                            <td class="formValue" colspan="2">
                                 <span class="item">
                                     <input type="checkbox" name="checkbox" @(Model.IsCityManager == "1" ? "checked=checked" : "") id="CityManager" />
                                     <label for="CityManager">是否市容管理员</label>
                                 </span>
                                 <span class="item">
-                                    <input type="checkbox" name="checkbox" @(Model.IsBorrow == 1 ? "checked=checked" : "") id="Borrow" />
-                                    <label for="Borrow">是否外借人员</label>
-                                </span>
-                                <span class="item">
                                     <input type="checkbox" name="checkbox" @(Model.InnerUser == 1 ? "checked=checked" : "") id="IsInnerUser" />
-                                    <label for="IsInnerUser">内部员工</label>
+                                    <label for="IsEnabled">内部员工</label>
                                 </span>
                                 <span class="item">
                                     <input type="checkbox" name="checkbox" @(Model.Enabled == 1 ? "checked=checked" : "") id="IsEnabled" />
@@ -145,24 +134,15 @@
                                 <label style="vertical-align: middle; color: red;">注意：禁用该用户后，将不能登录。</label>
                             </td>
                         </tr>
-
-                        <tr>
-                            <th class="formTitle">所拥有角色：
-                            </th>
-                            <td class="formValue" colspan="3">
-                                @ViewBag.Roles
-                            </td>
-                        </tr>
                         <tr>
                             <th class="formTitle">说明：</th>
-                            <td class="formValue" colspan="3">
+                            <td class="formValue" colspan="2">
                                 @Html.TextAreaFor(x => x.Remark, new { @name = "Description", @maxlength = "200", @class = "txtArea", @rows = "3" })
 
                                 @Html.HiddenFor(x => x.Id)
                                 @Html.HiddenFor(x => x.CompanyId)
                                 @Html.HiddenFor(x => x.DepartmentId)
                                 @Html.HiddenFor(x => x.IsCityManager)
-                                @Html.HiddenFor(x => x.IsBorrow)
                                 @Html.HiddenFor(x => x.ChangePasswordDate)
                                 @Html.HiddenFor(x => x.Enabled)
                                 @Html.HiddenFor(x => x.RowStatus)
@@ -236,13 +216,10 @@
         }
 
         $("#IsCityManager").val($("#CityManager").attr("checked") == "checked" ? "1" : "0");
-        $("#IsBorrow").val($("#Borrow").attr("checked") == "checked" ? "1" : "0");
         $("#InnerUser").val($("#IsInnerUser").attr("checked") == "checked" ? "1" : "0");
         $("#Enabled").val($("#IsEnabled").attr("checked") == "checked" ? "1" : "0");
-
         Loading(true, "正在提交数据...");
         window.setTimeout(function () {
-
             AjaxJson('@Url.Action("SubmitUserForm", "User")', $('#formmain').serialize(), function (data) {
                 tipDialog(data.rtMsrg, 3, data.rtState);
                 top.frames[tabiframeId()].windowload();

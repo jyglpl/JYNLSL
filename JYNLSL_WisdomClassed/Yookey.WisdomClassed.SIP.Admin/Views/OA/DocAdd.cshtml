@@ -28,9 +28,10 @@
             <div class="layui-inline">
                 <label class="layui-form-label">通知类型：</label>
                 <div class="layui-input-inline">
-                    <select name="tglx" id="tglx" lay-verify="required">
+                    <select name="tglx" id="tglx"  lay-verify="tgxl">
                         <option value="">请选择状态</option>
-                        <option value="1">紧急通知</option>
+                        <option value="1">通知</option>
+                        <option value="2">公告</option>
 
                     </select>
                 </div>
@@ -39,22 +40,21 @@
                     <div class="layui-input-block">
                         <input name="iszd" title="置顶" type="radio"  value="1">
                         <input name="iszd" title="不置顶" type="radio" checked="" value="0">
-
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="layui-form-item">
+        @*<div class="layui-form-item">
             <label class="layui-form-label">接收人:</label>
             <div class="layui-input-block">
       
-                <select name="sendname" lay-verify="required" id="sendname" xm-select="sendname" lay-filter="sendname" xm-select-search="" xm-select-search-type="dl">
+                <select name="sendname" lay-verify="sendname" id="sendname" xm-select="sendname" lay-filter="sendname" xm-select-search="" xm-select-search-type="dl">
 
                 </select>
           
             </div>
-        </div>
+        </div>*@
 
         <div class="layui-form-item">
             <label class="layui-form-label">附件:</label>
@@ -70,7 +70,7 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">内容：</label>
             <div class="layui-input-block">
-                <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="editor" ></textarea>
+                <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="content" ></textarea>
             </div>
         </div>
         <div class="layui-form-item">
@@ -90,13 +90,13 @@
 <script type="text/javascript">
 
 
-    layui.config({
-        base: '../../Content/layui/' //此处路径请自行处理, 可以使用绝对路径
-    }).extend({
-        formSelects: 'formSelects-v4'
-    });
+    //layui.config({
+    //    base: '../../Content/layui/' //此处路径请自行处理, 可以使用绝对路径
+    //}).extend({
+    //    formSelects: 'formSelects-v4'
+    //});
 
-    layui.use(['form', 'layedit', 'laydate', 'upload', 'formSelects'],
+    layui.use(['form', 'layedit', 'laydate', 'upload'],
         function() {
             var form = layui.form,
                 layer = layui.layer,
@@ -104,10 +104,10 @@
                 $ = layui.jquery,
                 upload = layui.upload;
             var index = parent.layer.getFrameIndex(window.name);
-            var formSelects = layui.formSelects;
+            //var formSelects = layui.formSelects;
 
             //创建一个编辑器
-            var editIndex = layedit.build('editor');
+            var editIndex = layedit.build('content');
 
             //自定义验证规则
             form.verify({
@@ -116,11 +116,21 @@
                         return '标题至少得5个字符啊';
                     }
                 },
+                tgxl: function (value) {
+                    if (value == '') {
+                        return '通知类型不能为空';
+                    }
+                },
+                sendname: function (value) {
+                    if (value == '') {
+                        return '接受人不能为空';
+                    }
+                },
 
                 content: function (value) {
   
-                    layedit.sync(editIndex);
                    
+          
                 }
 
             });
@@ -128,25 +138,40 @@
 
             //监听提交
             form.on('submit(add)',
-                function(data) {
+                function (data) {
+                    var title = data.field["title"];
+                    var content = layedit.getContent(editIndex);
+
+                    var sendname = data.field["sendname"];
+                    var iszd = data.field["iszd"];
+                    var filepath = data.field["filepath"];
+                    var tglx = data.field["tglx"];
+
+                 
+
 
                     $.ajax({
                         type: "POST",
                         url: "@Url.Action("AddDoc", "OA")",
-                        data: data.field,
+                        data: {
+                            title: title,
+                            content: content,
+                            sendname: sendname,
+                            iszd: iszd,
+                            filepath: filepath,
+                            tglx: tglx
+                        },
                         dataType: "json",
                         success: function(data) {
                             if (data == '1') {
-                                //parent.layer.msg('保存成功');
-                                //parent.layer.close(index);
+                                parent.layer.msg('保存成功');
+                                parent.layer.close(index);
 
-                                layer.alert(JSON.stringify(data.field),
-                                    {
-                                        title: '最终的提交信息'
-                                    })
                             }
                         }
                     });
+
+
                     return false;
                 });
 
@@ -162,50 +187,21 @@
 
                 }
             });
-            //formSelects.on('sendname', function(id, vals, val, isAdd, isDisabled){
-            //    //id:           点击select的id
-            //    //vals:         当前select已选中的值
-            //    //val:          当前select点击的值
-            //    //isAdd:        当前操作选中or取消
-            //    //isDisabled:   当前选项是否是disabled
 
-            //}, true);
 
-            var formSelects = layui.formSelects;
+            @*var formSelects = layui.formSelects;
 
 
 
-            formSelects.config('sendname', {
-                keyName: 'RealName', 
-                keyVal: 'Id',  
-            }, false);
 
             formSelects.data('sendname', 'server', {
                 url: '@Url.Action("BindUser", "OA")',
-                keyword: 'Id'
-            });
+                keyword: 'name'
+            });*@
 
         });
 
 
-    function addOptions() {
-
-        $.ajax({
-            url: '@Url.Action("BindUser", "OA")',
-            dataType: 'json',
-            type: 'post',
-            success: function(data) {
-
-                $.each(data,
-                    function(index, item) {
-                        $('#tglx').append(new Option(item.name, item.id)); // 下拉菜单里添加元素
-                    })
-
-                form.render(); //下拉菜单渲染 把内容加载进去
-
-            }
-        });
-    }
 
 
 </script>

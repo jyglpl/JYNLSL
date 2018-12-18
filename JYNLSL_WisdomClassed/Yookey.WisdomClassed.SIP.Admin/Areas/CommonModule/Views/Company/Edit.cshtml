@@ -128,20 +128,9 @@
                                 </span>
                             </td>
                             <th class="formTitle">是否是片区大队：</th>
-                            <td class="formValue">
-                                <span class="item">
-                                    <input type="checkbox" name="checkbox" @(Model.IsArea == 1 ? "checked=checked" : "") id="chkArea" />
-                                </span>
-                            </td>
+
                         </tr>
-                        <tr>
-                            <th class="formTitle">是否接收许可办件：</th>
-                            <td class="formValue" colspan="3">
-                                <span class="item">
-                                    <input type="checkbox" name="checkbox" @(Model.IsAcceptLicense == 1 ? "checked=checked" : "") id="AcceptLicense" />
-                                </span>
-                            </td>
-                        </tr>
+    
                         <tr>
                             <th class="formTitle">公司描述：
                             </th>
@@ -152,8 +141,7 @@
                                 @Html.HiddenFor(x => x.ParentId)
                                 @Html.HiddenFor(x => x.Enabled)
                                 @Html.HiddenFor(x => x.Enforcement)
-                                @Html.HiddenFor(x => x.IsArea)
-                                @Html.HiddenFor(x => x.IsAcceptLicense)
+
                                 @Html.HiddenFor(x => x.RowStatus)
                                 @Html.HiddenFor(t => t.CreatorId)
                                 @Html.HiddenFor(t => t.CreateBy)

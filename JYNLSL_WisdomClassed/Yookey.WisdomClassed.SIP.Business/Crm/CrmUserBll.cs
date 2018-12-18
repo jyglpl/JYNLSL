@@ -259,6 +259,8 @@ namespace Yookey.WisdomClassed.SIP.Business.Crm
 
 
 
+
+
         /// <summary>
         /// 获取所有人员
         /// 添加人：周 鹏 
@@ -277,69 +279,62 @@ namespace Yookey.WisdomClassed.SIP.Business.Crm
             }
             if (!string.IsNullOrEmpty(search.DepartmentId))
             {
-                queryCondition.AddLike(CrmUserEntity.Parm_CrmUser_DepartmentId, search.DepartmentId);
-            }
-            else
-            {
-                return new List<CrmUserEntity>();
-            }
-            queryCondition.AddOrderBy(CrmUserEntity.Parm_CrmUser_SortCode, true);
-            return Query(queryCondition) as List<CrmUserEntity>;
-        }
 
-        /// <summary>
-        /// 获取所有人员用于许可转派
-        /// 添加人：周 鹏 
-        /// 添加时间：2014-12-20
-        /// </summary>
-        /// <history> 
-        /// 修改描述：时间+作者+描述
-        /// </history>
-        /// <returns></returns>
-        public IEnumerable<CrmUserEntity> GetCompanysUsers(CrmUserEntity search)
-        {
-            var queryCondition = QueryCondition.Instance.AddEqual(CrmUserEntity.Parm_CrmUser_RowStatus, "1");
-            if (!string.IsNullOrEmpty(search.RealName))
-            {
-                queryCondition.AddLike(CrmUserEntity.Parm_CrmUser_RealName, search.RealName);
-            }
-            if (!string.IsNullOrEmpty(search.CompanyId))
-            {
-                queryCondition.AddLike(CrmUserEntity.Parm_CrmUser_CompanyId, search.CompanyId);
-            }
-            else
-            {
-                return new List<CrmUserEntity>();
-            }
-            queryCondition.AddOrderBy(CrmUserEntity.Parm_CrmUser_SortCode, true);
-            return Query(queryCondition) as List<CrmUserEntity>;
-        }
+                var departmentEntity = new CrmDepartmentBll().Get(search.DepartmentId);
+                if (departmentEntity != null && !string.IsNullOrEmpty(search.DepartmentId))
+                {
+                    //获取到部门所属单位信息
+                    var companyId = departmentEntity.CompanyId;
 
-        /// <summary>
-        /// 获取所有人员（用于排班）
-        /// 添加人：周 鹏 
-        /// 添加时间：2014-12-20
-        /// </summary>
-        /// <history> 
-        /// 修改描述：时间+作者+描述
-        /// </history>
-        /// <returns></returns>
-        public IEnumerable<CrmUserEntity> GetDeptsFlightUsers(CrmUserEntity search)
-        {
-            var queryCondition = QueryCondition.Instance.AddEqual(CrmUserEntity.Parm_CrmUser_RowStatus, "1");
-            if (!string.IsNullOrEmpty(search.RealName))
-            {
-                queryCondition.AddLike(CrmUserEntity.Parm_CrmUser_RealName, search.RealName);
-            }
-            if (!string.IsNullOrEmpty(search.DepartmentId))
-            {
-                queryCondition.AddLike(CrmUserEntity.Parm_CrmUser_DepartmentId, search.DepartmentId);
+                    //度假区大队、高新区大队、开发区综合执法局 查询单位下面所有人员
+
+                    if (companyId.Equals("67bd0612-ff57-4c3a-b777-31133c4427ee") ||
+                        companyId.Equals("66a209db-6654-42e2-8df1-6b62ba1b0fcd") ||
+                        companyId.Equals("4eb3b31a-c2ed-406a-bf9a-ec60025e48cd"))
+                    {
+                        queryCondition.AddEqual(CrmUserEntity.Parm_CrmUser_CompanyId, companyId);
+                    }
+                    else if (companyId.Equals("ee8caa80-7124-4978-b06f-918ea7f44a66"))
+                    {
+                        //queryCondition.AddLike(CrmUserEntity.Parm_CrmUser_DepartmentId, search.DepartmentId);
+                    }
+                    else
+                    {
+                        queryCondition.AddLike(CrmUserEntity.Parm_CrmUser_DepartmentId, search.DepartmentId);
+                    }
+                }
+
+                //if (search.DepartmentId == "dec48af7-7cb7-4c14-93a1-02e584c9ae38")
+                //{
+                //    queryCondition.AddIn(CrmUserEntity.Parm_CrmUser_DepartmentId, "'dec48af7-7cb7-4c14-93a1-02e584c9ae38','c3ad845f-1959-4639-8bd3-d58f711d9d15','50c46c83-9b79-4e90-a615-f45afe6ce238','7a2e4bc5-b126-4721-97bf-0b83c683c18b','518b99ad-dfd1-4bfe-a710-8b5609c46927'");
+                //}
+                //else if (search.DepartmentId == "c3ad845f-1959-4639-8bd3-d58f711d9d15")
+                //{
+                //    queryCondition.AddIn(CrmUserEntity.Parm_CrmUser_DepartmentId, "'dec48af7-7cb7-4c14-93a1-02e584c9ae38','c3ad845f-1959-4639-8bd3-d58f711d9d15','50c46c83-9b79-4e90-a615-f45afe6ce238','7a2e4bc5-b126-4721-97bf-0b83c683c18b','518b99ad-dfd1-4bfe-a710-8b5609c46927'");
+                //}
+                //else if (search.DepartmentId == "50c46c83-9b79-4e90-a615-f45afe6ce238")
+                //{
+                //    queryCondition.AddIn(CrmUserEntity.Parm_CrmUser_DepartmentId, "'dec48af7-7cb7-4c14-93a1-02e584c9ae38','c3ad845f-1959-4639-8bd3-d58f711d9d15','50c46c83-9b79-4e90-a615-f45afe6ce238','7a2e4bc5-b126-4721-97bf-0b83c683c18b','518b99ad-dfd1-4bfe-a710-8b5609c46927'");
+                //}
+                //else if (search.DepartmentId == "7a2e4bc5-b126-4721-97bf-0b83c683c18b")
+                //{
+                //    queryCondition.AddIn(CrmUserEntity.Parm_CrmUser_DepartmentId, "'dec48af7-7cb7-4c14-93a1-02e584c9ae38','c3ad845f-1959-4639-8bd3-d58f711d9d15','50c46c83-9b79-4e90-a615-f45afe6ce238','7a2e4bc5-b126-4721-97bf-0b83c683c18b','518b99ad-dfd1-4bfe-a710-8b5609c46927'");
+                //}
+                //else if (search.DepartmentId == "518b99ad-dfd1-4bfe-a710-8b5609c46927")
+                //{
+                //    queryCondition.AddIn(CrmUserEntity.Parm_CrmUser_DepartmentId, "'dec48af7-7cb7-4c14-93a1-02e584c9ae38','c3ad845f-1959-4639-8bd3-d58f711d9d15','50c46c83-9b79-4e90-a615-f45afe6ce238','7a2e4bc5-b126-4721-97bf-0b83c683c18b','518b99ad-dfd1-4bfe-a710-8b5609c46927'");
+                //}
+                //else
+                //{
+                //    queryCondition.AddLike(CrmUserEntity.Parm_CrmUser_DepartmentId, search.DepartmentId);
+                //}
             }
             else
             {
                 return new List<CrmUserEntity>();
             }
-            queryCondition.AddOrderBy(CrmUserEntity.Parm_CrmUser_FlightSortCode, true);    //排序编号不同
+            queryCondition.AddOrderBy(CrmUserEntity.Parm_CrmUser_DepartmentId, false);
+            queryCondition.AddOrderBy(CrmUserEntity.Parm_CrmUser_SortCode, true);
             return Query(queryCondition) as List<CrmUserEntity>;
         }
 
@@ -397,6 +392,17 @@ namespace Yookey.WisdomClassed.SIP.Business.Crm
         public List<CrmUserEntity> GetAllUsers()
         {
             return new CrmUserDal().GetAllUsers();
+        }
+
+        /// <summary>
+        /// 查找除了管理员之外的用户
+        /// add by lpl
+        /// 2018-12-18
+        /// </summary>
+        /// <returns></returns>
+        public List<CrmUserEntity> GetUser()
+        {
+            return new CrmUserDal().GetUsers();
         }
 
 
@@ -510,36 +516,5 @@ namespace Yookey.WisdomClassed.SIP.Business.Crm
         {
             return new CrmUserDal().GetUserListBySquadronLeader(companyId, departmentId, position);
         }
-
-        /// <summary>
-        /// 判断许可领导
-        /// </summary>
-        /// <param name="userId">人员ID</param>
-        /// <returns></returns>
-        public bool GetIsLicenseDirector(string userId)
-        {
-            var ids = new CrmUserDal().GetLicenseDirector();
-            if (ids != null && ids.Count > 0)
-            {
-                return ids.FirstOrDefault(i => i.Contains(userId)) != null;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        //GetLicenseActionUsers
-        /// <summary>
-        /// 获取许可节点人员
-        /// </summary>
-        /// <param name="actionName"></param>
-        /// <returns></returns>
-        public List<string> GetLicenseActionUsers(string actionName)
-        {
-            var ids = new CrmUserDal().GetLicenseActionUsers(actionName);
-            return ids;
-        }
-
     }
 }

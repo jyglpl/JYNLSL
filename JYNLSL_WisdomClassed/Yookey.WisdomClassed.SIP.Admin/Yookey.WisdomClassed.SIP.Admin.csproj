@@ -174,7 +174,6 @@
     <Compile Include="Controllers\Hr\AttendanceStatisticsController.cs" />
     <Compile Include="Controllers\Hr\FlightClassesOfDeptmentController.cs" />
     <Compile Include="Controllers\Hr\LeaveController.cs" />
-    <Compile Include="Controllers\Hr\LochusFlightController.cs" />
     <Compile Include="Controllers\Hr\WageController.cs" />
     <Compile Include="Controllers\Hr\WorkOvertimeController.cs" />
     <Compile Include="Controllers\Instrument\InstrumentController.cs" />
@@ -182,9 +181,6 @@
     <Compile Include="Controllers\Ledger\LedgerController.cs" />
     <Compile Include="Controllers\License\LicenseApprovalController.cs" />
     <Compile Include="Controllers\License\LicenseAttachController.cs" />
-    <Compile Include="Controllers\License\LicenseJeevesController.cs" />
-    <Compile Include="Controllers\License\LicenseOutDoorController.cs" />
-    <Compile Include="Controllers\License\LicensePositionOutDoorController.cs" />
     <Compile Include="Controllers\OnlineClass\CourseController.cs" />
     <Compile Include="Controllers\OnlineClass\SystemController.cs" />
     <Compile Include="Controllers\Penalty\PenaltyCaseLandController.cs" />

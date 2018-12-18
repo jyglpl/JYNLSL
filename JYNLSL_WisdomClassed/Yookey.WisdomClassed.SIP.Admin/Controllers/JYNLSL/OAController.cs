@@ -16,7 +16,7 @@ using Yookey.WisdomClassed.SIP.Model.OA;
 
 namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
 {
-    public class OAController : Controller
+    public class OAController :BaseController
     {
         //
         // GET: /OA/
@@ -135,7 +135,7 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
         /// </summary>
         /// <param name="title">标题</param>
         /// <param name="content">内容</param>
-        /// <param name="sendname">发送人</param>
+        /// <param name="sendname">接收人</param>
         /// <param name="iszd">是否置顶</param>
         /// <param name="filepath">附件路径</param>
         /// <param name="tglx">通告类型</param>
@@ -144,12 +144,24 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
         {
             DocumentNotificationEntity entity = new DocumentNotificationEntity()
             {
-                Id=Guid.NewGuid().ToString(),
+                Id = Guid.NewGuid().ToString(),
                 Title = title,
+                Publisher = CurrentUser.CrmUser.UserName,
+                ReleaseTime = NowDate,
+                Iszd = iszd,
+                GGContent = content,
+                Sendname = sendname,
+                FilePath = filepath,
+                Category = tglx,
 
-            
+                //公共字段
+                CreateBy = CurrentUser.CrmUser.UserName,
+                CreateOn = NowDate,
+                CreatorId = CurrentUser.CrmUser.Id,
+                UpdateBy = CurrentUser.CrmUser.UserName,
+                UpdateOn = NowDate,
+                UpdateId = CurrentUser.CrmUser.Id
 
-                
             };
 
             if (new DocumentNotificationBll().Insert(entity))
@@ -169,10 +181,35 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult BindUser(string id)
+        public string BindUser(string id)
         {
-            List<CrmUserEntity> department = new CrmUserBll().GetAllUsers();
-            return Json(department, JsonRequestBehavior.AllowGet);
+            List<CrmUserEntity> user = new CrmUserBll().GetUser();
+
+
+            List<CrmDepartmentEntity> department = new CrmDepartmentBll().GetAllDepartment(new CrmDepartmentEntity()
+            {
+                CompanyId = user[0].CompanyId,
+            });
+
+            string josn = "[";
+        
+            for (int i = 0; i < department.Count; i++)
+            {
+                var userjosn = from u in user where u.DepartmentId == department[i].Id select u;
+                josn += "{ \"name\": \"" + department[i].FullName + "\", \"type\": \"optgroup\"},";
+             
+                foreach (var groupuser in userjosn)
+                {
+                
+                    josn += "{ \"name\":\"" + groupuser.RealName + "\",\"value\":\"" + groupuser.Id + "\",\"selected\":\"\",\"disabled\":\"\"},";
+                }
+
+            }
+
+            josn = josn.TrimEnd(',');
+            josn += "]"; 
+
+            return josn;
         }
 
     }
