@@ -7,8 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
-    <link href="~/Content/layui/css/formSelects-v4.css" rel="stylesheet" />
-    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+
+    <!-- LayUI表单 -->
+
+    <!-- UE富文本编辑框 -->
+    <script src="~/Content/ueditor/ueditor.config.js"></script>
+    <script src="~/Content/ueditor/ueditor.all.js"></script>
+    @*<script src="~/Content/ueditor/ueditor.all.min.js"></script>*@
+    <link href="~/Content/ueditor/themes/iframe.css" rel="stylesheet" />
+    <script src="~/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
 </head>
 <body>
 
@@ -16,71 +23,91 @@
 
 
 
-    <form class="layui-form" >
-        <div class="layui-form-item">
-            <label class="layui-form-label">通告标题：</label>
-            <div class="layui-input-block">
-                <input name="title" class="layui-input" type="text"  placeholder="请输入标题" autocomplete="off" lay-verify="title">
-            </div>
+<form class="layui-form">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>发布公告</legend>
+    </fieldset>
+    <div class="layui-form-item">
+        <label class="layui-form-label">通告标题：</label>
+        <div class="layui-input-block">
+            <input name="title" class="layui-input" type="text" placeholder="请输入标题" autocomplete="off" lay-verify="title" style="width: 90%"/>
         </div>
-        <div class="layui-form-item">
+    </div>
+    <div class="layui-form-item">
 
+        <div class="layui-inline">
+            <label class="layui-form-label">通知类型：</label>
+            <div class="layui-input-inline">
+                <select name="tglx" id="tglx" lay-verify="tgxl">
+                    <option value="">请选择状态</option>
+                    <option value="1">通知</option>
+                    <option value="2">公告</option>
+
+                </select>
+            </div>
             <div class="layui-inline">
-                <label class="layui-form-label">通知类型：</label>
-                <div class="layui-input-inline">
-                    <select name="tglx" id="tglx"  lay-verify="tgxl">
-                        <option value="">请选择状态</option>
-                        <option value="1">通知</option>
-                        <option value="2">公告</option>
-
-                    </select>
-                </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">是否置顶：</label>
-                    <div class="layui-input-block">
-                        <input name="iszd" title="置顶" type="radio"  value="1">
-                        <input name="iszd" title="不置顶" type="radio" checked="" value="0">
-                    </div>
+                <label class="layui-form-label">是否置顶：</label>
+                <div class="layui-input-block">
+                    <input name="iszd" title="置顶" type="radio" value="1">
+                    <input name="iszd" title="不置顶" type="radio" checked="" value="0">
                 </div>
             </div>
-
         </div>
-        @*<div class="layui-form-item">
+
+    </div>
+    <div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">接收人:</label>
+                <div class="layui-input-block">
+
+                    <input name="title" class="layui-input" type="text" placeholder="请选择接收人" autocomplete="off" readonly="readonly">
+                    <input type="button" value="选择接收人" class="layui-btn" id="sendname" name="sendname" onclick="choose()"/>
+                </div>
+                <div class="layui-input-block">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @*<div class="layui-form-item">
             <label class="layui-form-label">接收人:</label>
             <div class="layui-input-block">
-      
+
                 <select name="sendname" lay-verify="sendname" id="sendname" xm-select="sendname" lay-filter="sendname" xm-select-search="" xm-select-search-type="dl">
 
                 </select>
-          
+
             </div>
         </div>*@
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">附件:</label>
-            <div class="layui-input-block">
+    <div class="layui-form-item">
+        <label class="layui-form-label">附件:</label>
+        <div class="layui-input-block">
 
-                <button type="button" class="layui-btn" id="fileupload">选择</button>
-                <label id="filename" name="filename"></label>
-                <input name="filepath" id="filepath" hidden="true"/>
-            </div>
+            <button type="button" class="layui-btn" id="fileupload">选择</button>
+            <label id="filename" name="filename"></label>
+            <input name="filepath" id="filepath" hidden="true"/>
         </div>
+    </div>
 
 
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">内容：</label>
-            <div class="layui-input-block">
-                <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="content" ></textarea>
-            </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">内容：</label>
+        <div class="layui-input-block">
+
+            <textarea id="editor" name="editor"></textarea>
         </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" lay-filter="add" lay-submit="">确定</button>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-filter="add" lay-submit="">确定</button>
 
 
-            </div>
         </div>
-    </form>
+    </div>
+</form>
 
 
 
@@ -90,24 +117,63 @@
 <script type="text/javascript">
 
 
-    //layui.config({
-    //    base: '../../Content/layui/' //此处路径请自行处理, 可以使用绝对路径
-    //}).extend({
-    //    formSelects: 'formSelects-v4'
-    //});
 
-    layui.use(['form', 'layedit', 'laydate', 'upload'],
+    var editor = new baidu.editor.ui.Editor({
+        UEDITOR_HOME_URL: '/Content/ueditor/',//配置编辑器路径
+        iframeCssUrl: '/Content/ueditor/themes/iframe.css',//样式路径
+        initialContent: '',//初始化编辑器内容
+        autoHeightEnabled: true,//高度自动增长
+        minFrameHeight: 500//最小高度
+    });
+    editor.render('editor');
+
+
+    //社区的增强版多选下拉不兼容IE。。。我也很无奈
+    layui.config({
+        base: '../../Content/layui/' //此处路径请自行处理, 可以使用绝对路径
+    }).extend({
+        formSelects: 'formSelects-v4'
+    });
+
+
+    function choose() {
+        layer.open({
+            type: 2,
+            title:'选择接收人',
+            area: ['500px', '300px'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: '@Url.Action("DocAdd", "OA")',
+            end: function () {
+                //location.reload();
+                //执行重载
+                //table.reload('ggtz', {
+                //    page: {
+                //        curr: 1 //重新从第 1 页开始
+                //    }
+                //    ,where: {
+                //        key: {
+                //            //id: demoReload.val()
+                //        }
+                //    }
+                //});
+            }
+
+        });
+    }
+
+
+    layui.use(['form', 'laydate', 'upload', 'formSelects'],
         function() {
             var form = layui.form,
                 layer = layui.layer,
-                layedit = layui.layedit,
+       
                 $ = layui.jquery,
                 upload = layui.upload;
             var index = parent.layer.getFrameIndex(window.name);
-            //var formSelects = layui.formSelects;
 
-            //创建一个编辑器
-            var editIndex = layedit.build('content');
+
+
 
             //自定义验证规则
             form.verify({
@@ -116,21 +182,20 @@
                         return '标题至少得5个字符啊';
                     }
                 },
-                tgxl: function (value) {
+                tgxl: function(value) {
                     if (value == '') {
                         return '通知类型不能为空';
                     }
                 },
-                sendname: function (value) {
+                sendname: function(value) {
                     if (value == '') {
                         return '接受人不能为空';
                     }
                 },
 
-                content: function (value) {
-  
-                   
-          
+                content: function(value) {
+
+
                 }
 
             });
@@ -138,7 +203,7 @@
 
             //监听提交
             form.on('submit(add)',
-                function (data) {
+                function(data) {
                     var title = data.field["title"];
                     var content = layedit.getContent(editIndex);
 
@@ -146,8 +211,6 @@
                     var iszd = data.field["iszd"];
                     var filepath = data.field["filepath"];
                     var tglx = data.field["tglx"];
-
-                 
 
 
                     $.ajax({
@@ -189,19 +252,14 @@
             });
 
 
-            @*var formSelects = layui.formSelects;
-
-
-
+            var formSelects = layui.formSelects;
 
             formSelects.data('sendname', 'server', {
                 url: '@Url.Action("BindUser", "OA")',
                 keyword: 'name'
-            });*@
+            });
 
         });
-
-
 
 
 </script>

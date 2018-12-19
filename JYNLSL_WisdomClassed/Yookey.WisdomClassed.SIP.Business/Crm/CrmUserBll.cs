@@ -17,12 +17,12 @@ using System.Data;
 using System.Diagnostics;
 using Yookey.WisdomClassed.SIP.Business.BllImp;
 using Yookey.WisdomClassed.SIP.DataAccess.Crm;
-using Yookey.WisdomClassed.SIP.DataAccess.Hr;
+
 using Yookey.WisdomClassed.SIP.Model;
 using Yookey.WisdomClassed.SIP.Model.Base;
 using Yookey.WisdomClassed.SIP.Model.Crm;
 using System.Linq;
-using Yookey.WisdomClassed.SIP.Business.Hr;
+
 namespace Yookey.WisdomClassed.SIP.Business.Crm
 {
     /// <summary>

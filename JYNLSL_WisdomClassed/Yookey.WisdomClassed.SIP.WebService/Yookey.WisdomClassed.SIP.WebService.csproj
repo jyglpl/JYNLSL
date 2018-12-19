@@ -67,96 +67,20 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assessment\Assessment.asmx" />
-    <Content Include="Com\Approval.asmx" />
-    <Content Include="Com\Basis.asmx" />
-    <Content Include="Com\Bill.asmx" />
     <Content Include="Com\CrmUser.asmx" />
-    <Content Include="Com\Education.asmx" />
-    <Content Include="Com\Hr.asmx" />
-    <Content Include="Com\Image.asmx" />
-    <Content Include="Com\License.asmx" />
-    <Content Include="Com\PDAPortService.asmx" />
-    <Content Include="Com\PunishCase.asmx" />
-    <Content Include="Com\TempDetain.asmx" />
     <Content Include="DefaultError.html" />
-    <Content Include="Com\DoubleRandom.asmx" />
-    <Content Include="IllegalConstruction\Illegal.asmx" />
-    <Content Include="License\License.asmx" />
-    <Content Include="Petition\Petition.asmx" />
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </Content>
-    <Content Include="TeamManagement\TeamManagementService.asmx" />
     <Content Include="Web References\PictureService\PictureService.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assessment\Assessment.asmx.cs">
-      <DependentUpon>Assessment.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Com\Approval.asmx.cs">
-      <DependentUpon>Approval.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Com\Basis.asmx.cs">
-      <DependentUpon>Basis.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Com\Bill.asmx.cs">
-      <DependentUpon>Bill.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Com\CrmUser.asmx.cs">
       <DependentUpon>CrmUser.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Com\Education.asmx.cs">
-      <DependentUpon>Education.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Com\Hr.asmx.cs">
-      <DependentUpon>Hr.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Com\Image.asmx.cs">
-      <DependentUpon>Image.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Com\License.asmx.cs">
-      <DependentUpon>License.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Com\PDAPortService.asmx.cs">
-      <DependentUpon>PDAPortService.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Com\PunishCase.asmx.cs">
-      <DependentUpon>PunishCase.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Com\TempDetain.asmx.cs">
-      <DependentUpon>TempDetain.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Com\DoubleRandom.asmx.cs">
-      <DependentUpon>DoubleRandom.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="IllegalConstruction\Illegal.asmx.cs">
-      <DependentUpon>Illegal.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="License\License.asmx.cs">
-      <DependentUpon>License.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Petition\Petition.asmx.cs">
-      <DependentUpon>Petition.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,10 +90,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="SoapExceptionHandler.cs" />
-    <Compile Include="TeamManagement\TeamManagementService.asmx.cs">
-      <DependentUpon>TeamManagementService.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Web References\PictureService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -233,9 +153,7 @@
       <CachedSettingsPropName>Yookey_WisdomClassed_SIP_WebService_PictureService_PictureService</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DoubleRandom\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

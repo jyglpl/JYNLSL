@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Yookey.WisdomClassed.SIP.Business.Crm;
-using Yookey.WisdomClassed.SIP.Business.License;
+
 using Yookey.WisdomClassed.SIP.DataAccess.Com;
 using Yookey.WisdomClassed.SIP.Model.Com;
-using Yookey.WisdomClassed.SIP.Model.License;
+
 
 namespace Yookey.WisdomClassed.SIP.Business.Com
 {
@@ -184,49 +184,49 @@ namespace Yookey.WisdomClassed.SIP.Business.Com
         /// <param name="where">查询条件无需where</param>
         /// <param name="qsh">起始号</param>
         /// <returns>最大流水号</returns>
-        private string GetMaxCode(string strBick, int numleng, string dataField, string tableName, string where, int qsh)
-        {
-            return new ComNumberDal().GetMaxCode(strBick, numleng, dataField, tableName, where, qsh);
-        }
+        //private string GetMaxCode(string strBick, int numleng, string dataField, string tableName, string where, int qsh)
+        //{
+        //    return new ComNumberDal().GetMaxCode(strBick, numleng, dataField, tableName, where, qsh);
+        //}
 
-        public string GetLicenseSetNo(LicenseMainEntity entity)
-        {
-            string licenseOutDoor_itemCode = "JS050800ZJ-XK-0090";//户外广告
-            string licensePositionOutDoor_itemCode = "JS050800ZJ-XK-0190";//大型户外广告
-            string licenseJeeves_itemCode = "JS050800ZJ-XK-0020";//占道
-            var mainBll = new LicenseMainBll();
-            if (entity == null || string.IsNullOrEmpty(entity.Id) || string.IsNullOrEmpty(entity.ItemCode))
-                return string.Empty;
-            var setNo = "GS:";
-            var company = new CrmCompanyBll().Get(entity.Area);
-            var companyName = company == null ? string.Empty : company.FullName.Substring(0, company.FullName.Length - 2);//去掉大队           
-            if (entity.ItemCode.Contains(licenseJeeves_itemCode))//占道
-            {                
-                setNo += "Z-";
-                setNo +=(DateTime.Now.Year%100).ToString();//年份                
-                setNo += mainBll.GetLicenseCount(setNo, entity.ItemCode) + "-";//流水号
-                setNo += new ComInitial().GetSpellCode(companyName);//片区的首字母
-            }
-            else if(entity.ItemCode.Contains(licenseOutDoor_itemCode))//户外广告
-            {
-                var LicenseOutDoorEntity= new LicenseOutDoorBll().GetEntityByLicenseId(entity.Id);
-                setNo += "G";
-                setNo +=LicenseOutDoorEntity.SetUpCycle == "00590001"?"01-":"02-";//长期短期广告
-                setNo += (DateTime.Now.Year % 100).ToString();//年份
-                var LicenseJeevesEntity = new LicenseJeevesBll().GetEntityByLicenseId(entity.Id);
-                setNo += mainBll.GetLicenseCount(setNo,entity.ItemCode) + "-";//流水号
-                setNo += new ComInitial().GetSpellCode(companyName);//片区的首字母
-            }
-            else if (entity.ItemCode.Contains(licensePositionOutDoor_itemCode))//大型户外广告
-            {
-                var LicenseOutDoorEntity = new LicenseOutDoorBll().GetEntityByLicenseId(entity.Id);
-                setNo += "D";
-                setNo += LicenseOutDoorEntity.SetUpCycle == "00590001" ? "01-" : "02-";//长期短期广告
-                setNo += (DateTime.Now.Year % 100).ToString();//年份
-                var LicenseJeevesEntity = new LicenseJeevesBll().GetEntityByLicenseId(entity.Id);
-                setNo += mainBll.GetLicenseCount(setNo.Replace("01", "__").Replace("02", "__"),entity.ItemCode);//流水号
-            }
-            return setNo;
-        }        
+        //public string GetLicenseSetNo(LicenseMainEntity entity)
+        //{
+        //    string licenseOutDoor_itemCode = "JS050800ZJ-XK-0090";//户外广告
+        //    string licensePositionOutDoor_itemCode = "JS050800ZJ-XK-0190";//大型户外广告
+        //    string licenseJeeves_itemCode = "JS050800ZJ-XK-0020";//占道
+        //    var mainBll = new LicenseMainBll();
+        //    if (entity == null || string.IsNullOrEmpty(entity.Id) || string.IsNullOrEmpty(entity.ItemCode))
+        //        return string.Empty;
+        //    var setNo = "GS:";
+        //    var company = new CrmCompanyBll().Get(entity.Area);
+        //    var companyName = company == null ? string.Empty : company.FullName.Substring(0, company.FullName.Length - 2);//去掉大队           
+        //    if (entity.ItemCode.Contains(licenseJeeves_itemCode))//占道
+        //    {                
+        //        setNo += "Z-";
+        //        setNo +=(DateTime.Now.Year%100).ToString();//年份                
+        //        setNo += mainBll.GetLicenseCount(setNo, entity.ItemCode) + "-";//流水号
+        //        setNo += new ComInitial().GetSpellCode(companyName);//片区的首字母
+        //    }
+        //    else if(entity.ItemCode.Contains(licenseOutDoor_itemCode))//户外广告
+        //    {
+        //        var LicenseOutDoorEntity= new LicenseOutDoorBll().GetEntityByLicenseId(entity.Id);
+        //        setNo += "G";
+        //        setNo +=LicenseOutDoorEntity.SetUpCycle == "00590001"?"01-":"02-";//长期短期广告
+        //        setNo += (DateTime.Now.Year % 100).ToString();//年份
+        //        var LicenseJeevesEntity = new LicenseJeevesBll().GetEntityByLicenseId(entity.Id);
+        //        setNo += mainBll.GetLicenseCount(setNo,entity.ItemCode) + "-";//流水号
+        //        setNo += new ComInitial().GetSpellCode(companyName);//片区的首字母
+        //    }
+        //    else if (entity.ItemCode.Contains(licensePositionOutDoor_itemCode))//大型户外广告
+        //    {
+        //        var LicenseOutDoorEntity = new LicenseOutDoorBll().GetEntityByLicenseId(entity.Id);
+        //        setNo += "D";
+        //        setNo += LicenseOutDoorEntity.SetUpCycle == "00590001" ? "01-" : "02-";//长期短期广告
+        //        setNo += (DateTime.Now.Year % 100).ToString();//年份
+        //        var LicenseJeevesEntity = new LicenseJeevesBll().GetEntityByLicenseId(entity.Id);
+        //        setNo += mainBll.GetLicenseCount(setNo.Replace("01", "__").Replace("02", "__"),entity.ItemCode);//流水号
+        //    }
+        //    return setNo;
+        //}        
     }
 }

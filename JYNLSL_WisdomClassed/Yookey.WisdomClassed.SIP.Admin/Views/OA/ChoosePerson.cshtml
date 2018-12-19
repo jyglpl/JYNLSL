@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
+    <link href="~/Content/layui/css/formSelects-v4.css" rel="stylesheet" />
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+
+
+
+
+
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">通告标题：</label>
+            <div class="layui-input-block">
+                <input name="title" class="layui-input" type="text" placeholder="请输入标题" autocomplete="off" lay-verify="title">
+            </div>
+        </div>
+        <div class="layui-form-item">
+
+            <div class="layui-inline">
+                <label class="layui-form-label">通知类型：</label>
+                <div class="layui-input-inline">
+                    <select name="tglx" id="tglx" lay-verify="tgxl">
+                        <option value="">请选择状态</option>
+                        <option value="1">通知</option>
+                        <option value="2">公告</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="add" lay-submit="">确定</button>
+
+
+            </div>
+        </div>
+    </form>
+
+
+
+    <script src="~/Content/layui/layui.js" charset="utf-8"></script>
+
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script type="text/javascript">
+
+
+
+
+        layui.use(['form'],
+            function () {
+                var form = layui.form,$ = layui.jquery;
+
+            //自定义验证规则
+            form.verify({
+
+
+            });
+
+            //监听提交
+            form.on('submit(add)',
+                function(data) {
+                    var title = data.field["title"];
+                    var content = layedit.getContent(editIndex);
+
+                    var sendname = data.field["sendname"];
+                    var iszd = data.field["iszd"];
+                    var filepath = data.field["filepath"];
+                    var tglx = data.field["tglx"];
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("AddDoc", "OA")",
+                        data: {
+                            title: title,
+                            content: content,
+                            sendname: sendname,
+                            iszd: iszd,
+                            filepath: filepath,
+                            tglx: tglx
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data == '1') {
+                                parent.layer.msg('保存成功');
+                                parent.layer.close(index);
+
+                            }
+                        }
+                    });
+
+
+                    return false;
+                });
+
+
+
+        });
+
+
+
+
+    </script>
+
+</body>
+</html>

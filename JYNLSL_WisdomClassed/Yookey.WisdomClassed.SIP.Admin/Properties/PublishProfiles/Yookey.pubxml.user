@@ -8,6 +8,7 @@
     <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
     <LastUsedPlatform>Any CPU</LastUsedPlatform>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>E:\WebSite\Yookey</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/DBHelper.dll">
@@ -1560,6 +1561,15 @@
     </File>
     <File Include="Views/Message/Top.cshtml">
       <publishTime>05/04/2014 16:17:41</publishTime>
+    </File>
+    <File Include="Views/OA/DocAdd.cshtml">
+      <publishTime>12/19/2018 08:44:55</publishTime>
+    </File>
+    <File Include="Views/OA/Index.cshtml">
+      <publishTime>12/18/2018 16:35:18</publishTime>
+    </File>
+    <File Include="Views/OA/SelectPeople.cshtml">
+      <publishTime>12/17/2018 10:34:39</publishTime>
     </File>
     <File Include="Views/Permission/Index.cshtml">
       <publishTime>05/04/2014 16:17:42</publishTime>
