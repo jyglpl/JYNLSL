@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>layout 后台大布局 - Layui</title>
     <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
-   
+
+
+
 
 </head>
 <body class="layui-layout-body">
@@ -44,8 +46,9 @@
         <div class="layui-side layui-bg-black">
             <div class="layui-side-scroll" id="admin-navbar-side" lay-filter="side">
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-                @*<ul class="layui-nav layui-nav-tree" lay-filter="test" id="accordion">*@
-                @*<li class="layui-nav-item layui-nav-itemed">
+             
+                @*<ul class="layui-nav layui-nav-tree" lay-filter="test" id="accordion">
+                <li class="layui-nav-item layui-nav-itemed">
                         <a class="" href="javascript:;">所有商品</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" id="menu_three">列表一</a>
@@ -70,9 +73,8 @@
                         </dl>
                     </li>
                     <li class="layui-nav-item"><a href="">云市场</a></li>
-                    <li class="layui-nav-item"><a href="">发布商品</a></li>*@
-                @*</ul>*@
-
+                    <li class="layui-nav-item"><a href="">发布商品</a></li>
+                </ul>*@
             </div>
         </div>
 
@@ -87,7 +89,7 @@
         </div>
     </div>
     <script src="~/Content/layui/layui.js" charset="utf-8"></script>
-    <script src="~/Content/layui/layui.all.js"></script>
+  
     <script>
 
         //JavaScript代码区域
@@ -99,7 +101,7 @@
             var html = '';
             //获取菜单
             $.ajax({
-                url: "@Url.Action("LoadAccordionMenu")",
+                url: "@Url.Action("LoadTree")",
                 type: "post",
                 dataType: "json",
                 data: {},
@@ -108,12 +110,30 @@
 
                     //加载一级菜单
                     $.each(navs, function (i, item) {
-
-                        html += '<dl>';
-                        html += '<dt><a href="javascript:;" data-url="' + item.FullName + '" nav-id="' + item.id + '"><i class="' + item.icon + '"></i><cite>' + item.title + '</cite></a></dt>';
+                        html += '<ul class="layui-nav layui-nav-tree" lay-filter="test" id="accordion">';
+                        html += '<li class="layui-nav-item layui-nav-itemed">';
+                        html += ' <a class="" href="javascript:;">' + item.text + '</a>';
+                        if (item.menus !== undefined && item.menus.length > 0) {
+                            $.each(item.menus,
+                                function(j, item2) {
+                                    html += '<dl class="layui-nav-child">';
+                                    html += '<dd><a href="javascript:;" id="menu_three">' + item2.text + '</a>';
+                                    if (item2.menus !== undefined && item2.menus.length > 0) {
+                                        $.each(item2.menus,
+                                            function(j, item3) {
+                                                html += ' <ol class="layui-nav-child" style="display: none;" >';
+                                                html += ' <li><a href="javascript:;">' + item3.text+'</a></li>';
+                                                html += ' </ol>';
+                                            });
              
+                                    }
+                                    html += ' </dd>';
+                                });
+                        }
+                        html += '/li';
+                        html += '</ul>';
 
-                        html += '</dl>';
+        
                     });
                     //渲染html
                     $('#admin-navbar-side').html(html);

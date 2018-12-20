@@ -27,8 +27,14 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
         }
 
 
-
+        [ValidateInput(false)]
         public ActionResult DocAdd()
+        {
+            return View();
+        }
+
+
+        public ActionResult ChoosePerson()
         {
             return View();
         }
@@ -93,8 +99,11 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
         }
 
 
+        public ActionResult GongGaoDetial()
+        {
+            return View();
+        }
 
-        
         /// <summary>
         /// 获取公告通知表数据
         /// add by lpl
@@ -140,6 +149,8 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
         /// <param name="filepath">附件路径</param>
         /// <param name="tglx">通告类型</param>
         /// <returns></returns>
+        
+        [ValidateInput(false)]
         public string AddDoc(string title,string content, string sendname,string iszd,string filepath,string tglx)
         {
             DocumentNotificationEntity entity = new DocumentNotificationEntity()
@@ -174,6 +185,36 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
             }
 
 
+        }
+
+
+        public string BindUser2()
+        {
+            List<CrmUserEntity> user = new CrmUserBll().GetUser();
+            List<CrmDepartmentEntity> department = new CrmDepartmentBll().GetAllDepartment(new CrmDepartmentEntity()
+            {
+                CompanyId = user[0].CompanyId,
+            });
+
+            string josn = "[";
+            for (int i = 0; i < department.Count; i++)
+            {
+                var userjosn = from u in user where u.DepartmentId == department[i].Id select u;
+   
+                josn += "{ id: \""+ department[i].Id + "\", text: \""+ department[i].FullName + "\"},";
+                foreach (var groupuser in userjosn)
+                {
+
+
+                    josn += "{ id: \"" + groupuser.Id + "\", text: \"" + groupuser.RealName + "\", pid: \""+ department[i].Id + "\"},";
+                }
+
+            }
+            josn = josn.TrimEnd(',');
+            josn += "]";
+
+    
+            return josn;
         }
 
         /// <summary>

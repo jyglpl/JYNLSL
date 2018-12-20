@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>layui</title>
+    <title>公告通知</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -76,9 +76,9 @@
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
 
-                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">提醒</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="detail">提醒</a>
 
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+       
                 </script>
             </div>
             <div class="layui-tab-item">
@@ -217,23 +217,23 @@
                 layer.open({
                     type: 2,
                     title:'发布公告',
-                    area: ['900px', '550px'],
+                    area: ['1300px', '650px'],
                     fixed: false, //不固定
                     maxmin: true,
                     content: '@Url.Action("DocAdd", "OA")',
                     end: function () {
-                        //location.reload();
-                        //执行重载
-                        table.reload('ggtz', {
-                            page: {
-                                curr: 1 //重新从第 1 页开始
-                            }
-                            ,where: {
-                                key: {
-                                    //id: demoReload.val()
-                                }
-                            }
-                        });
+                        location.reload();
+                        //执行重载,IE似乎不支持只重载表格
+                        //table.reload('ggtz', {
+                        //    page: {
+                        //        curr: 1 //重新从第 1 页开始
+                        //    }
+                        //    ,where: {
+                        //        key: {
+                        //            //id: demoReload.val()
+                        //        }
+                        //    }
+                        //});
                     }
 
                 });

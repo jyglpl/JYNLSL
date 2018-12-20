@@ -51,3 +51,4 @@ E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\ob
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\obj\Debug\Yookey.WisdomClassed.SIP.Enumerate.csproj.CopyComplete
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\obj\Debug\Yookey.WisdomClassed.SIP.Enumerate.dll
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\obj\Debug\Yookey.WisdomClassed.SIP.Enumerate.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Enumerate\obj\Debug\Yookey.WisdomClassed.SIP.Enumerate.csprojAssemblyReference.cache

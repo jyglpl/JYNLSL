@@ -33,3 +33,4 @@ E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csproj.Co
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csproj.CopyComplete
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.dll
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csprojAssemblyReference.cache

@@ -8158,3 +8158,131 @@
             URL参数：
                     
  
+
+ 
+记录时间：2018-12-19 20:58:50,580 
+线程ID:[14] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:MainPage
+            开始时间：2018/12/19 20:58:50
+            结束时间：2018/12/19 20:58:50
+            总 时 间：0.0448682秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-19 20:58:52,133 
+线程ID:[14] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:MainPage
+            开始时间：2018/12/19 20:58:50
+            结束时间：2018/12/19 20:58:52
+            总 时 间：1.5398535秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-19 20:58:52,749 
+线程ID:[34] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:LoadAccordionMenu
+            开始时间：2018/12/19 20:58:52
+            结束时间：2018/12/19 20:58:52
+            总 时 间：0.2014621秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-19 20:58:52,750 
+线程ID:[34] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:LoadAccordionMenu
+            开始时间：2018/12/19 20:58:52
+            结束时间：2018/12/19 20:58:52
+            总 时 间：0.0009976秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-19 20:58:57,779 
+线程ID:[23] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:MainPage
+            开始时间：2018/12/19 20:58:57
+            结束时间：2018/12/19 20:58:57
+            总 时 间：0.0249834秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-19 20:58:57,780 
+线程ID:[23] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:MainPage
+            开始时间：2018/12/19 20:58:57
+            结束时间：2018/12/19 20:58:57
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-19 20:59:00,723 
+线程ID:[34] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:LoadAccordionMenu
+            开始时间：2018/12/19 20:59:00
+            结束时间：2018/12/19 20:59:00
+            总 时 间：0.030012秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-19 20:59:00,723 
+线程ID:[34] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:LoadAccordionMenu
+            开始时间：2018/12/19 20:59:00
+            结束时间：2018/12/19 20:59:00
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 

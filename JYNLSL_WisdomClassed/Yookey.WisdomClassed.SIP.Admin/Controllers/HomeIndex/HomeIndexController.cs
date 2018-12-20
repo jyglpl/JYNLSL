@@ -105,6 +105,88 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.HomeIndex
             }
         }
 
+
+
+
+        /// <summary>
+        /// 加载树
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult LoadTree()
+        {
+            List<MenuModels> list = InitTree();
+            return Json(list, "text/html", JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 初始化树 默认找出顶级菜单
+        /// </summary>
+        /// <returns></returns>
+        public List<MenuModels> InitTree()
+        {
+            var TreeList = new ComMenuBll().GetAllMenu(new ComMenuEntity());
+            List<MenuModels> rootNode = new List<MenuModels>();
+            foreach (var plist in TreeList.Where(t => t.ParentMenuId == "0000"))
+            {
+                MenuModels jt = new MenuModels();
+                jt.id = plist.Id;
+                jt.text = plist.MenuName;
+                jt.parentid = plist.ParentMenuId;
+                jt.icon = "";
+                jt.url = plist.MenuUrl;
+                jt.attributes = CreateUrl(TreeList, jt);
+                jt.menus = CreateChildTree(TreeList, jt);
+                rootNode.Add(jt);
+            }
+            return rootNode;
+        }
+        /// <summary>
+        /// 递归生成子树
+        /// </summary>
+        /// <param name="TreeList"></param>
+        /// <param name="jt"></param>
+        /// <returns></returns>
+        private List<MenuModels> CreateChildTree(List<ComMenuEntity> TreeList, MenuModels jt)
+        {
+            string keyid = jt.id;//根节点ID
+            List<MenuModels> nodeList = new List<MenuModels>();
+            var children = TreeList.Where(t => t.ParentMenuId == keyid);
+            foreach (var chl in children)
+            {
+                MenuModels node = new MenuModels();
+                node.id = chl.Id;
+                node.text = chl.MenuName;
+                node.parentid = chl.ParentMenuId;
+                node.icon = "";
+                node.url = chl.MenuUrl;
+                node.attributes = CreateUrl(TreeList, node);
+                node.menus = CreateChildTree(TreeList, node);
+                nodeList.Add(node);
+            }
+            return nodeList;
+        }
+
+        /// <summary>
+        /// 把Url属性添加到attribute中，如果需要别的属性，也可以在这里添加
+        /// </summary>
+        /// <param name="TreeList"></param>
+        /// <param name="jt"></param>
+        /// <returns></returns>
+        private Dictionary<string, string> CreateUrl(List<ComMenuEntity> TreeList, MenuModels jt)
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            string keyid = jt.id;
+            var urlList = TreeList.Where(t => t.Id == keyid).SingleOrDefault();
+            string Sysurl = urlList.MenuUrl;
+            //string Indexurl = urlList.IndexUrl;
+            dic.Add("sysurl", Sysurl);
+            //dic.Add("indurl", Indexurl);
+            dic.Add("close", "true");
+            return dic;
+        }
+
+
+
         #region 日常办公
         /// <summary>
         /// 日常办公页面
