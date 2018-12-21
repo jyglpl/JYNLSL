@@ -9348,6 +9348,7 @@
     <Content Include="Content\res\fonts\typicons\typicons.min.css" />
     <Content Include="Content\res\fonts\weather-icons\fonts\weathericons-regular-webfont.svg" />
     <Content Include="Content\res\fonts\weather-icons\weather-icons.min.css" />
+    <Content Include="Content\res\frame.css" />
     <Content Include="Content\res\images\accept.png" />
     <Content Include="Content\res\images\add.png" />
     <Content Include="Content\res\images\anchor.png" />
@@ -10877,6 +10878,7 @@
     <Content Include="Content\res\images\table_row_insert.png" />
     <Content Include="Content\res\images\table_save.png" />
     <Content Include="Content\res\images\table_sort.png" />
+    <Content Include="Content\res\images\tabs_icons.png" />
     <Content Include="Content\res\images\tab_add.png" />
     <Content Include="Content\res\images\tab_blue.png" />
     <Content Include="Content\res\images\tab_delete.png" />
@@ -10995,6 +10997,7 @@
     <Content Include="Content\res\images\transmit_go.png" />
     <Content Include="Content\res\images\transmit_red.png" />
     <Content Include="Content\res\images\tux.png" />
+    <Content Include="Content\res\images\user.jpg" />
     <Content Include="Content\res\images\user.png" />
     <Content Include="Content\res\images\user_add.png" />
     <Content Include="Content\res\images\user_alert.png" />
@@ -11067,7 +11070,12 @@
     <Content Include="Content\res\images\zoom.png" />
     <Content Include="Content\res\images\zoom_in.png" />
     <Content Include="Content\res\images\zoom_out.png" />
+    <Content Include="Content\res\index.css" />
     <Content Include="Content\res\js\common.js" />
+    <Content Include="Content\res\menutip.js" />
+    <Content Include="Content\res\menu\menu.css" />
+    <Content Include="Content\res\menu\menu.js" />
+    <Content Include="Content\res\tabs.css" />
     <Content Include="Content\res\third-party\ajaxfileupload\ajaxfileupload.js" />
     <Content Include="Content\res\third-party\daterangerpick\daterangepicker.min.css" />
     <Content Include="Content\res\third-party\daterangerpick\jquery.daterangepicker.min.js" />
@@ -12548,6 +12556,8 @@
     <Content Include="Librarys\zTree\js\jquery.ztree.exedit.js" />
     <Content Include="Librarys\zTree\js\jquery.ztree.exhide-3.5.js" />
     <Content Include="Librarys\zTree\js\jquery.ztree.exhide-3.5.min.js" />
+    <Content Include="Pages\data\menu.txt" />
+    <Content Include="Pages\Home\Home.html" />
     <Content Include="Scripts\bootstrap.min.css" />
     <Content Include="Scripts\caseDetail.css" />
     <Content Include="Scripts\common.css" />
