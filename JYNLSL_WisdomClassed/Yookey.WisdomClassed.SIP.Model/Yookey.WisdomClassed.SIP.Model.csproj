@@ -87,6 +87,7 @@
     <Compile Include="Crm\CrmUserRoleEntity.cs" />
     <Compile Include="IModel\IBaseModel.cs" />
     <Compile Include="ModelImp\BaseModel.cs" />
+    <Compile Include="OA\DocNotfPersonEntity.cs" />
     <Compile Include="OA\DocumentNotificationEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryCondition.cs" />

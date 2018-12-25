@@ -34,3 +34,4 @@ E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\bin
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\obj\Debug\PetaPoco.csproj.CoreCompileInputs.cache
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\obj\Debug\PetaPoco.dll
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\obj\Debug\PetaPoco.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\obj\Debug\PetaPoco.csprojAssemblyReference.cache

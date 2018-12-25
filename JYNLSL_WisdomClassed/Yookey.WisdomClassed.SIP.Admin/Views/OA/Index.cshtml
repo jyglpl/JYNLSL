@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>公告通知</title>
+    <title>协同办公</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -14,21 +14,19 @@
     <div class="layui-tab" lay-filter="test">
 
         <ul class="layui-tab-title">
-            <li class="layui-this" lay-id="11">系统办公</li>
-            <li lay-id="22">公告通知</li>
+            @*<li class="layui-this person1" lay-id="11">公告通知</li>*@
+            <li class="layui-this" lay-id="22">公告通知</li>
             <li lay-id="33">公文管理</li>
 
         </ul>
         <div class="layui-tab-content">
-            <div class="layui-tab-item layui-show">
+            @*<div class="layui-tab-item layui-show person">
                 <table class="layui-hide" id="test2"></table>
                 <script>
 
                 </script>
-            </div>
-            <div class="layui-tab-item">
-
-
+            </div>*@
+            <div class="layui-tab-item layui-show" >
 
                 <div class="demoTable">
                     <form class="layui-form" action="">
@@ -36,37 +34,32 @@
                         <div class="layui-inline">
 
                             <div class="layui-input-inline">
-                                <select name="quiz3">
+                                <select name="Gglx" id="Gglx">
                                     <option value="">请选择类别</option>
-                                    <option value="1">通知</option>
-                                    <option value="2">公告</option>
-                                  
+                                    @*<option value="1">通知</option>
+                                    <option value="2">公告</option>*@
                                 </select>
                             </div>
-
                         </div>
-                        
                         <div class="layui-inline">
                             <label class="layui-form-label">日期范围</label>
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input" id="test6" placeholder=" 至 ">
+                                <input type="text" class="layui-input" id="datafw" name="datafw" placeholder=" 至 ">
                             </div>
                         </div>
                         关键字：
                         <div class="layui-inline">
                             <input name="id" class="layui-input" id="demoReload" autocomplete="off">
                         </div>
-                        <button class="layui-btn" data-type="reload">搜索</button>
+                        <input type="button" class="layui-btn" data-type="reload" value="搜索"></input>
                     </form>
-                   
-
                 </div>
                 <table class="layui-hide" id="test" lay-filter="test"></table>
 
                 <script id="toolbarDemo" type="text/html">
                     <div class="layui-btn-container">
 
-                        <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+                        <button class="layui-btn layui-btn-sm" id="add" style="display:none" lay-event="add">新增</button>
 
                     </div>
                 </script>
@@ -74,9 +67,9 @@
                 <script id="barDemo" type="text/html">
 
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-                    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+                    @*<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>*@
 
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="detail">提醒</a>
+                    <a id="tx"  style="display:none" class="layui-btn layui-btn-danger layui-btn-xs tx" lay-event="">提醒</a>
 
        
                 </script>
@@ -90,7 +83,7 @@
     <script src="~/Content/layui/layui.js" charset="utf-8"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
-<script>
+    <script>
 
 
     function timeToStamp(datetime) {
@@ -99,9 +92,9 @@
         }else{
             var day = new Date(datetime)
             var stamp = Date.parse(day)/1000;
-            return stamp; 
+            return stamp;
         }
-    } 
+    }
 
 //  将时间戳转为格式化时间
     function stampToTime(timestamp) {
@@ -122,11 +115,11 @@
             datestring += D + " ";
             if (h < 10) datestring += "0";
             datestring += h + ":";
-            if (m < 10) datestring += "0"; 
+            if (m < 10) datestring += "0";
             datestring += m + ":";
-            if (s < 10) datestring += "0"; 
+            if (s < 10) datestring += "0";
             datestring += s;
-            return datestring;  
+            return datestring;
         }
     }
 
@@ -136,10 +129,6 @@
         var form = layui.form;
         var $ = layui.jquery
             , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
-
-
-
-
         //Hash地址的定位
         var layid = location.hash.replace(/^#test=/, '');
         element.tabChange('test', layid);
@@ -150,63 +139,118 @@
 
         //日期范围
         laydate.render({
-            elem: '#test6'
-            ,range: true
+            elem: '#datafw'
+            , range: '至'
+
+
+
+        });
+
+
+
+
+        table.render({
+            elem: '#test',
+            url: '@Url.Action("GetAllDoc", "OA")?timestamp' + (new Date()).valueOf(),
+            toolbar: '#toolbarDemo',
+            defaultToolbar: [],
+            title: '公告通知表',
+            size: 'sm',
+            cols: [[
+                    //{ type: 'checkbox', fixed: 'left' }
+                    {
+                        field: 'Id',
+                        title: 'Id',
+                        width: 80,
+                        fixed: 'left',
+                        align: 'center',
+                        unresize: true,
+                        sort: true,
+                        hide: true
+                    },
+                    {
+                        field: 'Id',
+                        title: '编号',
+                        width: 80,
+                        fixed: 'left',
+                        align: 'center',
+                        type: 'numbers',
+                        unresize: true,
+                        sort: true
+                    }, { field: 'Title', title: '标题' },
+                { field: 'Publisher', title: '发布人', width: 150, align: 'center' },
+                    {
+                        field: 'ReleaseTime',
+                        title: '发布时间',
+                        width: 200,
+                        align: 'center',
+                        templet: function(d) {
+                            return stampToTime(timeToStamp(d.ReleaseTime))
+                        }
+                    }, {
+                        field: 'jsqk',
+                        title: '接受情况',
+                        event: 'setSign',
+                        style: 'cursor: pointer;',
+                        width: 100,
+                        //hide: true,
+                       
+                        align: 'center',
+                        templet: function(d) {
+                            return d.JieShouCount + '/' + d.JieShouAllCount;
+                        }
+                    }, {
+                        field: 'Category',
+                        title: '类别',
+                        width: 80,
+                        align: 'center',
+                        templet: function(d) {
+                            if (d.Category == '1') {
+                                return "通知";
+                            } else if (d.Category == '2') {
+                                return "公告";
+                            }
+                        }
+                    }, { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 230, align: 'center' }
+                ]
+            ],
+            page: true,
+            height: 'full-140',
+            done: function(res, curr, count) {
+                if ('@ViewBag.leader' == '1') {
+        
+                    $('#add').css('display', '');
+                    $('.tx').css('display', '');
+                }
+                if ('@ViewBag.leader' == '0')
+                    $("[data-field='jsqk']").css('display', 'none');
+
+      
+            }
+
+        });
+
+        $.ajax({
+            url: "@Url.Action("BindTGLX", "OA")",
+            type: "post",
+            dataType: "json",
+            data: {},
+            success: function (data) {
+                var navs = data;
+
+                //加载一级菜单
+                $.each(navs, function (i, item) {
+                   // alert(item.RsKey)
+                    $("#Gglx").append("<option value=" + item.RsValue + ">" + item.RsKey + "</option>");
+
+                });
+                form.render();
+
+            }
         });
 
 
         form.render();
-
-        table.render({
-            elem: '#test', url: '@Url.Action("GetAllDoc", "OA")'
-            , toolbar: '#toolbarDemo'
-  
-            , defaultToolbar:[]
-            , title: '公告通知表'
-            //, size: 'sm'
-
-            , cols: [[
-                //{ type: 'checkbox', fixed: 'left' }
-                { field: 'Id', title: 'Id', width: 80, fixed: 'left', align: 'center', unresize: true, sort: true, hide: true }
-                , { field: 'Id', title: '编号', width: 80, fixed: 'left', align: 'center', type: 'numbers', unresize: true, sort: true }
-                , { field: 'Title', title: '标题'}
-                , { field: 'Publisher', title: '发布人', width: 150, align: 'center'}
-               
-                , {
-                    field: 'ReleaseTime', title: '发布时间', width: 200 ,align: 'center'
-                    ,templet: function(d){
-                        return stampToTime(timeToStamp(d.ReleaseTime))
-                    }
-                }
-               
-                , {
-                    field: 'AplayState', title: '接受情况', width: 100 ,align: 'center'
-                    ,templet: function(d){
-                        return "接受";  
-                    }
-                }
-                , {
-                    field: 'Category', title: '类别', width: 80 ,align: 'center'
-                    ,templet: function(d){
-                        if (d.Category == '1') {
-                            return "通知";  
-                        }
-                        else if (d.Category == '2') {
-                            return "公告";  
-                        }
-                    }
-                }
-              
-                , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 230, align: 'center'}
-            ]]
-            , id: 'ggtz'
-            , page: true
-            ,height: 'full-140'
-  
-        });
-
-
-
 
 
         //头工具栏事件
@@ -216,24 +260,20 @@
             case 'add':
                 layer.open({
                     type: 2,
-                    title:'发布公告',
+                    title: '发布公告',
                     area: ['1300px', '650px'],
                     fixed: false, //不固定
                     maxmin: true,
                     content: '@Url.Action("DocAdd", "OA")',
-                    end: function () {
-                        location.reload();
-                        //执行重载,IE似乎不支持只重载表格
-                        //table.reload('ggtz', {
-                        //    page: {
-                        //        curr: 1 //重新从第 1 页开始
-                        //    }
-                        //    ,where: {
-                        //        key: {
-                        //            //id: demoReload.val()
-                        //        }
-                        //    }
-                        //});
+                    end: function() {
+                        //location.reload();
+
+                        table.reload('test',
+                            {
+                                url: '@Url.Action("GetAllDoc", "OA")?timestamp2' + (new Date()).valueOf()
+                                , where: {}
+
+                        });
                     }
 
                 });
@@ -241,8 +281,6 @@
 
             };
         });
-
-
 
         //监听行工具事件
         table.on('tool(test)', function (obj) {
@@ -264,34 +302,64 @@
                     layer.close(index);
                 });
             }
+            else if (obj.event === 'detail')
+            {
+                layer.open({
+                    type: 2,
+                    title:'查看公告',
+                    area: ['1300px', '650px'],
+                    fixed: false, //不固定
+                    maxmin: true,
+                    content: '@Url.Action("GongGaoDetial", "OA")?Id=' + data.Id + '&ContentId=' + data.ContentId,
+
+
+                });
+            }
+            else if(obj.event === 'setSign'){
+                layer.open({
+                    type: 2,
+                    title:'接受情况',
+                    area: ['500px', '300px'],
+                    fixed: false, //不固定
+                    maxmin: true,
+                    content: '@Url.Action("JieShouDetial", "OA")?Id=' + data.Id,
+                    end: function () {
+
+                    }
+
+                });
+            }
         });
 
-        var $ = layui.$, active = {
-                             reload: function(){
-                                 var demoReload = $('#demoReload');
-      
-                                 //执行重载
-                                 table.reload('testReload', {
-                                     page: {
-                                         curr: 1 //重新从第 1 页开始
-                                     }
-                                     ,where: {
-                                         key: {
-                                             id: demoReload.val()
-                                         }
-                                     }
-                                 });
-                             }
-                         };
-  
-        $('.demoTable .layui-btn').on('click', function(){
-            var type = $(this).data('type');
-            active[type] ? active[type].call(this) : '';
+
+        $('.demoTable .layui-btn').on('click', function () {
+            //alert('1111');
+            var demoReload = $('#demoReload');
+            var datafw = $('#datafw');
+            var Gglx = $('#Gglx');
+
+            table.reload('test',
+                {
+                    url: '@Url.Action("GetAllDoc", "OA")?timestamp3' + (new Date()).valueOf()
+                    , where: {
+                        Title: demoReload.val()
+                        , datafw: datafw.val()
+                        , Gglx: Gglx.val()
+                    }
+
+                });
+
+        });
+
+        $(function() {
+
+
+
         });
     });
 
 
-</script>
+    </script>
 
 </body>
 </html>

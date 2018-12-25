@@ -202,6 +202,25 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
         public string Iszd { get; set; }
 
 
+        /// <summary>
+        /// 接受数量
+        /// </summary>
+        [Column("JieShouCount")]
+        [DataMember]
+        public int? JieShouCount { get; set; }
+
+
+
+
+
+        /// <summary>
+        /// 接受人总数
+        /// </summary>
+        [Column("JieShouAllCount")]
+        [DataMember]
+        public int? JieShouAllCount { get; set; }
+
+
         private Page _page;
         /// <summary>
         /// 分页实体

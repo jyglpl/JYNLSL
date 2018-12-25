@@ -23,20 +23,19 @@ namespace Yookey.WisdomClassed.SIP.Business.OA
         {
             return Dal.GetAllResult(search);
         }
+
         /// <summary>
-        ///// 数据查询
-        ///// </summary>
-        ///// <param name="search"></param>
-        ///// <param name="expressions"></param>
-        ///// <returns></returns>
-        //public List<DocumentNotificationEntity> GetSearchResult(DocumentNotificationEntity search, List<string> types)
-        //{
-        //    return Dal.GetSearchResult(search, types);
-        //}
-        //public List<DocumentNotificationEntity> GetSearchResult(DocumentNotificationEntity search)
-        //{
-        //    return Dal.GetSearchResult(search);
-        //}
+        /// 条件搜索
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="starttime"></param>
+        /// <param name="endtime"></param>
+        /// <returns></returns>
+        public List<DocumentNotificationEntity> SearchQuery(DocumentNotificationEntity search,string limittime = null,string jieshouGuid=null)
+        {
+            return Dal.SearchQuery(search, limittime, jieshouGuid);
+        }
+
         /// <summary>
         /// 新增实体
         /// </summary>
@@ -46,45 +45,8 @@ namespace Yookey.WisdomClassed.SIP.Business.OA
         {
             return Dal.PersistNewItem(search);
         }
-        //public virtual bool PersistNewItem(T item, SgDatabase.DatabaseKind databaseKind = SgDatabase.DatabaseKind.Platform)
-        //{
-        //    return Dal.PersistNewItem(item, databaseKind);
-        //}
-        ///// <summary>
-        ///// 根据主键删除附件
-        ///// </summary>
-        ///// <param name="Id"></param>
-        ///// <returns></returns>
-        //public int Delete(string id)
-        //{
-        //    return Dal.Delete(id);
-        //}
-        ///// <summary>
-        ///// 根据主键获取实体
-        ///// </summary>
-        ///// <param name="Id"></param>
-        ///// <returns></returns>
-        //public DocumentNotificationEntity Get(string Id)
-        //{
-        //    return Dal.Get(Id);
-        //}
-        // /// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="Id"></param>
-        ///// <returns></returns>
-        //public int UpdateRemark(string Id, string Remark)
-        //{
-        //    return Dal.UpdateRemark(Id, Remark);
-        //}
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="entity"></param>
-        ///// <returns></returns>
-        //public int Update(DocumentNotificationEntity entity)
-        //{
-        //    return Dal.Update(entity);
-        //}
+
+
+     
     }
 }

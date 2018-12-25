@@ -52,11 +52,18 @@ namespace Yookey.WisdomClassed.SIP.DataAccess.Crm
             }
         }
 
+
+
+
+
+
         /// <summary>
         /// 查询用户与角色对应的数据
         /// </summary>
         /// <history> 
         /// 修改描述：时间+作者+描述
+        /// edit by lpl
+        /// 2018-12-25
         /// </history>
         /// <returns></returns>
         public List<CrmUserRoleEntity> GetSearchResult(CrmUserRoleEntity search)

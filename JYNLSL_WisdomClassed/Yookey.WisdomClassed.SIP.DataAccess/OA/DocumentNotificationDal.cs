@@ -9,6 +9,11 @@ using Yookey.WisdomClassed.SIP.Model.OA;
 
 namespace Yookey.WisdomClassed.SIP.DataAccess.OA
 {
+    /// <summary>
+    /// add by lpl
+    /// 2018-12-24
+    /// 公告管理表
+    /// </summary>
     public class DocumentNotificationDal : BaseDal<DocumentNotificationEntity>
     {
         /// <summary>
@@ -27,91 +32,72 @@ namespace Yookey.WisdomClassed.SIP.DataAccess.OA
                 sbWhere.Append(Database.GetFormatSql<DocumentNotificationEntity>(" and {0} = @p1 ", t => t.Id));
                 args.Add(new { p1 = search.Id });
             }
-          
+
+
+            if (!string.IsNullOrEmpty(search.Title))
+            {
+                sbWhere.Append(Database.GetFormatSql<DocumentNotificationEntity>(" and Title like @p1 "));
+                args.Add(new { p1 = "%" + search.Title + "%" });
+            }
+
             sbWhere.Append(" ORDER BY  CreateOn");
             return WriteDatabase.Query<DocumentNotificationEntity>(sbWhere.ToString(), args.ToArray()).ToList();
         }
 
-
-        public List<DocumentNotificationEntity> SearchQuery(DocumentNotificationEntity entity)
+        /// <summary>
+        /// 条件搜索
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="starttime"></param>
+        /// <param name="endtime"></param>
+        /// <returns></returns>
+        public List<DocumentNotificationEntity> SearchQuery(DocumentNotificationEntity entity,string limittime = null,string jieshouGuid=null)
         {
-            var strSql = new StringBuilder("");
-            strSql.AppendFormat(@"select top "+entity.page.PageSize+" * from (select row_number()over(order by CreateOn)rownumber,* from DocumentNotification)a1 where rownumber>"+(entity.page.CurrentPage - 1) * entity.page.PageSize + "");
-            var args = new List<object>();
+            try
+            {
+                var strSql = new StringBuilder("SELECT * FROM dbo.DocumentNotification WHERE 1=1");
 
-            return WriteDatabase.Query<DocumentNotificationEntity>(strSql.ToString(), args.ToArray()).ToList();
+                //标题搜索
+                if (!string.IsNullOrEmpty(entity.Title))
+                {
+                    strSql.AppendFormat("AND Title LIKE '%{0}%'", entity.Title);
+                }
+
+                //时间范围搜索
+                if (!string.IsNullOrEmpty(limittime))
+                {
+                    string[] arryTime = limittime.Split('至');
+
+                    string startTime = arryTime[0];
+                    string endTime = arryTime[1];
+
+                    strSql.AppendFormat("AND ReleaseTime > '{0}' AND ReleaseTime < '{1}'", startTime, endTime);
+                }
+
+                //通告类型
+                if (!string.IsNullOrEmpty(entity.Category))
+                {
+                    strSql.AppendFormat("AND Category = '{0}'", entity.Category);
+                }
+
+
+                if (!string.IsNullOrEmpty(jieshouGuid))
+                {
+                    strSql.AppendFormat("AND Id IN ({0})", jieshouGuid);
+                }
+
+
+                var args = new List<object>();
+
+                return WriteDatabase.Query<DocumentNotificationEntity>(strSql.ToString(), args.ToArray()).ToList();
+            }
+            catch (Exception e)
+            {
+       
+                throw e;
+            }
+
         }
-
-
-        //     /// <summary>
-        //     /// 数据查询
-        //     /// </summary>
-        //     /// <param name="search"></param>
-        //     /// <param name="expressions"></param>
-        //     /// <returns></returns>
-        //     public List<EvaluationAttachEntity> GetSearchResult(EvaluationAttachEntity search, List<string> types)
-        //     {
-        //         var sbWhere = new StringBuilder();
-        //         sbWhere.Append("Where ROWSTATUS = 1 ");
-        //         var args = new List<object>();
-        //         if (!string.IsNullOrEmpty(search.ResourceId))
-        //         {
-        //             sbWhere.Append(Database.GetFormatSql<EvaluationAttachEntity>(" and {0} = @p1 ", t => t.ResourceId));
-        //             args.Add(new { p1 = search.ResourceId });
-        //         }
-        //         if (types != null && types.Count > 0)
-        //         {
-        //             sbWhere.AppendFormat("and FileType in  ('{0}')", string.Join("','", types.ToArray()));
-        //         }
-        //         sbWhere.Append(" ORDER BY CreateOn ");
-        //         return WriteDatabase.Query<EvaluationAttachEntity>(sbWhere.ToString(), args.ToArray()).ToList();
-        //     }
-
-        //     public List<EvaluationAttachEntity> GetSearchResult(EvaluationAttachEntity search)
-        //     {
-        //         var sbWhere = new StringBuilder();
-        //         sbWhere.Append("Where ROWSTATUS = 1 ");
-        //         var args = new List<object>();
-        //         if (!string.IsNullOrEmpty(search.ResourceId))
-        //         {
-        //             sbWhere.Append(Database.GetFormatSql<EvaluationAttachEntity>(" and {0} = @p1 ", t => t.ResourceId));
-        //             args.Add(new { p1 = search.ResourceId });
-        //         }
-        //         sbWhere.Append(" ORDER BY CreateOn ");
-        //         return WriteDatabase.Query<EvaluationAttachEntity>(sbWhere.ToString(), args.ToArray()).ToList();
-        //     }
-
-        //     /// <summary>
-        //     /// 新增附件材料
-        //     /// </summary>
-        //     /// <param name="search"></param>
-        //     /// <returns></returns>
-        //     public bool Insert(EvaluationAttachEntity search)
-        //     {
-        //         var strSql = string.Format(@"INSERT INTO [dbo].[EvaluationAttach]
-        //        ([Id],[ResourceId],[FileName],[FileReName],[FileSize]
-        //        ,[IsCompleted],[FileAddress],[FileType],[FileTypeName],[FileRemark]
-        //        ,[RowStatus],[CreatorId],[CreateBy],[CreateOn],[UpdateId],[UpdateBy],[UpdateOn])
-        //VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}')"
-        //       , search.Id, search.ResourceId, search.FileName, search.FileReName, search.FileSize
-        //       , search.IsCompleted, search.FileAddress, search.FileType, search.FileTypeName, search.FileRemark
-        //       , search.RowStatus, search.CreatorId, search.CreateBy, search.CreateOn, search.UpdateId, search.UpdateBy, search.UpdateOn);
-        //         return WriteDatabase.Execute(strSql) > 0;
-        //     }
-
-        //     /// <summary>
-        //     /// 根据主键删除附件
-        //     /// </summary>
-        //     /// <param name="Id"></param>
-        //     /// <returns></returns>
-        //     public int Delete(string id)
-        //     {
-        //         var strSql = string.Format(@"UPDATE EvaluationAttach SET ROWSTATUS='{0}' WHERE Id='{1}'", (int)RowStatus.Delete, id);
-        //         return WriteDatabase.Execute(strSql);
-        //     }
-
-
-
 
 
        
