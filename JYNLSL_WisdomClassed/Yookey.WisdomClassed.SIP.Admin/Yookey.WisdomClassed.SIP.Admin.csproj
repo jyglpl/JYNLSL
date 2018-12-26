@@ -12747,6 +12747,7 @@
     <Content Include="Views\Home\Development.cshtml" />
     <Content Include="Views\HomeIndex\MainPage.cshtml" />
     <Content Include="Views\OA\GongGaoDetial.cshtml" />
+    <Content Include="Views\OA\GongWenAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Yookey.WisdomClassed.SIP.Business\Yookey.WisdomClassed.SIP.Business.csproj">

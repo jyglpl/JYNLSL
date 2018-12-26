@@ -916,6 +916,219 @@ namespace SQLConnStringRead
 }
     
 
+	[TableName("dbo.GongWenManger")]
+
+
+
+	[PrimaryKey("Id", AutoIncrement=false)]
+
+	[ExplicitColumns]
+    public partial class GongWenManger : SQLConnStringReadDB.Record<GongWenManger>  
+    {
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Id")] 
+		public string Id { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Title")] 
+		public string Title { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Leixing")] 
+		public string Leixing { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("DanWei")] 
+		public string DanWei { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("WCData")] 
+		public DateTime? WCData { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("WJNo")] 
+		public string WJNo { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("FilePath")] 
+		public string FilePath { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("SPZT")] 
+		public string SPZT { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("DQBLR")] 
+		public string DQBLR { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("DJTime")] 
+		public DateTime? DJTime { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CLState")] 
+		public string CLState { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Admin")] 
+		public string Admin { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("RowStatus")] 
+		public int? RowStatus { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CreatorId")] 
+		public string CreatorId { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CreateBy")] 
+		public string CreateBy { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CreateOn")] 
+		public DateTime? CreateOn { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("UpdateId")] 
+		public string UpdateId { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("UpdateBy")] 
+		public string UpdateBy { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("UpdateOn")] 
+		public DateTime? UpdateOn { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Version")] 
+		public byte[] Version { get; set; }
+
+
+
+}
+    
+
 	[TableName("dbo.ComNote")]
 
 
@@ -1522,6 +1735,239 @@ namespace SQLConnStringRead
         /// </summary>
 		[Column("UpdateOn")] 
 		public DateTime? UpdateOn { get; set; }
+
+
+
+}
+    
+
+	[TableName("dbo.GongGaoDetial")]
+
+
+
+	[PrimaryKey("RowGuid", AutoIncrement=false)]
+
+	[ExplicitColumns]
+    public partial class GongGaoDetial : SQLConnStringReadDB.Record<GongGaoDetial>  
+    {
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("RowGuid")] 
+		public string RowGuid { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("PersonCLState")] 
+		public string PersonCLState { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Id")] 
+		public string Id { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Title")] 
+		public string Title { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Leixing")] 
+		public string Leixing { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("DanWei")] 
+		public string DanWei { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("WCData")] 
+		public DateTime? WCData { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("WJNo")] 
+		public string WJNo { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("FilePath")] 
+		public string FilePath { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("SPZT")] 
+		public string SPZT { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("DQBLR")] 
+		public string DQBLR { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("DJTime")] 
+		public DateTime? DJTime { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CLState")] 
+		public string CLState { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Admin")] 
+		public string Admin { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("RowStatus")] 
+		public int? RowStatus { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CreatorId")] 
+		public string CreatorId { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CreateBy")] 
+		public string CreateBy { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CreateOn")] 
+		public DateTime? CreateOn { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("UpdateId")] 
+		public string UpdateId { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("UpdateBy")] 
+		public string UpdateBy { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("UpdateOn")] 
+		public DateTime? UpdateOn { get; set; }
+
+
+
+
+
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Version")] 
+		public byte[] Version { get; set; }
 
 
 

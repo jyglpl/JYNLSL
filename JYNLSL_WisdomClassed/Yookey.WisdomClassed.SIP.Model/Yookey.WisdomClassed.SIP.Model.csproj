@@ -89,6 +89,8 @@
     <Compile Include="ModelImp\BaseModel.cs" />
     <Compile Include="OA\DocNotfPersonEntity.cs" />
     <Compile Include="OA\DocumentNotificationEntity.cs" />
+    <Compile Include="OA\GongGaoDetialEntity.cs" />
+    <Compile Include="OA\GongGaoMangerEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryCondition.cs" />
     <Compile Include="WorkFlow\WfProcessEntity.cs" />

@@ -20,9 +20,10 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
     public class OAController :BaseController
     {
         readonly CrmUserBll _crmUserBll = new CrmUserBll();//人员信息
-        //
-        // GET: /OA/
+                                                           //
+                                                           // GET: /OA/
 
+        #region 公告通知
         public ActionResult Index()
         {
             var usersId = _crmUserBll.GetUserEntity(CurrentUser.CrmUser.Id);
@@ -72,71 +73,12 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
         }
 
         /// <summary>
-        /// 文件上传
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult UploadFile()
-        {
-            try
-            {
-                var file = Request.Files[0]; //获取选中文件  
-                var filecombin = file.FileName.Split('.');
-                if (file == null || String.IsNullOrEmpty(file.FileName) || file.ContentLength == 0 || filecombin.Length < 2)
-                {
-                    return Json(new
-                    {
-                        fileid = 0,
-                        src = "",
-                        name = "",
-                        msg = "上传出错 请检查文件名 或 文件内容"
-                    });
-                }
-                //定义本地路径位置
-                string local = "Upload\\Contract";
-                string filePathName = string.Empty;
-                string localPath = Path.Combine(HttpRuntime.AppDomainAppPath, local);
-
-                var tmpName = Server.MapPath("~/Upload/Contract/");
-                var tmp = file.FileName;
-                var tmpIndex = 0;
-                //判断是否存在相同文件名的文件 相同累加1继续判断
-                while (System.IO.File.Exists(tmpName + tmp))
-                {
-                    tmp = filecombin[0] + "_" + ++tmpIndex + "." + filecombin[1];
-                }
-
-                //不带路径的最终文件名
-                filePathName = tmp;
-
-                if (!System.IO.Directory.Exists(localPath))
-                    System.IO.Directory.CreateDirectory(localPath);
-                string localURL = Path.Combine(local, filePathName);
-                file.SaveAs(Path.Combine(localPath, filePathName));   //保存图片（文件夹）
-                return Json(new
-                {
-                    code = 0,
-                    src = localURL.Trim().Replace("\\", "|"),
-                    name = Path.GetFileNameWithoutExtension(file.FileName),   // 获取文件名不含后缀名
-                    msg = "上传成功"
-                });
-            }
-            catch { }
-            return Json(new
-            {
-               
-                src = "",
-                name = "",   // 获取文件名不含后缀名
-                msg = "上传出错"
-            });
-        }
-
-        /// <summary>
         /// 公告详情
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="ContentId"></param>
         /// <returns></returns>
-        public ActionResult GongGaoDetial(string Id,string ContentId)
+        public ActionResult GongGaoDetial(string Id, string ContentId)
         {
             var entity = new DocumentNotificationEntity();
             if (!string.IsNullOrEmpty(Id) && Id != "undefined")
@@ -149,10 +91,10 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
             }
 
 
-            
+
             var data = new DocumentNotificationBll().GetAllResult(entity);
 
-            
+
 
             if (data.Count > 0 && ContentId != "undefined" && !string.IsNullOrEmpty(ContentId))
             {
@@ -182,7 +124,7 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
         /// </summary>
         /// <param name="fileId"></param>
         /// <returns></returns>
-        public string GetAllDoc(string limit,string page,string Title,string datafw,string Gglx)
+        public string GetAllDoc(string limit, string page, string Title, string datafw, string Gglx)
         {
             #region 根据当前用户ID,取出属于当前用户的通告列表
             ////取当前用户
@@ -211,9 +153,9 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
             var usersId = _crmUserBll.GetUserEntity(CurrentUser.CrmUser.Id);
             var entity = new DocumentNotificationEntity()
             {
-                Title=Title,
+                Title = Title,
                 Category = Gglx
-                
+
             };
 
             var personentity = new DocNotfPersonEntity()
@@ -283,12 +225,12 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
                 return JsonConvert.SerializeObject(result);
             }
 
-          
 
 
 
 
- 
+
+
 
         }
 
@@ -340,9 +282,9 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
         /// <param name="filepath">附件路径</param>
         /// <param name="tglx">通告类型</param>
         /// <returns></returns>
-        
+
         [ValidateInput(false)]
-        public string AddDoc(string title,string content, string sendname,string iszd,string filepath,string tglx)
+        public string AddDoc(string title, string content, string sendname, string iszd, string filepath, string tglx)
         {
             string[] sendArray = sendname.Split(',');
             string Id = Guid.NewGuid().ToString();
@@ -372,7 +314,7 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
 
             if (new DocumentNotificationBll().Insert(entity))
             {
-            
+
 
                 List<DocNotfPersonEntity> list = new List<DocNotfPersonEntity>();
 
@@ -398,8 +340,8 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
 
 
 
-                        
-                        
+
+
                     };
                     list.Add(docNotfPerson);
                 }
@@ -435,20 +377,20 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
             for (int i = 0; i < department.Count; i++)
             {
                 var userjosn = from u in user where u.DepartmentId == department[i].Id select u;
-   
-                josn += "{ id: \""+ department[i].Id + "\", text: \""+ department[i].FullName + "\"},";
+
+                josn += "{ id: \"" + department[i].Id + "\", text: \"" + department[i].FullName + "\"},";
                 foreach (var groupuser in userjosn)
                 {
 
 
-                    josn += "{ id: \"" + groupuser.Id + "\", text: \"" + groupuser.RealName + "\", pid: \""+ department[i].Id + "\"},";
+                    josn += "{ id: \"" + groupuser.Id + "\", text: \"" + groupuser.RealName + "\", pid: \"" + department[i].Id + "\"},";
                 }
 
             }
             josn = josn.TrimEnd(',');
             josn += "]";
 
-    
+
             return josn;
         }
 
@@ -468,25 +410,102 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
             });
 
             string josn = "[";
-        
+
             for (int i = 0; i < department.Count; i++)
             {
                 var userjosn = from u in user where u.DepartmentId == department[i].Id select u;
                 josn += "{ \"name\": \"" + department[i].FullName + "\", \"type\": \"optgroup\"},";
-             
+
                 foreach (var groupuser in userjosn)
                 {
-                
+
                     josn += "{ \"name\":\"" + groupuser.RealName + "\",\"value\":\"" + groupuser.Id + "\",\"selected\":\"\",\"disabled\":\"\"},";
                 }
 
             }
 
             josn = josn.TrimEnd(',');
-            josn += "]"; 
+            josn += "]";
 
             return josn;
         }
+        #endregion
+
+
+        #region 公文管理
+
+        /// <summary>
+        /// 新增公告
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GongWenAdd()
+        {
+            return View();
+        }
+
+        #endregion
+
+
+        /// <summary>
+        /// 文件上传
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult UploadFile()
+        {
+            try
+            {
+                var file = Request.Files[0]; //获取选中文件  
+                var filecombin = file.FileName.Split('.');
+                if (file == null || String.IsNullOrEmpty(file.FileName) || file.ContentLength == 0 || filecombin.Length < 2)
+                {
+                    return Json(new
+                    {
+                        fileid = 0,
+                        src = "",
+                        name = "",
+                        msg = "上传出错 请检查文件名 或 文件内容"
+                    });
+                }
+                //定义本地路径位置
+                string local = "Upload\\Contract";
+                string filePathName = string.Empty;
+                string localPath = Path.Combine(HttpRuntime.AppDomainAppPath, local);
+
+                var tmpName = Server.MapPath("~/Upload/Contract/");
+                var tmp = file.FileName;
+                var tmpIndex = 0;
+                //判断是否存在相同文件名的文件 相同累加1继续判断
+                while (System.IO.File.Exists(tmpName + tmp))
+                {
+                    tmp = filecombin[0] + "_" + ++tmpIndex + "." + filecombin[1];
+                }
+
+                //不带路径的最终文件名
+                filePathName = tmp;
+
+                if (!System.IO.Directory.Exists(localPath))
+                    System.IO.Directory.CreateDirectory(localPath);
+                string localURL = Path.Combine(local, filePathName);
+                file.SaveAs(Path.Combine(localPath, filePathName));   //保存图片（文件夹）
+                return Json(new
+                {
+                    code = 0,
+                    src = localURL.Trim().Replace("\\", "|"),
+                    name = Path.GetFileNameWithoutExtension(file.FileName),   // 获取文件名不含后缀名
+                    msg = "上传成功"
+                });
+            }
+            catch { }
+            return Json(new
+            {
+               
+                src = "",
+                name = "",   // 获取文件名不含后缀名
+                msg = "上传出错"
+            });
+        }
+
+
 
     }
 }

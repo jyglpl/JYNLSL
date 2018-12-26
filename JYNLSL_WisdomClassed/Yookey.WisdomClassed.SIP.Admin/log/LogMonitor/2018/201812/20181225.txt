@@ -25470,3 +25470,2595 @@
             URL参数：Id=8151f41a-5e66-4287-9432-6766be862709&=timestamp1545726670091&page=1&limit=10
                     
  
+
+ 
+记录时间：2018-12-25 16:32:54,492 
+线程ID:[44] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:JieShouDetial
+            开始时间：2018/12/25 16:32:54
+            结束时间：2018/12/25 16:32:54
+            总 时 间：0.0569015秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:32:55,538 
+线程ID:[44] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:JieShouDetial
+            开始时间：2018/12/25 16:32:54
+            结束时间：2018/12/25 16:32:55
+            总 时 间：1.0332655秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:32:56,127 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetJieShouQk
+            开始时间：2018/12/25 16:32:55
+            结束时间：2018/12/25 16:32:56
+            总 时 间：0.1765517秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709&=timestamp1545726775875&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:32:56,127 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetJieShouQk
+            开始时间：2018/12/25 16:32:56
+            结束时间：2018/12/25 16:32:56
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709&=timestamp1545726775875&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:06,356 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/25 16:33:06
+            结束时间：2018/12/25 16:33:06
+            总 时 间：0.0868062秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:06,371 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/25 16:33:06
+            结束时间：2018/12/25 16:33:06
+            总 时 间：0.0149601秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:06,775 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 16:33:06
+            结束时间：2018/12/25 16:33:06
+            总 时 间：0.0269863秒
+            Form表单数据：
+            URL参数：=timestamp1545726786705&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:06,775 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 16:33:06
+            结束时间：2018/12/25 16:33:06
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1545726786705&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:07,299 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/25 16:33:07
+            结束时间：2018/12/25 16:33:07
+            总 时 间：0.0478846秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:07,299 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/25 16:33:07
+            结束时间：2018/12/25 16:33:07
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:10,844 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/25 16:33:10
+            结束时间：2018/12/25 16:33:10
+            总 时 间：0.0379744秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:10,845 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/25 16:33:10
+            结束时间：2018/12/25 16:33:10
+            总 时 间：0.0009984秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:11,555 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 16:33:11
+            结束时间：2018/12/25 16:33:11
+            总 时 间：0.1496732秒
+            Form表单数据：
+            URL参数：=timestamp1545726791364&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:11,555 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 16:33:11
+            结束时间：2018/12/25 16:33:11
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1545726791364&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:11,931 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/25 16:33:11
+            结束时间：2018/12/25 16:33:11
+            总 时 间：0.0249676秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:11,931 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/25 16:33:11
+            结束时间：2018/12/25 16:33:11
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:14,614 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/25 16:33:14
+            结束时间：2018/12/25 16:33:14
+            总 时 间：0.0288952秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:14,615 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/25 16:33:14
+            结束时间：2018/12/25 16:33:14
+            总 时 间：0.000997秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:14,959 
+线程ID:[44] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 16:33:14
+            结束时间：2018/12/25 16:33:14
+            总 时 间：0.0179728秒
+            Form表单数据：
+            URL参数：=timestamp1545726794921&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:14,959 
+线程ID:[44] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 16:33:14
+            结束时间：2018/12/25 16:33:14
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1545726794921&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:15,517 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/25 16:33:15
+            结束时间：2018/12/25 16:33:15
+            总 时 间：0.0050787秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:15,517 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/25 16:33:15
+            结束时间：2018/12/25 16:33:15
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:18,059 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/25 16:33:18
+            结束时间：2018/12/25 16:33:18
+            总 时 间：0.0309807秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:18,060 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/25 16:33:18
+            结束时间：2018/12/25 16:33:18
+            总 时 间：0.0009829秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:18,376 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 16:33:18
+            结束时间：2018/12/25 16:33:18
+            总 时 间：0.0230213秒
+            Form表单数据：
+            URL参数：=timestamp1545726798332&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:18,376 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 16:33:18
+            结束时间：2018/12/25 16:33:18
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1545726798332&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:18,880 
+线程ID:[44] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/25 16:33:18
+            结束时间：2018/12/25 16:33:18
+            总 时 间：0.0219726秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:18,880 
+线程ID:[44] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/25 16:33:18
+            结束时间：2018/12/25 16:33:18
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:28,841 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 16:33:28
+            结束时间：2018/12/25 16:33:28
+            总 时 间：0.0559461秒
+            Form表单数据：
+            URL参数：=timestamp31545726808744&page=1&limit=10&Title=&datafw=2018-12-01 至 2018-12-02&Gglx=
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:28,841 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 16:33:28
+            结束时间：2018/12/25 16:33:28
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp31545726808744&page=1&limit=10&Title=&datafw=2018-12-01 至 2018-12-02&Gglx=
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:34,452 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 16:33:34
+            结束时间：2018/12/25 16:33:34
+            总 时 间：0.0250041秒
+            Form表单数据：
+            URL参数：=timestamp31545726814408&page=1&limit=10&Title=&datafw=2018-12-22 至 2018-12-31&Gglx=
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:34,452 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 16:33:34
+            结束时间：2018/12/25 16:33:34
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp31545726814408&page=1&limit=10&Title=&datafw=2018-12-22 至 2018-12-31&Gglx=
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:38,876 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 16:33:38
+            结束时间：2018/12/25 16:33:38
+            总 时 间：0.0179972秒
+            Form表单数据：
+            URL参数：=timestamp31545726818841&page=1&limit=10&Title=&datafw=&Gglx=
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:38,876 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 16:33:38
+            结束时间：2018/12/25 16:33:38
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp31545726818841&page=1&limit=10&Title=&datafw=&Gglx=
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:41,487 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 16:33:41
+            结束时间：2018/12/25 16:33:41
+            总 时 间：0.0319602秒
+            Form表单数据：
+            URL参数：=timestamp31545726821437&page=1&limit=10&Title=&datafw=&Gglx=2
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:41,487 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 16:33:41
+            结束时间：2018/12/25 16:33:41
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp31545726821437&page=1&limit=10&Title=&datafw=&Gglx=2
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:43,867 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 16:33:43
+            结束时间：2018/12/25 16:33:43
+            总 时 间：0.0119809秒
+            Form表单数据：
+            URL参数：=timestamp31545726823838&page=1&limit=10&Title=&datafw=&Gglx=1
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:43,867 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 16:33:43
+            结束时间：2018/12/25 16:33:43
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp31545726823838&page=1&limit=10&Title=&datafw=&Gglx=1
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:46,972 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 16:33:46
+            结束时间：2018/12/25 16:33:46
+            总 时 间：0.0234579秒
+            Form表单数据：
+            URL参数：=timestamp31545726826932&page=1&limit=10&Title=&datafw=&Gglx=
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:33:46,972 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 16:33:46
+            结束时间：2018/12/25 16:33:46
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp31545726826932&page=1&limit=10&Title=&datafw=&Gglx=
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:21,592 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/25 16:35:21
+            结束时间：2018/12/25 16:35:21
+            总 时 间：0.0199841秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:21,594 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/25 16:35:21
+            结束时间：2018/12/25 16:35:21
+            总 时 间：0.0019936秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:22,014 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 16:35:21
+            结束时间：2018/12/25 16:35:22
+            总 时 间：0.0209566秒
+            Form表单数据：
+            URL参数：=timestamp1545726921918&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:22,014 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 16:35:22
+            结束时间：2018/12/25 16:35:22
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1545726921918&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:22,538 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/25 16:35:22
+            结束时间：2018/12/25 16:35:22
+            总 时 间：0.0233938秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:22,538 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/25 16:35:22
+            结束时间：2018/12/25 16:35:22
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:24,751 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/25 16:35:24
+            结束时间：2018/12/25 16:35:24
+            总 时 间：0.0210088秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:24,752 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/25 16:35:24
+            结束时间：2018/12/25 16:35:24
+            总 时 间：0.00097秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:25,839 
+线程ID:[45] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 16:35:25
+            结束时间：2018/12/25 16:35:25
+            总 时 间：0.0189865秒
+            Form表单数据：
+            URL参数：=timestamp1545726925800&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:25,839 
+线程ID:[45] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 16:35:25
+            结束时间：2018/12/25 16:35:25
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1545726925800&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:26,341 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/25 16:35:26
+            结束时间：2018/12/25 16:35:26
+            总 时 间：0.0040532秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:26,341 
+线程ID:[47] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/25 16:35:26
+            结束时间：2018/12/25 16:35:26
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:33,838 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongGaoDetial
+            开始时间：2018/12/25 16:35:33
+            结束时间：2018/12/25 16:35:33
+            总 时 间：0.0587585秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709&ContentId=undefined
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:33,843 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongGaoDetial
+            开始时间：2018/12/25 16:35:33
+            结束时间：2018/12/25 16:35:33
+            总 时 间：0.0054205秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709&ContentId=undefined
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:38,032 
+线程ID:[45] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongGaoDetial
+            开始时间：2018/12/25 16:35:38
+            结束时间：2018/12/25 16:35:38
+            总 时 间：0.0189962秒
+            Form表单数据：
+            URL参数：Id=undefined&ContentId=8151f41a-5e66-4287-9432-6766be862709
+                    
+ 
+
+ 
+记录时间：2018-12-25 16:35:38,032 
+线程ID:[45] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongGaoDetial
+            开始时间：2018/12/25 16:35:38
+            结束时间：2018/12/25 16:35:38
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：Id=undefined&ContentId=8151f41a-5e66-4287-9432-6766be862709
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:23:02,729 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/25 17:23:02
+            结束时间：2018/12/25 17:23:02
+            总 时 间：0.1964774秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:23:03,942 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/25 17:23:02
+            结束时间：2018/12/25 17:23:03
+            总 时 间：1.1858302秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:23:05,076 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/25 17:23:04
+            结束时间：2018/12/25 17:23:05
+            总 时 间：0.1705902秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:23:05,076 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/25 17:23:05
+            结束时间：2018/12/25 17:23:05
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:23:05,553 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 17:23:05
+            结束时间：2018/12/25 17:23:05
+            总 时 间：0.0768444秒
+            Form表单数据：
+            URL参数：=timestamp1545729784368&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:23:05,553 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 17:23:05
+            结束时间：2018/12/25 17:23:05
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1545729784368&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:23:09,067 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/25 17:23:09
+            结束时间：2018/12/25 17:23:09
+            总 时 间：0.022022秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:23:09,067 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/25 17:23:09
+            结束时间：2018/12/25 17:23:09
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:23:09,457 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 17:23:09
+            结束时间：2018/12/25 17:23:09
+            总 时 间：0.0279829秒
+            Form表单数据：
+            URL参数：=timestamp1545729789411&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:23:09,457 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 17:23:09
+            结束时间：2018/12/25 17:23:09
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1545729789411&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:23:09,946 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/25 17:23:09
+            结束时间：2018/12/25 17:23:09
+            总 时 间：0.0159707秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:23:09,946 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/25 17:23:09
+            结束时间：2018/12/25 17:23:09
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:25:55,300 
+线程ID:[5] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/25 17:25:55
+            结束时间：2018/12/25 17:25:55
+            总 时 间：0.0239579秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:25:55,913 
+线程ID:[5] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/25 17:25:55
+            结束时间：2018/12/25 17:25:55
+            总 时 间：0.6127065秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:25:56,362 
+线程ID:[5] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 17:25:56
+            结束时间：2018/12/25 17:25:56
+            总 时 间：0.0299938秒
+            Form表单数据：
+            URL参数：=timestamp1545729956316&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:25:56,362 
+线程ID:[5] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 17:25:56
+            结束时间：2018/12/25 17:25:56
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1545729956316&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:25:56,850 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/25 17:25:56
+            结束时间：2018/12/25 17:25:56
+            总 时 间：0.0139577秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:25:56,850 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/25 17:25:56
+            结束时间：2018/12/25 17:25:56
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:26:19,030 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/25 17:26:19
+            结束时间：2018/12/25 17:26:19
+            总 时 间：0.0292827秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:26:19,521 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/25 17:26:19
+            结束时间：2018/12/25 17:26:19
+            总 时 间：0.4916096秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:26:19,910 
+线程ID:[13] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 17:26:19
+            结束时间：2018/12/25 17:26:19
+            总 时 间：0.0210105秒
+            Form表单数据：
+            URL参数：=timestamp1545729979874&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:26:19,910 
+线程ID:[13] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 17:26:19
+            结束时间：2018/12/25 17:26:19
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1545729979874&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:26:20,424 
+线程ID:[5] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/25 17:26:20
+            结束时间：2018/12/25 17:26:20
+            总 时 间：0.0200928秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:26:20,425 
+线程ID:[5] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/25 17:26:20
+            结束时间：2018/12/25 17:26:20
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:29:14,602 
+线程ID:[32] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/25 17:29:14
+            结束时间：2018/12/25 17:29:14
+            总 时 间：0.0090779秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:29:15,198 
+线程ID:[32] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/25 17:29:14
+            结束时间：2018/12/25 17:29:15
+            总 时 间：0.5961007秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:29:15,420 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 17:29:15
+            结束时间：2018/12/25 17:29:15
+            总 时 间：0.020946秒
+            Form表单数据：
+            URL参数：=timestamp1545730155382&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:29:15,420 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 17:29:15
+            结束时间：2018/12/25 17:29:15
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1545730155382&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:29:15,914 
+线程ID:[33] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/25 17:29:15
+            结束时间：2018/12/25 17:29:15
+            总 时 间：0.0120329秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:29:15,914 
+线程ID:[33] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/25 17:29:15
+            结束时间：2018/12/25 17:29:15
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:31:40,370 
+线程ID:[20] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/25 17:31:40
+            结束时间：2018/12/25 17:31:40
+            总 时 间：0.0250247秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:31:40,914 
+线程ID:[20] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/25 17:31:40
+            结束时间：2018/12/25 17:31:40
+            总 时 间：0.5435438秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:31:41,365 
+线程ID:[20] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 17:31:41
+            结束时间：2018/12/25 17:31:41
+            总 时 间：0.0090344秒
+            Form表单数据：
+            URL参数：=timestamp1545730301339&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:31:41,365 
+线程ID:[20] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 17:31:41
+            结束时间：2018/12/25 17:31:41
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1545730301339&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:31:41,874 
+线程ID:[35] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/25 17:31:41
+            结束时间：2018/12/25 17:31:41
+            总 时 间：0.0159726秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:31:41,874 
+线程ID:[35] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/25 17:31:41
+            结束时间：2018/12/25 17:31:41
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:43:03,005 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/25 17:43:02
+            结束时间：2018/12/25 17:43:03
+            总 时 间：0.0688792秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:43:04,031 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/25 17:43:03
+            结束时间：2018/12/25 17:43:04
+            总 时 间：1.0122928秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:43:04,769 
+线程ID:[40] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 17:43:04
+            结束时间：2018/12/25 17:43:04
+            总 时 间：0.2629092秒
+            Form表单数据：
+            URL参数：=timestamp1545730984447&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:43:04,770 
+线程ID:[40] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 17:43:04
+            结束时间：2018/12/25 17:43:04
+            总 时 间：0.0009973秒
+            Form表单数据：
+            URL参数：=timestamp1545730984447&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:43:05,012 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/25 17:43:04
+            结束时间：2018/12/25 17:43:05
+            总 时 间：0.0471211秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:43:05,012 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/25 17:43:05
+            结束时间：2018/12/25 17:43:05
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:43:05,818 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongWenAdd
+            开始时间：2018/12/25 17:43:05
+            结束时间：2018/12/25 17:43:05
+            总 时 间：0.0030682秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:43:05,833 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongWenAdd
+            开始时间：2018/12/25 17:43:05
+            结束时间：2018/12/25 17:43:05
+            总 时 间：0.0149321秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:44:08,097 
+线程ID:[40] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongWenAdd
+            开始时间：2018/12/25 17:44:08
+            结束时间：2018/12/25 17:44:08
+            总 时 间：0.0170303秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:44:08,759 
+线程ID:[40] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongWenAdd
+            开始时间：2018/12/25 17:44:08
+            结束时间：2018/12/25 17:44:08
+            总 时 间：0.6620622秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:44:20,929 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongWenAdd
+            开始时间：2018/12/25 17:44:20
+            结束时间：2018/12/25 17:44:20
+            总 时 间：0.0150759秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:44:21,501 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongWenAdd
+            开始时间：2018/12/25 17:44:20
+            结束时间：2018/12/25 17:44:21
+            总 时 间：0.5725703秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:45:16,950 
+线程ID:[40] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongWenAdd
+            开始时间：2018/12/25 17:45:16
+            结束时间：2018/12/25 17:45:16
+            总 时 间：0.0300166秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:45:17,554 
+线程ID:[40] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongWenAdd
+            开始时间：2018/12/25 17:45:16
+            结束时间：2018/12/25 17:45:17
+            总 时 间：0.602422秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:45:27,258 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:ChoosePerson
+            开始时间：2018/12/25 17:45:27
+            结束时间：2018/12/25 17:45:27
+            总 时 间：0.0143387秒
+            Form表单数据：
+            URL参数：_winid=w8418&_t=507078
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:45:27,264 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:ChoosePerson
+            开始时间：2018/12/25 17:45:27
+            结束时间：2018/12/25 17:45:27
+            总 时 间：0.0059911秒
+            Form表单数据：
+            URL参数：_winid=w8418&_t=507078
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:45:27,675 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindUser2
+            开始时间：2018/12/25 17:45:27
+            结束时间：2018/12/25 17:45:27
+            总 时 间：0.1306248秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:45:27,675 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindUser2
+            开始时间：2018/12/25 17:45:27
+            结束时间：2018/12/25 17:45:27
+            总 时 间：0秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:45:29,906 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:ChoosePerson
+            开始时间：2018/12/25 17:45:29
+            结束时间：2018/12/25 17:45:29
+            总 时 间：0.0030281秒
+            Form表单数据：
+            URL参数：_winid=w8418&_t=795615
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:45:29,906 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:ChoosePerson
+            开始时间：2018/12/25 17:45:29
+            结束时间：2018/12/25 17:45:29
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：_winid=w8418&_t=795615
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:45:30,140 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindUser2
+            开始时间：2018/12/25 17:45:30
+            结束时间：2018/12/25 17:45:30
+            总 时 间：0.0060308秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:45:30,141 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindUser2
+            开始时间：2018/12/25 17:45:30
+            结束时间：2018/12/25 17:45:30
+            总 时 间：0秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:45:55,098 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongWenAdd
+            开始时间：2018/12/25 17:45:55
+            结束时间：2018/12/25 17:45:55
+            总 时 间：0.0250177秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:45:55,659 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongWenAdd
+            开始时间：2018/12/25 17:45:55
+            结束时间：2018/12/25 17:45:55
+            总 时 间：0.5610377秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:47:12,955 
+线程ID:[24] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:ChoosePerson
+            开始时间：2018/12/25 17:47:12
+            结束时间：2018/12/25 17:47:12
+            总 时 间：0.0119767秒
+            Form表单数据：
+            URL参数：_winid=w1981&_t=244085
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:47:12,961 
+线程ID:[24] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:ChoosePerson
+            开始时间：2018/12/25 17:47:12
+            结束时间：2018/12/25 17:47:12
+            总 时 间：0.0059851秒
+            Form表单数据：
+            URL参数：_winid=w1981&_t=244085
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:47:13,163 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindUser2
+            开始时间：2018/12/25 17:47:13
+            结束时间：2018/12/25 17:47:13
+            总 时 间：0.0212022秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:47:13,163 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindUser2
+            开始时间：2018/12/25 17:47:13
+            结束时间：2018/12/25 17:47:13
+            总 时 间：0秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:47:54,870 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:JieShouDetial
+            开始时间：2018/12/25 17:47:54
+            结束时间：2018/12/25 17:47:54
+            总 时 间：0.0140605秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:47:54,873 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:JieShouDetial
+            开始时间：2018/12/25 17:47:54
+            结束时间：2018/12/25 17:47:54
+            总 时 间：0.0029903秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:47:55,048 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetJieShouQk
+            开始时间：2018/12/25 17:47:55
+            结束时间：2018/12/25 17:47:55
+            总 时 间：0.0321252秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709&=timestamp1545731274999&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:47:55,048 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetJieShouQk
+            开始时间：2018/12/25 17:47:55
+            结束时间：2018/12/25 17:47:55
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709&=timestamp1545731274999&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:47:57,419 
+线程ID:[27] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:JieShouDetial
+            开始时间：2018/12/25 17:47:57
+            结束时间：2018/12/25 17:47:57
+            总 时 间：0.0251971秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:47:57,421 
+线程ID:[27] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:JieShouDetial
+            开始时间：2018/12/25 17:47:57
+            结束时间：2018/12/25 17:47:57
+            总 时 间：0.0019997秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:47:57,543 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetJieShouQk
+            开始时间：2018/12/25 17:47:57
+            结束时间：2018/12/25 17:47:57
+            总 时 间：0.0161639秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709&=timestamp1545731277511&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:47:57,543 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetJieShouQk
+            开始时间：2018/12/25 17:47:57
+            结束时间：2018/12/25 17:47:57
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709&=timestamp1545731277511&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:33,089 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:DocAdd
+            开始时间：2018/12/25 17:48:33
+            结束时间：2018/12/25 17:48:33
+            总 时 间：0.0210028秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:33,098 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:DocAdd
+            开始时间：2018/12/25 17:48:33
+            结束时间：2018/12/25 17:48:33
+            总 时 间：0.0089552秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:36,085 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/25 17:48:36
+            结束时间：2018/12/25 17:48:36
+            总 时 间：0.0190221秒
+            Form表单数据：
+            URL参数：=timestamp21545731316045&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:36,085 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/25 17:48:36
+            结束时间：2018/12/25 17:48:36
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp21545731316045&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:38,317 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongWenAdd
+            开始时间：2018/12/25 17:48:38
+            结束时间：2018/12/25 17:48:38
+            总 时 间：0.0020801秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:38,318 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongWenAdd
+            开始时间：2018/12/25 17:48:38
+            结束时间：2018/12/25 17:48:38
+            总 时 间：0.0010002秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:40,875 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongWenAdd
+            开始时间：2018/12/25 17:48:40
+            结束时间：2018/12/25 17:48:40
+            总 时 间：0.015207秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:40,876 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongWenAdd
+            开始时间：2018/12/25 17:48:40
+            结束时间：2018/12/25 17:48:40
+            总 时 间：0.0009026秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:43,051 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongWenAdd
+            开始时间：2018/12/25 17:48:43
+            结束时间：2018/12/25 17:48:43
+            总 时 间：0.0200804秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:43,052 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongWenAdd
+            开始时间：2018/12/25 17:48:43
+            结束时间：2018/12/25 17:48:43
+            总 时 间：0.0009982秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:46,734 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongWenAdd
+            开始时间：2018/12/25 17:48:46
+            结束时间：2018/12/25 17:48:46
+            总 时 间：0.0021095秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:46,735 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongWenAdd
+            开始时间：2018/12/25 17:48:46
+            结束时间：2018/12/25 17:48:46
+            总 时 间：0.0009699秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:49,428 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongWenAdd
+            开始时间：2018/12/25 17:48:49
+            结束时间：2018/12/25 17:48:49
+            总 时 间：0.0149905秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:49,428 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongWenAdd
+            开始时间：2018/12/25 17:48:49
+            结束时间：2018/12/25 17:48:49
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:52,271 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongWenAdd
+            开始时间：2018/12/25 17:48:52
+            结束时间：2018/12/25 17:48:52
+            总 时 间：0.0110541秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:52,272 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongWenAdd
+            开始时间：2018/12/25 17:48:52
+            结束时间：2018/12/25 17:48:52
+            总 时 间：0.0009684秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:53,902 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:ChoosePerson
+            开始时间：2018/12/25 17:48:53
+            结束时间：2018/12/25 17:48:53
+            总 时 间：0.0151898秒
+            Form表单数据：
+            URL参数：_winid=w7325&_t=645805
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:53,903 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:ChoosePerson
+            开始时间：2018/12/25 17:48:53
+            结束时间：2018/12/25 17:48:53
+            总 时 间：0.0009976秒
+            Form表单数据：
+            URL参数：_winid=w7325&_t=645805
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:54,111 
+线程ID:[28] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindUser2
+            开始时间：2018/12/25 17:48:54
+            结束时间：2018/12/25 17:48:54
+            总 时 间：0.0233641秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:54,111 
+线程ID:[28] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindUser2
+            开始时间：2018/12/25 17:48:54
+            结束时间：2018/12/25 17:48:54
+            总 时 间：0秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:56,399 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:ChoosePerson
+            开始时间：2018/12/25 17:48:56
+            结束时间：2018/12/25 17:48:56
+            总 时 间：0.0240754秒
+            Form表单数据：
+            URL参数：_winid=w7325&_t=253024
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:56,400 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:ChoosePerson
+            开始时间：2018/12/25 17:48:56
+            结束时间：2018/12/25 17:48:56
+            总 时 间：0.0009958秒
+            Form表单数据：
+            URL参数：_winid=w7325&_t=253024
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:56,588 
+线程ID:[27] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindUser2
+            开始时间：2018/12/25 17:48:56
+            结束时间：2018/12/25 17:48:56
+            总 时 间：0.0169662秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:56,588 
+线程ID:[27] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindUser2
+            开始时间：2018/12/25 17:48:56
+            结束时间：2018/12/25 17:48:56
+            总 时 间：0秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:58,914 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:ChoosePerson
+            开始时间：2018/12/25 17:48:58
+            结束时间：2018/12/25 17:48:58
+            总 时 间：0.0180538秒
+            Form表单数据：
+            URL参数：_winid=w7325&_t=242042
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:58,914 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:ChoosePerson
+            开始时间：2018/12/25 17:48:58
+            结束时间：2018/12/25 17:48:58
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：_winid=w7325&_t=242042
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:59,107 
+线程ID:[28] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindUser2
+            开始时间：2018/12/25 17:48:59
+            结束时间：2018/12/25 17:48:59
+            总 时 间：0.0201184秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:48:59,107 
+线程ID:[28] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindUser2
+            开始时间：2018/12/25 17:48:59
+            结束时间：2018/12/25 17:48:59
+            总 时 间：0秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:49:07,888 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:ChoosePerson
+            开始时间：2018/12/25 17:49:07
+            结束时间：2018/12/25 17:49:07
+            总 时 间：0.0120311秒
+            Form表单数据：
+            URL参数：_winid=w7325&_t=293083
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:49:07,888 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:ChoosePerson
+            开始时间：2018/12/25 17:49:07
+            结束时间：2018/12/25 17:49:07
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：_winid=w7325&_t=293083
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:49:08,087 
+线程ID:[28] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindUser2
+            开始时间：2018/12/25 17:49:08
+            结束时间：2018/12/25 17:49:08
+            总 时 间：0.0149991秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:49:08,087 
+线程ID:[28] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindUser2
+            开始时间：2018/12/25 17:49:08
+            结束时间：2018/12/25 17:49:08
+            总 时 间：0秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:51:20,302 
+线程ID:[17] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongGaoDetial
+            开始时间：2018/12/25 17:51:20
+            结束时间：2018/12/25 17:51:20
+            总 时 间：0.059362秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709&ContentId=undefined
+                    
+ 
+
+ 
+记录时间：2018-12-25 17:51:20,307 
+线程ID:[17] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongGaoDetial
+            开始时间：2018/12/25 17:51:20
+            结束时间：2018/12/25 17:51:20
+            总 时 间：0.0049866秒
+            Form表单数据：
+            URL参数：Id=8151f41a-5e66-4287-9432-6766be862709&ContentId=undefined
+                    
+ 

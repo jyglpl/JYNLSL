@@ -52,8 +52,6 @@ namespace Yookey.WisdomClassed.SIP.DataAccess.OA
             return true;
         }
 
-
-
         /// <summary>
         /// 更新已读和未读状态
         /// </summary>
@@ -118,6 +116,14 @@ namespace Yookey.WisdomClassed.SIP.DataAccess.OA
             }
         }
 
+        /// <summary>
+        /// add by lpl
+        /// 2018-12-25
+        /// 查询公告发送详情表
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="limittime"></param>
+        /// <returns></returns>
         public List<DocNotfPersonEntity> SearchQuery(DocNotfPersonEntity entity, string limittime = null)
         {
 
@@ -164,7 +170,6 @@ namespace Yookey.WisdomClassed.SIP.DataAccess.OA
 
         }
 
-
         /// <summary>    
         /// DataTable 转换为List 集合    
         /// </summary>    
@@ -197,8 +202,6 @@ namespace Yookey.WisdomClassed.SIP.DataAccess.OA
             }
             return oblist;
         }
-
-
     }
 
 

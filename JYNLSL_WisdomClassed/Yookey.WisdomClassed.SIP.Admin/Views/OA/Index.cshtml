@@ -21,12 +21,13 @@
         </ul>
         <div class="layui-tab-content">
             @*<div class="layui-tab-item layui-show person">
-                <table class="layui-hide" id="test2"></table>
-                <script>
+                    <table class="layui-hide" id="test2"></table>
+                    <script>
 
-                </script>
-            </div>*@
-            <div class="layui-tab-item layui-show" >
+                    </script>
+                </div>*@
+            @*公告通知*@
+            <div class="layui-tab-item layui-show">
 
                 <div class="demoTable">
                     <form class="layui-form" action="">
@@ -37,7 +38,7 @@
                                 <select name="Gglx" id="Gglx">
                                     <option value="">请选择类别</option>
                                     @*<option value="1">通知</option>
-                                    <option value="2">公告</option>*@
+                                        <option value="2">公告</option>*@
                                 </select>
                             </div>
                         </div>
@@ -69,16 +70,25 @@
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                     @*<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>*@
 
-                    <a id="tx"  style="display:none" class="layui-btn layui-btn-danger layui-btn-xs tx" lay-event="">提醒</a>
+                    <a id="tx" style="display:none" class="layui-btn layui-btn-danger layui-btn-xs tx" lay-event="">提醒</a>
 
-       
+
                 </script>
             </div>
+            
+            @*公文管理*@
             <div class="layui-tab-item">
+                <script id="toolbarGongWen" type="text/html">
+                    <div class="layui-btn-container">
 
+                        <button class="layui-btn layui-btn-sm" id="addGongGao"  lay-event="addGongGao">新增</button>
+
+                    </div>
+                </script>
+                <table class="layui-hide" id="GongWen" lay-filter="GongWen"></table>
             </div>
 
-            </div>
+        </div>
     </div>
     <script src="~/Content/layui/layui.js" charset="utf-8"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
@@ -147,6 +157,38 @@
         });
 
 
+        table.render({
+            elem: '#GongWen',
+            url: '@Url.Action("", "")?timestamp' + (new Date()).valueOf(),
+            toolbar: '#toolbarGongWen',
+            defaultToolbar: [],
+            title: '公文管理',
+            size: 'sm',
+            cols: [[
+                { field: 'Id', title: 'Id', width: 80, fixed: 'left', align: 'center', unresize: true, sort: true, hide: true },
+                { field: 'Id', title: '编号', width: 80, fixed: 'left', align: 'center', type: 'numbers', unresize: true, sort: true },
+                { field: 'Title', title: '文件标题', width: 230 },
+                { field: 'Title', title: '分类' },
+                { field: 'Title', title: '发文单位' },
+                { field: 'Title', title: '完成时限' },
+                { field: 'Title', title: '文件编号' },
+                { field: 'Title', title: '附件' },
+                { field: 'Title', title: '审批状态' },
+                { field: 'Title', title: '当前办理人' },
+                { field: 'Title', title: '登记时间' },
+                { field: 'Title', title: '处理状态' },
+                { field: 'Title', title: '创建人' },
+ 
+                { fixed: 'right', title: '操作', toolbar: '#barDemo', align: 'center' }
+                ]],
+            page: true,
+            height: 'full-140',
+            done: function(res, curr, count) {
+            }
+
+        });
+
+
 
 
         table.render({
@@ -194,7 +236,7 @@
                         style: 'cursor: pointer;',
                         width: 100,
                         //hide: true,
-                       
+
                         align: 'center',
                         templet: function(d) {
                             return d.JieShouCount + '/' + d.JieShouAllCount;
@@ -218,14 +260,14 @@
             height: 'full-140',
             done: function(res, curr, count) {
                 if ('@ViewBag.leader' == '1') {
-        
+
                     $('#add').css('display', '');
                     $('.tx').css('display', '');
                 }
                 if ('@ViewBag.leader' == '0')
                     $("[data-field='jsqk']").css('display', 'none');
 
-      
+
             }
 
         });
@@ -274,6 +316,33 @@
                                 , where: {}
 
                         });
+                    }
+
+                });
+                break;
+
+            };
+        });
+
+        //公文发布头部监控
+        table.on('toolbar(GongWen)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'addGongGao':
+                layer.open({
+                    type: 2,
+                    title: '新增公文',
+                    area: ['1300px', '650px'],
+                    fixed: false, //不固定
+                    maxmin: true,
+                    content: '@Url.Action("GongWenAdd", "OA")',
+                    end: function() {
+                        table.reload('GongWen',
+                            {
+                                @*url: '@Url.Action("GetAllDoc", "OA")?timestamp2' + (new Date()).valueOf()
+                                , where: {}*@
+
+                            });
                     }
 
                 });
