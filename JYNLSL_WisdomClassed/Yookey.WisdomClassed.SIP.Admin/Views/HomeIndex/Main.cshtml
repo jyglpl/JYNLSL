@@ -90,15 +90,7 @@
             if (source == "00001") {
                 AddTabMenu('Imain', '@Url.Action("Index","OA")');
             }
-            else if (source == "0002") {
-                AddTabMenu('Imain', '@Url.Action("ManagemenRight")');
-            }
-            else if (source == "0003") {
-                AddTabMenu('Imain', '@Url.Action("OfficeRight")');
-            }
-            else if (source == "0004") {
-                AddTabMenu('PremapIndex', '@Url.Action("HomeIndex")');
-            }
+
             else {
                 type = source;
                 source = source.substr(0, 4);

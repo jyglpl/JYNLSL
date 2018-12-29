@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@(Yookey.WisdomClassed.SIP.Common.AppConfig.SystemName)</title>
+
+    <link href="~/Content/static/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/static/reset_pc.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Main/css/border.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")"></script>
+    <style>
+        .nav {
+            background-color: white;
+            color: #333;
+            border-radius: 2px;
+            font-size: 0;
+            box-sizing: border-box;
+            position: absolute;
+            width: 200px;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-x: hidden;
+            font-size: 14px;
+            border-right: 1px solid #29B776;
+        }
+
+        .nav1 a {
+            height: 40px;
+            display: block;
+            line-height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #333;
+            padding: 0 20px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .navFir:hover {
+            background-color: #ffefbb;
+        }
+
+        .nav1 a.iconfont:before {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .nav1 dd {
+            padding-left: 10px;
+        }
+
+        .nav1 dd.active {
+            background-color: #e5f1ec;
+        }
+
+        .nav1 dd:hover {
+            background-color: #e5f1ec;
+        }
+
+        .navFir.iconfont:before, .navSec.iconfont:before {
+            color: #29b776
+        }
+
+
+        .nav1 dl {
+            display: none;
+            background-color: white;
+        }
+
+        .navSec.active {
+            background-color: #e5f1ec;
+        }
+
+        .navFir.active {
+            background-color: #ffefbb;
+        }
+
+        .head {
+            position: relative;
+            padding-left: 80px;
+            font-size: 20px;
+            height: 100px;
+            line-height: 100px;
+        }
+
+        .head img {
+            position: absolute;
+            top: 25px;
+            left: 10px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .headerTop > p img {
+            width: 600px;
+            height: 65px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="headerTop">
+        <p>
+            <img src="~/Content/Main/images/logoTwo.png" alt="">
+        </p>
+        <ul>
+            <li>
+                <a href="@Url.Action("HomePage", "HomeIndex")">
+                    <img src="~/Content/Main/images/home.png" alt="" />
+                    <div>系统首页</div>
+                </a>
+            </li>
+
+
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="~/Content/Main/images/nav4.png" alt="" />
+                    <div>个人中心</div>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <img src="~/Content/Main/images/nav5.png" alt="" />
+                    <div>安全退出</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="content" class="clearfixed">
+        <!--左侧菜单树-->
+        <div class="nav">
+            <div class="head">
+                <img src="~/Content/static/head1.png" alt="" />
+                姓名
+            </div>
+            <ul id="Menus">
+      
+            </ul>
+        </div>
+
+
+        <!-- 右侧内容 -->
+        <div class="rightContent clearfix" id="ContentPanel" style="border: none; background-color: white;">
+            <iframe id="tabs_iframe_grid" name="tabs_iframe_grid" height="100%" width="100%" src="@Url.Action("Home","HomeIndex")" frameborder="0"></iframe>
+        </div>
+    </div>
+
+
+    <script src="~/Content/static/jquery-2.1.4.min.js"></script>
+
+    <script>
+
+        $(function() {
+
+            LoadTree();
+            $('#iframe').attr('src', $('#iframe').attr('src'));
+        });
+
+        function LoadTree() {
+            //获取菜单
+            $.ajax({
+                url: "@Url.Action("LoadTree")",
+                type: "post",
+                dataType: "json",
+                data: {},
+                success: function (data) {
+                    var navs = data;
+                    var html = '';
+                    //加载一级菜单
+                    $.each(navs, function (i, item) {
+
+                        html += '<li class="nav1">';
+                        html += '<a href="javascript:;" onclick="IframeUrl(\'' + item.url + '\');"  class="iconfont icon-wenshu navFir">' + item.text + '</a>';
+                        if (item.menus !== undefined && item.menus.length > 0) {
+                            $.each(item.menus,
+                                function (j, item2) {
+                                    html += '<dl>';
+                                    html += '<dd>';
+                                    html += '<a href="javascript:;" onclick="IframeUrl(\'' + item2.url + '\');" class="iconfont icon-wenshu navSec">' + item2.text + '</a>';
+                                    html += '</dd>';
+                                    html += '</dl>';
+
+                                });
+                        }
+                        html += '</li>';
+
+                    });
+               
+                    $('#Menus').html(html);
+                }
+            });
+        }
+
+
+        function IframeUrl(url) {
+            if (url != '') {
+                $('#tabs_iframe_grid').attr('src', url);
+            }
+
+        }
+
+
+        $('.nav').on('click','.navFir',function(){
+            if ($(this).hasClass('active')) {
+                $(this).parent().find('dl').hide();
+                $(this).removeClass('active');
+            } else {
+                $('.navFir').removeClass('active');
+                $(this).addClass('active');
+                $('.nav1 dl').hide();
+                $(this).parent().find('dl').show();
+
+            }
+        });
+        $('.nav').on('click', '.navSec', function () {
+            $('.navSec').parent().removeClass('active');
+            $(this).parent().addClass('active');
+        });
+
+
+    </script>
+</body>
+
+</html>

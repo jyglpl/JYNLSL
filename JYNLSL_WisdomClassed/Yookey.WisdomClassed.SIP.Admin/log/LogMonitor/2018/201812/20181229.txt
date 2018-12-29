@@ -1,0 +1,2912 @@
+
+ 
+记录时间：2018-12-29 10:34:41,014 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：AccountController
+            ActionName:Login
+            开始时间：2018/12/29 10:34:40
+            结束时间：2018/12/29 10:34:41
+            总 时 间：0.1545891秒
+            Form表单数据：
+            URL参数：returnurl=/
+                    
+ 
+
+ 
+记录时间：2018-12-29 10:34:41,597 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：AccountController
+            ViewName:Login
+            开始时间：2018/12/29 10:34:41
+            结束时间：2018/12/29 10:34:41
+            总 时 间：0.5834419秒
+            Form表单数据：
+            URL参数：returnurl=/
+                    
+ 
+
+ 
+记录时间：2018-12-29 10:34:58,918 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：AccountController
+            ActionName:LogOn
+            开始时间：2018/12/29 10:34:58
+            结束时间：2018/12/29 10:34:58
+            总 时 间：0.2414926秒
+            Form表单数据：Account=admin&Password=yookey&RemberPwd=undefined
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 10:34:58,919 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：AccountController
+            ViewName:LogOn
+            开始时间：2018/12/29 10:34:58
+            结束时间：2018/12/29 10:34:58
+            总 时 间：0.0009697秒
+            Form表单数据：Account=admin&Password=yookey&RemberPwd=undefined
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 10:34:58,982 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：AccountController
+            ActionName:LogOn
+            开始时间：2018/12/29 10:34:58
+            结束时间：2018/12/29 10:34:58
+            总 时 间：0.0170226秒
+            Form表单数据：Account=admin&Password=yookey&RemberPwd=undefined
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 10:34:58,982 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：AccountController
+            ViewName:LogOn
+            开始时间：2018/12/29 10:34:58
+            结束时间：2018/12/29 10:34:58
+            总 时 间：0秒
+            Form表单数据：Account=admin&Password=yookey&RemberPwd=undefined
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 10:35:00,097 
+线程ID:[5] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:HomePage
+            开始时间：2018/12/29 10:35:00
+            结束时间：2018/12/29 10:35:00
+            总 时 间：0.0190071秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 10:35:00,113 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:HomePage
+            开始时间：2018/12/29 10:35:00
+            结束时间：2018/12/29 10:35:00
+            总 时 间：0.034965秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 10:35:00,374 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:HomePage
+            开始时间：2018/12/29 10:35:00
+            结束时间：2018/12/29 10:35:00
+            总 时 间：0.2613004秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 10:35:00,374 
+线程ID:[5] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:HomePage
+            开始时间：2018/12/29 10:35:00
+            结束时间：2018/12/29 10:35:00
+            总 时 间：0.2772583秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 10:35:00,610 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:Home
+            开始时间：2018/12/29 10:35:00
+            结束时间：2018/12/29 10:35:00
+            总 时 间：0.0379385秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 10:35:00,661 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:Home
+            开始时间：2018/12/29 10:35:00
+            结束时间：2018/12/29 10:35:00
+            总 时 间：0.0508632秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 10:35:01,109 
+线程ID:[5] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:LoadTree
+            开始时间：2018/12/29 10:35:00
+            结束时间：2018/12/29 10:35:01
+            总 时 间：0.3002038秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 10:35:01,142 
+线程ID:[5] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:LoadTree
+            开始时间：2018/12/29 10:35:01
+            结束时间：2018/12/29 10:35:01
+            总 时 间：0.0329423秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:46:53,579 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：AccountController
+            ActionName:Login
+            开始时间：2018/12/29 13:46:53
+            结束时间：2018/12/29 13:46:53
+            总 时 间：0.3550844秒
+            Form表单数据：
+            URL参数：returnurl=/
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:46:54,695 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：AccountController
+            ViewName:Login
+            开始时间：2018/12/29 13:46:53
+            结束时间：2018/12/29 13:46:54
+            总 时 间：1.0850963秒
+            Form表单数据：
+            URL参数：returnurl=/
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:05,714 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：AccountController
+            ActionName:LogOn
+            开始时间：2018/12/29 13:47:04
+            结束时间：2018/12/29 13:47:05
+            总 时 间：1.2518127秒
+            Form表单数据：Account=admin&Password=yookey&RemberPwd=undefined
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:05,714 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：AccountController
+            ViewName:LogOn
+            开始时间：2018/12/29 13:47:05
+            结束时间：2018/12/29 13:47:05
+            总 时 间：0秒
+            Form表单数据：Account=admin&Password=yookey&RemberPwd=undefined
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:05,846 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：AccountController
+            ActionName:LogOn
+            开始时间：2018/12/29 13:47:05
+            结束时间：2018/12/29 13:47:05
+            总 时 间：0.01706秒
+            Form表单数据：Account=admin&Password=yookey&RemberPwd=undefined
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:05,847 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：AccountController
+            ViewName:LogOn
+            开始时间：2018/12/29 13:47:05
+            结束时间：2018/12/29 13:47:05
+            总 时 间：0秒
+            Form表单数据：Account=admin&Password=yookey&RemberPwd=undefined
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:07,224 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:HomePage
+            开始时间：2018/12/29 13:47:07
+            结束时间：2018/12/29 13:47:07
+            总 时 间：0.0090153秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:07,291 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:HomePage
+            开始时间：2018/12/29 13:47:07
+            结束时间：2018/12/29 13:47:07
+            总 时 间：0.0209367秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:07,689 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:HomePage
+            开始时间：2018/12/29 13:47:07
+            结束时间：2018/12/29 13:47:07
+            总 时 间：0.4657549秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:07,689 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:HomePage
+            开始时间：2018/12/29 13:47:07
+            结束时间：2018/12/29 13:47:07
+            总 时 间：0.3989335秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:07,927 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:Home
+            开始时间：2018/12/29 13:47:07
+            结束时间：2018/12/29 13:47:07
+            总 时 间：0.0140363秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:07,936 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:Home
+            开始时间：2018/12/29 13:47:07
+            结束时间：2018/12/29 13:47:07
+            总 时 间：0.0089762秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:08,504 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:LoadTree
+            开始时间：2018/12/29 13:47:08
+            结束时间：2018/12/29 13:47:08
+            总 时 间：0.0249929秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:08,505 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:LoadTree
+            开始时间：2018/12/29 13:47:08
+            结束时间：2018/12/29 13:47:08
+            总 时 间：0.0009966秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:11,121 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/29 13:47:11
+            结束时间：2018/12/29 13:47:11
+            总 时 间：0.0579237秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:11,461 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/29 13:47:11
+            结束时间：2018/12/29 13:47:11
+            总 时 间：0.3400633秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:17,339 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/29 13:47:15
+            结束时间：2018/12/29 13:47:17
+            总 时 间：1.8450737秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:17,339 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/29 13:47:17
+            结束时间：2018/12/29 13:47:17
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:19,880 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/29 13:47:17
+            结束时间：2018/12/29 13:47:19
+            总 时 间：2.4008998秒
+            Form表单数据：
+            URL参数：=timestamp1546062435283&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:19,880 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/29 13:47:19
+            结束时间：2018/12/29 13:47:19
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1546062435283&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:48,273 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongWenAdd
+            开始时间：2018/12/29 13:47:48
+            结束时间：2018/12/29 13:47:48
+            总 时 间：0.0239936秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:48,396 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongWenAdd
+            开始时间：2018/12/29 13:47:48
+            结束时间：2018/12/29 13:47:48
+            总 时 间：0.1236685秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:51,903 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GongWenAdd
+            开始时间：2018/12/29 13:47:51
+            结束时间：2018/12/29 13:47:51
+            总 时 间：0.0369911秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:47:51,905 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GongWenAdd
+            开始时间：2018/12/29 13:47:51
+            结束时间：2018/12/29 13:47:51
+            总 时 间：0.0019909秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:03,747 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:Index
+            开始时间：2018/12/29 13:48:03
+            结束时间：2018/12/29 13:48:03
+            总 时 间：0.0997759秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:07,885 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:Index
+            开始时间：2018/12/29 13:48:03
+            结束时间：2018/12/29 13:48:07
+            总 时 间：4.1372774秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:08,023 
+线程ID:[11] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:Index
+            开始时间：2018/12/29 13:48:08
+            结束时间：2018/12/29 13:48:08
+            总 时 间：0.0179941秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:08,024 
+线程ID:[11] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:Index
+            开始时间：2018/12/29 13:48:08
+            结束时间：2018/12/29 13:48:08
+            总 时 间：0.0009861秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:08,590 
+线程ID:[11] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:TreeMenu
+            开始时间：2018/12/29 13:48:08
+            结束时间：2018/12/29 13:48:08
+            总 时 间：0.05396秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:08,592 
+线程ID:[11] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:TreeMenu
+            开始时间：2018/12/29 13:48:08
+            结束时间：2018/12/29 13:48:08
+            总 时 间：0.0020002秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:08,858 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:LoadGrid
+            开始时间：2018/12/29 13:48:08
+            结束时间：2018/12/29 13:48:08
+            总 时 间：0.1306544秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062488689&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:08,858 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:LoadGrid
+            开始时间：2018/12/29 13:48:08
+            结束时间：2018/12/29 13:48:08
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062488689&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:14,536 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:LoadGrid
+            开始时间：2018/12/29 13:48:14
+            结束时间：2018/12/29 13:48:14
+            总 时 间：0.0419614秒
+            Form表单数据：
+            URL参数：menuId=000010001&_search=false&nd=1546062494481&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:14,536 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:LoadGrid
+            开始时间：2018/12/29 13:48:14
+            结束时间：2018/12/29 13:48:14
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：menuId=000010001&_search=false&nd=1546062494481&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:23,650 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:Index
+            开始时间：2018/12/29 13:48:23
+            结束时间：2018/12/29 13:48:23
+            总 时 间：0.0299888秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:23,651 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:Index
+            开始时间：2018/12/29 13:48:23
+            结束时间：2018/12/29 13:48:23
+            总 时 间：0.0009942秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:23,920 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:TreeMenu
+            开始时间：2018/12/29 13:48:23
+            结束时间：2018/12/29 13:48:23
+            总 时 间：0.0229635秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:23,920 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:TreeMenu
+            开始时间：2018/12/29 13:48:23
+            结束时间：2018/12/29 13:48:23
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:23,979 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:LoadGrid
+            开始时间：2018/12/29 13:48:23
+            结束时间：2018/12/29 13:48:23
+            总 时 间：0.0150336秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062503951&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:23,979 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:LoadGrid
+            开始时间：2018/12/29 13:48:23
+            结束时间：2018/12/29 13:48:23
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062503951&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:26,296 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:LoadGrid
+            开始时间：2018/12/29 13:48:26
+            结束时间：2018/12/29 13:48:26
+            总 时 间：0.0189029秒
+            Form表单数据：
+            URL参数：menuId=000010001&_search=false&nd=1546062506264&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:26,296 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:LoadGrid
+            开始时间：2018/12/29 13:48:26
+            结束时间：2018/12/29 13:48:26
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：menuId=000010001&_search=false&nd=1546062506264&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:32,612 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:HomePage
+            开始时间：2018/12/29 13:48:32
+            结束时间：2018/12/29 13:48:32
+            总 时 间：0.0459453秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:32,613 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:HomePage
+            开始时间：2018/12/29 13:48:32
+            结束时间：2018/12/29 13:48:32
+            总 时 间：0.0009969秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:33,542 
+线程ID:[11] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:Home
+            开始时间：2018/12/29 13:48:33
+            结束时间：2018/12/29 13:48:33
+            总 时 间：0.0220289秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:33,542 
+线程ID:[11] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:Home
+            开始时间：2018/12/29 13:48:33
+            结束时间：2018/12/29 13:48:33
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:33,751 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:LoadTree
+            开始时间：2018/12/29 13:48:33
+            结束时间：2018/12/29 13:48:33
+            总 时 间：0.0159992秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:33,751 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:LoadTree
+            开始时间：2018/12/29 13:48:33
+            结束时间：2018/12/29 13:48:33
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:36,465 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:Index
+            开始时间：2018/12/29 13:48:36
+            结束时间：2018/12/29 13:48:36
+            总 时 间：0.0130136秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:36,466 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:Index
+            开始时间：2018/12/29 13:48:36
+            结束时间：2018/12/29 13:48:36
+            总 时 间：0.0009991秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:37,037 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:TreeMenu
+            开始时间：2018/12/29 13:48:36
+            结束时间：2018/12/29 13:48:37
+            总 时 间：0.0389851秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:37,038 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:TreeMenu
+            开始时间：2018/12/29 13:48:37
+            结束时间：2018/12/29 13:48:37
+            总 时 间：0.0009982秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:37,241 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:LoadGrid
+            开始时间：2018/12/29 13:48:37
+            结束时间：2018/12/29 13:48:37
+            总 时 间：0.0210399秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062517144&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:37,241 
+线程ID:[7] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:LoadGrid
+            开始时间：2018/12/29 13:48:37
+            结束时间：2018/12/29 13:48:37
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062517144&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:46,433 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:LoadGrid
+            开始时间：2018/12/29 13:48:46
+            结束时间：2018/12/29 13:48:46
+            总 时 间：0.0150686秒
+            Form表单数据：
+            URL参数：menuId=000010001&_search=false&nd=1546062526413&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:46,433 
+线程ID:[10] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:LoadGrid
+            开始时间：2018/12/29 13:48:46
+            结束时间：2018/12/29 13:48:46
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：menuId=000010001&_search=false&nd=1546062526413&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:49,427 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:HomePage
+            开始时间：2018/12/29 13:48:49
+            结束时间：2018/12/29 13:48:49
+            总 时 间：0.0179864秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:49,428 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:HomePage
+            开始时间：2018/12/29 13:48:49
+            结束时间：2018/12/29 13:48:49
+            总 时 间：0.0009897秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:49,595 
+线程ID:[12] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:Home
+            开始时间：2018/12/29 13:48:49
+            结束时间：2018/12/29 13:48:49
+            总 时 间：0.01603秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:49,596 
+线程ID:[12] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:Home
+            开始时间：2018/12/29 13:48:49
+            结束时间：2018/12/29 13:48:49
+            总 时 间：0.0009969秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:49,701 
+线程ID:[15] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:LoadTree
+            开始时间：2018/12/29 13:48:49
+            结束时间：2018/12/29 13:48:49
+            总 时 间：0.0160472秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:49,702 
+线程ID:[15] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:LoadTree
+            开始时间：2018/12/29 13:48:49
+            结束时间：2018/12/29 13:48:49
+            总 时 间：0.0009957秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:52,069 
+线程ID:[13] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:Index
+            开始时间：2018/12/29 13:48:52
+            结束时间：2018/12/29 13:48:52
+            总 时 间：0.0230165秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:52,070 
+线程ID:[13] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:Index
+            开始时间：2018/12/29 13:48:52
+            结束时间：2018/12/29 13:48:52
+            总 时 间：0.0009963秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:52,373 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:TreeMenu
+            开始时间：2018/12/29 13:48:52
+            结束时间：2018/12/29 13:48:52
+            总 时 间：0.0170071秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:52,374 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:TreeMenu
+            开始时间：2018/12/29 13:48:52
+            结束时间：2018/12/29 13:48:52
+            总 时 间：0.0009982秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:52,478 
+线程ID:[16] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:LoadGrid
+            开始时间：2018/12/29 13:48:52
+            结束时间：2018/12/29 13:48:52
+            总 时 间：0.0160234秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062532429&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:52,478 
+线程ID:[16] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:LoadGrid
+            开始时间：2018/12/29 13:48:52
+            结束时间：2018/12/29 13:48:52
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062532429&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:58,786 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:Index
+            开始时间：2018/12/29 13:48:58
+            结束时间：2018/12/29 13:48:58
+            总 时 间：0.0220184秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:58,789 
+线程ID:[9] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:Index
+            开始时间：2018/12/29 13:48:58
+            结束时间：2018/12/29 13:48:58
+            总 时 间：0.0030023秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:59,114 
+线程ID:[13] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:TreeMenu
+            开始时间：2018/12/29 13:48:59
+            结束时间：2018/12/29 13:48:59
+            总 时 间：0.0170333秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:59,115 
+线程ID:[13] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:TreeMenu
+            开始时间：2018/12/29 13:48:59
+            结束时间：2018/12/29 13:48:59
+            总 时 间：0.0009975秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:59,240 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:LoadGrid
+            开始时间：2018/12/29 13:48:59
+            结束时间：2018/12/29 13:48:59
+            总 时 间：0.0259984秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062539188&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:48:59,240 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:LoadGrid
+            开始时间：2018/12/29 13:48:59
+            结束时间：2018/12/29 13:48:59
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062539188&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:49:00,924 
+线程ID:[15] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:Edit
+            开始时间：2018/12/29 13:49:00
+            结束时间：2018/12/29 13:49:00
+            总 时 间：0.0389782秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:49:01,124 
+线程ID:[15] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:Edit
+            开始时间：2018/12/29 13:49:00
+            结束时间：2018/12/29 13:49:01
+            总 时 间：0.2004628秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:49:04,747 
+线程ID:[16] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:LoadGrid
+            开始时间：2018/12/29 13:49:04
+            结束时间：2018/12/29 13:49:04
+            总 时 间：0.0199643秒
+            Form表单数据：
+            URL参数：menuId=000010001&_search=false&nd=1546062544712&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:49:04,747 
+线程ID:[16] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:LoadGrid
+            开始时间：2018/12/29 13:49:04
+            结束时间：2018/12/29 13:49:04
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：menuId=000010001&_search=false&nd=1546062544712&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:49:06,461 
+线程ID:[11] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:Edit
+            开始时间：2018/12/29 13:49:06
+            结束时间：2018/12/29 13:49:06
+            总 时 间：0.0329782秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:49:06,463 
+线程ID:[11] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:Edit
+            开始时间：2018/12/29 13:49:06
+            结束时间：2018/12/29 13:49:06
+            总 时 间：0.0019951秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:06,786 
+线程ID:[12] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:AjaxLoadMenus
+            开始时间：2018/12/29 13:50:06
+            结束时间：2018/12/29 13:50:06
+            总 时 间：0.0210062秒
+            Form表单数据：
+            URL参数：menuLevel=3&rnd=0.11083699941869707
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:06,786 
+线程ID:[12] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:AjaxLoadMenus
+            开始时间：2018/12/29 13:50:06
+            结束时间：2018/12/29 13:50:06
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：menuLevel=3&rnd=0.11083699941869707
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:22,862 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:Edit
+            开始时间：2018/12/29 13:50:22
+            结束时间：2018/12/29 13:50:22
+            总 时 间：0.0440255秒
+            Form表单数据：MenuName=公文管理&IsMenu=0&Controller=OA&Action=MangerAuthorization&MenuUrl=&MenuLevel=3&ParentMenuId=000010001&OpenType=1&IconPic=&SortCode=1&Source=0&MenuDesc=公文管理权限&Id=&CreatorId=&CreateBy=&CreateOn=1900/1/1 0:00:00
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:22,863 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:Edit
+            开始时间：2018/12/29 13:50:22
+            结束时间：2018/12/29 13:50:22
+            总 时 间：0.0009423秒
+            Form表单数据：MenuName=公文管理&IsMenu=0&Controller=OA&Action=MangerAuthorization&MenuUrl=&MenuLevel=3&ParentMenuId=000010001&OpenType=1&IconPic=&SortCode=1&Source=0&MenuDesc=公文管理权限&Id=&CreatorId=&CreateBy=&CreateOn=1900/1/1 0:00:00
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:25,501 
+线程ID:[20] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:Index
+            开始时间：2018/12/29 13:50:25
+            结束时间：2018/12/29 13:50:25
+            总 时 间：0.0180318秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:25,506 
+线程ID:[20] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:Index
+            开始时间：2018/12/29 13:50:25
+            结束时间：2018/12/29 13:50:25
+            总 时 间：0.0049722秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:25,762 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:TreeMenu
+            开始时间：2018/12/29 13:50:25
+            结束时间：2018/12/29 13:50:25
+            总 时 间：0.0339205秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:25,762 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:TreeMenu
+            开始时间：2018/12/29 13:50:25
+            结束时间：2018/12/29 13:50:25
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:25,861 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:LoadGrid
+            开始时间：2018/12/29 13:50:25
+            结束时间：2018/12/29 13:50:25
+            总 时 间：0.0509565秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062625798&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:25,861 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:LoadGrid
+            开始时间：2018/12/29 13:50:25
+            结束时间：2018/12/29 13:50:25
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062625798&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:28,808 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:Index
+            开始时间：2018/12/29 13:50:28
+            结束时间：2018/12/29 13:50:28
+            总 时 间：0.0129781秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:28,809 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:Index
+            开始时间：2018/12/29 13:50:28
+            结束时间：2018/12/29 13:50:28
+            总 时 间：0.0009973秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:29,036 
+线程ID:[20] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:TreeMenu
+            开始时间：2018/12/29 13:50:29
+            结束时间：2018/12/29 13:50:29
+            总 时 间：0.0120669秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:29,037 
+线程ID:[20] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:TreeMenu
+            开始时间：2018/12/29 13:50:29
+            结束时间：2018/12/29 13:50:29
+            总 时 间：0.0009978秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:29,095 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:LoadGrid
+            开始时间：2018/12/29 13:50:29
+            结束时间：2018/12/29 13:50:29
+            总 时 间：0.021037秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062629063&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:29,096 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:LoadGrid
+            开始时间：2018/12/29 13:50:29
+            结束时间：2018/12/29 13:50:29
+            总 时 间：0.0009981秒
+            Form表单数据：
+            URL参数：menuId=0000&_search=false&nd=1546062629063&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:31,319 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：MenuController
+            ActionName:LoadGrid
+            开始时间：2018/12/29 13:50:31
+            结束时间：2018/12/29 13:50:31
+            总 时 间：0.0168641秒
+            Form表单数据：
+            URL参数：menuId=000010001&_search=false&nd=1546062631289&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:31,319 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：MenuController
+            ViewName:LoadGrid
+            开始时间：2018/12/29 13:50:31
+            结束时间：2018/12/29 13:50:31
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：menuId=000010001&_search=false&nd=1546062631289&rows=1000&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:34,199 
+线程ID:[20] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:Index
+            开始时间：2018/12/29 13:50:34
+            结束时间：2018/12/29 13:50:34
+            总 时 间：0.016993秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:34,986 
+线程ID:[20] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:Index
+            开始时间：2018/12/29 13:50:34
+            结束时间：2018/12/29 13:50:34
+            总 时 间：0.7868941秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:35,280 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：DepartmentController
+            ActionName:DeparmentTreeJson
+            开始时间：2018/12/29 13:50:35
+            结束时间：2018/12/29 13:50:35
+            总 时 间：0.070873秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:35,280 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：DepartmentController
+            ViewName:DeparmentTreeJson
+            开始时间：2018/12/29 13:50:35
+            结束时间：2018/12/29 13:50:35
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:35,407 
+线程ID:[20] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:UserList
+            开始时间：2018/12/29 13:50:35
+            结束时间：2018/12/29 13:50:35
+            总 时 间：0.0668347秒
+            Form表单数据：
+            URL参数：_search=false&nd=1546062635326&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:35,407 
+线程ID:[20] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:UserList
+            开始时间：2018/12/29 13:50:35
+            结束时间：2018/12/29 13:50:35
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：_search=false&nd=1546062635326&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:36,361 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:UserList
+            开始时间：2018/12/29 13:50:36
+            结束时间：2018/12/29 13:50:36
+            总 时 间：0.0269826秒
+            Form表单数据：
+            URL参数：CompanyId=f31af89b-d6d3-4c37-8864-f1a29313173a&DepartmentId=&_search=false&nd=1546062636320&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:36,361 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:UserList
+            开始时间：2018/12/29 13:50:36
+            结束时间：2018/12/29 13:50:36
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：CompanyId=f31af89b-d6d3-4c37-8864-f1a29313173a&DepartmentId=&_search=false&nd=1546062636320&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:40,514 
+线程ID:[19] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:UserList
+            开始时间：2018/12/29 13:50:40
+            结束时间：2018/12/29 13:50:40
+            总 时 间：0.0280206秒
+            Form表单数据：
+            URL参数：CompanyId=1bb9a435-1cb4-4f3c-a39a-84af93f7ecaf&DepartmentId=dc70eb16-4656-407d-b350-356c7a8461fc&_search=false&nd=1546062640472&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:40,514 
+线程ID:[19] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:UserList
+            开始时间：2018/12/29 13:50:40
+            结束时间：2018/12/29 13:50:40
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：CompanyId=1bb9a435-1cb4-4f3c-a39a-84af93f7ecaf&DepartmentId=dc70eb16-4656-407d-b350-356c7a8461fc&_search=false&nd=1546062640472&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:40,929 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:UserList
+            开始时间：2018/12/29 13:50:40
+            结束时间：2018/12/29 13:50:40
+            总 时 间：0.0198946秒
+            Form表单数据：
+            URL参数：CompanyId=1bb9a435-1cb4-4f3c-a39a-84af93f7ecaf&DepartmentId=dc70eb16-4656-407d-b350-356c7a8461fc&_search=false&nd=1546062640897&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:40,929 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:UserList
+            开始时间：2018/12/29 13:50:40
+            结束时间：2018/12/29 13:50:40
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：CompanyId=1bb9a435-1cb4-4f3c-a39a-84af93f7ecaf&DepartmentId=dc70eb16-4656-407d-b350-356c7a8461fc&_search=false&nd=1546062640897&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:49,049 
+线程ID:[22] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:Index
+            开始时间：2018/12/29 13:50:49
+            结束时间：2018/12/29 13:50:49
+            总 时 间：0.0179605秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:49,050 
+线程ID:[22] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:Index
+            开始时间：2018/12/29 13:50:49
+            结束时间：2018/12/29 13:50:49
+            总 时 间：0.0009966秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:49,435 
+线程ID:[25] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：DepartmentController
+            ActionName:DeparmentTreeJson
+            开始时间：2018/12/29 13:50:49
+            结束时间：2018/12/29 13:50:49
+            总 时 间：0.0200305秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:49,435 
+线程ID:[25] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：DepartmentController
+            ViewName:DeparmentTreeJson
+            开始时间：2018/12/29 13:50:49
+            结束时间：2018/12/29 13:50:49
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:49,574 
+线程ID:[19] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:UserList
+            开始时间：2018/12/29 13:50:49
+            结束时间：2018/12/29 13:50:49
+            总 时 间：0.0199584秒
+            Form表单数据：
+            URL参数：_search=false&nd=1546062649502&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:49,574 
+线程ID:[19] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:UserList
+            开始时间：2018/12/29 13:50:49
+            结束时间：2018/12/29 13:50:49
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：_search=false&nd=1546062649502&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:53,251 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：PermissionController
+            ActionName:AllotPermission
+            开始时间：2018/12/29 13:50:53
+            结束时间：2018/12/29 13:50:53
+            总 时 间：0.0828625秒
+            Form表单数据：
+            URL参数：id=A9008D18-B279-412C-8507-F64084F14AAA&type=user
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:50:54,060 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：PermissionController
+            ViewName:AllotPermission
+            开始时间：2018/12/29 13:50:53
+            结束时间：2018/12/29 13:50:54
+            总 时 间：0.8078121秒
+            Form表单数据：
+            URL参数：id=A9008D18-B279-412C-8507-F64084F14AAA&type=user
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:51:17,565 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:UserList
+            开始时间：2018/12/29 13:51:17
+            结束时间：2018/12/29 13:51:17
+            总 时 间：0.0210202秒
+            Form表单数据：
+            URL参数：CompanyId=1bb9a435-1cb4-4f3c-a39a-84af93f7ecaf&DepartmentId=dc70eb16-4656-407d-b350-356c7a8461fc&_search=false&nd=1546062677528&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:51:17,565 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:UserList
+            开始时间：2018/12/29 13:51:17
+            结束时间：2018/12/29 13:51:17
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：CompanyId=1bb9a435-1cb4-4f3c-a39a-84af93f7ecaf&DepartmentId=dc70eb16-4656-407d-b350-356c7a8461fc&_search=false&nd=1546062677528&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:51:19,105 
+线程ID:[22] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：PermissionController
+            ActionName:AllotPermission
+            开始时间：2018/12/29 13:51:19
+            结束时间：2018/12/29 13:51:19
+            总 时 间：0.0309909秒
+            Form表单数据：
+            URL参数：id=A9008D18-B279-412C-8507-F64084F14AAA&type=user
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:51:19,106 
+线程ID:[22] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：PermissionController
+            ViewName:AllotPermission
+            开始时间：2018/12/29 13:51:19
+            结束时间：2018/12/29 13:51:19
+            总 时 间：0.0009973秒
+            Form表单数据：
+            URL参数：id=A9008D18-B279-412C-8507-F64084F14AAA&type=user
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:51:51,056 
+线程ID:[29] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:Index
+            开始时间：2018/12/29 13:51:51
+            结束时间：2018/12/29 13:51:51
+            总 时 间：0.0130117秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:51:51,058 
+线程ID:[29] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:Index
+            开始时间：2018/12/29 13:51:51
+            结束时间：2018/12/29 13:51:51
+            总 时 间：0.0019942秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:51:51,400 
+线程ID:[19] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：DepartmentController
+            ActionName:DeparmentTreeJson
+            开始时间：2018/12/29 13:51:51
+            结束时间：2018/12/29 13:51:51
+            总 时 间：0.0269911秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:51:51,401 
+线程ID:[19] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：DepartmentController
+            ViewName:DeparmentTreeJson
+            开始时间：2018/12/29 13:51:51
+            结束时间：2018/12/29 13:51:51
+            总 时 间：0.0009969秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:51:51,579 
+线程ID:[12] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:UserList
+            开始时间：2018/12/29 13:51:51
+            结束时间：2018/12/29 13:51:51
+            总 时 间：0.0300151秒
+            Form表单数据：
+            URL参数：_search=false&nd=1546062711544&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:51:51,579 
+线程ID:[12] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:UserList
+            开始时间：2018/12/29 13:51:51
+            结束时间：2018/12/29 13:51:51
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：_search=false&nd=1546062711544&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:51:54,114 
+线程ID:[29] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：PermissionController
+            ActionName:AllotPermission
+            开始时间：2018/12/29 13:51:54
+            结束时间：2018/12/29 13:51:54
+            总 时 间：0.0469355秒
+            Form表单数据：
+            URL参数：id=54e11e50-8076-45e2-9de8-ae5b59a41a0f&type=user
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:51:54,115 
+线程ID:[29] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：PermissionController
+            ViewName:AllotPermission
+            开始时间：2018/12/29 13:51:54
+            结束时间：2018/12/29 13:51:54
+            总 时 间：0.0009991秒
+            Form表单数据：
+            URL参数：id=54e11e50-8076-45e2-9de8-ae5b59a41a0f&type=user
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:00,852 
+线程ID:[12] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:Index
+            开始时间：2018/12/29 13:53:00
+            结束时间：2018/12/29 13:53:00
+            总 时 间：0.0022575秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:01,987 
+线程ID:[12] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:Index
+            开始时间：2018/12/29 13:53:00
+            结束时间：2018/12/29 13:53:01
+            总 时 间：1.1347895秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:03,227 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：DepartmentController
+            ActionName:DeparmentTreeJson
+            开始时间：2018/12/29 13:53:03
+            结束时间：2018/12/29 13:53:03
+            总 时 间：0.0329364秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:03,227 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：DepartmentController
+            ViewName:DeparmentTreeJson
+            开始时间：2018/12/29 13:53:03
+            结束时间：2018/12/29 13:53:03
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:03,325 
+线程ID:[35] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:UserList
+            开始时间：2018/12/29 13:53:03
+            结束时间：2018/12/29 13:53:03
+            总 时 间：0.0299695秒
+            Form表单数据：
+            URL参数：_search=false&nd=1546062783276&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:03,325 
+线程ID:[35] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:UserList
+            开始时间：2018/12/29 13:53:03
+            结束时间：2018/12/29 13:53:03
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：_search=false&nd=1546062783276&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:05,103 
+线程ID:[37] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:UserList
+            开始时间：2018/12/29 13:53:05
+            结束时间：2018/12/29 13:53:05
+            总 时 间：0.0300179秒
+            Form表单数据：
+            URL参数：CompanyId=1bb9a435-1cb4-4f3c-a39a-84af93f7ecaf&DepartmentId=&_search=false&nd=1546062785043&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:05,103 
+线程ID:[37] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:UserList
+            开始时间：2018/12/29 13:53:05
+            结束时间：2018/12/29 13:53:05
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：CompanyId=1bb9a435-1cb4-4f3c-a39a-84af93f7ecaf&DepartmentId=&_search=false&nd=1546062785043&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:07,441 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：PermissionController
+            ActionName:AllotPermission
+            开始时间：2018/12/29 13:53:07
+            结束时间：2018/12/29 13:53:07
+            总 时 间：0.0259709秒
+            Form表单数据：
+            URL参数：id=A9008D18-B279-412C-8507-F64084F14AAA&type=user
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:07,443 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：PermissionController
+            ViewName:AllotPermission
+            开始时间：2018/12/29 13:53:07
+            结束时间：2018/12/29 13:53:07
+            总 时 间：0.0019942秒
+            Form表单数据：
+            URL参数：id=A9008D18-B279-412C-8507-F64084F14AAA&type=user
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:14,783 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：PermissionController
+            ActionName:SavePermission
+            开始时间：2018/12/29 13:53:14
+            结束时间：2018/12/29 13:53:14
+            总 时 间：0.1107434秒
+            Form表单数据：id=A9008D18-B279-412C-8507-F64084F14AAA&idType=user&chkRoleMenu=00001,000010001,0000100010001,0000110002,0000110003,0000110004,0000110005,0000110006,0000110007,0000110008,00001100080001,00001100081100080002,00001100081100080003
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:14,783 
+线程ID:[42] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：PermissionController
+            ViewName:SavePermission
+            开始时间：2018/12/29 13:53:14
+            结束时间：2018/12/29 13:53:14
+            总 时 间：0秒
+            Form表单数据：id=A9008D18-B279-412C-8507-F64084F14AAA&idType=user&chkRoleMenu=00001,000010001,0000100010001,0000110002,0000110003,0000110004,0000110005,0000110006,0000110007,0000110008,00001100080001,00001100081100080002,00001100081100080003
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:16,260 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：UserController
+            ActionName:UserList
+            开始时间：2018/12/29 13:53:16
+            结束时间：2018/12/29 13:53:16
+            总 时 间：0.0349575秒
+            Form表单数据：
+            URL参数：CompanyId=f31af89b-d6d3-4c37-8864-f1a29313173a&DepartmentId=&_search=false&nd=1546062796199&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:16,260 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：UserController
+            ViewName:UserList
+            开始时间：2018/12/29 13:53:16
+            结束时间：2018/12/29 13:53:16
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：CompanyId=f31af89b-d6d3-4c37-8864-f1a29313173a&DepartmentId=&_search=false&nd=1546062796199&rows=30&page=1&sidx=&sord=asc
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:18,495 
+线程ID:[38] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：PermissionController
+            ActionName:AllotPermission
+            开始时间：2018/12/29 13:53:18
+            结束时间：2018/12/29 13:53:18
+            总 时 间：0.0258661秒
+            Form表单数据：
+            URL参数：id=54e11e50-8076-45e2-9de8-ae5b59a41a0f&type=user
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:18,496 
+线程ID:[38] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：PermissionController
+            ViewName:AllotPermission
+            开始时间：2018/12/29 13:53:18
+            结束时间：2018/12/29 13:53:18
+            总 时 间：0.0009979秒
+            Form表单数据：
+            URL参数：id=54e11e50-8076-45e2-9de8-ae5b59a41a0f&type=user
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:20,890 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：PermissionController
+            ActionName:SavePermission
+            开始时间：2018/12/29 13:53:20
+            结束时间：2018/12/29 13:53:20
+            总 时 间：0.0359647秒
+            Form表单数据：id=54e11e50-8076-45e2-9de8-ae5b59a41a0f&idType=user&chkRoleMenu=00001,000010001,0000100010001,0000110002,0000110003,0000110004,0000110005,0000110006,0000110007
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:20,890 
+线程ID:[39] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：PermissionController
+            ViewName:SavePermission
+            开始时间：2018/12/29 13:53:20
+            结束时间：2018/12/29 13:53:20
+            总 时 间：0秒
+            Form表单数据：id=54e11e50-8076-45e2-9de8-ae5b59a41a0f&idType=user&chkRoleMenu=00001,000010001,0000100010001,0000110002,0000110003,0000110004,0000110005,0000110006,0000110007
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:41,069 
+线程ID:[38] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：AccountController
+            ActionName:Login
+            开始时间：2018/12/29 13:53:41
+            结束时间：2018/12/29 13:53:41
+            总 时 间：0.0169867秒
+            Form表单数据：
+            URL参数：returnurl=/
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:41,071 
+线程ID:[38] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：AccountController
+            ViewName:Login
+            开始时间：2018/12/29 13:53:41
+            结束时间：2018/12/29 13:53:41
+            总 时 间：0.0019955秒
+            Form表单数据：
+            URL参数：returnurl=/
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:56,245 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：AccountController
+            ActionName:LogOn
+            开始时间：2018/12/29 13:53:56
+            结束时间：2018/12/29 13:53:56
+            总 时 间：0.0330285秒
+            Form表单数据：Account=admin&Password=yookey&RemberPwd=undefined
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:56,245 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：AccountController
+            ViewName:LogOn
+            开始时间：2018/12/29 13:53:56
+            结束时间：2018/12/29 13:53:56
+            总 时 间：0秒
+            Form表单数据：Account=admin&Password=yookey&RemberPwd=undefined
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:56,276 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：AccountController
+            ActionName:LogOn
+            开始时间：2018/12/29 13:53:56
+            结束时间：2018/12/29 13:53:56
+            总 时 间：0.0170459秒
+            Form表单数据：Account=admin&Password=yookey&RemberPwd=undefined
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:56,276 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：AccountController
+            ViewName:LogOn
+            开始时间：2018/12/29 13:53:56
+            结束时间：2018/12/29 13:53:56
+            总 时 间：0秒
+            Form表单数据：Account=admin&Password=yookey&RemberPwd=undefined
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:57,308 
+线程ID:[12] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:HomePage
+            开始时间：2018/12/29 13:53:57
+            结束时间：2018/12/29 13:53:57
+            总 时 间：0.0130902秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:57,309 
+线程ID:[12] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:HomePage
+            开始时间：2018/12/29 13:53:57
+            结束时间：2018/12/29 13:53:57
+            总 时 间：0.0009963秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:57,369 
+线程ID:[40] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:HomePage
+            开始时间：2018/12/29 13:53:57
+            结束时间：2018/12/29 13:53:57
+            总 时 间：0.0120608秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:57,370 
+线程ID:[40] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:HomePage
+            开始时间：2018/12/29 13:53:57
+            结束时间：2018/12/29 13:53:57
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:57,481 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:Home
+            开始时间：2018/12/29 13:53:57
+            结束时间：2018/12/29 13:53:57
+            总 时 间：0.0180141秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:57,482 
+线程ID:[36] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:Home
+            开始时间：2018/12/29 13:53:57
+            结束时间：2018/12/29 13:53:57
+            总 时 间：0.0009871秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:58,002 
+线程ID:[29] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：HomeIndexController
+            ActionName:LoadTree
+            开始时间：2018/12/29 13:53:57
+            结束时间：2018/12/29 13:53:58
+            总 时 间：0.0210374秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:58,002 
+线程ID:[29] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：HomeIndexController
+            ViewName:LoadTree
+            开始时间：2018/12/29 13:53:58
+            结束时间：2018/12/29 13:53:58
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:58,854 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:Index
+            开始时间：2018/12/29 13:53:58
+            结束时间：2018/12/29 13:53:58
+            总 时 间：0.0269394秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:53:58,857 
+线程ID:[41] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:Index
+            开始时间：2018/12/29 13:53:58
+            结束时间：2018/12/29 13:53:58
+            总 时 间：0.0029858秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:54:00,569 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:GetAllDoc
+            开始时间：2018/12/29 13:54:00
+            结束时间：2018/12/29 13:54:00
+            总 时 间：0.0519273秒
+            Form表单数据：
+            URL参数：=timestamp1546062840479&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:54:00,569 
+线程ID:[21] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:GetAllDoc
+            开始时间：2018/12/29 13:54:00
+            结束时间：2018/12/29 13:54:00
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：=timestamp1546062840479&page=1&limit=10
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:54:01,033 
+线程ID:[22] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：OAController
+            ActionName:BindTGLX
+            开始时间：2018/12/29 13:54:01
+            结束时间：2018/12/29 13:54:01
+            总 时 间：0.014039秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2018-12-29 13:54:01,033 
+线程ID:[22] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：OAController
+            ViewName:BindTGLX
+            开始时间：2018/12/29 13:54:01
+            结束时间：2018/12/29 13:54:01
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 

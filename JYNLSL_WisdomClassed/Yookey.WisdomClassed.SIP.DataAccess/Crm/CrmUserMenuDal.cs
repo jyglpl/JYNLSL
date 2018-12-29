@@ -115,5 +115,56 @@ namespace Yookey.WisdomClassed.SIP.DataAccess.Crm
                 throw new Exception(ex.Message);
             }
         }
+
+        /// <summary>
+        /// add by lpl
+        /// 获取拥有指定权限的所有用户
+        /// 2018-12-29
+        /// </summary>
+        /// <param name="Controller"></param>
+        /// <param name="Action"></param>
+        /// <returns></returns>
+        public List<CrmUserMenuEntity> GetAuthorization(string Controller, string Action)
+        {
+            var sbSql = new StringBuilder("");
+            sbSql.AppendFormat(@"SELECT * FROM dbo.CrmUserMenu
+            WHERE MenuId IN(SELECT Id FROM dbo.ComMenu
+            WHERE Controller = '{0}' AND Action = '{1}')
+            ORDER BY CreateOn DESC", Controller, Action);
+            var list = SqlHelper.ExecuteDataset(SqlHelper.SqlConnStringRead, CommandType.Text, sbSql.ToString());
+            return list != null && list.Tables.Count > 0 ? DataTableToList(list.Tables[0]) : new List<CrmUserMenuEntity>();
+        }
+
+
+        /// <summary>
+        /// add by lpl
+        /// 2018-12-29
+        /// 根据用户id来判断是否拥有权限
+        /// </summary>
+        /// <param name="Controller"></param>
+        /// <param name="Action"></param>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public bool GetAuthorizationByUserId(string Controller, string Action, string userid)
+        {
+            var sbSql = new StringBuilder("");
+            sbSql.AppendFormat(@"SELECT * FROM dbo.CrmUserMenu
+            WHERE MenuId IN(SELECT Id FROM dbo.ComMenu
+            WHERE Controller = '{0}' AND Action = '{1}')
+            AND UserId = '{2}'
+            ORDER BY CreateOn DESC", Controller, Action, userid);
+            DataTable dt = SqlHelper.ExecuteDataset(SqlHelper.SqlConnStringRead, CommandType.Text, sbSql.ToString())
+                .Tables[0];
+
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
     }
 }

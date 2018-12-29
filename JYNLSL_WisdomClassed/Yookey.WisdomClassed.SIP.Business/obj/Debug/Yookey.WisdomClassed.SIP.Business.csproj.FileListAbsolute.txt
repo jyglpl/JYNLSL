@@ -178,3 +178,4 @@ E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\obj
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\obj\Debug\Yookey.WisdomClassed.SIP.Business.csproj.CopyComplete
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\obj\Debug\Yookey.WisdomClassed.SIP.Business.dll
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\obj\Debug\Yookey.WisdomClassed.SIP.Business.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\bin\Debug\Microsoft.Web.Infrastructure.dll

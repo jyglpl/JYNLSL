@@ -40,6 +40,21 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.HomeIndex
         }
 
         /// <summary>
+        /// 首页
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult HomePage()
+        {
+            return View();
+        }
+
+
+        public ActionResult Home()
+        {
+            return View();
+        }
+
+        /// <summary>
         /// 框架首页
         /// </summary>
         /// <returns></returns>
@@ -126,7 +141,7 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.HomeIndex
         {
             var TreeList = new ComMenuBll().GetAllMenu(new ComMenuEntity());
             List<MenuModels> rootNode = new List<MenuModels>();
-            foreach (var plist in TreeList.Where(t => t.ParentMenuId == "0000"))
+            foreach (var plist in TreeList.Where(t => t.ParentMenuId == "00001"))
             {
                 MenuModels jt = new MenuModels();
                 jt.id = plist.Id;

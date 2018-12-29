@@ -31,3 +31,4 @@ E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.WebService\o
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.WebService\obj\Debug\Yookey.WisdomClassed.SIP.WebService.csproj.CopyComplete
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.WebService\obj\Debug\Yookey.WisdomClassed.SIP.WebService.dll
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.WebService\obj\Debug\Yookey.WisdomClassed.SIP.WebService.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.WebService\bin\Microsoft.Web.Infrastructure.dll

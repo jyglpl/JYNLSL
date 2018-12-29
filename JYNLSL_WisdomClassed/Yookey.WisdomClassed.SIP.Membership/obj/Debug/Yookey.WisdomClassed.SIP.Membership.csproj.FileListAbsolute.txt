@@ -190,3 +190,4 @@ E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Membership\o
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Membership\obj\Debug\Yookey.WisdomClassed.SIP.Membership.csproj.CopyComplete
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Membership\obj\Debug\Yookey.WisdomClassed.SIP.Membership.dll
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Membership\obj\Debug\Yookey.WisdomClassed.SIP.Membership.pdb
+E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Membership\bin\Debug\Microsoft.Web.Infrastructure.dll

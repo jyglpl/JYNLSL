@@ -151,7 +151,7 @@
     <Compile Include="Controllers\Com\WhiteListController.cs" />
     <Compile Include="Controllers\Crm\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\HomeIndex\HomeIndexController.cs" />
+    <Compile Include="Controllers\HomeIndexController.cs" />
     <Compile Include="Controllers\JYNLSL\OAController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -8300,6 +8300,17 @@
     <Content Include="Content\Images\weixing-ma.png" />
     <Content Include="Content\Images\whiteflag.png" />
     <Content Include="Content\Images\youjian.png" />
+    <Content Include="Content\img\cas1.png" />
+    <Content Include="Content\img\cas2.png" />
+    <Content Include="Content\img\cas3.png" />
+    <Content Include="Content\img\drug1.png" />
+    <Content Include="Content\img\drug2.png" />
+    <Content Include="Content\img\drug3.png" />
+    <Content Include="Content\img\drug4.png" />
+    <Content Include="Content\img\drug5.png" />
+    <Content Include="Content\img\drug6.png" />
+    <Content Include="Content\img\drug7.png" />
+    <Content Include="Content\img\home.png" />
     <Content Include="Content\img\IconImages\my_file_001.png" />
     <Content Include="Content\img\IconImages\my_file_002.png" />
     <Content Include="Content\img\IconImages\my_file_003.png" />
@@ -8375,6 +8386,19 @@
     <Content Include="Content\img\IconImages\my_file_073.png" />
     <Content Include="Content\img\IconImages\nogs.gif" />
     <Content Include="Content\img\IconImages\wjj.png" />
+    <Content Include="Content\img\muck1.png" />
+    <Content Include="Content\img\muck2.png" />
+    <Content Include="Content\img\muck3.png" />
+    <Content Include="Content\img\muck4.png" />
+    <Content Include="Content\img\plant1.png" />
+    <Content Include="Content\img\plant2.png" />
+    <Content Include="Content\img\plant3.png" />
+    <Content Include="Content\img\plant4.png" />
+    <Content Include="Content\img\plant5.png" />
+    <Content Include="Content\img\plant6.png" />
+    <Content Include="Content\img\plant7.png" />
+    <Content Include="Content\img\plant8.png" />
+    <Content Include="Content\img\plant9.png" />
     <Content Include="Content\layui\css\formSelects-v4.css" />
     <Content Include="Content\layui\css\layui.css" />
     <Content Include="Content\layui\css\layui.mobile.css" />
@@ -11234,6 +11258,13 @@
     <Content Include="Content\Librarys\scrollpic\images\pad-black.png" />
     <Content Include="Content\Librarys\scrollpic\js\jquery.scrollpic.js" />
     <Content Include="Content\Scripts\VideoCon.js" />
+    <Content Include="Content\static\echarts.js" />
+    <Content Include="Content\static\head1.png" />
+    <Content Include="Content\static\iconfont.css" />
+    <Content Include="Content\static\iconfont.js" />
+    <Content Include="Content\static\iconfont.svg" />
+    <Content Include="Content\static\jquery-2.1.4.min.js" />
+    <Content Include="Content\static\reset_pc.css" />
     <Content Include="Content\Styles\common.css" />
     <Content Include="Content\Styles\Flow\FlowEditor.css" />
     <Content Include="Content\Styles\Flow\FlowMain.css" />
@@ -12683,6 +12714,7 @@
     <Folder Include="Content\MiNi\miniui\themes\gray\images\tabs\" />
     <Folder Include="Content\MiNi\miniui\themes\gray\images\treegrid\" />
     <Folder Include="Content\MiNi\miniui\themes\pure\images\button\" />
+    <Folder Include="Controllers\HomeIndex\" />
     <Folder Include="Librarys\uploadify-v2.1.0\example\uploads\" />
     <Folder Include="Librarys\uploadify\example\uploads\" />
     <Folder Include="Operation\" />
@@ -12734,6 +12766,9 @@
     <Content Include="Content\res\fonts\weather-icons\fonts\weathericons-regular-webfont.ttf" />
     <Content Include="Content\res\fonts\weather-icons\fonts\weathericons-regular-webfont.woff" />
     <Content Include="Content\res\third-party\webuploader\README.md" />
+    <Content Include="Content\static\iconfont.eot" />
+    <Content Include="Content\static\iconfont.ttf" />
+    <Content Include="Content\static\iconfont.woff" />
     <None Include="Properties\PublishProfiles\Yookey.pubxml" />
     <Content Include="Views\Account\LoginOn.cshtml" />
     <Content Include="Views\Account\IE6update.cshtml" />
@@ -12748,6 +12783,8 @@
     <Content Include="Views\HomeIndex\MainPage.cshtml" />
     <Content Include="Views\OA\GongGaoDetial.cshtml" />
     <Content Include="Views\OA\GongWenAdd.cshtml" />
+    <Content Include="Views\HomeIndex\HomePage.cshtml" />
+    <Content Include="Views\HomeIndex\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Yookey.WisdomClassed.SIP.Business\Yookey.WisdomClassed.SIP.Business.csproj">

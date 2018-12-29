@@ -286,7 +286,7 @@
         if (IsChecked(id)) {
             var width = $(window).width();
             width = width - (width * 0.2);
-            var height = $(window).height();
+            var height = 200;
             var url = '@Url.Action("AllotPermission", "Permission")?id=' + id + '&type=user';
             top.$.dialog({
                 id: "AllotPermission", width: width, height: height, lock: true, max: false, resize: false, extendDrag: true,

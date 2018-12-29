@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .item {
+            width: 49.5%;
+            height: 400px;
+            float: left;
+            margin-bottom: 20px;
+        }
+
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+            width: 0;
+            height: 0;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clearfix">
+        <div id='echartsOne' class="item" style="margin-right:1%">
+
+        </div>
+        <div id='echartsTwo' class="item">
+
+        </div>
+        <div id='echartsThree' class="item" style="margin-right:1%">
+
+        </div>
+        <div id='echartsFour' class="item">
+
+        </div>
+    </div>
+    <script src="~/Content/static/echarts.js"></script>
+  
+    <script>
+        function getEchartsOne() {
+            var mychart = echarts.init(document.getElementById('echartsOne'));
+            mychart.setOption({
+                title: {
+                    text: '执法人员统计分析',
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    data: ['锡山区农林局', '惠山区农林局', '滨湖区农林局', '江阴区农林局', '宜兴区农林局', '梁溪区农林局', '新吴区农林局'],
+                    y: 'bottom'
+                },
+                xAxis: {
+                    data: ['男', '女', '博士生', '研究生', '本科生', '专科', '其他学科', '事业编', '在编', '事业在编', '行政编', '参公', '聘用'],
+
+                    splitLine: {
+                        show: false
+                    }
+
+                },
+                yAxis: {},
+                series: [{
+                    name: '锡山区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '惠山区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '滨湖区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '江阴区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '宜兴区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '梁溪区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '新吴区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }]
+            })
+        }
+        getEchartsOne()
+        function getEchartsTwo() {
+            var mychart = echarts.init(document.getElementById('echartsTwo'));
+            mychart.setOption({
+                title: {
+                    text: '农产品监管对象',
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    data: ['锡山区农林局', '惠山区农林局', '滨湖区农林局', '江阴区农林局', '宜兴区农林局', '梁溪区农林局', '新吴区农林局'],
+                    y: 'bottom'
+                },
+                xAxis: {
+                    data: ['经营者', '生产者', '兽药', '农产品', '农药', '种子', '肥料', '事业编', '饲料', '其他经营品种'],
+
+                    splitLine: {
+                        show: false
+                    }
+
+                },
+                yAxis: {},
+                series: [{
+                    name: '锡山区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '惠山区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '滨湖区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '江阴区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '宜兴区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '梁溪区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '新吴区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }]
+            })
+        }
+        getEchartsTwo()
+        function getEchartsThree() {
+            var mychart = echarts.init(document.getElementById('echartsThree'));
+            mychart.setOption({
+                title: {
+                    text: '执法检查',
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    data: ['锡山区农林局', '惠山区农林局', '滨湖区农林局', '江阴区农林局', '宜兴区农林局', '梁溪区农林局', '新吴区农林局'],
+                    y: 'bottom'
+                },
+                xAxis: {
+                    data: ['手动', '双随机', '直接',],
+
+                    splitLine: {
+                        show: false
+                    }
+
+                },
+                yAxis: {},
+                series: [{
+                    name: '锡山区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '惠山区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '滨湖区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '江阴区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '宜兴区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '梁溪区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '新吴区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }]
+            })
+        }
+        getEchartsThree()
+        function getEchartsFour() {
+            var mychart = echarts.init(document.getElementById('echartsFour'));
+            mychart.setOption({
+                title: {
+                    text: '执法抽检',
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    data: ['锡山区农林局', '惠山区农林局', '滨湖区农林局', '江阴区农林局', '宜兴区农林局', '梁溪区农林局', '新吴区农林局'],
+                    y: 'bottom'
+                },
+                xAxis: {
+                    data: ['农药', '种子', '肥料', '兽药', '饲料', '农产品', '其他'],
+
+                    splitLine: {
+                        show: false
+                    }
+
+                },
+                yAxis: {},
+                series: [{
+                    name: '锡山区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '惠山区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '滨湖区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '江阴区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '宜兴区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '梁溪区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }, {
+                    name: '新吴区农林局',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20, 10, 10, 20]
+                }]
+            })
+        }
+        getEchartsFour()
+    </script>
+</body>
+
+</html>
