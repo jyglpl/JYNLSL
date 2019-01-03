@@ -97,5 +97,33 @@ namespace Yookey.WisdomClassed.SIP.Business.Crm
         {
             return new CrmUserMenuDal().GetUserMenu(userId, menuId);
         }
+
+
+        /// <summary>
+        /// add by lpl
+        /// 2019-1-2
+        /// 返回所有有权限的用户
+        /// </summary>
+        /// <param name="Controller"></param>
+        /// <param name="Action"></param>
+        /// <returns></returns>
+        public List<CrmUserMenuEntity> GetAuthorization(string Controller, string Action)
+        {
+            return new CrmUserMenuDal().GetAuthorization(Controller, Action);
+        }
+
+        /// <summary>
+        /// add by lpl
+        /// 2019-1-2
+        /// 根据id指定用户权限
+        /// </summary>
+        /// <param name="Controller"></param>
+        /// <param name="Action"></param>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public bool GetAuthorizationByUserId(string Controller, string Action, string userid)
+        {
+            return new CrmUserMenuDal().GetAuthorizationByUserId(Controller, Action, userid);
+        }
     }
 }

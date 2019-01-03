@@ -94,7 +94,9 @@
     <Compile Include="IDal\IBaseDal.cs" />
     <Compile Include="OA\DocNotfPersonDal.cs" />
     <Compile Include="OA\DocumentNotificationDal.cs" />
+    <Compile Include="OA\GongGaoDetialDal.cs" />
     <Compile Include="OA\GongGaoMangerDal.cs" />
+    <Compile Include="Power\PowerItemDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,7 @@ using Yookey.WisdomClassed.SIP.Admin.Models;
 using Yookey.WisdomClassed.SIP.Business.Com;
 using Yookey.WisdomClassed.SIP.Business.Crm;
 using Yookey.WisdomClassed.SIP.Business.OA;
+using Yookey.WisdomClassed.SIP.Common;
 using Yookey.WisdomClassed.SIP.DataAccess.OA;
 using Yookey.WisdomClassed.SIP.Model.Base;
 using Yookey.WisdomClassed.SIP.Model.Crm;
@@ -221,7 +222,7 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
                     count = pagecount,
                     data = data2
                 };
-                string temp = JsonConvert.SerializeObject(result);
+               
                 return JsonConvert.SerializeObject(result);
             }
 
@@ -440,8 +441,160 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
         /// <returns></returns>
         public ActionResult GongWenAdd()
         {
+
+            var user = CurrentUser.CrmUser;
+            //公文管理权限
+            bool isMangerGongWen = new CrmUserMenuBll().GetAuthorizationByUserId("OA", "MangerAuthorization", user.Id);
+            ViewBag.isMangerGongWen = false;
+
+            if (isMangerGongWen)
+            {
+                ViewBag.isMangerGongWen = true;
+            }
             return View();
         }
+
+
+        public ActionResult GongWenManger()
+        {
+            var user = CurrentUser.CrmUser;
+            //公文管理权限
+            bool isMangerGongWen = new CrmUserMenuBll().GetAuthorizationByUserId("OA", "MangerAuthorization", user.Id);
+
+
+            ViewBag.isMangerGongWen = false;
+
+            if (isMangerGongWen)
+            {
+                ViewBag.isMangerGongWen = true;
+            }
+
+
+            return View();
+        }
+
+        /// <summary>
+        /// 公文管理展示
+        /// </summary>
+        /// <param name="limit"></param>每页显示数量
+        /// <param name="page"></param>当前页码
+        /// <returns></returns>
+        public string GongWenIndex(string limit, string page)
+        {
+            var user = CurrentUser.CrmUser;
+            //公文管理权限
+            bool isMangerGongWen = new CrmUserMenuBll().GetAuthorizationByUserId("OA", "MangerAuthorization", user.Id);
+
+            if (isMangerGongWen)
+            {
+
+                //用Linq分页，用ORM自身的非常慢，后面研究为什么这么慢
+                var data = new GongGaoMangerBll().QueryList();
+                var pagecount = data.Count;
+                data = data.Skip((Convert.ToInt32(page) - 1) * Convert.ToInt32(limit)).Take(Convert.ToInt32(limit)).ToList();
+                var result = new LayTableModel<GongGaoMangerEntity>
+                {
+                    code = 0,
+                    msg = "成功",
+                    count = pagecount,
+                    data = data
+                };
+                return JsonConvert.SerializeObject(result);
+            }
+            else
+            {
+                //非管理权限，查询公文详情表
+                var data = new GongGaoDetialBll().QueryList(user.Id);
+                var pagecount = data.Count;
+                data = data.Skip((Convert.ToInt32(page) - 1) * Convert.ToInt32(limit)).Take(Convert.ToInt32(limit)).ToList();
+                var result = new LayTableModel<GongGaoDetialEntity>
+                {
+                    code = 0,
+                    msg = "成功",
+                    count = pagecount,
+                    data = data
+                };
+                return JsonConvert.SerializeObject(result);
+  
+            }
+
+        }
+
+        /// <summary>
+        /// 新增公文
+        /// add by lpl
+        /// 2019-1-2
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="danwei"></param>
+        /// <param name="completedata"></param>
+        /// <param name="wjno"></param>
+        /// <param name="sendname"></param>
+        /// <param name="nr"></param>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
+        public string AddGongWen(string title,string danwei,string completedata,string wjno,string sendname,string sendRealName,string filepath,string gwlx)
+        {
+            var user = CurrentUser.CrmUser;
+            string[] arrySendname = sendname.Split(',');
+            string Id = Guid.NewGuid().ToString();
+
+            //建立公文管理实体
+            GongGaoMangerEntity entity = new GongGaoMangerEntity()
+            {
+                Id = Id,
+                Title = title,
+                DanWei = danwei,
+                WCData = Convert.ToDateTime(completedata),
+                WJNo = wjno,
+      
+                FilePath = filepath,
+                DQBLR = sendRealName,
+                SPZT = "0",
+                Admin = user.Id,
+                Leixing = gwlx,
+                RowStatus = 1,
+                DJTime = NowDate,
+            
+            };
+
+            //循环建立公文详细表实体list，分别发送给不同用户
+            List<GongGaoDetialEntity> listentity = new List<GongGaoDetialEntity>();
+            for (int i = 0; i < arrySendname.Length; i++)
+            {
+                GongGaoDetialEntity detialEntity = new GongGaoDetialEntity()
+                {
+                    RowGuid = Guid.NewGuid().ToString(),
+                    Id = Id,
+                    Title = title,
+                    DanWei = danwei,
+                    WCData = Convert.ToDateTime(completedata),
+                    WJNo = wjno,
+                    Admin = user.Id,
+                    PersonCLState = "0",//未处理
+                    Leixing = gwlx,
+                    UserId = arrySendname[i],//接收人id
+         
+
+                    RowStatus = 1
+                    
+                };
+                listentity.Add(detialEntity);
+            }
+
+            //事务插入
+            if (new GongGaoMangerBll().SaveGongGao(entity, listentity))
+            {
+
+                return "1";
+            }
+            return "0";
+
+
+        }
+
+
+
 
         #endregion
 

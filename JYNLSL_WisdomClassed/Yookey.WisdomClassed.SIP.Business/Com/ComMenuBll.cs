@@ -12,6 +12,7 @@
 //-------------------------------------------------------------------------
 
 
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Yookey.WisdomClassed.SIP.Business.BllImp;
@@ -124,10 +125,13 @@ namespace Yookey.WisdomClassed.SIP.Business.Com
         /// </summary>
         /// <hisotry>
         /// 修改描述：时间+作者+描述
+        /// edit by lpl
+        /// 2019-1-2
+        /// 19年的第一段代码
         /// </hisotry> 
         /// <param name="search">查询实体</param> 
         /// <returns></returns>
-        public List<ComMenuEntity> GetAllMenu(ComMenuEntity search)
+        public List<ComMenuEntity> GetAllMenu(ComMenuEntity search,bool isAdmin = false)
         {
             var queryCondition = QueryCondition.Instance.AddEqual(ComMenuEntity.Parm_ComMenu_RowStatus, "1");
             if (!string.IsNullOrEmpty(search.MenuName))
@@ -142,10 +146,20 @@ namespace Yookey.WisdomClassed.SIP.Business.Com
             {
                 queryCondition.AddLike(ComMenuEntity.Parm_ComMenu_Id, search.Id);
             }
-            //if (search.Source > 0)
-            //{
-            //    queryCondition.AddEqual(ComMenuEntity.Parm_ComMenu_Source, search.Source.ToString());
-            //}
+
+            //排除功能
+            if (search.IsMenu == 1)
+            {
+                queryCondition.AddEqual(ComMenuEntity.Parm_ComMenu_IsMenu,Convert.ToString(search.IsMenu));
+            }
+
+            if (isAdmin == false)
+            {
+                queryCondition.AddNotEqual(ComMenuEntity.Parm_ComMenu_ParentMenuId, "0000110008");
+                queryCondition.AddNotEqual(ComMenuEntity.Parm_ComMenu_Id, "0000110008");
+            }
+
+
             //排序
             queryCondition.AddOrderBy(ComMenuEntity.Parm_ComMenu_MenuLevel, true)
                           .AddOrderBy(ComMenuEntity.Parm_ComMenu_SortCode, true);

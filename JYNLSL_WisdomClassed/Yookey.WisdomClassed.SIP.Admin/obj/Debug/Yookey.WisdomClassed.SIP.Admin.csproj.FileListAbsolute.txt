@@ -294,3 +294,4 @@ E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\obj\De
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\obj\Debug\Yookey.WisdomClassed.SIP.Admin.dll
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\obj\Debug\Yookey.WisdomClassed.SIP.Admin.pdb
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\bin\Newtonsoft.Json.pdb
+D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\bin\Newtonsoft.Json.pdb

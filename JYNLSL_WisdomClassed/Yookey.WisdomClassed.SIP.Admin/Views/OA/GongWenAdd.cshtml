@@ -37,30 +37,41 @@
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 100px">公文标题：</label>
             <div class="layui-input-block">
-                <input name="title" class="layui-input" style="width: 80%" type="text" placeholder="请输入标题" autocomplete="off" lay-verify="title">
+                <input name="title" class="layui-input" style="width: 97%" type="text" placeholder="请输入标题" autocomplete="off" lay-verify="title">
             </div>
         </div>
 
+
         <div class="layui-form-item">
-            <label class="layui-form-label" style="width: 100px">发文单位：</label>
+            <label class="layui-form-label" style="width: 100px">公文类型：</label>
             <div class="layui-input-block">
                 <div class="layui-inline">
 
                     <div class="layui-input-inline">
-                        <input name="danwei" class="layui-input" type="text" placeholder="请输入发文单位" autocomplete="off" lay-verify="danwei" />
+                        <select name="gwlx" id="gwlx">
+                            <option value="">请选择类别</option>
+                            <option value="1">邀请函</option>
+         
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 100px">发文单位：</label>
+                    <div class="layui-input-inline">
+                        <input name="danwei" class="layui-input" type="text" placeholder="请输入发文单位" autocomplete="off" lay-verify="danwei"/>
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label" style="width: 100px">完成时限：</label>
                     <div class="layui-input-inline">
-                        <input class="layui-input" id="completedata" type="text" placeholder="年-月-日" lay-verify="completedata">
+                        <input name="completedata" class="layui-input" id="completedata" type="text" placeholder="年-月-日" lay-verify="completedata">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label" style="width: 100px">文件编号：</label>
                     <div class="layui-input-inline">
 
-                        <input name="wjno" class="layui-input" type="text" placeholder="请输入文件编号" autocomplete="off" lay-verify="wjno" />
+                        <input name="wjno" class="layui-input" type="text" placeholder="请输入文件编号" autocomplete="off" lay-verify="wjno"/>
                     </div>
                 </div>
             </div>
@@ -82,15 +93,16 @@
             <div class="layui-input-block">
                 <input id="btnEdit1" allowInput="false" class="mini-buttonedit" onbuttonclick="onButtonEdit" />
                 <input name="sendname" id="sendname" hidden="true" lay-verify="sendname" />
+                <input name="sendRealName" id="sendRealName" hidden="true" />
             </div>
         </div>
-
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">内容：</label>
+       
+        @*<div class="layui-form-item layui-form-text">
+            <label class="layui-form-label" style="width: 100px">批阅意见：</label>
             <div class="layui-input-block">
-                <textarea name="nr" class="layui-textarea" style="width: 90%" placeholder="请输入内容" lay-verify="nr">请输入内容</textarea>
+                <textarea name="nr" class="layui-textarea" style="width: 90%" placeholder="请输入内容" lay-verify="nr">已阅</textarea>
             </div>
-        </div>
+        </div>*@
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-filter="add" lay-submit="">确定</button>
@@ -143,11 +155,11 @@
                 //        return '接受人不能为空';
                 //    }
                 //},
-                nr: function (value) {
-                    if (value.length < 1) {
-                        return '内容不能为空';
-                    }
-                },
+                //nr: function (value) {
+                //    if (value.length < 1) {
+                //        return '内容不能为空';
+                //    }
+                //},
 
 
 
@@ -157,20 +169,31 @@
             form.on('submit(add)',
                 function(data) {
 
+                    layer.confirm('确定发布公文？', {
+                        btn: ['确定','取消'] //按钮
+                    }, function(){
+                        //layer.msg('的确很重要', {icon: 1});
+                        $.ajax({
+                            type: "POST",
+                            url: "@Url.Action("AddGongWen", "OA")",
+                            data: data.field,
+                            dataType: "json",
+                            success: function(data) {
+                                if (data == '1') {
+                                    parent.layer.msg('保存成功');
+                                    parent.layer.close(index);
 
-                    $.ajax({
-                        type: "POST",
-                        url: "@Url.Action("", "OA")",
-                        data: data.field,
-                        dataType: "json",
-                        success: function(data) {
-                            if (data == '1') {
-                                parent.layer.msg('保存成功');
-                                parent.layer.close(index);
-
+                                }
                             }
-                        }
+                        });
+                    }, function(){
+                        //layer.msg('也可以这样', {
+                        //    time: 20000, //20s后自动关闭
+                        //    btn: ['明白了', '知道了']
+                        //});
+                        
                     });
+
 
                     return false;
                 });
@@ -212,6 +235,8 @@
                     btnEdit.setValue(data.id);
                     btnEdit.setText(data.text);
                     $("#sendname").val(data.id);
+                    $("#sendRealName").val(data.text);
+                    
 
                 }
             }

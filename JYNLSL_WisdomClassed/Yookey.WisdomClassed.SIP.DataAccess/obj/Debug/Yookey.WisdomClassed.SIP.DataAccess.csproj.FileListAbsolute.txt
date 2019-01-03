@@ -119,7 +119,6 @@ D:\ASP\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\obj\Debug\Yookey
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\bin\Debug\Yookey.WisdomClassed.SIP.DataAccess.dll
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\bin\Debug\Yookey.WisdomClassed.SIP.DataAccess.pdb
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\bin\Debug\DBHelper.dll
-D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\bin\Debug\ICSharpCode.SharpZipLib.dll
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\bin\Debug\MySql.Data.dll
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\bin\Debug\PetaPoco.dll
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\bin\Debug\Yookey.WisdomClassed.SIP.Common.dll
@@ -173,3 +172,4 @@ E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\o
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\obj\Debug\Yookey.WisdomClassed.SIP.DataAccess.pdb
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\bin\Debug\ICSharpCode.SharpZipLib.dll
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\bin\Debug\ICSharpCode.SharpZipLib.dll

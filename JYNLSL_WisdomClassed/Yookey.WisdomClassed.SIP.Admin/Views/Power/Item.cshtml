@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>权利事项</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+</head>
+<body>
+    <div>
+        <div class="Search">
+            <form class="layui-form" action="">
+
+                <div class="layui-inline">
+
+                    <div class="layui-input-inline">
+                        <select name="LX" id="LX">
+                            <option value="">请选择类别</option>
+                        </select>
+                    </div>
+                </div>
+
+                违法行为：
+                <div class="layui-inline">
+                    <input name="Key" class="layui-input" id="Key" autocomplete="off">
+                </div>
+                <input type="button" class="layui-btn" data-type="reload" value="搜索"></input>
+            </form>
+        </div>
+        <script id="toolbar" type="text/html">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" id="add" lay-event="add">添加</button>
+            </div>
+        </script>
+        <script id="bar" type="text/html">
+            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        </script>
+        <table class="layui-hide" id="Item" lay-filter="Item"></table>
+    </div>
+
+    <script src="~/Content/layui/layui.js" charset="utf-8"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+    <script>
+
+        layui.use(['table','form'],
+            function () {
+                var table = layui.table, form = layui.form;
+
+                var $ = layui.jquery;
+
+
+
+                table.render({
+                    elem: '#Item',
+                    url: '@Url.Action("LoadItem", "Power")?timestamp' + (new Date()).valueOf(),
+                    title: '权利事项',
+                    size: 'sm',
+                    toolbar: '#toolbar',
+                    defaultToolbar: [],
+                    cols: [
+                        [
+                            { field: 'Id', title: '编号', width: 80, fixed: 'left', align: 'center', type: 'numbers', unresize: true, },
+                            { field: 'Item', title: '违反行为' },
+                            { field: 'CFZL', title: '处罚种类及幅度', width: 200 },
+                            { field: 'CFYJ', title: '处罚依据', width: 200 },
+                            { field: 'CFYJYW', title: '处罚依据原文', width: 200 },
+                            { field: 'WFFG', title: '违反法规', width: 200 },
+                            { field: 'WFFGYW', title: '违反法规原文', width: 200 },
+                            { field: 'LX', title: '类型', width: 80 },
+                            { fixed: 'right', title: '操作', width: 200, toolbar: '#bar', align: 'center' }
+                        ]
+                    ],
+                    page: true,
+                    limit:30,
+                    height: 'full-40',
+                    done: function (res, curr, count) {
+
+                    }
+                });
+
+                form.render();
+
+                //绑定类型
+                $.ajax({
+                    url: "@Url.Action("BindLx", "Power")",
+                    type: "post",
+                    dataType: "json",
+                    data: {},
+                    success: function(data) {
+
+                        $.each(data,
+                            function(i, item) {
+                                $("#LX").append("<option value=" + item.RsValue + ">" + item.RsKey + "</option>");
+                            });
+            
+                        form.render();
+
+                    }
+                });
+
+                //头工具栏事件
+                table.on('toolbar(Item)', function (obj) {
+                    //var checkStatus = table.checkStatus(obj.config.id);
+                    switch (obj.event) {
+                        case 'add':
+                            layer.open({
+                                type: 2,
+                                title: '添加权利事项',
+                                area: ['1300px', '650px'],
+                                fixed: false, //不固定
+                                maxmin: false,
+                                content: '@Url.Action("PowerItemEdit", "Power")',
+                                end: function () {
+                                    table.reload('Item',
+                                        {
+                                            url: '@Url.Action("LoadItem", "Power")?timestamp2' + (new Date()).valueOf()
+                                            , where: {}
+                                        });
+                                }
+                            });
+                            break;
+                    };
+                });
+
+
+                //监听行工具事件
+                table.on('tool(Item)', function (obj) {
+                    var data = obj.data;
+                    if (obj.event === 'del') {
+                        layer.confirm('您确定要删除？', function (index) {
+
+                            //obj.del();
+                            //layer.close(index);
+                            $.ajax({
+                                type: "POST",
+                                url: "@Url.Action("DeleteItem", "Power")",
+                                data: {Id:data.Id},
+                                dataType: "json",
+                                success: function(data) {
+                                    if (data == '1') {
+                                        obj.del();
+                                        layer.close(index);
+                                    }
+                                }
+                            });
+                        });
+                    } else if (obj.event === 'edit') {
+
+                        layer.open({
+                            type: 2,
+                            title: '编辑权利事项',
+                            area: ['1300px', '650px'],
+                            fixed: false, //不固定
+                            maxmin: false,
+                            content: '@Url.Action("PowerItemEdit", "Power")?Id=' + data.Id,
+                            end: function () {
+                                table.reload('Item',
+                                    {
+                                        url: '@Url.Action("LoadItem", "Power")?timestamp2' + (new Date()).valueOf()
+                                        , where: {}
+                                    });
+                            }
+                        });
+                    }
+                    else if (obj.event === 'detail')
+                    {
+                        layer.open({
+                            type: 2,
+                            title: '权利事项详情',
+                            area: ['1300px', '650px'],
+                            fixed: false, //不固定
+                            maxmin: false,
+                            content: '@Url.Action("PowerItemDetial", "Power")?Id=' + data.Id,
+                        });
+                    }
+                });
+
+
+
+
+
+                $('.Search .layui-btn').on('click', function () {
+ 
+                    var Key = $('#Key');
+                    var LX = $('#LX');
+                    table.reload('Item',
+                        {
+                            url: '@Url.Action("LoadItem", "Power")?timestamp3' + (new Date()).valueOf()
+                            , where: {
+                                Item: Key.val(),
+                                LX:LX.val()
+                            }
+                        });
+
+                });
+            });
+    </script>
+
+</body>
+</html>

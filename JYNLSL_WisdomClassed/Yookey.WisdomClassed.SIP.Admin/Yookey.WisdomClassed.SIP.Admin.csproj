@@ -152,7 +152,9 @@
     <Compile Include="Controllers\Crm\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeIndexController.cs" />
-    <Compile Include="Controllers\JYNLSL\OAController.cs" />
+    <Compile Include="Controllers\OAController.cs" />
+    <Compile Include="Controllers\PowerController.cs" />
+    <Compile Include="Controllers\TRPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -12785,6 +12787,22 @@
     <Content Include="Views\OA\GongWenAdd.cshtml" />
     <Content Include="Views\HomeIndex\HomePage.cshtml" />
     <Content Include="Views\HomeIndex\Home.cshtml" />
+    <Content Include="Web2.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\OA\GongWenManger.cshtml" />
+    <Content Include="Views\OA\GongWenReadDetial.cshtml" />
+    <Content Include="Views\Power\Index.cshtml" />
+    <Content Include="Views\TRP\Index.cshtml" />
+    <Content Include="Views\Power\Item.cshtml" />
+    <Content Include="Views\Power\PowerItemEdit.cshtml" />
+    <Content Include="Views\Power\PowerItemDetial.cshtml" />
+    <None Include="Web2.Debug.config">
+      <DependentUpon>Web2.config</DependentUpon>
+    </None>
+    <None Include="Web2.Release.config">
+      <DependentUpon>Web2.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Yookey.WisdomClassed.SIP.Business\Yookey.WisdomClassed.SIP.Business.csproj">

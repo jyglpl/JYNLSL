@@ -147,7 +147,11 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
         public string Admin { get; set; }
 
 
-
+        /// </summary>
+        /// 公告内容
+        [Column("Remark")]
+        public string Remark { get; set; }
+        /// <summary>
 
 
         /// <summary>

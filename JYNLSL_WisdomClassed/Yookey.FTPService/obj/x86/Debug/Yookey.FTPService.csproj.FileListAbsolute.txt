@@ -27,7 +27,6 @@ E:\Application\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPSe
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\bin\Debug\Yookey.FTPService.exe.config
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\bin\Debug\Yookey.FTPService.exe
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\bin\Debug\Yookey.FTPService.pdb
-D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.csprojAssemblyReference.cache
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.ProjectInstaller.resources
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.csproj.GenerateResource.cache
 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.csproj.CoreCompileInputs.cache
@@ -42,3 +41,4 @@ E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yooke
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.exe
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.pdb
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.csprojAssemblyReference.cache
+D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.FTPService\obj\x86\Debug\Yookey.FTPService.csprojAssemblyReference.cache

@@ -135,11 +135,19 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.HomeIndex
 
         /// <summary>
         /// 初始化树 默认找出顶级菜单
+        /// add by lpl
+        /// 2019-1-2
         /// </summary>
         /// <returns></returns>
         public List<MenuModels> InitTree()
         {
-            var TreeList = new ComMenuBll().GetAllMenu(new ComMenuEntity());
+            var user = CurrentUser.CrmUser;
+            //根据权限加载用户树
+            bool isAdmin = new CrmUserMenuBll().GetAuthorizationByUserId("System", "Admin", user.Id);
+            var TreeList = new ComMenuBll().GetAllMenu(new ComMenuEntity()
+            {
+                IsMenu = 1
+            },isAdmin);
             List<MenuModels> rootNode = new List<MenuModels>();
             foreach (var plist in TreeList.Where(t => t.ParentMenuId == "00001"))
             {

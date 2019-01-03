@@ -149,7 +149,11 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
 
 
 
-
+        /// </summary>
+        /// 处理意见
+        [Column("Remark")]
+        public string Remark { get; set; }
+        /// <summary>
 
         /// <summary>
         /// 创建人
@@ -158,7 +162,10 @@ namespace Yookey.WisdomClassed.SIP.Model.OA
         [DataMember]
         public string Admin { get; set; }
 
-
+        /// </summary>
+        /// 接受人id
+        [Column("UserId")]
+        public string UserId { get; set; }
 
 
 

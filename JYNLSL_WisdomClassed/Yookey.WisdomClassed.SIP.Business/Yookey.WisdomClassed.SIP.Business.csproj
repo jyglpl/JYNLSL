@@ -93,6 +93,9 @@
     <Compile Include="Crm\CrmUserRoleBll.cs" />
     <Compile Include="OA\DocNotfPersonBall.cs" />
     <Compile Include="OA\DocumentNotificationBll.cs" />
+    <Compile Include="OA\GongGaoDetialBll.cs" />
+    <Compile Include="OA\GongGaoMangerBll.cs" />
+    <Compile Include="Power\PowerItemBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

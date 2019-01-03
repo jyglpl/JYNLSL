@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
 
 </head>
-<body>
+<body style="overflow: hidden">
 
     <div class="layui-tab" lay-filter="test">
 
@@ -77,15 +77,9 @@
             </div>
             
             @*公文管理*@
-            <div class="layui-tab-item">
-                <script id="toolbarGongWen" type="text/html">
-                    <div class="layui-btn-container">
+            <div class="layui-tab-item" >
+                 <iframe id="tabs_iframe_grid" name="tabs_iframe_grid" height="800px" width="100%" src="@Url.Action("GongWenManger","OA")" frameborder="0"></iframe>
 
-                        <button class="layui-btn layui-btn-sm" id="addGongGao"  lay-event="addGongGao">新增</button>
-
-                    </div>
-                </script>
-                <table class="layui-hide" id="GongWen" lay-filter="GongWen"></table>
             </div>
 
         </div>
@@ -157,37 +151,7 @@
         });
 
 
-        table.render({
-            elem: '#GongWen',
-            url: '@Url.Action("", "")?timestamp' + (new Date()).valueOf(),
-            toolbar: '#toolbarGongWen',
-            defaultToolbar: [],
-            title: '公文管理',
-            size: 'sm',
-            cols: [[
-                { field: 'Id', title: 'Id', width: 80, fixed: 'left', align: 'center', unresize: true, sort: true, hide: true },
-                { field: 'Id', title: '编号', width: 80, fixed: 'left', align: 'center', type: 'numbers', unresize: true, sort: true },
-                { field: 'Title', title: '文件标题', width: 230 },
-                { field: 'Title', title: '分类' },
-                { field: 'Title', title: '发文单位' },
-                { field: 'Title', title: '完成时限' },
-                { field: 'Title', title: '文件编号' },
-                { field: 'Title', title: '附件' },
-                { field: 'Title', title: '审批状态' },
-                { field: 'Title', title: '当前办理人' },
-                { field: 'Title', title: '登记时间' },
-                { field: 'Title', title: '处理状态' },
-                { field: 'Title', title: '创建人' },
- 
-                { fixed: 'right', title: '操作', toolbar: '#barDemo', align: 'center' }
-                ]],
-            page: true,
-            height: 'full-160',
-            done: function(res, curr, count) {
-            }
-
-        });
-
+   
 
 
 
@@ -324,33 +288,7 @@
             };
         });
 
-        //公文发布头部监控
-        table.on('toolbar(GongWen)', function (obj) {
-            var checkStatus = table.checkStatus(obj.config.id);
-            switch (obj.event) {
-                case 'addGongGao':
-                layer.open({
-                    type: 2,
-                    title: '新增公文',
-                    area: ['1300px', '650px'],
-                    fixed: false, //不固定
-                    maxmin: true,
-                    content: '@Url.Action("GongWenAdd", "OA")',
-                    end: function() {
-                        table.reload('GongWen',
-                            {
-                                @*url: '@Url.Action("GetAllDoc", "OA")?timestamp2' + (new Date()).valueOf()
-                                , where: {}*@
-
-                            });
-                    }
-
-                });
-                break;
-
-            };
-        });
-
+    
         //监听行工具事件
         table.on('tool(test)', function (obj) {
             var data = obj.data;
@@ -420,11 +358,6 @@
 
         });
 
-        $(function() {
-
-
-
-        });
     });
 
 
