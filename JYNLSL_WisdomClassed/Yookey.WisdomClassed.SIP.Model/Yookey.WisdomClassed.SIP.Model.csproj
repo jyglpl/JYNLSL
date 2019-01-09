@@ -86,6 +86,7 @@
     <Compile Include="Crm\CrmUserMenuEntity.cs" />
     <Compile Include="Crm\CrmUserRoleEntity.cs" />
     <Compile Include="IModel\IBaseModel.cs" />
+    <Compile Include="LawManger\LawMangerEntity.cs" />
     <Compile Include="ModelImp\BaseModel.cs" />
     <Compile Include="OA\DocNotfPersonEntity.cs" />
     <Compile Include="OA\DocumentNotificationEntity.cs" />

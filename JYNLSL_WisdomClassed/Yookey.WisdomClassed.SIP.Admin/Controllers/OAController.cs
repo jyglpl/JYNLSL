@@ -446,7 +446,7 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
             //公文管理权限
             bool isMangerGongWen = new CrmUserMenuBll().GetAuthorizationByUserId("OA", "MangerAuthorization", user.Id);
             ViewBag.isMangerGongWen = false;
-
+            ViewBag.Id = Guid.NewGuid().ToString();
             if (isMangerGongWen)
             {
                 ViewBag.isMangerGongWen = true;
@@ -609,7 +609,8 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
             {
                 var file = Request.Files[0]; //获取选中文件  
                 var filecombin = file.FileName.Split('.');
-                if (file == null || String.IsNullOrEmpty(file.FileName) || file.ContentLength == 0 || filecombin.Length < 2)
+                if (file == null || String.IsNullOrEmpty(file.FileName) || file.ContentLength == 0 ||
+                    filecombin.Length < 2)
                 {
                     return Json(new
                     {
@@ -619,6 +620,7 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
                         msg = "上传出错 请检查文件名 或 文件内容"
                     });
                 }
+
                 //定义本地路径位置
                 string local = "Upload\\Contract";
                 string filePathName = string.Empty;
@@ -639,23 +641,26 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
                 if (!System.IO.Directory.Exists(localPath))
                     System.IO.Directory.CreateDirectory(localPath);
                 string localURL = Path.Combine(local, filePathName);
-                file.SaveAs(Path.Combine(localPath, filePathName));   //保存图片（文件夹）
+                file.SaveAs(Path.Combine(localPath, filePathName)); //保存图片（文件夹）
                 return Json(new
                 {
                     code = 0,
                     src = localURL.Trim().Replace("\\", "|"),
-                    name = Path.GetFileNameWithoutExtension(file.FileName),   // 获取文件名不含后缀名
+                    name = Path.GetFileNameWithoutExtension(file.FileName), // 获取文件名不含后缀名
                     msg = "上传成功"
                 });
             }
-            catch { }
-            return Json(new
+            catch
             {
-               
-                src = "",
-                name = "",   // 获取文件名不含后缀名
-                msg = "上传出错"
-            });
+                return Json(new
+                {
+
+                    src = "",
+                    name = "",   // 获取文件名不含后缀名
+                    msg = "上传出错"
+                });
+            }
+
         }
 
 

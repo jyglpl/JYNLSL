@@ -1,0 +1,1230 @@
+
+ 
+记录时间：2019-01-09 09:55:18,901 
+线程ID:[8] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 关键字 'And' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 18
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 100
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:6ad0b122-b200-460c-8bc0-992399babaca
+Error Number:156,State:1,Class:15
+
+ 
+记录时间：2019-01-09 09:55:25,246 
+线程ID:[7] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 关键字 'And' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 18
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 100
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:6ad0b122-b200-460c-8bc0-992399babaca
+Error Number:156,State:1,Class:15
+
+ 
+记录时间：2019-01-09 09:55:52,071 
+线程ID:[10] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 关键字 'And' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 18
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 100
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:6ad0b122-b200-460c-8bc0-992399babaca
+Error Number:156,State:1,Class:15
+
+ 
+记录时间：2019-01-09 09:56:00,685 
+线程ID:[8] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 关键字 'And' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 18
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 100
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:6ad0b122-b200-460c-8bc0-992399babaca
+Error Number:156,State:1,Class:15
+
+ 
+记录时间：2019-01-09 09:56:55,969 
+线程ID:[5] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 在从服务器接收结果时发生传输级错误。 (provider: Session Provider, error: 19 - 物理连接不可用)
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   在 System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   在 System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   在 System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 18
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:528caa57-d581-44e3-a0dc-69c14d29a83f
+Error Number:-1,State:0,Class:20
+
+ 
+记录时间：2019-01-09 09:58:59,724 
+线程ID:[6] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.InvalidOperationException: 连接未关闭。 连接的当前状态为正在连接。
+   在 System.Data.ProviderBase.DbConnectionClosedConnecting.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 PetaPoco.Database.OpenSharedConnection() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 266
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1042
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 18
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 141
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2019-01-09 10:10:31,365 
+线程ID:[30] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '0' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:29e17a9f-8e9b-4238-8de4-b79632874711
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2019-01-09 10:10:37,048 
+线程ID:[24] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '0' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:29e17a9f-8e9b-4238-8de4-b79632874711
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2019-01-09 10:11:39,936 
+线程ID:[30] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '0' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:29e17a9f-8e9b-4238-8de4-b79632874711
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2019-01-09 10:11:58,264 
+线程ID:[18] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '0' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:f146c7db-ac60-4b1c-8f72-f561d2d53473
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2019-01-09 10:11:59,735 
+线程ID:[30] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '0' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:f146c7db-ac60-4b1c-8f72-f561d2d53473
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2019-01-09 10:15:35,027 
+线程ID:[22] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 执行超时已过期。完成操作之前已超时或服务器未响应。 
+当前命令发生了严重错误。应放弃任何可能产生的结果。
+在从服务器接收结果时发生传输级错误。 (provider: Session Provider, error: 18 - 连接已被对等方关闭) ---> System.ComponentModel.Win32Exception (0x80004005): 等待的操作过时。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   在 System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   在 System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   在 System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:f146c7db-ac60-4b1c-8f72-f561d2d53473
+Error Number:-2,State:0,Class:11
+
+ 
+记录时间：2019-01-09 10:16:07,800 
+线程ID:[7] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '0' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:2a07fd9b-b5a0-456b-bd3b-a7336500e6af
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2019-01-09 10:16:10,361 
+线程ID:[10] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '0' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:0f11799c-5f77-4a52-8023-d1b0942ad5ef
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2019-01-09 10:16:13,150 
+线程ID:[7] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '0' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:0f11799c-5f77-4a52-8023-d1b0942ad5ef
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2019-01-09 10:17:56,623 
+线程ID:[7] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '0' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:0f11799c-5f77-4a52-8023-d1b0942ad5ef
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2019-01-09 10:18:04,736 
+线程ID:[15] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '0' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:0f11799c-5f77-4a52-8023-d1b0942ad5ef
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2019-01-09 10:18:23,451 
+线程ID:[15] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '0' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:c55880ff-5d54-414b-b17e-c162402e2179
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2019-01-09 10:18:26,074 
+线程ID:[21] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LoadLawTree] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '0' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.LawManger.LawMangerDal.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\LawManger\LawMangerDal.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Business.LawManger.LawMangerBll.QueryList(LawMangerEntity entity) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\LawManger\LawMangerBll.cs:行号 25
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.CreateChild(String Id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 129
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.InitTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 112
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LoadLawTree() 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 52
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:c55880ff-5d54-414b-b17e-c162402e2179
+Error Number:102,State:1,Class:15

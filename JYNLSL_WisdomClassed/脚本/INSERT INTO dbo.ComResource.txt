@@ -1,0 +1,33 @@
+INSERT INTO dbo.ComResource
+(
+    Id,
+    ParentId,
+    RsKey,
+    RsValue,
+    RsUseflg,
+    RsRemark,
+    OrderNo,
+    RowStatus,
+    CreatorId,
+    CreateBy,
+    CreateOn,
+    UpdateId,
+    UpdateBy,
+    UpdateOn
+)
+VALUES
+(   '0059',        -- Id - varchar(32)
+    '',        -- ParentId - varchar(32)
+    '法律法规',        -- RsKey - varchar(200)
+    '',        -- RsValue - varchar(100)
+    '1',        -- RsUseflg - char(1)
+    '',        -- RsRemark - varchar(200)
+    0,         -- OrderNo - int
+    1,         -- RowStatus - int
+    N'',       -- CreatorId - nvarchar(50)
+    N'',       -- CreateBy - nvarchar(50)
+    GETDATE(), -- CreateOn - datetime
+    N'',       -- UpdateId - nvarchar(50)
+    N'',       -- UpdateBy - nvarchar(50)
+    GETDATE()  -- UpdateOn - datetime
+    )

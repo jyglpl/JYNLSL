@@ -91,6 +91,7 @@
     <Compile Include="Crm\CrmUserBll.cs" />
     <Compile Include="Crm\CrmUserMenuBll.cs" />
     <Compile Include="Crm\CrmUserRoleBll.cs" />
+    <Compile Include="LawManger\LawMangerBll.cs" />
     <Compile Include="OA\DocNotfPersonBall.cs" />
     <Compile Include="OA\DocumentNotificationBll.cs" />
     <Compile Include="OA\GongGaoDetialBll.cs" />

@@ -1452,6 +1452,38 @@ namespace SQLConnStringRead
 		public DateTime? UpdateOn { get; set; }
 }
     
+	[TableName("dbo.LawManger")]
+	[PrimaryKey("Id", AutoIncrement=false)]
+	[ExplicitColumns]
+    public partial class LawManger : SQLConnStringReadDB.Record<LawManger>  
+    {
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Id")] 
+		public string Id { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("ParentId")] 
+		public string ParentId { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Name")] 
+		public string Name { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("ContentText")] 
+		public string ContentText { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Rowsatus")] 
+		public int? Rowsatus { get; set; }
+}
+    
 	[TableName("dbo.ComAttribute")]
 	[PrimaryKey("Id", AutoIncrement=false)]
 	[ExplicitColumns]

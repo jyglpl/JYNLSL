@@ -70,3 +70,18 @@ System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
    在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
    在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
    在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2019-01-03 17:04:26,953 
+线程ID:[10] 
+日志级别：  ERROR 
+错误描述：在执行 controller[HomeIndexController] 的 action[HomePage] 时产生异常
+ 
+System.Web.HttpException (0x80004005): 服务器无法在已发送 HTTP 标头之后设置状态。
+   在 System.Web.HttpResponse.set_StatusCode(Int32 value)
+   在 System.Web.Mvc.HttpStatusCodeResult.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)

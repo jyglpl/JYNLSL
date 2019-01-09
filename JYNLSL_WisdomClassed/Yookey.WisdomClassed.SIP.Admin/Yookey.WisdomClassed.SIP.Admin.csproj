@@ -152,6 +152,8 @@
     <Compile Include="Controllers\Crm\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeIndexController.cs" />
+    <Compile Include="Controllers\IllegalController.cs" />
+    <Compile Include="Controllers\LawMangerController.cs" />
     <Compile Include="Controllers\OAController.cs" />
     <Compile Include="Controllers\PowerController.cs" />
     <Compile Include="Controllers\TRPController.cs" />
@@ -160,6 +162,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\LayTableModel.cs" />
+    <Compile Include="Models\MiniTree.cs" />
     <Compile Include="Models\MenuModels.cs" />
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Models\TreeMenuModel.cs" />
@@ -12797,6 +12800,10 @@
     <Content Include="Views\Power\Item.cshtml" />
     <Content Include="Views\Power\PowerItemEdit.cshtml" />
     <Content Include="Views\Power\PowerItemDetial.cshtml" />
+    <Content Include="Views\Illegal\Index.cshtml" />
+    <Content Include="Views\LawManger\Index.cshtml" />
+    <Content Include="Views\LawManger\LawDetial.cshtml" />
+    <Content Include="Views\LawManger\LawEdit.cshtml" />
     <None Include="Web2.Debug.config">
       <DependentUpon>Web2.config</DependentUpon>
     </None>

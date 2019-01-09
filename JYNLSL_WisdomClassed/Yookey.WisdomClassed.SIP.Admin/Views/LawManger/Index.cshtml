@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 法律法规 - Layui</title>
+    <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <style>
+        .layui-tree li a.active {
+            background: #ffefbb
+        }
+    </style>
+    <link href="~/Content/MiNi/demo.css" rel="stylesheet" />
+    <script src="~/Content/MiNi/boot.js"></script>
+
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header" style="background-color:white">
+
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+
+                <form class="layui-form" action="">
+
+                    <div class="layui-inline">
+
+                        <div class="layui-input-inline">
+                            <select name="LX" id="LX">
+                                <option value="">请分类</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="LX" id="LX">
+                                <option value="">法律法规</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <input name="Key" class="layui-input" id="Key" autocomplete="off">
+                    </div>
+
+                    <input type="button" class="layui-btn" data-type="reload" value="搜索"></input>
+                    <input type="button" class="layui-btn" data-type="reload" value="新增"></input>
+                </form>
+
+        </div>
+
+        <div class="layui-side" style="background-color:white">
+            <div class="layui-side-scroll" id="admin-navbar-side" lay-filter="side" style="height: 350px; background-color: whitesmoke;">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                @*<ul id="lawtree"></ul>*@
+                <ul id="tree" class="mini-tree" url="@Url.Action("LoadLawTree", "LawManger")" style="width:300px;padding:5px;" 
+                    showTreeIcon="true" textField="text" idField="id" value="base" expandOnNodeClick="true"  onnodeselect="onNodeSelect" >        
+                </ul>
+            </div>
+            <div style="text-align: center">
+                <div class="layui-btn-group groupTool" style="background-color: white;text-align: center">
+                    <button class="layui-btn layui-btn-sm" id="add" data-type="add">添加</button>
+                    <button class="layui-btn layui-btn-sm" id="edit" data-type="edit">编辑</button>
+                    <button class="layui-btn layui-btn-sm" id="del" data-type="del">删除</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-body" >
+            <!-- 内容主体区域 -->
+            <div style="padding: 15px;background-color: antiquewhite">
+                <iframe id="tabs_iframe_grid" name="tabs_iframe_grid" height="800px" width="100%" src="@Url.Action("LawDetial","LawManger")" frameborder="0"></iframe>
+            </div>
+        </div>
+        <div style="display: none">
+            <input id="checkId"/>
+        </div>
+
+    </div>
+    <script src="~/Content/layui/layui.js" charset="utf-8"></script>
+
+    <script>
+        //JavaScript代码区域
+        mini.parse();
+
+        var tree = mini.get("tree");
+        var node = null;
+
+        function onNodeSelect(e) {
+            node = e.node;
+            $('#checkId').val(e.node.id);
+        };
+
+        function reLoadTree() {
+            tree.load('@Url.Action("LoadLawTree", "LawManger")');
+
+        }
+
+
+
+
+        layui.use(['element', 'jquery', 'form', 'tree'],
+            function() {
+
+                var $ = layui.jquery,
+                    element = layui.element,
+                    form = layui.form;
+                var nodes = null;
+
+
+                var active = {
+                    add: function() { //添加分类
+
+                        var parentId = $('#checkId').val();
+                        if (parentId == '') {
+                            layer.alert('请选择分类!');
+                        } else {
+                            layer.open({
+                                type: 2,
+                                title: '添加分类',
+                                area: ['650px', '300px'],
+                                fixed: false, //不固定
+                                maxmin: false,
+                                content: '@Url.Action("LawEdit", "LawManger")?ParentId=' + parentId + "&isEdit=0",
+                                end: function() {
+
+                                    reLoadTree();
+                                }
+                            });
+                        }
+
+                    },
+                    edit: function() { //编辑分类
+                        var parentId = $('#checkId').val();
+                        if (parentId == '') {
+                            layer.alert('请选择分类!');
+                        } else {
+                            layer.open({
+                                type: 2,
+                                title: '编辑分类',
+                                area: ['650px', '300px'],
+                                fixed: false, //不固定
+                                maxmin: false,
+                                content: '@Url.Action("LawEdit", "LawManger")?ParentId=' + parentId + "&isEdit=1",
+                                end: function() {
+
+                                    reLoadTree();
+                                }
+                            });
+                        }
+                    },
+                    del: function() { //删除分类
+                        var parentId = $('#checkId').val();
+                        if (parentId == '') {
+                            layer.alert('请选择分类!');
+                        } else {
+                            layer.confirm('确定删除分类？',
+                                {
+                                    btn: ['确定', '取消'] //按钮
+                                },
+                                function() {
+
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "@Url.Action("LawTypeDel", "LawManger")?Id=" + parentId,
+                                        data: {},
+                                        dataType: "json",
+                                        success: function(data) {
+                                            if (data == '1') {
+                                                layer.msg('删除成功');
+                                                reLoadTree();
+                                            }
+                                        }
+                                    });
+                                }, function(){
+                                    //取消什么都不做
+                                });
+                        }
+                }
+            };
+  
+            $('.groupTool .layui-btn').on('click', function(){
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+
+
+        });
+    </script>
+</body>
+</html>
