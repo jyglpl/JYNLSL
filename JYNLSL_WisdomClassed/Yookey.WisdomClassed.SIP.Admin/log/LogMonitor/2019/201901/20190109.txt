@@ -9486,3 +9486,419 @@
             URL参数：
                     
  
+
+ 
+记录时间：2019-01-09 21:23:43,153 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：LawMangerController
+            ActionName:Index
+            开始时间：2019/1/9 21:23:43
+            结束时间：2019/1/9 21:23:43
+            总 时 间：0.0539186秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:23:44,060 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：LawMangerController
+            ViewName:Index
+            开始时间：2019/1/9 21:23:43
+            结束时间：2019/1/9 21:23:44
+            总 时 间：0.8848306秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:23:44,313 
+线程ID:[29] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：LawMangerController
+            ActionName:LawDetial
+            开始时间：2019/1/9 21:23:44
+            结束时间：2019/1/9 21:23:44
+            总 时 间：0.0280004秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:23:44,313 
+线程ID:[29] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：LawMangerController
+            ViewName:LawDetial
+            开始时间：2019/1/9 21:23:44
+            结束时间：2019/1/9 21:23:44
+            总 时 间：0.0009978秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:23:44,911 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：LawMangerController
+            ActionName:LoadLawTree
+            开始时间：2019/1/9 21:23:44
+            结束时间：2019/1/9 21:23:44
+            总 时 间：0.0997706秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:23:44,913 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：LawMangerController
+            ViewName:LoadLawTree
+            开始时间：2019/1/9 21:23:44
+            结束时间：2019/1/9 21:23:44
+            总 时 间：0.0019938秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:23:49,456 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：LawMangerController
+            ActionName:LawTypeDel
+            开始时间：2019/1/9 21:23:49
+            结束时间：2019/1/9 21:23:49
+            总 时 间：0.0270488秒
+            Form表单数据：
+            URL参数：Id=c877f214-e517-4502-9198-e1c8ea2ff1ae
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:23:49,457 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：LawMangerController
+            ViewName:LawTypeDel
+            开始时间：2019/1/9 21:23:49
+            结束时间：2019/1/9 21:23:49
+            总 时 间：0.000968秒
+            Form表单数据：
+            URL参数：Id=c877f214-e517-4502-9198-e1c8ea2ff1ae
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:23:53,050 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：LawMangerController
+            ActionName:Index
+            开始时间：2019/1/9 21:23:53
+            结束时间：2019/1/9 21:23:53
+            总 时 间：0.0289595秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:23:53,051 
+线程ID:[8] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：LawMangerController
+            ViewName:Index
+            开始时间：2019/1/9 21:23:53
+            结束时间：2019/1/9 21:23:53
+            总 时 间：0.0009969秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:23:53,236 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：LawMangerController
+            ActionName:LawDetial
+            开始时间：2019/1/9 21:23:53
+            结束时间：2019/1/9 21:23:53
+            总 时 间：0.0149657秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:23:53,236 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：LawMangerController
+            ViewName:LawDetial
+            开始时间：2019/1/9 21:23:53
+            结束时间：2019/1/9 21:23:53
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:23:53,794 
+线程ID:[23] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：LawMangerController
+            ActionName:LoadLawTree
+            开始时间：2019/1/9 21:23:53
+            结束时间：2019/1/9 21:23:53
+            总 时 间：0.0429591秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:23:53,794 
+线程ID:[23] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：LawMangerController
+            ViewName:LoadLawTree
+            开始时间：2019/1/9 21:23:53
+            结束时间：2019/1/9 21:23:53
+            总 时 间：0秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:24:15,429 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：LawMangerController
+            ActionName:LawTypeDel
+            开始时间：2019/1/9 21:24:15
+            结束时间：2019/1/9 21:24:15
+            总 时 间：0.0270182秒
+            Form表单数据：
+            URL参数：Id=7d13eea0-61c7-467e-a7c2-1af1cb9c91b7
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:24:15,429 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：LawMangerController
+            ViewName:LawTypeDel
+            开始时间：2019/1/9 21:24:15
+            结束时间：2019/1/9 21:24:15
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：Id=7d13eea0-61c7-467e-a7c2-1af1cb9c91b7
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:24:51,268 
+线程ID:[33] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：LawMangerController
+            ActionName:Index
+            开始时间：2019/1/9 21:24:51
+            结束时间：2019/1/9 21:24:51
+            总 时 间：0.003964秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:24:51,766 
+线程ID:[33] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：LawMangerController
+            ViewName:Index
+            开始时间：2019/1/9 21:24:51
+            结束时间：2019/1/9 21:24:51
+            总 时 间：0.4982秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:24:52,012 
+线程ID:[37] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：LawMangerController
+            ActionName:LawDetial
+            开始时间：2019/1/9 21:24:51
+            结束时间：2019/1/9 21:24:52
+            总 时 间：0.0349622秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:24:52,014 
+线程ID:[37] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：LawMangerController
+            ViewName:LawDetial
+            开始时间：2019/1/9 21:24:52
+            结束时间：2019/1/9 21:24:52
+            总 时 间：0.0019649秒
+            Form表单数据：
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:24:52,093 
+线程ID:[33] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：LawMangerController
+            ActionName:LoadLawTree
+            开始时间：2019/1/9 21:24:52
+            结束时间：2019/1/9 21:24:52
+            总 时 间：0.0489293秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:24:52,093 
+线程ID:[33] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：LawMangerController
+            ViewName:LoadLawTree
+            开始时间：2019/1/9 21:24:52
+            结束时间：2019/1/9 21:24:52
+            总 时 间：0秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:24:56,578 
+线程ID:[37] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：LawMangerController
+            ActionName:LawTypeDel
+            开始时间：2019/1/9 21:24:56
+            结束时间：2019/1/9 21:24:56
+            总 时 间：0.0369493秒
+            Form表单数据：
+            URL参数：Id=262bb0e2-8b6c-420a-8f8d-585113ada803
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:24:56,578 
+线程ID:[37] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：LawMangerController
+            ViewName:LawTypeDel
+            开始时间：2019/1/9 21:24:56
+            结束时间：2019/1/9 21:24:56
+            总 时 间：0秒
+            Form表单数据：
+            URL参数：Id=262bb0e2-8b6c-420a-8f8d-585113ada803
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:24:56,688 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            Action执行时间监控：
+            ControllerName：LawMangerController
+            ActionName:LoadLawTree
+            开始时间：2019/1/9 21:24:56
+            结束时间：2019/1/9 21:24:56
+            总 时 间：0.0628577秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
+
+ 
+记录时间：2019-01-09 21:24:56,689 
+线程ID:[31] 
+日志级别：  INFO  
+跟踪描述：
+            View视图生成时间监控：
+            ControllerName：LawMangerController
+            ViewName:LoadLawTree
+            开始时间：2019/1/9 21:24:56
+            结束时间：2019/1/9 21:24:56
+            总 时 间：0.0010307秒
+            Form表单数据：pageIndex=0&pageSize=10&sortField=&sortOrder=
+            URL参数：
+                    
+ 
