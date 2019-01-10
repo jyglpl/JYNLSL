@@ -12804,6 +12804,7 @@
     <Content Include="Views\LawManger\Index.cshtml" />
     <Content Include="Views\LawManger\LawDetial.cshtml" />
     <Content Include="Views\LawManger\LawEdit.cshtml" />
+    <Content Include="Views\LawManger\LawAdd.cshtml" />
     <None Include="Web2.Debug.config">
       <DependentUpon>Web2.config</DependentUpon>
     </None>

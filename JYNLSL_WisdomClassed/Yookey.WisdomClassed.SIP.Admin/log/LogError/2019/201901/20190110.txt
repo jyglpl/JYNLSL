@@ -1,0 +1,200 @@
+
+ 
+记录时间：2019-01-10 10:41:54,361 
+线程ID:[70] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LawDetial] 时产生异常
+ 
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ASP._Page_Views_LawManger_LawDetial_cshtml.Execute() 位置 d:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Views\LawManger\LawDetial.cshtml:行号 46
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2019-01-10 10:45:06,076 
+线程ID:[53] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LawDetial] 时产生异常
+ 
+System.InvalidOperationException: 序列不包含任何元素
+   在 System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   在 PetaPoco.Database.Single[T](String sql, Object[] args) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1384
+   在 PetaPoco.Database.Single[T](Object primaryKey) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1355
+   在 Yookey.WisdomClassed.SIP.DataAccess.Base.BaseDal`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\Base\BaseDal.cs:行号 54
+   在 Yookey.WisdomClassed.SIP.Business.BasePetaPoco.BaseBll`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\BasePetaPoco\BaseBll.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LawDetial(String id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 26
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2019-01-10 10:46:16,169 
+线程ID:[73] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LawDetial] 时产生异常
+ 
+System.InvalidOperationException: 序列不包含任何元素
+   在 System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   在 PetaPoco.Database.Single[T](String sql, Object[] args) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1384
+   在 PetaPoco.Database.Single[T](Object primaryKey) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1355
+   在 Yookey.WisdomClassed.SIP.DataAccess.Base.BaseDal`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\Base\BaseDal.cs:行号 54
+   在 Yookey.WisdomClassed.SIP.Business.BasePetaPoco.BaseBll`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\BasePetaPoco\BaseBll.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LawDetial(String id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 26
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2019-01-10 10:47:21,051 
+线程ID:[71] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LawDetial] 时产生异常
+ 
+System.InvalidOperationException: 序列不包含任何元素
+   在 System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   在 PetaPoco.Database.Single[T](String sql, Object[] args) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1384
+   在 PetaPoco.Database.Single[T](Object primaryKey) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1355
+   在 Yookey.WisdomClassed.SIP.DataAccess.Base.BaseDal`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\Base\BaseDal.cs:行号 54
+   在 Yookey.WisdomClassed.SIP.Business.BasePetaPoco.BaseBll`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\BasePetaPoco\BaseBll.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LawDetial(String id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 26
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2019-01-10 10:47:31,419 
+线程ID:[73] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LawDetial] 时产生异常
+ 
+System.InvalidOperationException: 序列不包含任何元素
+   在 System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   在 PetaPoco.Database.Single[T](String sql, Object[] args) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1384
+   在 PetaPoco.Database.Single[T](Object primaryKey) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1355
+   在 Yookey.WisdomClassed.SIP.DataAccess.Base.BaseDal`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\Base\BaseDal.cs:行号 54
+   在 Yookey.WisdomClassed.SIP.Business.BasePetaPoco.BaseBll`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\BasePetaPoco\BaseBll.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LawDetial(String id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 26
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2019-01-10 10:47:44,312 
+线程ID:[35] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LawDetial] 时产生异常
+ 
+System.InvalidOperationException: 序列不包含任何元素
+   在 System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   在 PetaPoco.Database.Single[T](String sql, Object[] args) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1384
+   在 PetaPoco.Database.Single[T](Object primaryKey) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1355
+   在 Yookey.WisdomClassed.SIP.DataAccess.Base.BaseDal`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\Base\BaseDal.cs:行号 54
+   在 Yookey.WisdomClassed.SIP.Business.BasePetaPoco.BaseBll`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\BasePetaPoco\BaseBll.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LawDetial(String id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 26
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2019-01-10 10:48:17,799 
+线程ID:[73] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LawDetial] 时产生异常
+ 
+System.InvalidOperationException: 序列不包含任何元素
+   在 System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   在 PetaPoco.Database.Single[T](String sql, Object[] args) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1384
+   在 PetaPoco.Database.Single[T](Object primaryKey) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1355
+   在 Yookey.WisdomClassed.SIP.DataAccess.Base.BaseDal`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\Base\BaseDal.cs:行号 54
+   在 Yookey.WisdomClassed.SIP.Business.BasePetaPoco.BaseBll`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\BasePetaPoco\BaseBll.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LawDetial(String id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 26
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2019-01-10 10:50:41,341 
+线程ID:[24] 
+日志级别：  ERROR 
+错误描述：在执行 controller[LawMangerController] 的 action[LawDetial] 时产生异常
+ 
+System.InvalidOperationException: 序列不包含任何元素
+   在 System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   在 PetaPoco.Database.Single[T](String sql, Object[] args) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1384
+   在 PetaPoco.Database.Single[T](Object primaryKey) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1355
+   在 Yookey.WisdomClassed.SIP.DataAccess.Base.BaseDal`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\Base\BaseDal.cs:行号 54
+   在 Yookey.WisdomClassed.SIP.Business.BasePetaPoco.BaseBll`1.Single(Object key) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\BasePetaPoco\BaseBll.cs:行号 35
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.LawMangerController.LawDetial(String id) 位置 D:\ASP\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\LawMangerController.cs:行号 26
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)

@@ -1,0 +1,130 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>新增法律法规</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
+
+    <!-- LayUI表单 -->
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+</head>
+<body>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend></legend>
+    </fieldset>
+    <form class="layui-form">
+
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">父目录</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="root" readonly="readonly"  value="@ViewBag.ParentName"  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label" style="width: 150px">法律法规名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="typename" style="width: 350px"   lay-verify="typename" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">内容</label>
+            <div class="layui-input-block" style="width: 80%">
+                <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+ 
+            <div class="layui-input-block">
+
+     
+                    <button class="layui-btn" lay-filter="add" lay-submit="">添加</button>
+                
+
+            </div>
+        </div>
+    </form>
+
+
+    <script src="~/Content/layui/layui.js" charset="utf-8"></script>
+
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script type="text/javascript">
+
+
+        layui.use(['form', 'layedit'],
+            function() {
+                var form = layui.form,
+                    layer = layui.layer,
+              
+                    $ = layui.jquery;
+                var layedit = layui.layedit;
+                var index = parent.layer.getFrameIndex(window.name);
+
+                //创建一个编辑器
+                var editIndex = layedit.build('LAY_demo_editor');
+                //自定义验证规则
+                form.verify({
+                    typename: function (value) {
+                        if (value.length < 1) {
+                            return '法律法规名称必填!！';
+                        }
+                    }
+                    ,content: function(value){
+                        layedit.sync(editIndex);
+                    }
+
+                });
+
+
+
+
+
+
+                //监听提交
+                form.on('submit(add)',
+                    function(data) {
+
+                        layer.confirm('确定添加法律法规？',
+                            {
+                                btn: ['确定', '取消'] //按钮
+                            },
+                            function() {
+                                //layer.msg('的确很重要', {icon: 1});
+                                $.ajax({
+                                    type: "POST",
+                                    url: "@Url.Action("LawContetAdd", "LawManger")?ParentId=" + '@Request["ParentId"]',
+                                    data: data.field,
+                                    dataType: "json",
+                                    success: function(data) {
+                                        if (data == '1') {
+                                            parent.layer.msg('添加成功');
+                                            parent.layer.close(index);
+
+                                        }
+                                }
+                            });
+                        }, function(){
+                            //取消什么都不做
+                        });
+                        return false;
+                    });
+
+                
+       
+            });
+
+
+
+    </script>
+
+</body>
+</html>

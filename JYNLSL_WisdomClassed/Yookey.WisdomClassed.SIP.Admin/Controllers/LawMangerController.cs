@@ -21,8 +21,28 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers
             return View();
         }
 
-        public ActionResult LawDetial()
+        public ActionResult LawDetial(string id)
         {
+            LawMangerEntity model = new LawMangerBll().Single(id);
+            return View(model);
+        }
+
+        /// <summary>
+        /// 添加法律法规页面
+        /// add by lpl
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult LawAdd(string ParentId)
+        {
+            LawMangerEntity lawMangerEntity = new LawMangerBll().Single(ParentId);
+
+
+
+            ViewBag.ParentName = lawMangerEntity.Name; ;
+
+
+
+
             return View();
         }
 
@@ -174,7 +194,38 @@ namespace Yookey.WisdomClassed.SIP.Admin.Controllers
             }
         }
 
-        
+        [ValidateInput(false)]
+        public string LawContetAdd(string content, string typename)
+        {
+            try
+            {
+                string parentId = Request["ParentId"];
+
+                LawMangerEntity entity = new LawMangerEntity()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ParentId = parentId,
+                    Name = typename,
+                    ContentText = content,
+                    Rowsatus = 1,
+                };
+
+                if (new LawMangerBll().PersistNewItem(entity))
+                {
+                    return "1";
+                }
+
+                return "0";
+
+
+            }
+            catch (Exception e)
+            {
+                return "0";
+            }
+            }
+
+
 
 
         /// <summary>

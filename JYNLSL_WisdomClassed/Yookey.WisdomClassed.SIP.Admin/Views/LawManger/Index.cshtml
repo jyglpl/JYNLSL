@@ -20,7 +20,7 @@
         <div class="layui-header" style="background-color:white">
 
             <!-- 头部区域（可配合layui已有的水平导航） -->
-
+            <div class="toolBar">
                 <form class="layui-form" action="">
 
                     <div class="layui-inline">
@@ -40,9 +40,11 @@
                         <input name="Key" class="layui-input" id="Key" autocomplete="off">
                     </div>
 
-                    <input type="button" class="layui-btn" data-type="reload" value="搜索"></input>
-                    <input type="button" class="layui-btn" data-type="reload" value="新增"></input>
+                    <input type="button" class="layui-btn" id="reload" data-type="reload" value="搜索"></input>
+                    <input type="button" class="layui-btn" id="addContent" data-type="addContent" value="新增"></input>
                 </form>
+            </div>
+
 
         </div>
 
@@ -50,9 +52,8 @@
             <div class="layui-side-scroll" id="admin-navbar-side" lay-filter="side" style="height: 350px; background-color: whitesmoke;">
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                 @*<ul id="lawtree"></ul>*@
-                <ul id="tree" class="mini-tree" url="@Url.Action("LoadLawTree", "LawManger")" style="width:300px;padding:5px;" 
-                    showTreeIcon="true" textField="text" idField="id" value="base" expandOnNodeClick="true"  onnodeselect="onNodeSelect" >        
-                </ul>
+                <ul id="tree" class="mini-tree" url="@Url.Action("LoadLawTree", "LawManger")" style="width:300px;padding:5px;"
+                    showTreeIcon="true" textField="text" idField="id" value="base" expandOnNodeClick="true" onnodeselect="onNodeSelect"></ul>
             </div>
             <div style="text-align: center">
                 <div class="layui-btn-group groupTool" style="background-color: white;text-align: center">
@@ -63,14 +64,14 @@
             </div>
         </div>
 
-        <div class="layui-body" >
+        <div class="layui-body" style="overflow: hidden">
             <!-- 内容主体区域 -->
-            <div style="padding: 15px;background-color: antiquewhite">
-                <iframe id="tabs_iframe_grid" name="tabs_iframe_grid" height="800px" width="100%" src="@Url.Action("LawDetial","LawManger")" frameborder="0"></iframe>
+            <div style="padding: 15px; background-color: antiquewhite;overflow: hidden">
+                <iframe id="tabs_iframe_grid" name="tabs_iframe_grid" height="680px" width="100%" src="" frameborder="0"></iframe>
             </div>
         </div>
         <div style="display: none">
-            <input id="checkId"/>
+            <input id="checkId" />
         </div>
 
     </div>
@@ -86,6 +87,8 @@
         function onNodeSelect(e) {
             node = e.node;
             $('#checkId').val(e.node.id);
+
+            $('#tabs_iframe_grid').attr('src', '@Url.Action("LawDetial", "LawManger")?id='+e.node.id);
         };
 
         function reLoadTree() {
@@ -173,15 +176,39 @@
                                     //取消什么都不做
                                 });
                         }
-                }
+                    },
+                    addContent: function() { //添加法律法规
+                        var parentId = $('#checkId').val();
+                        if (parentId == '') {
+                            layer.alert('请选择分类!');
+                        } else {
+                            layer.open({
+                                type: 2,
+                                title: '新增法律法规',
+                                area: ['1000px', '600px'],
+                                fixed: false, //不固定
+                                maxmin: false,
+                                content: '@Url.Action("LawAdd", "LawManger")?ParentId=' + parentId,
+                                end: function() {
+
+                                    reLoadTree();
+                                }
+                            });
+                        }
+                    }
             };
   
             $('.groupTool .layui-btn').on('click', function(){
                 var type = $(this).data('type');
                 active[type] ? active[type].call(this) : '';
-            });
+                });
 
-
+                //监听头部按钮
+                $('.toolBar .layui-btn').on('click', function(){
+                    var type = $(this).data('type');
+                    active[type] ? active[type].call(this) : '';
+                });
+                
         });
     </script>
 </body>
