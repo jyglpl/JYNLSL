@@ -1484,6 +1484,98 @@ namespace SQLConnStringRead
 		public int? Rowsatus { get; set; }
 }
     
+	[TableName("dbo.EnterpriseLibrary")]
+	[PrimaryKey("Id", AutoIncrement=false)]
+	[ExplicitColumns]
+    public partial class EnterpriseLibrary : SQLConnStringReadDB.Record<EnterpriseLibrary>  
+    {
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Id")] 
+		public string Id { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CompanyType")] 
+		public string CompanyType { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CompanyNature")] 
+		public string CompanyNature { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CompanyNum")] 
+		public string CompanyNum { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CompanyName")] 
+		public string CompanyName { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CompanyCardNum")] 
+		public string CompanyCardNum { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CompanyPermitNum")] 
+		public string CompanyPermitNum { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CompanyStreet")] 
+		public string CompanyStreet { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CompanyAddress")] 
+		public string CompanyAddress { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CompanyLegalPerson")] 
+		public string CompanyLegalPerson { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("LegalPersonPhone")] 
+		public string LegalPersonPhone { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Phone")] 
+		public string Phone { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CompanyContacts")] 
+		public string CompanyContacts { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("IsImportant")] 
+		public string IsImportant { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("ProductType")] 
+		public string ProductType { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("CompanySize")] 
+		public string CompanySize { get; set; }
+		/// <summary>
+        /// 
+        /// </summary>
+		[Column("Rowstatus")] 
+		public int? Rowstatus { get; set; }
+}
+    
 	[TableName("dbo.ComAttribute")]
 	[PrimaryKey("Id", AutoIncrement=false)]
 	[ExplicitColumns]

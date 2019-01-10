@@ -32,7 +32,7 @@
         </div>
         <script id="toolbar" type="text/html">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm" id="add" lay-event="add">添加</button>
+                <button class="layui-btn layui-btn-primary layui-btn-sm" id="add" lay-event="add">添加</button>
             </div>
         </script>
         <script id="bar" type="text/html">
@@ -68,11 +68,11 @@
                         [
                             { field: 'Id', title: '编号', width: 80, fixed: 'left', align: 'center', type: 'numbers', unresize: true, },
                             { field: 'Item', title: '违反行为' },
+                            { field: 'WFFG', title: '违反法规', width: 200 },
                             { field: 'CFZL', title: '处罚种类及幅度', width: 200 },
                             { field: 'CFYJ', title: '处罚依据', width: 200 },
                             { field: 'CFYJYW', title: '处罚依据原文', width: 200 },
-                            { field: 'WFFG', title: '违反法规', width: 200 },
-                            { field: 'WFFGYW', title: '违反法规原文', width: 200 },
+                     
                             { field: 'LX', title: '类型', width: 80 },
                             { fixed: 'right', title: '操作', width: 200, toolbar: '#bar', align: 'center' }
                         ]

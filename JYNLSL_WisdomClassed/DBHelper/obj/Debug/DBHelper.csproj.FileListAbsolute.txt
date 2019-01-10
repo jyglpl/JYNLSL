@@ -18,13 +18,6 @@ D:\ASP\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csproj.CoreCompileInputs
 D:\ASP\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csproj.CopyComplete
 D:\ASP\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.dll
 D:\ASP\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.pdb
-D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\bin\Debug\DBHelper.dll
-D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\bin\Debug\DBHelper.pdb
-D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\bin\Debug\MySql.Data.dll
-D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csproj.CoreCompileInputs.cache
-D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csproj.CopyComplete
-D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.dll
-D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.pdb
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\bin\Debug\DBHelper.dll
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\bin\Debug\DBHelper.pdb
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\bin\Debug\MySql.Data.dll
@@ -33,3 +26,10 @@ E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csproj.Co
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.dll
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.pdb
 E:\Application\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csprojAssemblyReference.cache
+D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\bin\Debug\DBHelper.dll
+D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\bin\Debug\DBHelper.pdb
+D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\bin\Debug\MySql.Data.dll
+D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csproj.CoreCompileInputs.cache
+D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.csproj.CopyComplete
+D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.dll
+D:\ASP\JYNLSL\JYNLSL_WisdomClassed\DBHelper\obj\Debug\DBHelper.pdb

@@ -91,6 +91,7 @@
     <Compile Include="Crm\CrmUserMenuDal.cs" />
     <Compile Include="Crm\CrmUserRoleDal.cs" />
     <Compile Include="DalImp\BaseDalImp.cs" />
+    <Compile Include="EnterpriseLibrary\EnterpriseLibraryDal.cs" />
     <Compile Include="IDal\IBaseDal.cs" />
     <Compile Include="LawManger\LawMangerDal.cs" />
     <Compile Include="OA\DocNotfPersonDal.cs" />

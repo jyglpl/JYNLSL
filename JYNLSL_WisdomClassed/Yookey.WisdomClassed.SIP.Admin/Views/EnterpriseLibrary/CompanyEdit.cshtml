@@ -1,0 +1,372 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>添加删除权利事项</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
+
+    <!-- LayUI表单 -->
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+</head>
+<body>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+
+    </fieldset>
+    <form class="layui-form">
+
+
+        <div class="layui-form-item" lay-filter="test">
+            <label class="layui-form-label" style="width: 140px">监管对象类型：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <select id="companyType" name="companyType" lay-verify="companytype">
+                        <option value=""></option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">监管对象性质：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <select id="companyNature" name="companyNature" lay-verify="companynature">
+                        <option value=""></option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">产品类型：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" id="checkProduct" style="width: 90%">
+
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">企业规模：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <select id="companySize" name="companySize" lay-verify="companysize">
+                        <option value=""></option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">统一社会信用代码   （工商登记注册码）</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <input type="text" name="companyPermitNum"  lay-verify="companypermitNum" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">企业名称：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <input type="text" name="companyName"  lay-verify="companyname" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">组织机构代码证号：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <input type="text" name="companyCardNum"  lay-verify="companycardnum" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">许可证：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <input type="text" name="companyPermitNum"  lay-verify="companypermitnum" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">街道：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <select id="companyStreet" name="companyStreet" lay-verify="companystreet">
+                        <option value=""></option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">企业地址：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <input type="text" name="companyAddress"  lay-verify="companyaddress" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">法定代表人/负责人：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <input type="text" name="companyLegalPerson"  lay-verify="companylegalperson" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">法定代表人电话：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <input type="text" name="legalPersonPhone"  lay-verify="legalpersonphone" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">办公电话：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <input type="text" name="phone"  lay-verify="iphone" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">企业联系人：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <input type="text" name="companyContacts"  lay-verify="companycontacts" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px">是否重点监管：</label>
+            <div class="layui-input-block">
+
+                <div class="layui-input-inline" style="width: 90%">
+                    <input name="isImportant" title="是" type="radio" value="1">
+                    <input name="isImportant" title="否" type="radio" checked="" value="0">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 140px"></label>
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="add" lay-submit="">添加</button>
+
+            </div>
+        </div>
+    </form>
+
+
+    <script src="~/Content/layui/layui.js" charset="utf-8"></script>
+
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script type="text/javascript">
+
+
+        layui.use(['form','element'],
+            function() {
+                var form = layui.form,
+                    element = layui.element,
+                    layer = layui.layer,
+                    $ = layui.jquery;
+                var index = parent.layer.getFrameIndex(window.name);
+
+
+
+                //自定义验证规则
+
+                form.verify({
+                    companyname: function (value) {
+                        if (value.length < 1) {
+                            return '企业名称必填!！';
+                        }
+                    },
+                    companytype: function (value) {
+                        if (value.length < 1) {
+                            return '监管对象类型必填!！';
+                        }
+                    },
+                    companynature: function (value) {
+                        if (value.length < 1) {
+                            return '监管对象类型必填!！';
+                        }
+                    },
+
+                });
+
+
+                //绑定监管对象类型
+                $.ajax({
+                    url: "@Url.Action("BindCompantType", "EnterpriseLibrary")",
+                    type: "post",
+                    dataType: "json",
+                    data: {},
+                    success: function (data) {
+  
+                        var html = '';
+                        html += '<option value>请选择</option>';
+                        $.each(data,
+                            function(i, item) {
+                                //$("#companyType").append("<option value=" + item.RsValue + ">" + item.RsKey + "</option>");
+                                html += "<option value=" + item.RsValue + ">" + item.RsKey + "</option>";
+                            });
+                        $("#companyType").html(html);
+         
+                        form.render();
+
+                    }
+                });
+
+                //绑定监管对象性质
+                $.ajax({
+                    url: "@Url.Action("BindCompantNature", "EnterpriseLibrary")",
+                    type: "post",
+                    dataType: "json",
+                    data: {},
+                    success: function(data) {
+                        var element = layui.element;
+                        $.each(data,
+                            function(i, item) {
+                                $("#companyNature").append("<option value=" + item.RsValue + ">" + item.RsKey + "</option>");
+                            });
+                   
+                        form.render();
+
+                    }
+                });
+
+                //绑定企业规模
+                $.ajax({
+                    url: "@Url.Action("BindCompanySize", "EnterpriseLibrary")",
+                    type: "post",
+                    dataType: "json",
+                    data: {},
+                    success: function(data) {
+
+                        $.each(data,
+                            function(i, item) {
+                                $("#companySize").append("<option value=" + item.RsValue + ">" + item.RsKey + "</option>");
+                            });
+               
+
+                        form.render();
+                    }
+                });
+
+                //绑定街道
+                $.ajax({
+                    url: "@Url.Action("BindCompanyStreet", "EnterpriseLibrary")",
+                    type: "post",
+                    dataType: "json",
+                    data: {},
+                    success: function(data) {
+
+                        $.each(data,
+                            function(i, item) {
+                                $("#companyStreet").append("<option value=" + item.RsValue + ">" + item.RsKey + "</option>");
+                            });
+                        form.render();
+
+
+                    }
+                });
+
+                //绑定产品类型
+                $.ajax({
+                    url: "@Url.Action("BindProductType", "EnterpriseLibrary")",
+                    type: "post",
+                    dataType: "json",
+                    data: {},
+                    success: function(data) {
+                        var html = '';
+                        $.each(data,
+                            function(i, item) {
+                                html += '<input type="checkbox" name="like[product]" title="' + item.RsKey + '" value="' + item.RsValue +'" >';
+                            });
+                        $("#checkProduct").html(html);
+                        form.render();
+
+
+                    }
+                });
+
+ 
+
+
+                //监听提交
+                form.on('submit(add)',
+                    function(data) {
+
+                        layer.confirm('确定添加经营单位？',
+                            {
+                                btn: ['确定', '取消'] //按钮
+                            },
+                            function() {
+                                var arr = new Array();
+                                $("input:checkbox[name='like[product]']:checked").each(function(i){
+                                    arr[i] = $(this).val();
+                                });
+                                data.field.like = arr.join(",");//将数组合并成字符串
+                             
+            
+                                $.ajax({
+                                    type: "POST",
+                                    url: "@Url.Action("CompanyAdd", "EnterpriseLibrary")",
+                                    data: data.field,
+                                    dataType: "json",
+                                    success: function(data) {
+                                        if (data == '1') {
+                                            parent.layer.msg('添加成功');
+                                            parent.$('#isSubmit').val("1");
+                                            parent.layer.close(index);
+                 
+                                        }
+                                }
+                            });
+                        }, function(){
+                            //取消什么都不做
+                        });
+                        return false;
+                    });
+
+            });
+
+
+
+    </script>
+
+</body>
+</html>

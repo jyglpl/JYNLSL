@@ -85,6 +85,7 @@
     <Compile Include="Crm\CrmUserEntity.cs" />
     <Compile Include="Crm\CrmUserMenuEntity.cs" />
     <Compile Include="Crm\CrmUserRoleEntity.cs" />
+    <Compile Include="EnterpriseLibrary\EnterpriseLibraryEntity.cs" />
     <Compile Include="IModel\IBaseModel.cs" />
     <Compile Include="LawManger\LawMangerEntity.cs" />
     <Compile Include="ModelImp\BaseModel.cs" />
