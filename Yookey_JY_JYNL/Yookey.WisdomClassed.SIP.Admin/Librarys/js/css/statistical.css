@@ -1,0 +1,285 @@
+.statiscalTop {
+  width: 100%;
+  height: 45px;
+  background-color: #f2f6fc;
+  overflow: hidden;
+  border-bottom: 1px solid #bfbfbf;
+}
+.statiscalTop ul li {
+  float: left;
+}
+.statiscalTop ul li a {
+  display: block;
+  padding: 0px 10px;
+  height: 45px;
+  line-height: 45px;
+  color: #212429;
+  font-size: 16px;
+}
+.statiscalTop ul li a:hover {
+  color: #212429;
+}
+.statiscalTop ul li .chooseTwoColor {
+  color: #ff5353;
+}
+.statiscalIcon {
+  background-color: #fff;
+}
+.statiscalIcon .col-md-1-5 {
+  width: 20%;
+  float: left;
+}
+.statiscalIcon .col-xs-1-5,
+.statiscalIcon .col-sm-1-5,
+.statiscalIcon .col-md-1-5,
+.statiscalIcon .col-lg-1-5 {
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+}
+.statiscalIcon .statisBox {
+  width: 100%;
+  height: 145px;
+  background-color: #f9f9f9;
+  margin: 20px 0px;
+  padding: 27px;
+}
+.statiscalIcon .statisBox p {
+  float: left;
+}
+.statiscalIcon .statisBox p:last-child {
+  margin-left: 20px;
+}
+.statiscalIcon .statisBox p:last-child span {
+  display: block;
+  color: #404040;
+  font-size: 22px;
+}
+.statiscalIcon .statisBox p:last-child span:first-child {
+  color: #939393;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+@media (min-width: 768px) {
+  .col-sm-1-5 {
+    width: 20%;
+    float: left;
+  }
+}
+@media (min-width: 992px) {
+  .col-md-1-5 {
+    width: 20%;
+    float: left;
+  }
+}
+@media (min-width: 1200px) {
+  .col-lg-1-5 {
+    width: 20%;
+    float: left;
+  }
+}
+.statisticalList {
+  background-color: #fff;
+  padding: 0px 15px;
+}
+.statisticalList .tableTitle {
+  background-color: #f9f9f9;
+  width: 100%;
+  height: 45px;
+  border: 1px solid #e0e6ed;
+  border-bottom: none;
+  border-radius: 3px;
+  color: #212529;
+  font-size: 18px;
+}
+.statisticalList .tableTitle span {
+  line-height: 45px;
+  padding-left: 15px;
+}
+.statisticalList .tableTitle span:nth-child(1) {
+  display: inline-block;
+  width: 20%;
+  height: 45px;
+  border-right: 1px solid #e0e6ed;
+}
+.statisticalList .tableTitle span:nth-child(2) {
+  display: inline-block;
+  width: 39%;
+  height: 45px;
+  border-right: 1px solid #e0e6ed;
+}
+.statisticalList .tableTitle span:nth-child(3) {
+  display: inline-block;
+  width: 39%;
+  height: 45px;
+}
+.statisticalList table {
+  margin-bottom: 0px;
+}
+.statisticalList table thead tr th:nth-child(3) {
+  width: 9.8%;
+}
+.statisticalList table thead tr th:nth-child(7) {
+  width: 11.3%;
+}
+.statisticalList .tableTotal {
+  width: 100%;
+  height: 60px;
+  background-color: #8e99ab;
+}
+.statisticalList .tableTotal span {
+  color: #fff;
+  font-size: 20px;
+  display: inline-block;
+  height: 60px;
+  line-height: 60px;
+  border-left: 1px solid #fff;
+  width: 9.5%;
+  padding-left: 15px;
+}
+/***********其他部门列表*********/
+.remindTitle {
+  width: 100%;
+  height: 45px;
+  background-color: #f2f6fc;
+  overflow: hidden;
+  border: 1px solid #bfbfbf;
+  line-height: 45px;
+  border-bottom: none;
+  padding: 0px 20px;
+}
+.remindTitle .remind {
+  font-size: 20px;
+  color: #fd878f;
+  float: left;
+}
+.remindTitle p {
+  float: right;
+}
+.remindTitle p span {
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+}
+.remindTitle p span:nth-child(1) {
+  color: #ff5353;
+}
+.remindTitle p span:nth-child(2) {
+  color: #16c671;
+}
+.listBoxOther {
+  background-color: #f2f8fc;
+  border: 1px solid #bfbfbf;
+  min-height: 500px;
+}
+.listBoxOther ul li {
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #bfbfbf;
+}
+.listBoxOther ul li a {
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+  line-height: 50px;
+  padding: 0px 20px;
+  overflow: hidden;
+}
+.listBoxOther ul li a:hover {
+  color: inherit;
+}
+.listBoxOther ul li a .childFirst {
+  color: #4b4e53;
+  margin-left: 15px;
+  font-weight: 600;
+}
+.listBoxOther ul li a .childSecond {
+  margin-left: 15px;
+  display: inline-block;
+  width: 40%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  vertical-align: bottom;
+  color: #a7b1bf;
+}
+.listBoxOther ul li a .childDate {
+  color: #a7b1bf;
+  margin-right: 20px;
+}
+.listBoxOther ul li a input {
+  width: 20px;
+  height: 20px;
+}
+/*****统计**************/
+.contaSA {
+  width: 100%;
+  background-color: #fff;
+}
+.contaSA .barT {
+  color: #a2a2a2;
+  font-size: 16px;
+  margin: 10px;
+}
+.contaSA .statisticalOne {
+  width: 100%;
+  border: 1px solid #cecece;
+  border-top: 1px solid #3189e8;
+}
+.contaSA .statisticalOne .barBox {
+  width: 100%;
+  background-color: #f8f8f8;
+  height: 100px;
+  border-top: 1px solid #f8f8f8;
+}
+.contaSA .statisticalOne .barBox .progressBox {
+  width: 50%;
+  margin: 50px 30px 30px 30px;
+  position: relative;
+}
+.contaSA .statisticalOne .barBox .progressBox > span {
+  position: absolute;
+  right: 0px;
+  top: -30px;
+}
+.contaSA .statisticalOne .btnBox {
+  margin: 40px 30px 30px 0px;
+}
+.contaSA .statisticalOne #picOne,
+.contaSA .statisticalOne #picThree,
+.contaSA .statisticalOne #picFive {
+  width: 100%;
+  height: 400px;
+}
+.contaSA .statisticalTwo {
+  width: 100%;
+  border: 1px solid #cecece;
+  border-top: 1px solid #3189e8;
+  margin-top: 42px;
+}
+.contaSA .statisticalTwo .barBox {
+  width: 100%;
+  background-color: #f8f8f8;
+  height: 50px;
+  border-top: 1px solid #f8f8f8;
+}
+.contaSA .statisticalTwo .barBox span {
+  width: 100px;
+  height: 50px;
+  display: inline-block;
+  line-height: 50px;
+  color: #212529;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+.contaSA .statisticalTwo .barBox .colorWhit {
+  background-color: #fff;
+}
+.contaSA .statisticalTwo #picTwo,
+.contaSA .statisticalTwo #picFour,
+.contaSA .statisticalTwo #picSix {
+  width: 100%;
+  height: 450px;
+}

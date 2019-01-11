@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>双随机</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link href="@Url.Content("~/Librarys/css/chosen.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Librarys/css/sipac.css")" rel="stylesheet">
+
+    <link href="@Url.Content("~/Librarys/css/bootstrap.min.css")" rel="stylesheet" />
+    @*<link href="~/Content/Librarys/own/css/bootstrap.css" rel="stylesheet" />*@
+
+    <link href="~/Content/Styles/common.css" rel="stylesheet" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/common.js")"></script>
+    <!--[if lt IE 8]>
+    <![endif]-->
+    <style>
+         .btnSearch {
+    display: inline-block;
+    border: none;
+    /* float: left; */
+    font: 16px/30px "微软雅黑","Microsoft YaHei";
+    color: #FFF;
+    background: #CBCBCB;
+    padding: 0 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #0b659e;
+        }
+
+         .btnSearch:hover {
+            background: #0576bf;
+        }
+    </style>
+    <script>
+
+        function ShowPerson() {
+            //var num = $("#partnerCount").val();
+            //if (num.length != 0) {
+            //    reg = /^[-+]?\d*$/;
+            //    if (!reg.test(num)) {
+            //        alert("对不起，您输入的搭档数格式不正确!");
+            //        return;
+            //    }
+            //}
+            
+            //if (num == null || num == "") {
+            //    alert('提示：请填写搭档数！');
+            //    return;
+            //}
+            DialogShow("@Url.Action("ChoosePerson", "DoubleRandom")?num=2", "选择执法人员", "确定", "930px", "680px");
+        }
+
+
+
+
+        function ShowObject() {
+            console.log(1)
+            var num = $("#RandomType").val();
+            DialogShow("@Url.Action("ChooseObject", "DoubleRandom")?num=" + num, "选择执法对象", "确定", "930px", "680px");
+        }
+
+        function Loading() {
+            var checkMemberIds = $("#GroupIds").val();
+            var checkObjIds = $("#objIdList").val();
+            if (checkMemberIds == null || checkMemberIds == "") {
+                alert('提示：请抽取抽查人员！');
+                return;
+            }
+            if (checkObjIds == null || checkObjIds == "") {
+                alert('提示：请抽取抽查对象！');
+                return;
+            }
+            SaveResult();
+           
+        }
+
+        function SaveResult() {
+
+            var checkMembers = $("#GroupMembers").val();
+            var checkMemberIds = $("#GroupIds").val();
+            var checkObjs = $("#objNameList").val();
+            var checkObjIds = $("#objIdList").val();
+            var checkObjTeams = $("#objTeamList").val();
+            var checkObjTypes = $("#objTypeList").val();
+            var type = $("#RandomType").val();
+            if (checkMemberIds == null || checkMemberIds=="") {
+                alert('提示：请抽取抽查人员！');
+                return;
+            }
+            if (checkObjIds == null || checkObjIds == "") {
+                alert('提示：请抽取抽查对象！');
+                return;
+            }
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: '@Url.Action("SaveRandomResult", "DoubleRandom")',
+                data: { checkMemberIds: checkMemberIds, checkMembers: checkMembers, checkObjIds: checkObjIds, checkObjs: checkObjs, checkObjTeams: checkObjTeams, checkObjTypes: checkObjTypes, type: type },
+                async: false,
+                datatype: 'json',
+                success: function (data) {
+                    if (data.rtState == 1) {
+                        DialogShow("@Url.Action("Loading", "DoubleRandom")?Id=" + data.rtMsrg + "&Type=" + type, "正在抽取", "确定", "800px", "220px");
+                        $("#operateUser-btn").attr("disabled", "disabled");
+                        $("#cancel").hide();
+                    }
+                    else {
+                        alert(data.rtMsrg);
+                    }
+
+                }
+            });
+
+        }
+        //function Save() {
+        //    //alert(11111);
+        //}
+        function GetResult() {
+            
+            var type=$("#RandomType").val();
+            var url='@Url.Action("DoubleRandomResult", "DoubleRandom")?type='+type;
+            location.href = url;
+        }
+
+    </script>
+</head>
+<body class="sipac_full">
+    <!-- Wrap all page content here -->
+    <div class="sipac_wrap">
+
+        <div class="sipac_head">
+            <div class="s_h_nav">
+                <ul class="mb0">
+                    <li>
+                        <a class="active" href="DoubleRandomIndex">双随机抽取</a>
+                    </li>
+                    <li>
+                        <a href="ObjectManager">对象管理</a>
+                    </li>
+                    <li>
+                        @*<a href="DoubleRandomResult">抽查结果</a>*@
+                        <a onclick="GetResult()">抽查结果</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="sipac_body">
+            <div class="sipac_menu">
+            </div>
+            <div class="sipac_container">
+                <div class="sipac_crumbs hide">
+                    <a class="s_c_back" href="javascript:void(0);" title="返回">&lt;</a><div class="s_c_cont"><a href="javascript:void(0);">栏目一</a><em> &gt;&gt; </em>新建相关内容</div>
+                </div>
+                <div class="sipac_selectbox">
+                    <div class="block"></div>
+                    <div class="s_sb_cont sipac_editbox sipac_form" style="height: 400px;border:none">
+                        <input id="RandomType" type="hidden" value="@ViewBag.Type" />
+                        <div style="margin-top: 10px; margin-left: 20px;height:50px;">
+
+                            @*<input id="partnerCount" class="s_input" type="text" style="width: 100px; margin-left: 10px;" >*@
+                            
+                            <button class="sipac_btn s_b_submit" style="float: right; margin-right: 20px; width: 150px;" onclick="Loading()">抽取</button>
+                        </div>
+                        
+                        <!--抽查人员开始-->
+                        <div class="doubleRandomDiv" id="checkMembers" style="margin-top:80px;">
+                            <div class="doubleRandomDivHeader" style="position:absolute;top:10px;left:10px;"><span>抽查人员</span></div>
+                            <div class="doubleRandomDivHeader"><span id="reCQ" style="cursor:pointer; display:none;" ><button onclick="ShowPerson()" class="btn btn-primary" style="margin-top:10px">重新抽取</button></span></div>
+                            <div style="position:absolute;top:0;left:0;width:100%;height:100%;text-align:center;" class="imgzhezhao">
+                                <div class="doubleRandomDivImg" id="memberImg" style="float:none;margin-top:60px;"></div>
+                                <div class="doubleRandomDivTitle" id="memberCQ"><span>尚未抽取执法人员</span><br><button class="btnSearch" onclick="ShowPerson()" style="margin-top:10px">抽取人员</button></div>
+                            </div>
+                            @Html.Hidden("GroupIds")
+                            @Html.Hidden("GroupMembers")
+                        </div>
+                        <!--抽查人员结束-->
+
+                        <!--抽查对象开始-->
+                        <div class="doubleRandomDiv" id="objString" style="margin-top:80px;">
+                            <input type="hidden" id="objIdList" value="" />
+                            <input type="hidden" id="objTeamList" value="" />
+                            <input type="hidden" id="objTypeList" value="" />
+                            <input type="hidden" id="objNameList" value="" />
+
+                            <div class="doubleRandomDivHeader" style="position:absolute;top:10px;left:10px;"><span>抽查对象</span></div>
+                            <div class="doubleRandomDivHeader"><span id="reCQDX" style="cursor:pointer; display:none;" ><button onclick="ShowObject()" class="btn btn-primary" style="margin-top:10px">重新抽取</button></span></div>
+                            <div style="position:absolute;top:0;left:0;width:100%;height:100%;text-align:center;" class="piczhezhao">
+                                <div class="doubleRandomDivImg" id="objImg" style="margin-top:60px;"></div>
+                                <div class="doubleRandomDivTitle" id="objCQ"><span>尚未抽取执法对象</span><br><button class="btnSearch"  onclick="ShowObject()" style="margin-top:10px">抽取对象</button></div>
+                            </div>
+                        </div>
+                        <!--抽查对象结束-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @{Html.RenderPartial("../Shared/Dialog");}
+
+</body>
+<script type="text/javascript" src="@Url.Content("~/Librarys/js/jquery-1.9.1.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Librarys/js/bootstrap.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Librarys/js/chosen.jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Librarys/js/main.js")"></script>
+
+<script>
+    
+
+
+
+
+</script>
+</html>

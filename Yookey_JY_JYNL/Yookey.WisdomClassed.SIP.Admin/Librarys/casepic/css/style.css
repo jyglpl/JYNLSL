@@ -1,0 +1,14 @@
+﻿@charset "utf-8";
+.kePublic{position: relative; background:#FFF;margin-top: 30px;margin-bottom: 30px;}
+/* 效果CSS开始 */
+.mkeFocus { height: 155px; width: 240px; border: 1px solid #C9CACB; border-radius:8px; padding-top: 7px; margin:0 auto }
+.mkeUl { margin: 0px auto; height: 155px; width: 230px; overflow: hidden; position: relative; }
+.mkeUl ul { position: absolute; left: 0px; top: 0px; height: 155px; }
+.mkeUl ul li { float: left; text-align: center; font: 20px "微软雅黑"; }
+.mkeUl ul li img { margin-bottom: 18px; }
+.mkeNum { background: #FFF url(../images/banNum.jpg); height: 35px; width: 37px; position: absolute; z-index: 1; left: 13px; bottom: 4px; font: 14px Arial; }
+.mke_ns1 { line-height: 16px; text-align: center; height: 16px; width: 16px; position: absolute; left: 0px; top: 0px; }
+.mke_ns2 { line-height: 16px; color: #9FA0A0; text-align: center; display: block; height: 16px; width: 16px; position: absolute; right: 0px; bottom: 0px; }
+.mkeLbtn { background: url(../images/kelBtn.png) no-repeat; height: 49px; width:18px; position: absolute; left: 6px; top: 50px; cursor: pointer; z-index: 10; }
+.mkeRbtn { position: absolute; top: 50px; right: 6px; background: url(../images/kerBtn.png) no-repeat; height: 49px; width: 18px; cursor: pointer; z-index: 10; }
+/* 效果CSS结束 */

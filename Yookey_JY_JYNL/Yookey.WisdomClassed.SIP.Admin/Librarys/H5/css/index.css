@@ -1,0 +1,206 @@
+body {
+  font-family: "PingFang SC", 'microsoft yahei';
+  font-size: 12px;
+}
+.ui-list-img {
+  height: 85px;
+}
+.icText {
+  font-size: 2rem;
+  text-align: center;
+  line-height: 60px;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  clear: both;
+  visibility: visible;
+}
+.flowPathContent {
+  width: 100%;
+}
+.flowPathContent ul {
+  background-color: #fff;
+}
+.flowPathContent ul li {
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e5e5e5;
+}
+.flowPathContent ul li .titleSmall {
+  font-size: 0.8rem;
+  color: #000000;
+  float: left;
+  width: 20%;
+}
+.flowPathContent ul li span {
+  color: #999;
+  font-size: 0.8rem;
+  float: right;
+  width: 79%;
+  text-align: right;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.flowPathContent ul li .finish {
+  color: #0b8b08;
+}
+.flowPathContent ul .textContent {
+  height: initial;
+  color: #999;
+  font-size: 0.8rem;
+  line-height: 25px;
+  padding: 10px;
+}
+.flowPathContent ul .imgLi {
+  height: initial;
+}
+.flowPathContent ul .imgLi div img {
+  width: 25%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.flowPathContent .titleTwo {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  color: #888888;
+  font-size: 0.7rem;
+}
+.flowPathContent .liChildren {
+  padding: 0px;
+  font-size: 0.8rem;
+}
+.imgList {
+  width: 100%;
+}
+.imgList li {
+  width: 33%;
+  float: left;
+  margin-bottom: 10px;
+}
+.imgList li a {
+  color: #999;
+}
+.imgList li img {
+  width: 50%;
+  margin: 0px auto;
+  display: block;
+}
+.imgList li span {
+  color: #999;
+  font-size: 0.7rem;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.process {
+  border-left: 2px solid #d5d7d6;
+  padding: 10px 0 10px 15px;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+.process .round {
+  position: absolute;
+  top: 36%;
+  left: -8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #2d72f1;
+}
+.process .con {
+  background: white;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 1px 4px #333333;
+  -webkit-box-shadow: 0px 1px 4px #333333;
+  box-shadow: 0px 1px 4px #333333;
+  padding: 10px 5px 5px 5px;
+}
+.process .font1 {
+  color: #333;
+  font-size: 16px;
+}
+.process .font2 {
+  font-size: 16px;
+  color: #6c6c6c;
+}
+.process .mb10 {
+  margin-bottom: 10px;
+}
+#proHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background: #255B96;
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+  height: 45px;
+  line-height: 45px;
+}
+#proHeader .send {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  display: block;
+  width: 20px;
+}
+#proHeader .print {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  font-size: 14px;
+}
+.mt8 {
+  margin-top: 8px;
+}
+.provideCon {
+  padding: 0 5px;
+}
+.provideCon .provide {
+  color: #6c6c6c;
+  font-size: 18px;
+  padding: 5px 0;
+  box-shadow: 0 2px 1px #ccc;
+  margin-bottom: 8px;
+}
+.provideCon .provide label {
+  float: left;
+  width: 25%;
+  display: block;
+}
+.provideCon .provide section {
+  float: left;
+  width: 75%;
+}
+.provideCon .provideBot {
+  background: white;
+  padding: 8px;
+  font-size: 16px;
+  color: #757575;
+  margin-bottom: 8px;
+}
+.provideCon .provideBot .provideSet label {
+  float: left;
+  width: 25%;
+  display: block;
+}
+.provideCon .provideBot .provideSet section {
+  float: left;
+  width: 75%;
+}

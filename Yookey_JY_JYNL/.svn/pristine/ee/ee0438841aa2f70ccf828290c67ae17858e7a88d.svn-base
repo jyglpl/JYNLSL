@@ -1,0 +1,563 @@
+﻿
+<!DOCTYPE html>
+@model Yookey.WisdomClassed.SIP.Model.Case.PunishitemEntity
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>自由裁量添加</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+      <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--表格组件end-->
+    <!--树形组件start-->
+    <link href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/tree/tree.js")"></script>
+    <!--树形组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件start-->
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Loadlayout();
+
+            var queryid = GetQuery("id");
+            if (queryid != "0" && queryid != "")
+            {
+                $("#TabCustomAttribute").show();
+                BindDropItem("#Yiyu_Measurement", "Measurement", "请选择");
+                BindDropItem("#Yiyu_PunishType", "PunishType", "请选择");
+                
+                //GetGrid_yiju(queryid);
+                //$("#Yiyu_ItemNo").val($("#Num").val());
+                //$("#Yiyu_ItemId").val($("#Id").val());
+            }
+            $("#TabCustomAttribute").click(function () {
+                GetGrid_yiju(queryid);
+                $("#Yiyu_ItemNo").val($("#ItemNo").val());
+                $("#Yiyu_ItemId").val($("#Id").val());
+            });
+        });
+    </script>
+    <style type="text/css">
+        textarea {
+            width:100%;
+            height:30px;
+        }
+        .form .formTitle {
+            background: #F7F7F7;            
+            border-top: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding: 0px;
+            margin: 0px;
+            height: 24px;
+            white-space: nowrap;
+            font-weight: normal;
+            text-align: right;
+            padding-right: 5px;
+            padding-left: 5px;
+            width: 162px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        
+<script type="text/javascript">
+    $(function () {
+       // BindCombobox();
+        //InitControl();
+    })
+    //初始化绑定下拉框
+    //function BindCombobox() {
+    //    //公司分类
+    //    BindDropItem("#Category", "CompanyCategory", "==请选择=");
+    //    //公司性质
+    //    BindDropItem("#Nature", "CompanyNature", "==请选择=");
+    //    //所在省
+    //    $("#ProvinceId").append("<option value=''>==请选择==</option>");
+    //    $("#CityId").append("<option value=''>==请选择==</option>");
+    //    $("#CountyId").append("<option value=''>==请选择==</option>");
+    //    AjaxJson("/Utility/GetProvinceCityListJson", { ParentId: 0 }, function (DataJson) {
+    //        $.each(DataJson, function (i) {
+    //            $("#ProvinceId").append($("<option></option>").val(DataJson[i].Code).html(DataJson[i].FullName));
+    //        });
+    //    })
+    //    //所在市
+    //    $("#ProvinceId").change(function () {
+    //        BindCityId();
+    //    });
+    //    //所在县区
+    //    $("#CityId").change(function () {
+    //        BindCountyId();
+    //    });
+    //}
+    ////所在市下拉框
+    //function BindCityId() {
+    //    $("#CityId").html("");
+    //    $("#CityId").append("<option value=''>==请选择==</option>");
+    //    AjaxJson("/Utility/GetProvinceCityListJson", { ParentId: $("#ProvinceId").val() }, function (DataJson) {
+    //        $.each(DataJson, function (i) {
+    //            $("#CityId").append($("<option></option>").val(DataJson[i].Code).html(DataJson[i].FullName));
+    //        });
+    //    })
+    //}
+    ////所在县区
+    //function BindCountyId() {
+    //    $("#CountyId").html("");
+    //    $("#CountyId").append("<option value=''>==请选择==</option>");
+    //    AjaxJson("/Utility/GetProvinceCityListJson", { ParentId: $("#CityId").val() }, function (DataJson) {
+    //        $.each(DataJson, function (i) {
+    //            $("#CountyId").append($("<option></option>").val(DataJson[i].Code).html(DataJson[i].FullName));
+    //        });
+    //    })
+    //}
+    //得到一个对象实体
+    function InitControl() {
+        if (!!GetQuery('KeyValue')) {
+            AjaxJson("/CommonModule/Company/SetCompanyForm", { KeyValue: GetQuery('KeyValue') }, function (data) {
+                SetWebControls(data);
+                BindCityId();
+                $("#CityId").val(data.CityId);
+                BindCountyId();
+                $("#CountyId").val(data.CountyId);
+            });
+        } else {
+            //显示顺序
+            AjaxJson("/CommonModule/Company/SortCode", {}, function (Data) {
+                $("#SortCode").val(Data);
+            })
+            if (!!GetQuery('CompanyId')) {
+                $("#ParentId").val(GetQuery('CompanyId'));
+            } else {
+                $("#ParentId").val(0);
+            }
+        }
+    }
+    //保存事件
+    function AcceptClick() {
+
+        
+        if (!CheckDataValid('#formmain')) {
+            return false;
+        }
+            //Loading(true, "正在提交数据...");
+            //window.setTimeout(function () {
+            //    var postData = GetWebControls("#form1");
+            //    postData["BuildFormJson"] = JSON.stringify(GetWebControls("#CustomAttribute"));
+            //    AjaxJson("/CommonModule/Company/SubmitCompanyForm?KeyValue=" + GetQuery('KeyValue'), postData, function (data) {
+            //        tipDialog(data.Message, 3, data.Code);
+            //        top.frames[tabiframeId()].windowload();
+            //        closeDialog();
+            //    });
+            //}, 200);
+        else {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: '@Url.Action("Add","PenaltyLaw")',
+                data: $('#formmain').serialize(),
+                async: false,
+                datatype: 'json',
+                success: function (data) {
+                    if (data.rtState == 0) {
+                        //top.$("#gridTable").trigger("reloadGrid");
+                        closeDialog();
+                    } else if (data == 'error') {
+                        alert("该用户存在！");
+
+                    }
+
+                    else {
+                        alert('保存出现异常,请联系管理员！');
+                    }
+                }
+            });
+        }        
+        
+
+    }
+
+    function GetGrid_yiju(id) {
+        $("#gridTable_yiju").jqGrid({
+            url: "@Url.Action("QueryListJsonRule","PenaltyLaw")?id=" + id,
+            queryParams: { id: id },
+            datatype: "json",
+            height: $(window).height() - 216,
+            width:730,
+            autowidth: true,
+            colModel: [
+                { label: "主键", name: "Id", index: "Id", hidden: true },
+                { label: "主表编号", name: "ItemId", index: "ItemId", hidden: true },
+                { label: "处罚内容", name: "PunishContent", index: "PunishContent", width: 150 },
+                { label: "处罚种类", name: "PunishType", index: "PunishType", width: 130 },
+                { label: "处罚标准上限", name: "PunishMax", index: "PunishMax", width: 150 },
+                { label: "处罚标准下限", name: "PunishMin", index: "PunishMin", width: 200 },
+                { label: "处罚计量单位", name: "Measurement", index: "Measurement", width: 100 },
+                { label: "排序编号", name: "OrderNo", index: "OrderNo", hidden: true },
+                { label: "状态", name: "RowStatus", index: "RowStatus", hidden: true }
+            ],
+            viewrecords: true,
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                GetDetail_yiju();
+            }
+
+        });
+    }
+
+    function GetDetail_yiju() {
+
+        $("#Yiyu_PunishType").val(GetJqGridRowValue("#gridTable_yiju", "PunishType"));
+        $("#Yiyu_Measurement").val(GetJqGridRowValue("#gridTable_yiju", "Measurement"));
+        $("#Yiyu_PunishMax").val(GetJqGridRowValue("#gridTable_yiju", "PunishMax"));
+        $("#Yiyu_PunishMin").val(GetJqGridRowValue("#gridTable_yiju", "PunishMin"));
+        $("#Yiyu_OrderNo").val(GetJqGridRowValue("#gridTable_yiju", "OrderNo"));
+        $("#Yiyu_RowStatus").val(GetJqGridRowValue("#gridTable_yiju", "RowStatus"));
+        $("#Yiyu_PunishContent").val(GetJqGridRowValue("#gridTable_yiju", "PunishContent"));
+        $("#Yiyu_Id").val(GetJqGridRowValue("#gridTable_yiju", "Id"));
+        $("#Yiyu_Version").val(GetJqGridRowValue("#gridTable_yiju", "Version"));
+
+    }
+</script>
+
+    <div id="message" style="display: none; padding: 1px; padding-bottom: 0px;"></div>
+    <div class="bd" style="border-bottom: none; margin: 1px;">
+        <div class="tipstitle_title settingtable bold bd todayInfoPanelTab rightPanelTitle_normal">
+            <div class="tab_list_top" style="position: absolute">
+                <div id="Tabbasic" class="tab_list bd actived" onclick="Tabchange('basic')">自由裁量项目编辑 </div>
+                <div id="TabCustomAttribute" class="tab_list bd " style="display:none" onclick="Tabchange('CustomAttribute')">处罚依据</div>
+            </div>
+        </div>
+    </div>
+    <div class="ScrollBar" style="margin: 1px;overflow:hidden;">
+        
+        <div id="basic" class="tabPanel">
+
+            @using (Html.BeginForm("Add", "PenaltyLaw", FormMethod.Post, new { @id = "formmain" }))
+            {
+                <table class="form">
+                <tr>
+                    <th class="formTitle">序号：
+                    </th>
+                    <td class="formValue">    
+                         @Html.TextBoxFor(t => t.Num, new {  @class="txt required",@datacol="yes",@err="序号", @checkexpession="NotNull"  })                       
+                    </td>
+                   <th class="formTitle">权力编码：
+                    </th>
+                    <td class="formValue">     
+                        @Html.TextBoxFor(t => t.ItemCode, new {  @class="txt required",@datacol="yes",@err="权力编码", @checkexpession="NotNull"  })                                           
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">案由编号：
+                    </th>
+                    <td class="formValue">
+                        @Html.TextBoxFor(t => t.ItemNo, new {  @class="txt required",@datacol="yes",@err="案由编号", @checkexpession="NotNull"  })
+                        
+                    </td>
+                    <th class="formTitle">权力类型：
+                    </th>
+                    <td class="formValue">
+                        
+                        @Html.DropDownListFor(t => t.ItemType, (ViewData["ItemType"] as IEnumerable<SelectListItem>),new { @class="txtselect",@datacol="yes",@err="案由编号", @checkexpession="NotNull"})
+                        
+                       
+                    </td>
+                </tr>
+               
+                <tr>
+                    <th class="formTitle">所属类型（大类）：
+                    </th>
+                    <td class="formValue">
+                        @Html.DropDownListFor(t => t.ClassNo, (ViewData["ClassNo"] as IEnumerable<SelectListItem>),new { @class="txtselect",@datacol="yes",@err="所属类型", @checkexpession="NotNull"})
+                        
+                    </td>
+                    <th class="formTitle">适用案由：</th>
+                    <td class="formValue">
+                        @Html.TextBoxFor(t => t.ItemName, new {  @class="txt required",@datacol="yes",@err="适用案由", @checkexpession="NotNull"  })                        
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">管理依据：</th>
+                    <td class="formValue">
+                        @Html.TextBoxFor(t => t.GistName, new {  @class="txt required",@datacol="yes",@err="管理依据", @checkexpession="NotNull"  })                        
+                        
+                    </td>
+                    <th class="formTitle">管理依据条款：</th>
+                    <td class="formValue">
+                         第 @Html.TextBoxFor(t => t.GistStrip, new {  @class="txt",@style="display:inline;width: 60px;height: 18px;border-bottom: 1px solid #ccc;line-height: 18px;text-align:center;" })条
+                         第 @Html.TextBoxFor(t => t.GistClause, new {  @class="txt",@style="display:inline;width: 60px;height: 18px;border-bottom: 1px solid #ccc;line-height: 18px;text-align:center;" })款
+                         第 @Html.TextBoxFor(t => t.GistItem, new {  @class="txt",@style="display:inline;width: 60px;height: 18px;border-bottom: 1px solid #ccc;line-height: 18px;text-align:center;" })项                        
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">法律责任：</th>
+                    <td class="formValue">
+                        @Html.TextBoxFor(t => t.DutyName, new {  @class="txt required",@datacol="yes",@err="法律责任", @checkexpession="NotNull"  }) 
+                    </td>
+                    <th class="formTitle">法律责任条款：</th>
+                    <td class="formValue">
+                         第 @Html.TextBoxFor(t => t.DutyStrip, new {  @class="txt",@style="display:inline;width: 60px;height: 18px;border-bottom: 1px solid #ccc;line-height: 18px;text-align:center;" })条
+                         第 @Html.TextBoxFor(t => t.DutyClause, new {  @class="txt",@style="display:inline;width: 60px;height: 18px;border-bottom: 1px solid #ccc;line-height: 18px;text-align:center;" })款
+                         第 @Html.TextBoxFor(t => t.DutyItem, new {  @class="txt",@style="display:inline;width: 60px;height: 18px;border-bottom: 1px solid #ccc;line-height: 18px;text-align:center;" })项                                                 
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">违法行为：
+                    </th>
+                    <td class="formValue" colspan="3">
+                        @Html.TextAreaFor(t => t.ItemAct, new {  @class="txtArea required",@datacol="yes",@err="违法行为", @checkexpession="NotNull"  })                                                
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">法律全文：</th>
+                    <td class="formValue" colspan="3">
+                        @Html.TextAreaFor(t => t.LawContent, new {  @class="txtArea"  })  
+                    </td>
+                   
+                </tr>
+                <tr>
+                    <th class="formTitle">处罚规定一：</th>
+                    <td class="formValue">
+                        @Html.TextAreaFor(t => t.StipulateFirst, new {  @class="txtArea required",@datacol="yes",@err="处罚规定一", @checkexpession="NotNull"  })  
+                        
+                    </td>
+                    <th class="formTitle">处罚规定二：</th>
+                    <td class="formValue">
+                        @Html.TextAreaFor(t => t.StipulateSecond, new {  @class="txtArea"  })                          
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">立案案情摘要：</th>
+                    <td class="formValue" colspan="3">
+                        @Html.TextAreaFor(t => t.ReCaseAbstract, new {  @class="txtArea"  })    
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">立案审批承办人意见：</th>
+                    <td class="formValue">
+                        @Html.TextAreaFor(t => t.ReOpinion, new {  @class="txtArea"  })    
+                    </td>
+                    <th class="formTitle">立案审批危害或损失情况：</th>
+                    <td class="formValue">
+                        @Html.TextAreaFor(t => t.ReHarm, new {  @class="txtArea"  })    
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">处理审批案情摘要：</th>
+                    <td class="formValue">                        
+                        @Html.TextAreaFor(t => t.HaCaseAbstract, new {  @class="txtArea"  })    
+                    </td>
+                    <th class="formTitle">处理审批承办人意见：</th>
+                    <td class="formValue">
+                        @Html.TextAreaFor(t => t.HaOpinion, new {  @class="txtArea"  })
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">结案审批案情摘要及调查经过：</th>
+                    <td class="formValue" >
+                        @Html.TextAreaFor(t => t.EndCaseAbstract, new {  @class="txtArea"  })
+                    </td>
+                    <th class="formTitle">结案审批处理或处罚情况：</th>
+                    <td class="formValue" >
+                        @Html.TextAreaFor(t => t.EndPunishments, new {  @class="txtArea"  })
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">结案审批执行情况：</th>
+                    <td class="formValue" >
+                        @Html.TextAreaFor(t => t.EndExecute, new {  @class="txtArea"  })                        
+                    </td>
+                    <th class="formTitle">结案审批复议和诉讼情况：</th>
+                    <td class="formValue" >
+                        @Html.TextAreaFor(t => t.EndLawsuit, new {  @class="txtArea"  })
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">结案审批承办人意见：</th>
+                    <td class="formValue"  colspan="3">
+                        @Html.TextAreaFor(t => t.EndOpinion, new {  @class="txtArea"  })
+                    </td>                    
+                </tr>
+                <tr>
+                    <th class="formTitle">处罚方法：</th>
+                    <td class="formValue"  colspan="3">
+                        @Html.TextAreaFor(t => t.PunishMethod, new {  @class="txtArea"  })
+                    </td>                    
+                </tr>
+                <tr>
+                    <th class="formTitle">笔录情况：</th>
+                    <td class="formValue"  colspan="3">
+                        @Html.TextAreaFor(t => t.Records, new {  @class="txtArea"  })
+                    </td>                     
+                </tr>
+                @Html.HiddenFor(t => t.Id)
+                @Html.HiddenFor(t => t.CreatorId)
+                @Html.HiddenFor(t => t.CreateBy)
+                @Html.HiddenFor(t => t.CreateOn)
+                @Html.HiddenFor(t => t.Version)
+            </table>
+            }
+        </div>
+        <!--处罚依据-->
+        <div id="CustomAttribute"  class="tabPanel" style="display: none;">
+            <form id="yiju_form" action="/PenaltyLaw/RuleAdd" method="post">
+            <table class="form">
+            <tr>
+
+                <th class='formTitle'>自由裁量序号：</th>
+                <td class='formValue'>
+                    <input id="Yiyu_Version" name="Version"  type="hidden"  />
+                    <input id="Yiyu_Id" name="Id"  type="hidden"  />
+                    <input id="Yiyu_ItemId" name="ItemId" class="notClear" value="" type="hidden"  />
+                    <input id="Yiyu_ItemNo" name="ItemNo" value="" readonly="readonly" type="text" class="notClear txt" />
+                </td>
+                <th class='formTitle'>处罚内容：</th>
+                <td class='formValue'>
+                    <input id="Yiyu_PunishContent" name="PunishContent"  type="text" class="txt" />
+                </td>
+            </tr>
+            <tr>
+
+                <th class='formTitle'>处罚种类：</th>
+                <td class='formValue'>
+                    <select id="Yiyu_PunishType" name="PunishType" style="font-family: '微软雅黑';" class="txtselect"></select>                                        
+                </td>
+                <th class='formTitle'>状态：</th>
+                <td class='formValue'>
+
+                    <select id="Yiyu_RowStatus" name="RowStatus" style="font-family: '微软雅黑';" class="txtselect">
+                        <option value="1">正常</option>
+                        <option value="2">隐藏</option>
+                    </select>
+
+                </td>
+            </tr>
+            <tr>
+                <th class='formTitle'>处罚计量单位：</th>
+                <td class='formValue'>
+                    <select id="Yiyu_Measurement" name="Measurement" style="font-family: '微软雅黑';" class="txtselect"></select>                    
+                </td>
+                <th class='formTitle'>排序编号：</th>
+                <td class='formValue'>
+                    <input id="Yiyu_OrderNo" name="OrderNo" type="text" class="txt" />
+                </td>
+            </tr>
+            <tr>
+                <th class='formTitle'>处罚标准上限：</th>
+                <td class='formValue'>
+                    <input id="Yiyu_PunishMax" name="PunishMax" type="text" class="txt" />
+                </td>
+                <th class='formTitle'>处罚标准下限：</th>
+                <td class='formValue'>
+                    <input id="Yiyu_PunishMin" name="PunishMin" type="text" class="txt" />
+                </td>
+            </tr>
+            <tr><td colspan="4" style="height:45px;" align="center">
+                <input id="Yiyu_btnCreate" type="button" style="margin-top:10px;" class="btnSearch" value="清 空" onclick="btn_YijuCreate()">
+                <input id="Yiyu_btnSave" type="button" style="margin-top:10px;" class="btnSearch" value="保存处罚依据" onclick="btn_YijuSave()">
+                <input id="Yiyu_btnDelete" type="button" style="margin-top:10px;" class="btnSearch" value="删 除" onclick="btn_YijuDelete()">
+            </td></tr>
+
+        </table>
+
+       
+            </form>
+           
+        <div id="grid_List_Yiju" class="topline">
+                <table id="gridTable_yiju"></table>
+        </div>
+
+        </div>
+    </div>
+
+
+    </div>
+    <script type="text/javascript">
+        function btn_YijuSave()
+        {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: '/PenaltyLaw/AddRule',
+                data: $('#yiju_form').serialize(),
+                async: false,
+                datatype: 'json',
+                success: function (data) {
+                    if (data.rtState == 0) {
+                        alert("保存成功");
+                        btn_Refresh();
+                    } else if (data == 'error') {
+                        alert("该用户存在！");
+
+                    }
+
+                    else {
+                        alert('保存出现异常,请联系管理员！');
+                    }
+                }
+            });
+        }
+        function btn_YijuDelete()
+        {
+            
+            var Id = GetJqGridRowValue("#gridTable_yiju", "Id");
+            if (typeof (Id) == "undefined")
+            {
+                alert("请选择您要删除的数据！");
+                return;
+            }
+            
+            if (confirm('您确定要删除该菜单吗？')) {
+                $.ajax({
+                    url: '/PenaltyLaw/DeleteRule?id=' + Id,
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data.rtState == 1) {
+                            var selectedId = $("#gridTable_yiju").jqGrid("getGridParam", "selrow");
+                            $("#gridTable_yiju").jqGrid('delRowData', selectedId);
+                            btn_YijuCreate();
+                        } else {
+                            alert('删除数据出现异常！');
+                        }
+                    }
+                });
+            }
+        }
+        function btn_YijuCreate()
+        {
+            $(':input', '#yiju_form')
+             .not(':button, :submit, :reset,.notClear')
+             .val('')
+             .removeAttr('checked')
+             .removeAttr('selected');
+
+        }
+
+        //刷新依据
+        function btn_Refresh() {
+            var queryid = GetQuery("id");
+            $("#gridTable_yiju").jqGrid('setGridParam', {
+                url: "/PenaltyLaw/QueryListJsonRule?id=" + queryid
+            }).trigger('reloadGrid');
+        }
+
+    </script>
+</body>
+</html>

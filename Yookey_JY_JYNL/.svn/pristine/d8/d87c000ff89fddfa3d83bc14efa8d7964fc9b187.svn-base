@@ -1,0 +1,351 @@
+﻿@using Yookey.WisdomClassed.SIP.Enumerate
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>行政许可综合查询</title>
+
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <link href="@Url.Content("~/Librarys/casepic/css/style.css")" rel="stylesheet" />
+
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--jqgrid表格组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+
+    <style type="text/css">
+        .ui-jqgrid .ui-jqgrid-htable th {
+            height: 28px;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+
+        .ui-th-column, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+            background: none;
+        }
+
+        .ui-jqgrid tr.jqgrow td {
+            white-space: normal !important;
+            height: 25px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+        });
+        function btn_back() {
+            window.location.href = "@Url.Action("ManagemenRight", "HomeIndex")";
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+        });
+
+        var lastSel;
+        //加载表格
+        function GetGrid() {
+          
+            console.log(secpType);
+            $("#gridTable").jqGrid({
+                url: '@Url.Action("QueryLicenseList", "LicenseApproval")',
+                datatype: "json",
+                postData:
+                   {
+                       caseStateType: '@((int)LicenseStateType.All)',
+                       dataSource: '2',
+                       
+                       },
+                height: $(window).height() - 186,
+                autowidth: true,
+                colModel: [
+                    { label: "主键", name: "Id", index: "Id", hidden: true },
+                    { label: "审批事项编码", name: "ItemCode", index: "ItemCode", hidden: true },
+                    { label: "办件编号", name: "LicenseNo", index: "LicenseNo", width: 150 },                    
+                    { label: "申请人", name: "ApplicantName", index: "ApplicantName", width: 200 },
+                    { label: "申请事项", name: "ItemName", index: "ItemName", width: 200 },
+                    { label: "事项内容", name: "Content", index: "Content", width: 150 },
+                    { label: "事项地址", name: "Adress", index: "Adress", width: 150 },
+                    { label: "申请日期", name: "ApplicationDate", index: "ApplicationDate", width: 120, sortable: false, align: 'center' }                    
+                ],
+                viewrecords: true,
+                rowList: [30, 50, 100, 500, 1000],
+                pager: "#gridPager",
+                rownumbers: true,
+                shrinkToFit: false,
+                gridview: true,
+                onSelectRow: function (rowid, iRow, iCol, e) {
+                    var id = GetJqGridRowValue("#gridTable", "Id");
+                    if (id && id !== lastSel) {
+                        lastSel = id;
+                    }
+                },
+                gridComplete: function () {
+
+                },
+                ondblClickRow: function (rowid, iRow, iCol, e) {
+                    btn_detail();
+                }
+            });
+        }
+
+
+        //设置状态类型
+        function SetCaseState(statetype) {
+            $("#CaseStateType").val(statetype);
+            Search();
+        }
+
+        //案件查询
+        function Search() {
+            var caseStateType = '@((int)LicenseStateType.All)';
+            var keyword = $("#keywords").val();
+            var licenseType = $("#LicenseType").val();
+            var startTime=$('#StartTime').val();
+            var endTime=$('#EndTime').val();
+            var secpType = $('#secpType option:selected').val();
+            $("#gridTable").jqGrid('setGridParam', {
+                url: '@Url.Action("QueryLicenseList", "LicenseApproval")',
+                postData:
+                {
+                    caseStateType: caseStateType,
+                    licenseType: licenseType,
+                    startTime:startTime,
+                    endTime:endTime,
+                    keyword: keyword,
+                    secpType: secpType
+                },
+                page: 1
+            }).trigger('reloadGrid');
+                GetCaseCount();
+            }
+
+            /*
+             * 审批事项受理登记
+             */
+            function btn_add() {
+                var url = '@Url.Action("LicenseAdd", "LicenseApproval")';
+                parent.AddTabMenu('LicenseAdd', url + '?rnd=' + Math.random(), '审批事项受理登记', 'messenger.png');
+            }
+
+
+            //案件详情信息
+            function btn_detail() {
+            
+                var id = GetJqGridRowValue("#gridTable", "Id");
+                var itemcode=GetJqGridRowValue("#gridTable", "ItemCode");
+                var url = '';
+                var title = '';
+                switch(itemcode)
+                {
+                    case 'JS050800ZJ-XK-0090':    //广告
+                        url = '@Url.Action("Entity", "LicenseOutDoor")';
+                    title = '户外广告设置审批';
+                    break;
+                case 'JS050800ZJ-XK-0190':    //大型广告
+                    url = '@Url.Action("Entity", "LicensePositionOutDoor")';
+                    title = '大型户外广告审批';
+                    break;
+                case 'JS050800ZJ-XK-0020':    //临时占道
+                    url = '@Url.Action("Entity", "LicenseJeeves")';
+                    title = '临时占道审批';
+                    break;
+            }
+            
+            if (id != '' && id != undefined) {
+                parent.AddTabMenu(itemcode+id, url + '?id='+id+'&rnd=' + Math.random(), title, 'messenger.png');
+            } else {
+                tipDialog("您没有选中任何项，请选择后再操作。", 3, -2);
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+    <div id="layout" class="layout">
+        <!--左边-->
+        <div class="layoutPanel layout-west">
+            <!--工具栏-->
+            <div class="tools_bar" style="border-top: none; margin-bottom: 0px;">
+                <div class="PartialButton">
+                    <a id="lr-replace" title="刷新当前(Ctrl+Q)" onclick="Replace()" class="tools_btn"><span><b style="background: url('@Url.Content("~/Content/Images/Icon16/arrow_refresh.png")') 50% 4px no-repeat;">刷新</b></span></a>
+                    <a id="lr-add" title="事项登记" onclick="btn_add()" class="tools_btn"><span><b style="background: url('@Url.Content("~/Content/Images/Icon16/add.png")') 50% 4px no-repeat;">事项登记</b></span></a>
+                    @if (ViewBag.BtnDelete)
+                    {
+                        <a id="lr-delete" title="删除办件" onclick="btn_delete() " class="tools_btn"><span><b style="background: url('@Url.Content("~/Content/Images/Icon16/DeleteRed.png")') 50% 4px no-repeat;">删除</b></span></a>
+                    }
+                    <a id="lr-detail" title="详细信息(Ctrl+X)" onclick="btn_detail()" class="tools_btn"><span><b style="background: url('@Url.Content("~/Content/Images/Icon16/application_view_detail.png")') 50% 4px no-repeat;">详细</b></span></a>
+                    <a id="lr-leave" title="关闭当前窗口(Esc)" onclick="btn_back()" class="tools_btn"><span><b style="background: url('@Url.Content("~/Content/Images/Icon16/back.png")') 50% 4px no-repeat;">离开</b></span></a>
+                </div>
+            </div>
+            <div class="topline rightline" style="margin: 1px; margin-top: -1px;"></div>
+            
+
+            <!--列表-->
+            <div id="grid_List">
+                <div class="bottomline QueryArea" style="margin: 1px; margin-top: 0px; margin-bottom: 0px;">
+                    <table border="0" class="form-find" style="height: 45px;">
+                        <tr>
+                            <th>事项类型：
+                            </th>
+                            <td>
+                                @Html.DropDownList("LicenseType", (ViewData["LicenseType"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 120px" })
+                            </td>
+                            <th>受理时间（始）：
+                            </th>
+                            <td>
+                                @Html.TextBox("StartTime", "", new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:100px" })
+                            </td>
+                            <th>受理时间（止）：
+                            </th>
+                            <td>
+                                @Html.TextBox("EndTime", "", new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:100px" })
+                            </td>
+                            <th>关键字：
+                            </th>
+                            <td>
+                                <input id="keywords" type="text" class="txt" style="width: 200px" />
+                            </td>
+                            <th>设施类型：
+                            </th>
+                            <td>                                
+                                <select id="secpType" class="select" style="width: 120px;">
+                                    <option value="">==请选择==</option>
+                                    <option value="其他广告">其他广告</option>
+                                    <option value="店招灯箱">店招灯箱</option>
+                                    <option value="屋顶三面翻">屋顶三面翻</option>
+                                    <option value="桥身三面翻">桥身三面翻</option>
+                                    <option value="流动字幕屏">流动字幕屏</option>
+                                    <option value="大型显示器">大型显示器</option>
+                                    <option value="橱窗广告">橱窗广告</option>
+                                    <option value="幕墙广告">幕墙广告</option>
+                                    <option value="店招店牌">店招店牌</option>
+                                    <option value="屋顶广告">屋顶广告</option>
+                                    <option value="竖式霓虹灯">竖式霓虹灯</option>
+                                    <option value="桥身广告">桥身广告</option>
+                                    <option value="灯箱">灯箱</option>
+                                    <option value="三面翻">三面翻</option>
+                                    <option value="ATM防护罩">ATM防护罩</option>
+                                    <option value="电子显示屏">电子显示屏</option>
+                                    <option value="匾额">匾额</option>
+                                    <option value="霓虹灯店招">霓虹灯店招</option>
+                                    <option value="指示标牌">指示标牌</option>
+                                    <option value="立杆灯箱">立杆灯箱</option>
+                                    <option value="包柱广告">包柱广告</option>
+                                    <option value="门楣">门楣</option>
+                                    <option value="霓虹灯">霓虹灯</option>
+                                    <option value="墙面广告">墙面广告</option>
+                                    <option value="高炮广告">高炮广告</option>
+                                    <option value="车身广告">车身广告</option>
+                                    <option value="候车站（亭）广告">候车站（亭）广告</option>
+                                    <option value="落地灯箱">落地灯箱</option>
+                                    <option value="电杆灯箱">电杆灯箱</option>
+                                    <option value="立牌广告">立牌广告</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input id="btnSearch" type="button" class="btnSearch" value="搜 索" onclick="Search()" />
+                                @Html.Hidden("CaseStateType", (int)LicenseStateType.Admissible)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <table id="gridTable"></table>
+                <div id="gridPager"></div>
+            </div>
+            <!--视图-->
+            <div id="grid_View" class="ScrollBar">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () {
+        $('#keywords')[0].focus(); //打开获取焦点
+    });
+
+    //获取案件数量
+    function GetCaseCount() {
+        $.ajax({
+            url: '@Url.Action("GetLicenseStateCount", "LicenseApproval")',
+            type: 'post',
+            data: {},
+            success: function (data) {
+                var arr = eval(data.split("|"));
+                $("#Admissible").text(arr[0]);
+                $("#ToVisit").text(arr[1]);
+                $("#ToBeAudited").text(arr[2]);
+                $("#ToBeDone").text(arr[3]);
+                $("#HaveDone").text(arr[4]);
+                $("#All").text(arr[5]);
+            }
+        });
+    }
+</script>
+
+
+
+<script>
+
+    $(function () {
+        windowload();
+    });
+
+    function windowload() {
+        GetCaseCount();
+        GetGrid();
+    }
+
+</script>

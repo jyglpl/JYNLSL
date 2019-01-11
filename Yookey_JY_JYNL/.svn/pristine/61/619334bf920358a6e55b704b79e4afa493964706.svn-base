@@ -1,0 +1,106 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>照片详情</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <script>
+        $(document).ready(function () {
+            Loading(false);
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <form id="formmain">
+            <table cellpadding="0" cellspacing="0" align="center" width="80%" class="casedt" style="margin-top: 50px">
+                <tr>
+                    <td align="center">
+                        <img style="width: 600px; height: 400px;" src="@ViewBag.FileView" /></td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <table cellpadding="0" cellspacing="0" width="80%" style="margin-top: 80px" border="1" bordercolor="#000000">
+                            <tr>
+                                <td align="center" style="font-size: 20pt; font-weight: bold;">照片说明</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 16pt;" align="left">事由：@ViewBag.ItemName</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 16pt;" align="left">拍摄地点：@ViewBag.ShootAddress</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 16pt;" align="left">拍摄时间：@Html.TextBox("ShootTime", "", new { @class = "txt Wdate", Value = @ViewBag.ShootTime, @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})", @style = "width:150px" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 16pt;" align="left">拍摄人：@ViewBag.ShootPersoneNameFirst</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 16pt;" align="left">现场执法人员：@ViewBag.ShootPersoneNameFirst&nbsp;&nbsp;&nbsp;&nbsp;@ViewBag.ShootPersoneNameSecond</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; padding-top: 5px;">
+                        <input type="button" value="保 存" class="btnSearch" onclick="Save()" />
+                        <input type="button" value="打 印" class="btnSearch" onclick="doPrint('CasePhoto');" />
+                        <input type="button" value="关 闭" class="btnSearch" onclick="javascript: window.close();" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    function Save() {
+        var shootTime = $("#ShootTime").val();
+        if (shootTime == '') {
+            alertDialog('请选择照片拍摄时间！', -1);
+            return;
+        }
+        AjaxJson('@Url.Action("SavePhotoDetails","PenaltyCaseAjax")', { fileId: '@ViewBag.FileId', shootTime: shootTime }, function (data) {
+            alert('保存成功！');
+        });
+    }
+
+
+    //打印文书
+    function doPrint(writIdentify) {
+        getAjax('@Url.Action("GetCaseWrit","PenaltyCaseWrit")', { writIdentify: writIdentify, resourceId: '@ViewBag.FileId' }, function (url) {
+            var mydoc;
+            var myDocApp = new ActiveXObject("word.Application");
+            myDocApp.visible = true;
+            myDocApp.activate();
+            mydoc = myDocApp.documents.add(url);
+            try {
+                mydoc.PrintPreview();
+            } catch (e) {
+                alert("打印预览失败，请确认您的电脑上装有office！");
+            }
+        });
+    }
+
+</script>

@@ -1,0 +1,915 @@
+
+ 
+记录时间：2018-12-25 10:07:48,163 
+线程ID:[10] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:07:53,092 
+线程ID:[7] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:07:54,130 
+线程ID:[8] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:07:54,614 
+线程ID:[10] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:07:54,969 
+线程ID:[9] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:07:55,322 
+线程ID:[8] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:07:55,647 
+线程ID:[7] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:07:56,083 
+线程ID:[8] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:07:56,411 
+线程ID:[9] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:07:56,750 
+线程ID:[10] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:07:56,992 
+线程ID:[10] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:07:57,160 
+线程ID:[8] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:07:57,373 
+线程ID:[9] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:07:57,556 
+线程ID:[7] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:08:42,699 
+线程ID:[8] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   在 System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   在 System.Data.SqlClient.SqlDataReader.Read()
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1076
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 84
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 144
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:3d045b3b-e638-4ff3-9afa-e3b762287311
+Error Number:241,State:1,Class:16
+
+ 
+记录时间：2018-12-25 10:18:41,643 
+线程ID:[33] 
+日志级别：  ERROR 
+错误描述：在执行 controller[HomeIndexController] 的 action[Main] 时产生异常
+ 
+System.Web.HttpException (0x80004005): 服务器无法在已发送 HTTP 标头之后设置状态。
+   在 System.Web.HttpResponse.set_StatusCode(Int32 value)
+   在 System.Web.Mvc.HttpStatusCodeResult.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2018-12-25 13:43:16,215 
+线程ID:[46] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 'e50' 附近有语法错误。
+字符串 ')' 后的引号不完整。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime, String jieshouGuid) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 90
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime, String jieshouGuid) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 196
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:a7f79696-af12-4aa8-b85d-c0d3ffdff356
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2018-12-25 13:43:19,087 
+线程ID:[20] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 'e50' 附近有语法错误。
+字符串 ')' 后的引号不完整。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime, String jieshouGuid) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 90
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime, String jieshouGuid) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 196
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:a7f79696-af12-4aa8-b85d-c0d3ffdff356
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2018-12-25 13:44:13,478 
+线程ID:[38] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): 'e50' 附近有语法错误。
+字符串 ')' 后的引号不完整。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime, String jieshouGuid) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 90
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime, String jieshouGuid) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 196
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:a7f79696-af12-4aa8-b85d-c0d3ffdff356
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2018-12-25 13:45:31,916 
+线程ID:[43] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '54e11' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime, String jieshouGuid) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 90
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime, String jieshouGuid) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 197
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:27ec683f-1698-4d42-8281-e2d778898694
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2018-12-25 13:47:09,962 
+线程ID:[41] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GetAllDoc] 时产生异常
+ 
+System.Data.SqlClient.SqlException (0x80131904): '54e11' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 PetaPoco.Database.<Query>d__49`1.MoveNext() 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.PetaPoco\Database.cs:行号 1058
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Yookey.WisdomClassed.SIP.DataAccess.OA.DocumentNotificationDal.SearchQuery(DocumentNotificationEntity entity, String limittime, String jieshouGuid) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.DataAccess\OA\DocumentNotificationDal.cs:行号 90
+   在 Yookey.WisdomClassed.SIP.Business.OA.DocumentNotificationBll.SearchQuery(DocumentNotificationEntity search, String limittime, String jieshouGuid) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Business\OA\DocumentNotificationBll.cs:行号 36
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GetAllDoc(String limit, String page, String Title, String datafw, String Gglx) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 197
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+ClientConnectionId:27ec683f-1698-4d42-8281-e2d778898694
+Error Number:102,State:1,Class:15
+
+ 
+记录时间：2018-12-25 14:01:11,064 
+线程ID:[61] 
+日志级别：  ERROR 
+错误描述：在执行 controller[HomeIndexController] 的 action[Main] 时产生异常
+ 
+System.Web.HttpException (0x80004005): 服务器无法在已发送 HTTP 标头之后设置状态。
+   在 System.Web.HttpResponse.set_StatusCode(Int32 value)
+   在 System.Web.Mvc.HttpStatusCodeResult.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2018-12-25 14:01:54,412 
+线程ID:[59] 
+日志级别：  ERROR 
+错误描述：在执行 controller[HomeIndexController] 的 action[AccordionIndex] 时产生异常
+ 
+System.InvalidOperationException: The view 'AccordionIndex' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/HomeIndex/AccordionIndex.aspx
+~/Views/HomeIndex/AccordionIndex.ascx
+~/Views/Shared/AccordionIndex.aspx
+~/Views/Shared/AccordionIndex.ascx
+~/Views/HomeIndex/AccordionIndex.cshtml
+~/Views/HomeIndex/AccordionIndex.vbhtml
+~/Views/Shared/AccordionIndex.cshtml
+~/Views/Shared/AccordionIndex.vbhtml
+   在 System.Web.Mvc.ViewResult.FindView(ControllerContext context)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2018-12-25 14:02:05,475 
+线程ID:[57] 
+日志级别：  ERROR 
+错误描述：在执行 controller[HomeIndexController] 的 action[Main] 时产生异常
+ 
+System.Web.HttpException (0x80004005): 服务器无法在已发送 HTTP 标头之后设置状态。
+   在 System.Web.HttpResponse.set_StatusCode(Int32 value)
+   在 System.Web.Mvc.HttpStatusCodeResult.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2018-12-25 15:17:23,701 
+线程ID:[36] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GongGaoDetial] 时产生异常
+ 
+System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GongGaoDetial(String Id) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 143
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2018-12-25 15:21:09,704 
+线程ID:[37] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GongGaoDetial] 时产生异常
+ 
+System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GongGaoDetial(String Id, String ContentId) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 150
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2018-12-25 15:21:21,949 
+线程ID:[34] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GongGaoDetial] 时产生异常
+ 
+System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GongGaoDetial(String Id, String ContentId) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 150
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2018-12-25 15:21:25,364 
+线程ID:[51] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GongGaoDetial] 时产生异常
+ 
+System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GongGaoDetial(String Id, String ContentId) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 150
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2018-12-25 15:21:31,158 
+线程ID:[40] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GongGaoDetial] 时产生异常
+ 
+System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GongGaoDetial(String Id, String ContentId) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 150
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2018-12-25 15:22:46,109 
+线程ID:[36] 
+日志级别：  ERROR 
+错误描述：在执行 controller[OAController] 的 action[GongGaoDetial] 时产生异常
+ 
+System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL.OAController.GongGaoDetial(String Id, String ContentId) 位置 E:\Application\JYNLSL\JYNLSL_WisdomClassed\Yookey.WisdomClassed.SIP.Admin\Controllers\JYNLSL\OAController.cs:行号 150
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)

@@ -1,0 +1,220 @@
+body {
+  font-family: "Microsoft yahei";
+}
+.paddigNo {
+  padding-top: 0px;
+}
+.addStudy {
+  width: 100%;
+  height: 40px;
+  padding: 0px 20px;
+  box-sizing: border-box;
+}
+.addStudy a {
+  float: right;
+  width: 100px;
+  text-align: center;
+  height: 25px;
+  line-height: 25px;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #157dbf;
+  margin-top: 7.5px;
+}
+.classifyBox {
+  padding-left:10px;
+  background-color: #f9f9f9;
+  margin: 0px auto;
+}
+.classifyBox .classifyOne {
+  float: left;
+}
+.classifyBox .classifyOne ul li {
+  float: left;
+  margin-right: 10px;
+  width: 100px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.classifyBox .classifyOne ul li span {
+  font-size: 16px;
+  width: 100%;
+  height: 50px;
+  display: block;
+  line-height: 50px;
+}
+.classifyBox .classifyOne ul .chooseLi {
+  background-color: #fff;
+  color: #157dbf;
+  border: 1px solid #ced3db;
+  border-bottom: none;
+  border-top-left-radius:15px;
+  border-top-right-radius:15px;
+}
+.classifyBox .choiceTable {
+  float: right;
+}
+.classifyBox .choiceTable span {
+  float: left;
+  width: 90px;
+  height: 25px;
+  border: 1px solid #157dbf;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 25px;
+  background-color: #fff;
+  color: #157dbf;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 20px;
+  margin-top: 21.5px;
+}
+.classifyBox .choiceTable .chosTG {
+  color: #FFF;
+  background-color: #157dbf;
+}
+.titleSession {
+  width: 100%;
+  border-bottom: 1px solid #ececec;
+  font-size: 24px;
+  color: #4c4c4c;
+  padding: 10px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.titleSession .titleStat {
+  font-size: 14px;
+  color: #157dbf;
+}
+.titleSession > span {
+  float: right;
+  margin-right: 25px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.titleSession > span span {
+  font-size: 14px;
+  color: #666;
+}
+.titleSession > span b {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.titleSession > span .imgIcon {
+  /*width: 28px;*/
+  height: 24px;
+  background: url(../images/imgIcon.png) no-repeat;
+    display:block;
+}
+.titleSession > span .musicIcon {
+  background: url(../images/musicIcon.png) no-repeat;
+}
+.titleSession > span .videoIcon {
+  /*width: 28px;*/
+  height: 24px;
+  background: url(../images/videoIcon.png) no-repeat;
+  display:block;
+}
+.titleSession > span .allIcon {
+  background: url(../images/allIcon.png) no-repeat;
+  display:block;
+  height:24px;
+}
+.addSession {
+  width: 100%;
+  border-bottom: 1px solid #ececec;
+  font-size: 22px;
+  color: #212529;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+.coursewareTableBox {
+  padding: 10px;
+  box-sizing: border-box;
+}
+.statisticTable {
+  border: 1px solid #ddd;
+}
+.statisticTable th {
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+.statisticTable td {
+  border: 1px solid #ddd;
+}
+.StudyBox {
+  width: 100%;
+  background-color: #fff;
+}
+.StudyBox table tr span {
+  float: left;
+  margin-right: 20px;
+}
+.StudyBox table tr span .bigInput {
+  width: 745px;
+}
+.StudyBox table tr .dear {
+  font-size: 12px;
+  color: #bbbaba;
+  margin-left: 0px;
+}
+.StudyBox table tr .labelTitle {
+  margin-left: 30px;
+}
+.StudyBox table tr .labelTitleS {
+  margin-left: 74px;
+}
+.StudyBox .sipac_editbox th {
+  width: 14%;
+}
+.coursewareTable tr td {
+  text-align: center;
+}
+.coursewareTable tr td .electives {
+  color: #157dbf;
+  cursor: pointer;
+}
+.coursewareTable tr td .elective {
+  color: #ddd;
+  cursor: pointer;
+}
+.coursewareTable tr td .progress {
+  width: 120px;
+  border: 1px solid #bfbfbf;
+  height: 16px;
+  margin: 0px auto;
+}
+.coursewareTable tr td .progress span {
+  display: block;
+  height: 100%;
+  width: 80%;
+  background-color: #32b16c;
+}
+.coursewareTable tr td .sureIcon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url(../images/sureIcon.png) no-repeat;
+  margin: 0px auto;
+}
+.coursewareTable tr td .errorIcon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url(../images/errorIcon.png) no-repeat;
+  margin: 0px auto;
+}
+.sipac_tableBox .coursewareTable th {
+  text-align: center;
+  color: #666;
+  font-size: 15px;
+  font-weight: normal;
+}
+.StudyBox table tr span {
+  float: inherit;
+  margin-right: 0px;
+}

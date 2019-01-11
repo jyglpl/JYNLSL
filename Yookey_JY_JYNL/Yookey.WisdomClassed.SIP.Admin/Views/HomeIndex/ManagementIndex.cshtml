@@ -1,0 +1,350 @@
+﻿<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@(Yookey.WisdomClassed.SIP.Common.AppConfig.SystemName)</title>
+    <link href="@Url.Content("~/Content/Main/css/border.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/Main/js/learunui-framework.js")"></script>
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <!--[if lt IE 8]>
+    <script src="js/ie8.js"></script>
+<![endif]-->
+    <script>
+        $(document).ready(function () {
+            var getUrlParam = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return null;
+            };
+            if (getUrlParam('type') == 'cfxx') {
+                AddTabMenu('natural', '@Url.Content("~/SIP/LawPunishInformation/NaturalPersonIndex")');
+                $("#menu li").removeClass('active');
+                $("#menu .cf").addClass('active');
+            }
+            else if (getUrlParam('type') == 'wsgl') {
+                AddTabMenu('StockSelect', '@Url.Action("StockSelect", "Instrument")');
+                $("#menu li").removeClass('active');
+                $("#menu .ws").addClass('active');
+            }
+            else if (getUrlParam('type') == 'sbgl') {
+                AddTabMenu('InstrumentSearch', 'http://app.cityfun.com.cn/cgzfeqp/');
+                $("#menu li").removeClass('active');
+                $("#menu .sbgl").addClass('active');
+            }
+            else if (getUrlParam('type') == 'rygl') {
+                AddTabMenu('FlightList', '@Url.Action("FlightList", "LochusFlight")');
+                $("#menu li").removeClass('active');
+                $("#menu .ry").addClass('active');
+            }
+            else if (getUrlParam('type') == 'dcgl') {
+                AddTabMenu('assessment', '@Url.Action("Index", "Assessment")');
+                $("#menu li").removeClass('active');
+                $("#menu .dc").addClass('active');
+            }
+            else if (getUrlParam('type') == 'khgl') {
+                AddTabMenu('getdetai', '@Url.Action("GetDetailIndex", "EvaluationLog")');
+                $("#menu li").removeClass('active');
+                $("#menu .kh").addClass('active');
+            }
+            else if (getUrlParam('type') == 'xzxk') {
+                AddTabMenu('InstrumentSearch', 'http://app.cityfun.com.cn/cgxzsp/');
+                $("#menu li").removeClass('active');
+                $("#menu .xz").addClass('active');
+            }
+            else {
+                AddTabMenu('Imain', '@Url.Action("ManagemenRight")');
+            }
+
+        });
+//返回页面
+function homeBox() {
+    AddTabMenu('homeBox', '@Url.Action("ManagemenRight")');
+        }
+        //跳转执法处罚信息公示自然人处罚公示
+        function NaturalPerson() {
+            AddTabMenu('natural', '@Url.Content("~/SIP/LawPunishInformation/NaturalPersonIndex")');
+        }
+        //执法处罚信息公示法人处罚公示
+        function LegalPerson() {
+            AddTabMenu('legal', '@Url.Content("~/SIP/LawPunishInformation/LegalPersonIndex")');
+        }
+        //督察管理路面考核
+        function Assessment() {
+            AddTabMenu('assessment', '@Url.Action("Index", "Assessment")');
+        }
+        //督察管理队伍管理
+        function TeamManagement() {
+            AddTabMenu('teammanage', '@Url.Action("Index", "TeamManagement")');
+        }
+        //考核管理考核详情
+        function GetDetai() {
+            AddTabMenu('getdetai', '@Url.Action("GetDetailIndex", "EvaluationLog")');
+        }
+        //考核管理考核详情
+        function GetEvalProc() {
+            AddTabMenu('getEvalProc', '@Url.Action("Index", "EvaluationProc")');
+        }
+        //考核统计
+        function EvaluationLog() {
+            AddTabMenu('evaluationlog', '@Url.Action("Index", "EvaluationLog")');
+        }
+        //户外广告
+        function Advertising() {
+            AddTabMenu('Advertising', '@Url.Action("Advertising", "Consent")');
+        }
+        //临时占道
+        function Temporary() {
+            AddTabMenu('Temporary', '@Url.Action("Temporary", "Consent")');
+        }
+        //道路开挖
+        function Excavation() {
+            AddTabMenu('Excavation', '@Url.Action("Excavation", "Consent")');
+        }
+        //事项登记
+        function LicenseAdd() {
+            AddTabMenu('LicenseAdd', '@Url.Action("LicenseAdd", "LicenseApproval")');
+        }
+        //综合查询
+        function LicenseIndex() {
+            AddTabMenu('LicenseIndex', '@Url.Action("Index", "LicenseApproval")');
+        }
+        //许可片区统计
+        function AreaStatistics() {
+            AddTabMenu('AreaStatistics', '@Url.Action("AreaStatistics", "LicenseMain")');
+        }
+        //许可历史数据查询
+        function HistoryIndex() {
+            AddTabMenu('HistoryIndex', '@Url.Action("HistoryIndex", "LicenseApproval")');
+        }
+        //文书入库
+        function InstrumentAdd() {
+            AddTabMenu('InstrumentAdd', '@Url.Action("InstrumentAdd", "Instrument")');
+        }
+        //大队领用
+        function InstrumentSelect() {
+            AddTabMenu('InstrumentSelect', '@Url.Action("InstrumentSelect", "Instrument")');
+        }
+        //中队领用
+        function InstrumentZDSelect() {
+            AddTabMenu('InstrumentZDSelect', '@Url.Action("InstrumentZDSelect", "Instrument")');
+        }
+        //个人领用
+        function InstrumentGRSelect() {
+            AddTabMenu('InstrumentGRSelect', '@Url.Action("InstrumentGRSelect", "Instrument")');
+        }
+        //库存查询
+        function StockSelect() {
+            AddTabMenu('StockSelect', '@Url.Action("StockSelect", "Instrument")');
+        }
+        //使用查询
+        function InstrumentSearch() {
+            AddTabMenu('InstrumentSearch', '@Url.Action("InstrumentSearch", "Instrument")');
+        }
+        //种类配置
+        function TypeTableIndex() {
+            AddTabMenu('TypeTableIndex', '@Url.Action("TypeTableIndex", "Instrument")');
+        }
+        //考勤签到
+        function Attendance() {
+            AddTabMenu('Attendance', '@Url.Action("AttendanceIndex", "Attendance")');
+        }
+        //排班管理
+        function FlightList() {
+            AddTabMenu('FlightList', '@Url.Action("FlightList", "LochusFlight")');
+        }
+        //请假管理
+        function LeaveIndex() {
+            AddTabMenu('Leave', '@Url.Action("Index", "Leave")');
+        }
+        //调班管理
+        function AlterationIndex() {
+            AddTabMenu('Alteration', '@Url.Action("Index", "Alteration")');
+        }
+        //加班管理
+        function WorkOvertimeIndex() {
+            AddTabMenu('WorkOvertime', '@Url.Action("Index", "WorkOvertime")');
+        }
+        //考勤申报
+        function AttendanceReport() {
+            AddTabMenu('AttendanceReport', '@Url.Action("Index", "AttendanceReport")');
+        }
+        //考勤统计
+        function AttendanceSheet() {
+            AddTabMenu('AttendanceSheet', '@Url.Action("AttendanceSheet", "AttendanceStatistics")');
+        }
+
+        //网络化台账
+        function GridManagement() {
+            //AddTabMenu('GridManagement', 'http://221.224.13.126:8082/GridManagement/GridManagement/DepartmentIndex?companyId=96cfd8e1-6a09-4ec6-bd49-d04787d2190b&req=zyreq');
+            AddTabMenu('GridManagement', '@Url.Action("Index", "GridManagement")');
+        }
+
+
+        $(function () {
+            //待办数
+            GetUntreatedCount();
+        });
+
+        //待办事宜条数
+        function GetUntreatedCount() {
+            getAjax('@Url.Action("GetUntreatedCount", "WorkList")', {}, function (data) {
+                $("#Untreated").html(data);
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="headerTop">
+        <p>
+            <img src="~/Content/Main/images/logoTwo.png" alt="">
+        </p>
+        <ul>
+            <li>
+                <a href="@Url.Action("Index", "HomeIndex")">
+                    <img src="~/Content/Main/images/home.png" alt="" />
+                    <div>系统首页</div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:AddTabMenu('WorkList', '@Url.Action("Index", "WorkList")');">
+                    <div style="position: relative">
+                        <div class='newsIcon' id="Untreated">0</div>
+                        <img src="~/Content/Main/images/news.png" alt="" />
+                    </div>
+                    <div>待办事宜</div>
+                </a>
+            </li>
+            <li><a href="javascript:void(0);">
+                <img src="~/Content/Main/images/nav2.png" alt="" />
+                <div>帮助中心</div>
+            </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="~/Content/Main/images/nav3.png" alt="" />
+                    <div>操作手册</div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="~/Content/Main/images/nav4.png" alt="" />
+                    <div>个人中心</div>
+                </a>
+            </li>
+            <li><a href="@Url.Action("Index", "HomeIndex")">
+                <img src="~/Content/Main/images/nav5.png" alt="" />
+                <div>安全退出</div>
+            </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 内容 -->
+    <div id="content" class="clearfixed">
+        <!-- 内容左侧导航 -->
+        <div class="leftListNav">
+            <p class="headImg">
+                <b></b>
+                <span>@ViewBag.UserName</span>
+            </p>
+            <p class="homeBox">
+                <a onclick="homeBox()" href="javascript:void(0);">
+                    <img src="~/Content/Images/homeIcon.png" alt="" />
+                    首页
+
+                </a>
+            </p>
+            <div class="liContent">
+                <ul id="menu">
+                    <li class="cf">
+                        <a href="javascript:void(0);">处罚信息公示</a>
+                        <div class="secList">
+                            <a onclick="NaturalPerson()" href="javascript:void(0);">行政处罚公示</a>
+                            <a onclick="" href="javascript:void(0);">行政许可公示</a>
+                        </div>
+                    </li>
+                    <li class="ws">
+                        <a href="javascript:void(0);">文书管理</a>
+                        <div class="secList">
+                            <a onclick="InstrumentAdd()" href="javascript:void(0);">文书入库</a>
+                            <a onclick="StockSelect()" href="javascript:void(0);">库存查询</a>
+                            <a onclick="InstrumentSelect()" href="javascript:void(0);">大队领用</a>
+                            <a onclick="InstrumentZDSelect()" href="javascript:void(0);">中队领用</a>
+                            <a onclick="InstrumentGRSelect()" href="javascript:void(0);">个人领用</a>
+                            <a onclick="InstrumentSearch()" href="javascript:void(0);">使用查询</a>
+                            <a onclick="TypeTableIndex()" href="javascript:void(0);">种类配置</a>
+                        </div>
+                    </li>
+                    <li class="sbgl">
+                        <a href="javascript:AddTabMenu('InstrumentSearch','http://app.cityfun.com.cn/cgzfeqp/');">设备管理</a>
+                    </li>
+                    <li class="ry"><a href="javascript:void(0);">人员管理</a>
+                        <div class="secList">
+                            <a onclick="FlightList()" href="javascript:void(0);">排班管理</a>
+                            <a onclick="LeaveIndex()" href="javascript:void(0);">请假管理</a>
+                            <a onclick="AlterationIndex()" href="javascript:void(0);">调班管理</a>
+                            <a onclick="WorkOvertimeIndex()" href="javascript:void(0);">加班管理</a>
+                            <a onclick="Attendance()" href="javascript:void(0);">考勤签到</a>
+                            <a onclick="AttendanceReport()" href="javascript:void(0);">考勤申报</a>
+                            <a onclick="AttendanceSheet()" href="javascript:void(0);">考勤统计</a>
+                        </div>
+                    </li>
+                    <li class="dc"><a href="javascript:void(0);">督察管理</a>
+                        <div class="secList">
+                            <a onclick="Assessment()" href="javascript:void(0);">路面考核</a>
+                            <a onclick="TeamManagement()" href="javascript:void(0);">队伍管理</a>
+                            <a onclick="GridManagement()" href="javascript:void(0);">电子台账</a>
+                        </div>
+                    </li>
+                    <li class="kh"><a href="javascript:void(0);">考核管理</a>
+                        <div class="secList">
+                            <a onclick="GetEvalProc()" href="javascript:void(0);">考核细则</a>
+                            <a onclick="GetDetai()" href="javascript:void(0);">考核管理</a>
+                            <a onclick="EvaluationLog()" href="javascript:void(0);">考核统计</a>
+                        </div>
+                    </li>
+                    <li class="xz">
+                        <a href="javascript:AddTabMenu('InstrumentSearch','http://app.cityfun.com.cn/cgxzsp/');">行政许可审批</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 右侧内容 -->
+        <div class="rightContent clearfix" id="ContentPanel" style="border: none; background-color: white;">
+        </div>
+        <div id="footer">
+            技术支持:江苏中越科技发展有限公司
+        </div>
+    </div>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/echarts.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/jQuery.js")"></script>
+
+    <script>
+        $('.leftListNav').height($(".rightContent").outerHeight());
+
+        var A_num1 = parseInt($('.manTol1').parent().siblings('.manText').find('.man1').text());
+        var A_num2 = parseInt($('.total_num').text());
+        var A_num = ((A_num1 / A_num2) * 100).toFixed(2);
+        $('.manTol1').height(A_num + "%");
+
+        var B_num1 = parseInt($('.manTol2').parent().siblings('.manText').find('.man1').text());
+        var B_num2 = parseInt($('.total_num').text());
+        var B_num = ((B_num1 / B_num2) * 100).toFixed(2);
+
+        $('.manTol2').height(B_num + "%");
+        $('#menu li').click(function () {
+            $(this).addClass('active').siblings().removeClass('active')
+        })
+        $('#menu li').hover(function () {
+            $(this).find('.secList').show();
+        }, function () {
+            $(this).find('.secList').hide();
+        });
+    </script>
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")"></script>
+    <!--引入弹窗组件end-->
+</body>
+</html>

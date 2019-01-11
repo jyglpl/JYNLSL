@@ -1,0 +1,185 @@
+﻿@{
+    ViewBag.Title = "LawpersonnelDetail";
+    DataTable dt = ViewBag.Details as DataTable;
+}
+@using System.Data;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>执法人员信息</title>
+    <!--框架必需start-->
+    <link  href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link  href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--表格组件end-->
+    <!--树形组件start-->
+    <link  href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/tree/tree.js")"></script>
+    <!--树形组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件start-->
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+
+
+
+    <style type="text/css">
+        .ui-jqgrid .ui-jqgrid-htable th {
+            height: 28px;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+
+        .ui-th-column, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+            background: none;
+        }
+
+        .ui-jqgrid tr.jqgrow td {
+            white-space: normal !important;
+            height: 25px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+
+        .form .formTitle {
+            height: 35px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <script type="text/javascript">
+        </script>
+        <div id="message" style="display: none; padding: 1px; padding-bottom: 0px;"></div>
+        <div class="bd" style="border-bottom: none; margin: 1px;">
+            <div class="tipstitle_title settingtable bold bd todayInfoPanelTab rightPanelTitle_normal">
+                <div class="tab_list_top" style="position: absolute">
+                    <div id="Tabbasic" class="tab_list bd actived">执法人员详情 </div>
+                </div>
+            </div>
+            <div class="ScrollBar" style="margin: 1px; overflow: hidden;">
+                @if (dt.Rows.Count > 0)
+                {
+                    <div class="tabPanel">
+                        <table class="form">
+                            <tr>
+                                <th class="formTitle">姓名：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtCompanyName", dt.Rows[0]["姓名"], new { @class = "txt", @datacol = "yes", @err = "姓名" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">用户名： </th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtGszch", dt.Rows[0]["用户名"], new { @class = "txt", @datacol = "yes", @err = "用户名" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">所属部门：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtShxydm", dt.Rows[0]["所属部门"], new { @class = "txt", @datacol = "yes", @err = "所属部门" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">职务： </th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAqscxkzbh", dt.Rows[0]["岗位"], new { @class = "txt", @datacol = "yes", @err = "岗位" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">电话： </th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAqscxkzbh", dt.Rows[0]["电话"], new { @class = "txt", @datacol = "yes", @err = "电话" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">手机： </th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAqscxkzbh", dt.Rows[0]["手机"], new { @class = "txt", @datacol = "yes", @err = "手机" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">电子邮箱： </th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAqscxkzbh", dt.Rows[0]["电子邮箱"], new { @class = "txt", @datacol = "yes", @err = "电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">执法证号： </th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAqscxkzbh", dt.Rows[0]["执法证号"], new { @class = "txt", @datacol = "yes", @err = "执法证号" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">电子签名： </th>
+                                <td class="formValue">
+                                    @*@Html.TextBox("txtAqscxkzbh", dt.Rows[0]["电子签名"], new { @class = "txt", @datacol = "yes", @err = "电子签名" })*@
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">用户角色： </th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAqscxkzbh", dt.Rows[0]["岗位"], new { @class = "txt", @datacol = "yes", @err = "用户角色" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">责任区域： </th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAqscxkzbh", dt.Rows[0]["责任区域"], new { @class = "txt", @datacol = "yes", @err = "责任区域" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">所属网格： </th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAqscxkzbh", dt.Rows[0]["所属网格"], new { @class = "txt", @datacol = "yes", @err = "所属网格" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">位置： </th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAqscxkzbh", dt.Rows[0]["位置"], new { @class = "txt", @datacol = "yes", @err = "位置" })
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+        <style>
+            .ui-widget-content {
+                border-left: none;
+            }
+        </style>
+    </div>
+</body>
+</html>

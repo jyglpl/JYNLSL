@@ -1,0 +1,88 @@
+﻿@using Yookey.WisdomClassed.SIP.Common
+@{
+    ViewBag.Title = "FilesPicture";
+}
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>图片上传</title>
+    <link href="@Url.Content("~/Content/fileinput/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/fileinput/bootstrap-fileinput.css")" rel="stylesheet" />
+</head>
+<body>
+    @*<div class="container">*@
+    @*<div class="page-header">*@
+    <div>
+        <div>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                        <div class="fileinput-new thumbnail" style="width: 200px; height: auto; max-height: 150px;">
+                            @if (string.IsNullOrEmpty(ViewBag.paths))
+                            {
+                                <img id="picImg" style="width: 100%; height: auto; max-height: 140px;" src="~/Content/fileinput/images/noimage.png" alt=""> 
+                            }
+                            else
+                            {
+                                <img id="picImg" style="width: 100%; height: auto; max-height: 140px;" src="@(AppConfig.FileViewLink + ViewBag.paths)" alt="">
+                            }
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                        <div>
+                            <span class="btn btn-primary btn-file">
+                                <span class="fileinput-new">选择文件</span>
+                                <span class="fileinput-exists">换一张</span>
+                                <input type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png">
+                            </span>
+                            <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" id="removed">移除</a>
+                        </div>
+                    </div>
+                </div>
+                @*<button type="button" id="uploadSubmit" class="btn btn-info">提交</button>*@
+            </form>
+        </div>
+    </div>
+    @*<script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>*@
+    <script src="@Url.Content("~/Content/Librarys/fileinput/bootstrap-fileinput.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            var input = document.getElementById('picID');
+            input.onchange = function (e) {
+                var fileObj = document.getElementById("picID").files[0]; // js 获取文件对象
+                if (typeof (fileObj) == "undefined" || fileObj.size <= 0) {
+                    //alert("请选择图片");
+                    return;
+                }
+                var formFile = new FormData();
+                formFile.append("action", "UploadVMKImagePath");
+                formFile.append("file", fileObj); //加入文件对象
+                formFile.append("Id", '@ViewBag.Id');//主键Id
+                formFile.append("userId", '@ViewBag.userId');//用户Id
+                var data = formFile;
+                $.ajax({
+                    url: '@Url.Action("ReportFile", "FileUpload")',
+                    data: data,
+                    type: "POST",
+                    dataType: "json",
+                    cache: false,//上传文件无需缓存
+                    processData: false,//用于对data参数进行序列化处理 这里必须false
+                    contentType: false, //必须
+                    success: function (result) { },
+                });
+            }
+        });
+
+        $("#removed").click(function () {
+            $.ajax({
+                url: '@Url.Action("DeleteCertificateAttach", "FileUpload")',
+                data: { Pk_Id: '@ViewBag.Id' },
+                type: "POST",
+                dataType: "json",
+                success: function (result) { },
+            });
+        })
+    </script>
+</body>
+</html>

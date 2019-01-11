@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{64765B1F-7E6E-4B1A-A440-DFD15C2112EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yookey.WisdomClassed.SIP.Model</RootNamespace>
+    <AssemblyName>Yookey.WisdomClassed.SIP.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\BaseCertificateUseEntity.cs" />
+    <Compile Include="Base\BaseCompanyEntity.cs" />
+    <Compile Include="Base\BaseDepartmentEntity.cs" />
+    <Compile Include="Base\BaseEntity.cs" />
+    <Compile Include="Base\BaseGroupUserEntity.cs" />
+    <Compile Include="Base\BaseObjectUserRelationEntity.cs" />
+    <Compile Include="Base\BasePostEntity.cs" />
+    <Compile Include="Base\BaseRolesEntity.cs" />
+    <Compile Include="Base\BaseUserEntity.cs" />
+    <Compile Include="Base\BaseCertificateEntity.cs" />
+    <Compile Include="Base\EntityBase.cs" />
+    <Compile Include="Base\IEntity.cs" />
+    <Compile Include="Base\Page.cs" />
+    <Compile Include="Base\StatusModel.cs" />
+    <Compile Include="Com\ComApiAccountEntity.cs" />
+    <Compile Include="Com\ComArticleEntity.cs" />
+    <Compile Include="Com\ComAttachmentEntity.cs" />
+    <Compile Include="Com\ComAttributeEntity.cs" />
+    <Compile Include="Com\ComAttributeValueEntity.cs" />
+    <Compile Include="Com\ComHolidaysEntity.cs" />
+    <Compile Include="Com\ComLoginLogEntity.cs" />
+    <Compile Include="Com\ComMenuEntity.cs" />
+    <Compile Include="Com\ComNoteEntity.cs" />
+    <Compile Include="Com\ComNoticeAttachEntity.cs" />
+    <Compile Include="Com\ComNoticeEntity.cs" />
+    <Compile Include="Com\ComNoticeReceiveEntity.cs" />
+    <Compile Include="Com\ComOperationLogEntity.cs" />
+    <Compile Include="Com\ComResourceEntity.cs" />
+    <Compile Include="Com\ComVersionManagementEntity.cs" />
+    <Compile Include="Com\ComWhiteListEntity.cs" />
+    <Compile Include="Crm\CrmCompanyEntity.cs" />
+    <Compile Include="Crm\CrmDailyOneProblemEntity.cs" />
+    <Compile Include="Crm\CrmDailyOneProblemRecordEntity.cs" />
+    <Compile Include="Crm\CrmDepartmentEntity.cs" />
+    <Compile Include="Crm\CrmFeedBackEntity.cs" />
+    <Compile Include="Crm\CrmIdeaListEntity.cs" />
+    <Compile Include="Crm\CrmIssuanceModelEntity.cs" />
+    <Compile Include="Crm\CrmMessageWorkEntity.cs" />
+    <Compile Include="Crm\CrmOpinionsEntity.cs" />
+    <Compile Include="Crm\CrmPostEntity.cs" />
+    <Compile Include="Crm\CrmRoleEntity.cs" />
+    <Compile Include="Crm\CrmRoleMenuEntity.cs" />
+    <Compile Include="Crm\CrmUserEntity.cs" />
+    <Compile Include="Crm\CrmUserMenuEntity.cs" />
+    <Compile Include="Crm\CrmUserRoleEntity.cs" />
+    <Compile Include="EnterpriseLibrary\EnterpriseLibraryEntity.cs" />
+    <Compile Include="IModel\IBaseModel.cs" />
+    <Compile Include="LawManger\LawMangerEntity.cs" />
+    <Compile Include="ModelImp\BaseModel.cs" />
+    <Compile Include="OA\DocNotfPersonEntity.cs" />
+    <Compile Include="OA\DocumentNotificationEntity.cs" />
+    <Compile Include="OA\GongGaoDetialEntity.cs" />
+    <Compile Include="OA\GongGaoMangerEntity.cs" />
+    <Compile Include="Power\PowerItemEntity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryCondition.cs" />
+    <Compile Include="WorkFlow\WfProcessEntity.cs" />
+    <Compile Include="WorkFlow\WfProcessInstanceEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBHelper\DBHelper.csproj">
+      <Project>{068adb92-ba8f-4da4-bc0b-ae35f3921a32}</Project>
+      <Name>DBHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.PetaPoco\PetaPoco.csproj">
+      <Project>{8fbf860e-d32f-4168-bed5-4f67c34817de}</Project>
+      <Name>PetaPoco</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

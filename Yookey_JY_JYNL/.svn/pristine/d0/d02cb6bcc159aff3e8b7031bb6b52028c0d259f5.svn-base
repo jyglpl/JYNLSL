@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+      <section name="SupplementPoliceData.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+  </configSections>
+  <connectionStrings>
+    <add name="SQLConnStringRead" connectionString="server=192.168.1.65\MSSQLSERVER2008;database=WisdomClassed_SZGSOverall;user id=sa;password=123;MultipleActiveResultSets=true;Max Pool Size = 512;" providerName="System.Data.SqlClient" />
+    <add name="SQLConnStringWrite" connectionString="server=192.168.1.65\MSSQLSERVER2008;database=WisdomClassed_SZGSOverall;user id=sa;password=123;MultipleActiveResultSets=true;Max Pool Size = 512;" />
+    <!--基础数据平台-->
+    <add name="SQLConnStringJCXXDBRead" connectionString="server=192.168.1.65\MSSQLSERVER2008;database=WisdomClassed_SZGSOverall;user id=sa;password=123;MultipleActiveResultSets=true;Max Pool Size = 512;" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <applicationSettings>
+    <SupplementPoliceData.Properties.Settings>
+      <setting name="SupplementPoliceData_PictureService_PictureService"
+        serializeAs="String">
+        <value>http://192.168.1.180/GSCGPictureService/PictureService.asmx</value>
+      </setting>
+    </SupplementPoliceData.Properties.Settings>
+  </applicationSettings>
+</configuration>

@@ -1,0 +1,414 @@
+
+.contentBox {
+  padding: 0px;
+  background-color: #e5e5e5;
+  width: 100%;
+  overflow: hidden;
+}
+.contentBox .secondLi {
+  height: 50px;
+}
+.contentBox .secondLi ul {
+  overflow: hidden;
+}
+.contentBox .secondLi ul li {
+  float: left;
+  margin-right: 30px;
+  line-height: 42px;
+}
+.contentBox .secondLi ul li a {
+  font-size: 18px;
+  color: #212529;
+  font-family: initial;
+}
+.contentBox .secondLi ul li .SecondColor {
+  color: #ff5353;
+}
+.contentBox .searchBox {
+  width: 350px;
+  position: relative;
+  margin-top: 7px;
+}
+.contentBox .searchBox span {
+  float: left;
+}
+.contentBox .searchBox span:first-child {
+  position: absolute;
+  left: 0px;
+}
+.contentBox .searchBox span:nth-child(2) {
+  width: 290px;
+}
+.contentBox .searchBox span:nth-child(2) input {
+  width: 100%;
+  padding-left: 110px;
+}
+.contentBox .contentCase {
+  width: 100%;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+.contentBox .contentCase .liTopParent {
+  width: 100%;
+}
+.contentBox .contentCase .liTopParent > p {
+  width: 100%;
+  height: 45px;
+  background-color: #f2f6fc;
+  line-height: 45px;
+  border: 1px solid #ced8e4;
+}
+.contentBox .contentCase .liTopParent > p span {
+  margin-left: 21px;
+  color: #ffb400;
+  font-size: 18px;
+}
+.contentBox .contentCase .liTopParent div {
+  width: 99.5%;
+  background-color: #f9f9f9;
+  border-left: 1px solid #ced8e4;
+  padding-left: 18%;
+  padding-top: 20px;
+  height: 652px;
+}
+.contentBox .contentCase .liTopParent div ul li {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.contentBox .contentCase .liTopParent div ul li a {
+  color: #d6d9df;
+  font-size: 16px;
+}
+.contentBox .contentCase .liTopParent div ul li a:hover {
+  color: #d6d9df;
+}
+.contentBox .contentCase .liTopParent div ul li .colorChoose {
+  color: #ff5353;
+}
+.contentBox .contentCase .liTopParent div ul li .colorChoose:hover {
+  color: #ff5353;
+}
+.contentBox .contentCase .contenForm .stynse {
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+}
+.contentBox .contentCase .contenForm .stynse b {
+  font-weight: normal;
+  color: #0567d3;
+  font-size: 18px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.contentBox .contentCase .contenForm > p {
+  width: 100%;
+  height: 45px;
+  background-color: #f2f6fc;
+  line-height: 45px;
+  border: 1px solid #ced8e4;
+  overflow: hidden;
+  padding-right: 20px;
+}
+.contentBox .contentCase .contenForm > p b {
+  color: #0567d3;
+  font-size: 18px;
+  margin-right: 10px;
+  font-weight: normal;
+  cursor: pointer;
+}
+.contentBox .contentCase .contenForm > p span {
+  margin-left: 21px;
+  color: #212429;
+  font-size: 18px;
+}
+.contentBox .contentCase .contenForm > div {
+  padding-bottom: 40px;
+  overflow: hidden;
+  background-color: #fff;
+}
+.contentBox .contentCase .contenForm > div > p {
+  width: 100%;
+  border-bottom: 1px solid #ced8e4;
+  height: 55px;
+  padding-left: 20px;
+  padding-top: 18.5px;
+  overflow: hidden;
+}
+.contentBox .contentCase .contenForm > div form {
+  margin: 10px;
+}
+.contentBox .contentCase .contenForm .classificationBox {
+  width: 100%;
+  background-color: #f2f6fc;
+  height: 45px;
+}
+.contentBox .contentCase .contenForm .classificationBox p:first-child {
+  width: 20%;
+  border-right: 1px solid #bfbfbf;
+  height: 45px;
+  border-bottom: none;
+  padding-top: 0px;
+  float: left;
+  line-height: 45px;
+}
+.contentBox .contentCase .contenForm .classificationBox p:first-child span {
+  color: #ffb400;
+  font-size: 16px;
+}
+.contentBox .contentCase .contenForm .classificationBox p:last-child {
+  float: left;
+  width: 75%;
+  padding-top: 0px;
+  height: 45px;
+  line-height: 45px;
+  border-bottom: none;
+}
+.contentBox .contentCase .contenForm .classificationBox p:last-child span {
+  font-size: 16px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.contentBox .contentCase .contenForm .contenTable {
+  padding: 15px;
+}
+.contentBox .contentCase .contenForm .contenTable table thead {
+  font-size: 16px;
+}
+.contentBox .contentCase .contenForm .contenTable table thead th {
+  text-align: center;
+}
+.contentBox .contentCase .contenForm .contenTable table thead th:nth-child(1) {
+  width: 5%;
+}
+.contentBox .contentCase .contenForm .contenTable table thead th:nth-child(2) {
+  width: 10%;
+}
+.contentBox .contentCase .contenForm .contenTable table thead th:nth-child(3) {
+  width: 8%;
+}
+.contentBox .contentCase .contenForm .contenTable table thead th:nth-child(4) {
+  width: 15%;
+}
+.contentBox .contentCase .contenForm .contenTable table thead th:nth-child(5) {
+  width: 5%;
+}
+.contentBox .contentCase .contenForm .contenTable table thead th:nth-child(6) {
+  width: 8%;
+}
+.contentBox .contentCase .contenForm .contenTable table thead th:nth-child(7) {
+  width: 9%;
+}
+.contentBox .contentCase .contenForm .contenTable table thead th:nth-child(8) {
+  width: 8%;
+}
+.contentBox .contentCase .contenForm .contenTable table thead th:nth-child(9) {
+  width: 8%;
+}
+.contentBox .contentCase .contenForm .contenTable table thead th:nth-child(10) {
+  width: 8%;
+}
+.contentBox .contentCase .contenForm .contenTable table thead th:nth-child(11) {
+  width: 8%;
+}
+.contentBox .contentCase .contenForm .contenTable table tbody {
+  font-size: 14px;
+  text-align: center;
+}
+.contentBox .contentCase .contenForm .contenTable table tbody tr td a {
+  white-space: nowrap;
+}
+.contentBox .contentCase .contenForm .contenTable table tbody tr td a:hover {
+  color: inherit;
+}
+.contentBox .contentCase .contenForm .contenTable table tbody tr .asOf {
+  background-color: #ec6941;
+  color: #fff;
+}
+.contentBox .contentCase .contenForm .contenTable table tbody tr .Special {
+  color: #ffb400;
+}
+.contentBox .contentCase .contenForm .contenTable table tbody tr .Warning {
+  color: #FF5252;
+}
+.contentBox .contentCase .contenForm .contenTable table tbody tr .Secondary {
+  color: #17c671;
+}
+.contentBox .contentCase .contenForm .caseDetail fieldset {
+  border: 1px solid silver;
+  padding: .35em .625em .75em;
+  margin-top: 20px;
+}
+.contentBox .contentCase .contenForm .caseDetail fieldset legend {
+  width: inherit;
+  border: none;
+  padding: 0px 10px;
+}
+.contentBox .contentCase .contenForm .caseDetail fieldset .DSROne li {
+  width: 100%;
+  overflow: hidden;
+}
+.contentBox .contentCase .contenForm .caseDetail fieldset .DSROne li b {
+  float: left;
+  width: 30%;
+  text-align: right;
+}
+.contentBox .contentCase .contenForm .caseDetail fieldset .DSROne li span {
+  width: 60%;
+  float: left;
+  margin-left: 3%;
+}
+.contentBox .contentCase .contenForm .caseDetail fieldset .DSROne li a:hover {
+  color: #337ab7;
+}
+.contentBox .contentCase .contenForm .caseDetail fieldset ul {
+  margin-left: 10px;
+}
+.contentBox .contentCase .contenForm .caseDetail fieldset ul li {
+  margin-bottom: 8px;
+}
+.contentBox .contentCase .contenForm .caseDetail fieldset ul li b {
+  margin-right: 5px;
+  color: #576274;
+}
+.contentBox .contentCase .contenForm .caseDetail fieldset ul li span {
+  color: #353d4a;
+}
+.contentBox .contentCase .contenForm .caseDetail fieldset ul li a:hover {
+  color: #337ab7;
+}
+
+#myModal fieldset {
+  border: 1px solid silver;
+  padding: .35em .625em .75em;
+  margin-top: 20px;
+}
+#myModal legend {
+  width: inherit;
+  border: none;
+  padding: 0px 10px;
+}
+.homeChart .homeTopI {
+  background-color: #fff;
+  margin-top: 20px;
+  padding: 20px 0px;
+}
+.homeChart .homeTopI div div div {
+  height: 88px;
+}
+.homeChart .homeTopI div div div:nth-child(1) div {
+  background: url(../images/homeTopOne.png) no-repeat;
+  background-size: 100% 100%;
+  padding-left: 5px;
+}
+.homeChart .homeTopI div div div:nth-child(1) div span {
+  color: #fff;
+  font-size: 2vw;
+}
+.homeChart .homeTopI div div div:nth-child(2) div {
+  background: url(../images/homeTopTwo.png) no-repeat;
+  background-size: 100% 100%;
+  padding-left: 5px;
+}
+.homeChart .homeTopI div div div:nth-child(2) div span {
+  color: #fff;
+  font-size: 2vw;
+}
+.homeChart .homeTopI div div div:nth-child(3) div {
+  background: url(../images/homeTopThree.png) no-repeat;
+  background-size: 100% 100%;
+  padding-left: 5px;
+}
+.homeChart .homeTopI div div div:nth-child(3) div span {
+  color: #fff;
+  font-size: 2vw;
+}
+.homeChart .homeTopI div div div:nth-child(4) div {
+  background: url(../images/homeTopFour.png) no-repeat;
+  background-size: 100% 100%;
+  padding-left: 5px;
+}
+.homeChart .homeTopI div div div:nth-child(4) div span {
+  color: #fff;
+  font-size: 2vw;
+}
+.homeChart .homeTopI div div div:nth-child(5) div {
+  background: url(../images/homeTopFive.png) no-repeat;
+  background-size: 100% 100%;
+  padding-left: 5px;
+}
+.homeChart .homeTopI div div div:nth-child(5) div span {
+  color: #fff;
+  font-size: 2vw;
+}
+.homeChart .homeTopI div div div:nth-child(6) div {
+  background: url(../images/homeTopSix.png) no-repeat;
+  background-size: 100% 100%;
+  padding-left: 5px;
+}
+.homeChart .homeTopI div div div:nth-child(6) div span {
+  color: #fff;
+  font-size: 2vw;
+}
+.homeChart .homeTopI div div div:nth-child(7) div {
+  background: url(../images/homeTopSeven.png) no-repeat;
+  background-size: 100% 100%;
+  padding-left: 5px;
+}
+.homeChart .homeTopI div div div:nth-child(7) div span {
+  color: #fff;
+  font-size: 2vw;
+}
+.homeChart .homeTopU {
+  margin-top: 10px;
+}
+.homeChart .homeTopU p {
+  color: #212429;
+  font-size: 16px;
+  margin: 10px;
+}
+.homeChart .homeTopU .chartBoxOne,
+.homeChart .homeTopU .chartBoxTwo,
+.homeChart .homeTopU .chartBoxThree {
+  width: 100%;
+  height: 350px;
+}
+.caseColorOne {
+  color: #5186e0;
+}
+.caseColorTwo {
+  color: #71d8da;
+}
+.col-md-1-7 {
+  width: 13.29%;
+  float: left;
+}
+.col-xs-1-7,
+.col-sm-1-7,
+.col-md-1-7,
+.col-lg-1-7 {
+  min-height: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+}
+@media (min-width: 768px) {
+  .col-sm-1-7 {
+    width: 13.29%;
+    float: left;
+  }
+}
+@media (min-width: 992px) {
+  .col-md-1-7 {
+    width: 13.29%;
+    float: left;
+  }
+}
+@media (min-width: 1200px) {
+  .col-lg-1-7 {
+    width: 13.29%;
+    float: left;
+  }
+}
+.s_cont_box iframe{
+  width: 100%;
+}

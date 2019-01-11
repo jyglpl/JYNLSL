@@ -1,0 +1,293 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data
+@using Yookey.WisdomClassed.SIP.Model.Case;
+@model InfPunishCaseinfoEntity
+
+@{
+    var punishItem = ViewBag.PunishItem as InfPunishLegislationEntity;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>调查取证</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+    <script>
+        $(document).ready(function () {
+            Loading(false);
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <form id="form1">
+            <div style="margin-left: 5px; margin-right: 5px;">
+                <fieldset style="margin-top: 10px;">
+                    <legend>案件基本信息</legend>
+                    <table class="casedt">
+                        <tr>
+                            <th class="formTitle">案件编号：<span style="color: Red;">*</span></th>
+                            <td class="formValue">
+                                @Model.CaseInfoNo
+                            </td>
+                            <th class="formTitle">案件来源：</th>
+                            <td class="formValue">
+                                @Model.ReSourceName
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">当事人类型：<span style="color: Red;">*</span></th>
+                            <td class="formValue">
+                                @Html.DropDownListFor(x => x.TargetType, (ViewData["TargetTypes"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                            </td>
+                            <th class="formTitle">单位名称：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.TargetUnit, new { @style = "width: 100%;", @class = "txt" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">
+                                <label id="labTargetName">当事人姓名</label>：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.TargetName, new { @style = "width: 100%;", @class = "txt" })
+                            </td>
+                            <th class="formTitle">职务：</th>
+                            <td class="formValue">
+                                @Html.TextBoxFor(x => x.TargetDuty, new { @style = "width: 100%;", @class = "txt" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">案由代码：<span style="color: Red;">*</span></th>
+                            <td class="formValue">
+                                @punishItem.ItemNo
+                            </td>
+                            <th class="formTitle">案件类别：</th>
+                            <td class="formValue">
+                                @punishItem.ClassNoName
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">违反法规：<span style="color: Red;">*</span></th>
+                            <td class="formValue" colspan="3">
+                                @punishItem.GistName
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">处罚依据：<span style="color: Red;">*</span></th>
+                            <td class="formValue" colspan="3">
+                                @punishItem.DutyName
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="formTitle">案件材料：<span style="color: Red;">*</span></th>
+                            <td class="formValue" colspan="3">
+                                @Html.Action("FilesTab", "PenaltyCaseFile", new { resourceId = Model.Id, evtache = "survey", isupload = "true" })
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="casedt">
+                        <tr>
+                            <th class="formTitle">案情摘要：<span style="color: Red;">*</span></th>
+                            <td class="formValue" colspan="3">
+                                @Html.TextAreaFor(x => x.CaseFact, new { @class = "txtArea", @style = "width: 100%;", @rows = "3", @readonly = "true" })
+                            </td>
+                        </tr>
+                    </table>
+
+                    @{
+                        var survey = ViewData["Survey"] as List<InfPunishSurveyEntity>;
+                        if (survey != null && survey.Count > 0)
+                        {
+                        <table class="casedt">
+                            <tr>
+                                <th class="formTitle">调查情况：<span style="color: Red;">*</span></th>
+                                <td class="formValue" colspan="3">
+
+                                    <script type="text/javascript">
+                                        $(function () {
+                                            //调查信息
+                                            $(".groupgrid tr").click(function () {
+                                                if (!$(this).hasClass('group_tr')) {
+                                                    $(".groupgrid tr").removeClass('active').removeClass("tdhover");
+                                                    $(this).addClass('active');
+                                                }
+                                            }).hover(function () {
+                                                if (!$(this).hasClass('group_tr') && !$(this).hasClass('active')) {
+                                                    $(this).addClass("tdhover");
+                                                }
+                                            }, function () {
+                                                $(this).removeClass("tdhover");
+                                            });
+                                        })
+                                    </script>
+
+                                    <table id="groupgrid" class="groupgrid" style="width: 100%">
+                                        <thead>
+                                            <tr>
+                                                <td style="width: 30%;">调查时间</td>
+                                                <td style="width: 40%;">调查对象</td>
+                                                <td style="width: 30%;">调查情况</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                            foreach (var infPunishSurveyEntity in survey)
+                            {
+                                                <tr ondblclick="AddSurvey('@infPunishSurveyEntity.Id')">
+                                                    <td style="width: 20%;">@infPunishSurveyEntity.RegisterDate</td>
+                                                    <td>@infPunishSurveyEntity.SurveyOjbect</td>
+                                                    <td style="width: 40%;">@infPunishSurveyEntity.SurveyDesc</td>
+                                                    <td style="width: 40%;"></td>
+                                                </tr>  
+                            }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        }
+                    }
+                </fieldset>
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="text-align: center;">
+                            @{
+                                if (ViewBag.BtnGenerate)
+                                {
+                                <input type="button" value="生成调查询问笔录" class="btnSearch" onclick="GenerateWritSurvey()" />
+                                }
+                                if (ViewBag.BtnAdd)
+                                {
+                                <input type="button" value="添加调查" class="btnSearch" onclick="AddSurvey('')" />    
+                                }
+                                if (ViewBag.BtnNext)
+                                {
+                                <input type="button" value="下一步" class="btnSearch" onclick="Next()" />  
+                                }
+                            }
+                            <input type="button" value="关 闭 " class="btnSearch" onclick="cancle();" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    var id = '@ViewBag.Id';
+    var worklistId = '@ViewBag.WorklistId';
+
+    /*
+    * 取消
+    */
+    function cancle() {
+        var api = parent.frameElement.api, W = api.opener;
+        api.close();
+    }
+
+    /*
+    * 添加调查
+    */
+    function AddSurvey(surveyId) {
+        var width = 500;
+        var height = 220;
+        var url = '@Url.Action("CaseAddSurvey", "PenaltyCase")?caseinfodId=' + id + '&surveyId=' + surveyId;
+        top.$.dialog({
+            id: "CaseAddSurvey", width: width, height: height, lock: true, max: false, resize: false, extendDrag: true,
+            title: "案件调查",
+            content: 'url:' + url,
+            button: [
+                {
+                    name: '继续添加',
+                    className: 'green',
+                    callback: function () {
+                        top.frames["CaseAddSurvey"].SaveSurvey();
+                        return false;
+                    }
+                },
+                {
+                    name: '保存关闭',
+                    className: 'green',
+                    callback: function () {
+                        top.frames["CaseAddSurvey"].SaveSurvey(function () {
+                            location.reload();
+                        });
+                        return true;
+                    }
+                }, { name: '关 闭' }
+            ]
+        });
+    }
+
+    /*
+  * 下一步
+  */
+    function Next() {
+        AjaxJson('@Url.Action("IsExistRecord", "PenaltyCaseAjax")', { caseInfoId: id }, function (data) {
+            if (data.rtState == 0) {
+                AjaxJson('@Url.Action("InvestigationNext", "PenaltyCaseAjax")', { id: id }, function () {
+                    parent.location.href = "@Url.Action("Main", "PenaltyCaseLand")?id=" + id + '&worklistId=' + worklistId;
+                });
+            } else {
+                alertDialog('请先生成调查询问笔录！', 0);
+            }
+        });
+    }
+
+    /*
+    * 生成调查询问笔录
+    */
+    function GenerateWritSurvey() {
+        var width = 800;
+        var height = 600;
+        var url = '@Url.Action("WritSurvey", "PenaltyCaseLand")?id=' + id;
+        top.$.dialog({
+            id: "WritSurvey", width: width, height: height, lock: true, max: false, resize: false, extendDrag: true,
+            title: "生成调查询问笔录",
+            content: 'url:' + url,
+            button: [
+                {
+                    name: '保存询问笔录',
+                    className: 'green',
+                    callback: function () {
+                        top.frames["WritSurvey"].SaveWritSurvey();
+                        return false;
+                    }
+                }, {
+                    name: '预 览',
+                    className: 'green',
+                    callback: function () {
+                        parent.frameElement.api.get('FirstDialogWindow').doPrint('Record');   //CaseHandle为父对话框的编号
+                        return false;
+                    }
+                }, { name: '关 闭' }
+            ]
+        });
+    }
+
+</script>

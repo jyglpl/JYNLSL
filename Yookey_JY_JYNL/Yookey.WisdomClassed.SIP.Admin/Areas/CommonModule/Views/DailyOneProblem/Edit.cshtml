@@ -1,0 +1,318 @@
+﻿@{
+    Layout = null;
+}
+@using Yookey.WisdomClassed.SIP.Model.Crm
+@model CrmDailyOneProblemEntity
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>编辑</title>
+
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet"/>
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--树形组件start-->
+    <link href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" type="text/css"/>
+    <script src="@Url.Content("~/Librarys/tree/tree.js")" type="text/javascript"></script>
+    <!--树形组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+</head>
+<body>
+    <form id="formmain">
+        <div id="message" style="display: none"></div>
+        <table class="form" style="margin-top: 5px">
+            <tr>
+                <th class="formTitle">题目：</th>
+                <td class="formValue" colspan="3">
+                    @Html.TextAreaFor(x => x.Question, new { @class = "txtArea required", @datacol = "yes", @err = "题目", @style = "width: 100%;", @rows = "20", @checkexpession = "NotNull" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">题库名称：</th>
+                <td class="formValue">
+                    <select checkexpession="NotNull" class="txtselect required" datacol="yes" err="试题类型" id="QuestionBankType" name="QuestionBankType" style="height: 20px;">
+                        <option @(Model.QuestionBankType == "公务员法" ? "selected='selected" : "") value="公务员法">公务员法</option>
+                        <option  @(Model.QuestionBankType == "执法单位与执法人员规范" ? "selected='selected" : "")value="执法单位与执法人员规范">执法单位与执法人员规范</option>
+                        <option  @(Model.QuestionBankType == "执法监督" ? "selected='selected" : "")value="执法监督">执法监督</option>
+                        <option  @(Model.QuestionBankType == "行政处罚" ? "selected='selected" : "")value="行政处罚">行政处罚</option>
+                        <option  @(Model.QuestionBankType == "行政复议法" ? "selected='selected" : "")value="行政复议法">行政复议法</option>
+                        <option  @(Model.QuestionBankType == "行政许可法" ? "selected='selected" : "")value="行政许可法">行政许可法</option>
+                        <option  @(Model.QuestionBankType == "行政诉讼法" ? "selected='selected" : "")value="行政诉讼法">行政诉讼法</option>
+                        <option  @(Model.QuestionBankType == "国家赔偿法" ? "selected='selected" : "")value="国家赔偿法">国家赔偿法</option>
+                        <option  @(Model.QuestionBankType == "环境保护法" ? "selected='selected" : "")value="环境保护法">环境保护法</option>
+                        <option  @(Model.QuestionBankType == "道路交通法" ? "selected='selected" : "")value="道路交通法">道路交通法</option>
+                        <option  @(Model.QuestionBankType == "规划法" ? "selected='selected" : "")value="规划法">规划法</option>
+                        <option  @(Model.QuestionBankType == "公务员依法行政" ? "selected='selected" : "")value="公务员依法行政">公务员依法行政</option>
+                        <option  @(Model.QuestionBankType == "行政执法人员考试培训" ? "selected='selected" : "")value="行政执法人员考试培训">行政执法人员考试培训</option>
+                        <option  @(Model.QuestionBankType == "试题题库" ? "selected='selected" : "")value="试题题库">试题题库</option>
+                    </select>
+                </td>
+                <th class="formTitle"></th>
+                <td class="formValue"></td>
+            </tr>
+            <tr>
+                <th class="formTitle">选项A：</th>
+                <td class="formValue">
+                    @Html.TextBoxFor(t => t.OptionA, new { @class = "txt" })
+                </td>
+                <th class="formTitle">选项B：</th>
+                <td class="formValue">
+                    @Html.TextBoxFor(t => t.OptionB, new { @class = "txt" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">选项C：</th>
+                <td class="formValue">
+                    @Html.TextBoxFor(t => t.OptionC, new { @class = "txt" })
+                </td>
+                <th class="formTitle">选项D：</th>
+                <td class="formValue">
+                    @Html.TextBoxFor(t => t.OptionD, new { @class = "txt" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">选项E：</th>
+                <td class="formValue">
+                    @Html.TextBoxFor(t => t.OptionE, new { @class = "txt" })
+                </td>
+                <th class="formTitle">选项F：</th>
+                <td class="formValue">
+                    @Html.TextBoxFor(t => t.OptionF, new { @class = "txt" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">选项G：</th>
+                <td class="formValue">
+                    @Html.TextBoxFor(t => t.OptionG, new { @class = "txt" })
+                </td>
+                <th class="formTitle">试题类型：<span style="color: Red;">*</span>
+                </th>
+                <td class="formValue">
+                    @Html.DropDownListFor(x => x.QuestionsTypeId, (ViewData["TypeList"] as IEnumerable<SelectListItem>), new { @class = "txtselect required", @datacol = "yes", @err = "试题类型", @checkexpession = "NotNull", @style = "height: 20px;" })
+                </td>
+            </tr>
+            <tr style="height: 30px" id="SAnswer">
+                <th class="formTitle">参考答案：<span style="color: Red;">*</span>
+                </th>
+                <td class="formValue" colspan="3">
+                    <input type="radio" name="singleAnswer" id="singleA" value="A" @(Model.Answer != null && Model.Answer.Contains("A") ? "checked=checked" : "")/>
+                    <label for="singleA">&nbsp;A&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" name="singleAnswer" id="singleB" value="B" @(Model.Answer != null && Model.Answer.Contains("B") ? "checked=checked" : "")/>
+                    <label for="singleB">&nbsp;B&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" name="singleAnswer" id="singleC" value="C" @(Model.Answer != null && Model.Answer.Contains("C") ? "checked=checked" : "")/>
+                    <label for="singleC">&nbsp;C&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" name="singleAnswer" id="singleD" value="D" @(Model.Answer != null && Model.Answer.Contains("D") ? "checked=checked" : "")/>
+                    <label for="singleD">&nbsp;D&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" name="singleAnswer" id="singleE" value="E" @(Model.Answer != null && Model.Answer.Contains("E") ? "checked=checked" : "")/>
+                    <label for="singleE">&nbsp;E&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" name="singleAnswer" id="singleF" value="F" @(Model.Answer != null && Model.Answer.Contains("F") ? "checked=checked" : "")/>
+                    <label for="singleF">&nbsp;F&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" name="singleAnswer" id="singleG" value="G" @(Model.Answer != null && Model.Answer.Contains("G") ? "checked=checked" : "")/>
+                    <label for="singleG">&nbsp;G&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" name="singleAnswer" id="singleH" value="H" @(Model.Answer != null && Model.Answer.Contains("H") ? "checked=checked" : "")/>
+                    <label for="singleH">&nbsp;H&nbsp;&nbsp;&nbsp;</label>
+                </td>
+            </tr>
+            <tr style="height: 30px" id="MAnswer">
+                <th class="formTitle">参考答案：<span style="color: Red;">*</span>
+                </th>
+                <td class="formValue" colspan="3">
+                    <input type="checkbox" name="multipleAnswer" id="multipleA" value="A" @(Model.Answer != null && Model.Answer.Contains("A") ? "checked=checked" : "")/>
+                    <label for="multipleA">A</label>
+                    <input type="checkbox" name="multipleAnswer" id="multipleB" value="B" @(Model.Answer != null && Model.Answer.Contains("B") ? "checked=checked" : "")/>
+                    <label for="multipleB">B</label>
+                    <input type="checkbox" name="multipleAnswer" id="multipleC" value="C" @(Model.Answer != null && Model.Answer.Contains("C") ? "checked=checked" : "")/>
+                    <label for="multipleC">C</label>
+                    <input type="checkbox" name="multipleAnswer" id="multipleD" value="D" @(Model.Answer != null && Model.Answer.Contains("D") ? "checked=checked" : "")/>
+                    <label for="multipleD">D</label>
+                    <input type="checkbox" name="multipleAnswer" id="multipleE" value="E" @(Model.Answer != null && Model.Answer.Contains("E") ? "checked=checked" : "")/>
+                    <label for="multipleE">E</label>
+                    <input type="checkbox" name="multipleAnswer" id="multipleF" value="F" @(Model.Answer != null && Model.Answer.Contains("F") ? "checked=checked" : "")/>
+                    <label for="multipleF">F</label>
+                    <input type="checkbox" name="multipleAnswer" id="multipleG" value="G" @(Model.Answer != null && Model.Answer.Contains("G") ? "checked=checked" : "")/>
+                    <label for="multipleG">G</label>
+                    <input type="checkbox" name="multipleAnswer" id="multipleH" value="H" @(Model.Answer != null && Model.Answer.Contains("H") ? "checked=checked" : "")/>
+                    <label for="multipleH">H</label>
+                </td>
+            </tr>
+            <tr style="height: 30px" id="JAnswer">
+                <th class="formTitle">参考答案：<span style="color: Red;">*</span>
+                </th>
+                <td class="formValue" colspan="3">
+                    <input type="radio" name="judgeAnswer" id="judgeA" value="A" @(Model.Answer != null && Model.Answer.Equals("A") ? "checked=checked" : "")/>
+                    <label for="judgeA">&nbsp;正确&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" name="judgeAnswer" id="judgeB" value="B" @(Model.Answer != null && Model.Answer.Equals("B") ? "checked=checked" : "")/>
+                    <label for="judgeB">&nbsp;错误&nbsp;&nbsp;&nbsp;</label>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">时间：</th>
+                <td class="formValue">
+                    @Html.TextBox("DTime", Model.Time.ToString("yyyy-MM-dd"), new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:200px" })
+                </td>
+                <th class="formTitle">是否有效：</th>
+                <td class="formValue">
+                    <input type="radio" name="showradio" id="Show" checked="checked" value="1" @((Model.RowStatus == 1) ? "checked=checked" : "")/>
+                    <label id="lab_Show" for="Show">&nbsp;&nbsp;是&nbsp;&nbsp;</label>
+                    <input type="radio" name="showradio" id="NotShow" value="0" @((Model.RowStatus == 0) ? "checked=checked" : "")/>
+                    <label id="lab_NotShow" for="NotShow">&nbsp;&nbsp;否</label>
+                </td>
+            </tr>
+            @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.QuestionsTypeName)
+            @Html.HiddenFor(x => x.Answer)
+            @Html.HiddenFor(x => x.AppointedDay)
+            @Html.HiddenFor(x => x.Time)
+            @Html.HiddenFor(x => x.Question)
+            @Html.HiddenFor(x => x.RowStatus)
+            @Html.HiddenFor(x => x.CreatorId)
+            @Html.HiddenFor(x => x.CreateBy)
+            @Html.HiddenFor(x => x.CreateOn)
+            @Html.HiddenFor(x => x.UpdateId)
+            @Html.HiddenFor(x => x.UpdateBy)
+            @Html.HiddenFor(x => x.UpdateOn)
+        </table>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+    var questionsTypeName = "";
+
+    $(document).ready(function () {
+        questionsTypeName = $("#QuestionsTypeId").find("option:selected").text();
+        CheckQuestionType();
+        $("#QuestionsTypeId").click(function () {
+            questionsTypeName = $("#QuestionsTypeId").find("option:selected").text();
+            CheckQuestionType();
+        });
+    });
+    //清空 
+    function Clear() {
+        $("#FillA").val("");
+        $("#FillB").val("");
+        $("#FillC").val("");
+        $("#FillD").val("");
+        $("#FillE").val("");
+        $("#FillF").val("");
+    }
+    //赋值
+    function ReValue() {
+        $("#AnswerA").val($("#FillA").val());
+        $("#AnswerB").val($("#FillB").val());
+        $("#AnswerC").val($("#FillC").val());
+        $("#AnswerD").val($("#FillD").val());
+        $("#AnswerE").val($("#FillE").val());
+        $("#AnswerF").val($("#FillF").val());
+    }
+    //根据题目类型显示不同区域
+    function CheckQuestionType() {
+        if (questionsTypeName == "单选题") {
+            //单选
+            $("#SA").show();
+            $("#SB").show();
+            $("#SC").show();
+            $("#SD").show();
+            $("#SAnswer").show();
+            $("#MAnswer").hide();
+            $("#JAnswer").hide();
+            $("#analysisAnswer").hide();
+            $("#spanFillBlank").hide();
+            $("#fillBlankAnswer").hide();
+        }
+        else if (questionsTypeName == "多选题") {
+            //多选
+            $("#SA").show();
+            $("#SB").show();
+            $("#SC").show();
+            $("#SD").show();
+            $("#SAnswer").hide();
+            $("#MAnswer").show();
+            $("#JAnswer").hide();
+            $("#analysisAnswer").hide();
+            $("#spanFillBlank").hide();
+            $("#fillBlankAnswer").hide();
+        } else if (questionsTypeName == "判断题") {
+            //多选
+            Clear();
+            $("#SA").hide();
+            $("#SB").hide();
+            $("#SC").hide();
+            $("#SD").hide();
+            $("#SAnswer").hide();
+            $("#MAnswer").hide();
+            $("#JAnswer").show();
+            $("#analysisAnswer").hide();
+            $("#spanFillBlank").hide();
+            $("#fillBlankAnswer").hide();
+        }
+    }
+
+
+    //保存事件
+    function AcceptClick() {
+        if (!CheckDataValid('#formmain')) {
+            return false;
+        }
+        if (questionsTypeName == "单选题") {
+            $("#Answer").val($('input[name="singleAnswer"]:checked').val());
+            if ($("#Answer").val() == "") {
+                var Validatemsg = "答案不能为空！\n";
+                tipCss($("#singleA"), Validatemsg);
+                return false;
+            }
+        }
+        else if (questionsTypeName == "多选题") {
+            var chk_value = [];
+            $('input[name="multipleAnswer"]:checked').each(function () {
+                chk_value.push($(this).val());
+            });
+            $("#Answer").val(chk_value);
+            if ($("#Answer").val() == "") {
+                var Validatemsg = "答案不能为空！\n";
+                tipCss($("#multipleA"), Validatemsg);
+                return false;
+            }
+        }
+        else if (questionsTypeName == "判断题") {
+            $("#Answer").val($('input[name="judgeAnswer"]:checked').val());
+            ReValue();
+            if ($("#Answer").val() == "") {
+                var Validatemsg = "答案不能为空！\n";
+                tipCss($("#judgeA"), Validatemsg);
+                return false;
+            }
+        }
+
+        var show = $("input[name='showradio']:checked").val();
+
+        Loading(true, "正在提交数据...");
+        window.setTimeout(function () {
+
+            $("#AppointedDay").val($("#DAppointedDay").val());
+            $("#QuestionsTypeName").val($("#QuestionsTypeId").find("option:selected").text());
+
+            $("#Time").val($("#DTime").val());
+            $("#RowStatus").val(show);
+            AjaxJson('@Url.Action("SubmitForm", "DailyOneProblem")', $('#formmain').serialize(), function (data) {
+                tipDialog(data.RtMsrg, 3, data.RtState);
+                if (data.RtState == 1) {
+                    top.frames[tabiframeId()].windowload();
+                    closeDialog();
+                }
+            });
+        }, 200);
+    }
+</script>

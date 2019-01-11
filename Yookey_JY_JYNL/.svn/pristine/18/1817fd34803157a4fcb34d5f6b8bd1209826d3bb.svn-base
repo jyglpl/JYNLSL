@@ -1,0 +1,258 @@
+﻿@{
+    Layout = null;
+}
+@using Yookey.WisdomClassed.SIP.Model.Case
+@model Yookey.WisdomClassed.SIP.Model.Case.InfPunishRecordEntity
+@{
+    var caseEntity = ViewBag.CaseEntity as InfPunishCaseinfoEntity;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>调查询问笔录</title>
+
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <script>
+        $(document).ready(function () {
+            Loading(false);
+            var targettype = '@caseEntity.TargetType';
+            if (targettype == "00120002") {
+                $("#trcompcode1").show();
+                $("#trcompcode2").show();
+                $("#TargetSHXYM").val('@caseEntity.TargetSHXYM');
+                $("#TargetZDM").val('@caseEntity.TargetZDM');
+                $("#TargetGSDJ").val('@caseEntity.TargetGSDJ');
+                $("#TargetSWDJ").val('@caseEntity.TargetSWDJ');
+            }
+        });
+
+
+        //保存调查询问笔录
+        function SaveWritSurvey() {
+            if (CheckValidator()) {
+                Loading(true, "正在提交数据...");
+                var id = $("#Id").val();
+                var caseInfoId = $("#CaseInfoId").val();
+                var caseInfoNo = $("#CaseInfoNo").val();
+                var itemName = $("#ItemName").val();
+                var startDate = $("#StartDate").val();
+                var endDate = $("#EndDate").val();
+                var address = $("#Address").val();
+                var caseRelationship = $("#CaseRelationship").val();
+                var questionerFirstName = $("#QuestionerFirstName").val();
+                var questionerSecondName = $("#QuestionerSecondName").val();
+                var recordsName = $("#RecordsName").val();
+                var targetName = $("#TargetName").val();
+                var targetGender = $("#TargetGender").val();
+                var birthDate = $("#BirthDate").val();
+                var targetPaperNum = $("#TargetPaperNum").val();
+                var targetPhone = $("#TargetPhone").val();
+                var targetAddress = $("#TargetAddress").val();
+                var targetUnit = $("#TargetUnit").val();
+                var targetDuty = $("#TargetDuty").val();
+                var targetZipCode = $("#TargetZipCode").val();
+                var recordInfo = $("#RecordInfo").val();
+
+                var xdrShxym = $("#TargetSHXYM").val();
+                var xdrZdm = $("#TargetZDM").val();
+                var xdrGsdj = $("#TargetGSDJ").val();
+                var xdrSwdj = $("#TargetSWDJ").val();
+
+                AjaxJson('@Url.Action("WritSurvey", "PenaltyCaseAjax")',
+                    {
+                        id: id,
+                        caseInfoId: caseInfoId,
+                        caseInfoNo: caseInfoNo,
+                        itemName: itemName,
+                        startDate: startDate,
+                        endDate: endDate,
+                        address: address,
+                        questionerFirstName: questionerFirstName,
+                        questionerSecondName: questionerSecondName,
+                        recordsName: recordsName,
+                        targetName: targetName,
+                        targetGender: targetGender,
+                        birthDate: birthDate,
+                        caseRelationship: caseRelationship,
+                        targetPaperNum: targetPaperNum,
+                        targetPhone: targetPhone,
+                        targetAddress: targetAddress,
+                        targetUnit: targetUnit,
+                        targetDuty: targetDuty,
+                        targetZipCode: targetZipCode,
+                        recordInfo: recordInfo,
+                        targetShxym: xdrShxym,
+                        targetZdm: xdrZdm,
+                        targetGsdj: xdrGsdj,
+                        targetSwdj: xdrSwdj
+                    }, function (data) {
+                        alertDialogCallBack('保存成功！', 1, function () {
+                            window.location.herf = window.location.herf;
+                        });
+                    });
+            }
+        }
+
+        //验证
+        function CheckValidator() {
+            var istrue = true;
+            if ($("#TargetName").val() == '') {
+                alertDialog('被调查人不能为空！', 0);
+                istrue = false;
+            }
+            if ($("#TargetGender").val() == '') {
+                alertDialog('性别不能为空！', 0);
+                istrue = false;
+            }
+
+            var targettype = '@caseEntity.TargetType';
+            if (targettype == "00120001") {
+                if ($("#TargetPaperNum").val() == '') {
+                    alertDialog('身份证号码不能为空！', 0);
+                    istrue = false;
+                }
+            }
+            if (targettype == '00120002') {  //法人
+                var xdr_shxym = $("#TargetSHXYM").val();
+                var xdr_zdm = $("#TargetZDM").val();
+                var xdr_gsdj = $("#TargetGSDJ").val();
+                var xdr_swdj = $("#TargetSWDJ").val();
+
+                if (xdr_shxym == '' && xdr_zdm == '' && xdr_gsdj == '' && xdr_swdj == '') {
+                    alertDialog('被处罚单位的社会信用代码、组织机构代码、工商登记码、税务登记号，必须填写任意一个！', -1);
+                    istrue = false;
+                }
+            }
+            //if ($("#TargetPaperNum").val() == '') {
+            //    alertDialog('身份证号码不能为空！', 0);
+            //    istrue = false;
+            //}
+            if ($("#TargetPhone").val() == '') {
+                alertDialog('电话号码不能为空！', 0);
+                istrue = false;
+            }
+            if ($("#TargetAddress").val() == '') {
+                alertDialog('被调查人地址不能为空！', 0);
+                istrue = false;
+            }
+            return istrue;
+        }
+
+    </script>
+
+</head>
+<body>
+    <div>
+        <form id="formmain">
+            <div style="margin-left: 5px; margin-right: 5px;">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle">案件名称：</th>
+                        <td class="formValue" colspan="5">@Html.TextBoxFor(x => x.ItemName, new { @class = "txt" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">案件编号：</th>
+                        <td class="formValue" colspan="5">@Html.TextBoxFor(x => x.CaseInfoNo, new { @class = "txt" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">询问时间：</th>
+                        <td class="formValue" colspan="5">@Html.TextBoxFor(x => x.StartDate, new { @class = "txt Wdate", Value = Model.StartDate.ToString("yyyy-MM-dd HH:mm"), @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})", @style = "width:150px" }) 至 @Html.TextBoxFor(x => x.EndDate, new { @class = "txt Wdate", Value = Model.EndDate.ToString("yyyy-MM-dd HH:mm"), @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})", @style = "width:150px" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">询问地点：</th>
+                        <td class="formValue" colspan="5">@Html.TextBoxFor(x => x.Address, new { @class = "txt" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">询问人：</th>
+                        <td class="formValue" colspan="2">
+                            @Html.TextBoxFor(x => x.QuestionerFirstName, new { @class = "txt", @style = "width:40%" })
+                            &nbsp;
+                            @Html.TextBoxFor(x => x.QuestionerSecondName, new { @class = "txt", @style = "width:40%" })
+                        </td>
+                        <th class="formTitle">记录人：</th>
+                        <td class="formValue" colspan="2">@Html.TextBoxFor(x => x.RecordsName, new { @class = "txt", @style = "width:40%" })</td>
+                    </tr>
+                    <tr id="trcompcode1" style="display: none">
+                        <th class="formTitle">社会信用代码：</th>
+                        <td class="formValue" colspan="2">
+                            <input id="TargetSHXYM" style="width: 100%;" class="txt" />
+                        </td>
+                        <th class="formTitle">组织机构代码：</th>
+                        <td class="formValue" colspan="2">
+                            <input id="TargetZDM" style="width: 100%;" class="txt" />
+                        </td>
+                    </tr>
+                    <tr id="trcompcode2" style="display: none">
+                        <th class="formTitle">工商登记码：</th>
+                        <td class="formValue" colspan="2">
+                            <input id="TargetGSDJ" style="width: 100%;" class="txt" />
+                        </td>
+                        <th class="formTitle">税务登记号：</th>
+                        <td class="formValue" colspan="2">
+                            <input id="TargetSWDJ" style="width: 100%;" class="txt" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">被询问人：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.TargetName, new { @class = "txt" })</td>
+                        <th class="formTitle">与本案关系：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.CaseRelationship, new { @class = "txt" })</td>
+                        <th class="formTitle">电话：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.TargetPhone, new { @class = "txt" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">身份证号码：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.TargetPaperNum, new { @class = "txt" })</td>
+                        <th class="formTitle">出生年月：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.BirthDate, new { @class = "txt" })</td>
+                        <th class="formTitle">性别：</th>
+                        <td class="formValue">@Html.DropDownListFor(x => x.TargetGender, (ViewData["Sexs"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">地址：</th>
+                        <td class="formValue" colspan="5">@Html.TextBoxFor(x => x.TargetAddress, new { @class = "txt" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">工作单位：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.TargetUnit, new { @class = "txt" })</td>
+                        <th class="formTitle">职务：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.TargetDuty, new { @class = "txt" })</td>
+                        <th class="formTitle">邮编：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.TargetZipCode, new { @class = "txt" })</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle" rowspan="2">笔录情况</th>
+                        <th class="formTitle" colspan="5" style="text-align: left;">我们是苏州工业园区综合行政执法局下属国土资源监察大队的执法人员这是我们的《行政执法证》（出示证件），<br />
+                            现依法进行调查。根据《中华人民共和国行政处罚法》等法律规定，如执法人员少于两人或执法证件与身份不符，<br />
+                            你有权拒绝调查，如执法人员与案件有直接利害关系，你也有权申请执法人员回避。同时你应如实提供有关资料、<br />
+                            回答询问，如作虚假陈述或拒绝、阻挠调查，将依法追究法律责任。请你配合我们调查询问。你是否听清楚了？
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="formValue">
+                            @Html.TextAreaFor(x => x.RecordInfo, new { @class = "txtArea", @style = "width: 100%; height: 255px;" })
+                            <input type="hidden" id="Id" name="Id" value="@Model.Id"/>
+                            @Html.HiddenFor(x => x.CaseInfoId)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

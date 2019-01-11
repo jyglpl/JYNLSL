@@ -1,0 +1,161 @@
+﻿@using System.Data;
+@{
+    DataTable entDt = ViewData["entSearch"] as DataTable;
+    DataTable insDt = ViewData["insSearch"] as DataTable;
+    DataTable recDt = ViewData["recSearch"] as DataTable;
+    DataTable corDt = ViewData["corSearch"] as DataTable;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>安全生产分析</title>
+    <link href="@Url.Content("~/Content/Main/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Main/css/border.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Main/css/caseSaftyIndex.css")" rel="stylesheet" />
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <div id="list">
+        <div class="list_top clearfixed">
+            <div class="topLeft fl" style="overflow-y: auto;">
+                <div class="title">整体概况</div>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <th>所属区域</th>
+                        <th>企业数量</th>
+                        <th>执法检查</th>
+                        <th>责令整改</th>
+                        <th>整改复查</th>
+                    </thead>
+
+                    @foreach (DataRow myRow in entDt.Rows)
+                    {
+                        <tr>
+                            <td>@myRow["所属区镇"].ToString()</td>
+                            <td>@myRow["CT"].ToString()</td>
+                            @if (insDt.Select("所属区镇 = '" + myRow["所属区镇"].ToString() + "'").Length > 0)
+                            {
+                                <td>@insDt.Select("所属区镇 = '" + myRow["所属区镇"].ToString() + "'").Count()</td>
+                            }
+                            else
+                            {
+                                <td>0</td>
+                            }
+                            @if (recDt.Select("所属区镇 = '" + myRow["所属区镇"].ToString() + "'").Length > 0)
+                            {
+                                <td>@recDt.Select("所属区镇 = '" + myRow["所属区镇"].ToString() + "'").Count()</td>
+                            }
+                            else
+                            {
+                                <td>0</td>
+                            }
+                            @if (corDt.Select("所属区镇 = '" + myRow["所属区镇"].ToString() + "'").Length > 0)
+                            {
+                                <td>@corDt.Select("所属区镇 = '" + myRow["所属区镇"].ToString() + "'").Count()</td>
+                            }
+                            else
+                            {
+                                <td>0</td>
+                            }
+
+
+
+
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="topRight fl">
+                <div class="title">整体概况</div>
+                <div class="text" style="font-size: 20px; margin-top: 30px;">在库企业数:&nbsp;&nbsp;&nbsp;<font onclick="location.href='@Url.Action("EnterpriseIndex")'" style="cursor:pointer;">@ViewData["entCT"]</font>&nbsp;&nbsp;&nbsp;家</div>
+                <div class="text" style="font-size: 20px;">现场检查数:&nbsp;&nbsp;&nbsp;<font onclick="location.href='@Url.Action("InspectionIndex")'" style="cursor:pointer;">@ViewData["insCT"]</font>&nbsp;&nbsp;&nbsp;条</div>
+                <div class="text" style="font-size: 20px;">责令整改数:&nbsp;&nbsp;&nbsp;<font onclick="location.href='@Url.Action("RectificationIndex")'" style="cursor:pointer;">@ViewData["recCT"] </font>&nbsp;&nbsp;&nbsp;条</div>
+                <div class="text" style="font-size: 20px;">整改复查数:&nbsp;&nbsp;&nbsp;<font onclick="location.href='@Url.Action("CorrectiveReviewIndex")'" style="cursor:pointer;">@ViewData["corCT"]</font>&nbsp;&nbsp;&nbsp;条</div>
+                <div class="text" style="font-size: 20px;">执法案件数:&nbsp;&nbsp;&nbsp;<font onclick="location.href='@Url.Action("PunishCaseIndex")'" style="cursor:pointer;">@ViewData["casCT"]</font>&nbsp;&nbsp;&nbsp;条</div>
+                <div class="text" style="font-size: 20px;">执法人员数:&nbsp;&nbsp;&nbsp;<font onclick="location.href='@Url.Action("LawpersonnelIndex")'" style="cursor:pointer;">@ViewData["perCT"]</font>&nbsp;&nbsp;&nbsp;条</div>
+            </div>
+        </div>
+        <div class="list_bottom clearfixed">
+            <div class="bot_left fl">
+                <div class="title">现场检查上报</div>
+                <div id="echartsOne" style="width: 100%; height: 570px;"></div>
+            </div>
+            <div class="bot_right fr">
+                <div class="title">企业网格率占比</div>
+                <div id="echartsTwo" style="width: 100%; height: 570px;"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/echarts.js")"></script>
+    <script>
+        var date = '@ViewData["date"]';
+        var ct = '@ViewData["ct"]';
+        var arr = date.split(",");
+        var dates = "";
+        for (var i = 0; i < arr.length; i++) {
+            dates += "'" + arr[i] + "',";
+        }
+        dates = eval("[" + dates.substring(0, dates.length - 1) + "]");
+        ct = eval("[" + ct + "]");
+
+        function echartsOne() {
+            var mychart = echarts.init(document.getElementById('echartsOne'));
+            mychart.setOption(option = {
+                legend: {
+                    data: ['上报数量']
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: dates,
+                        splitLine: { show: false },//去除网格线
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '上报数量',
+                        type: 'bar',
+                        data: ct,
+                    }
+                ]
+            })
+        }
+        echartsOne()
+        function echartsTwo() {
+            var mychart = echarts.init(document.getElementById('echartsTwo'));
+            mychart.setOption(option = {
+                legend: {
+                    orient: 'vertical',
+                    x: 'left',
+                    data: ['已分配网格', '未分配网格']
+                },
+                series: [
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['50%', '60%'],
+                        data: [
+                            { value: '@ViewData["yfpWg"]', name: '已分配网格' },
+                            { value: '@ViewData["wfpWg"]', name: '未分配网格' },
+                        ]
+                    }
+                ]
+            })
+            }
+            echartsTwo()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>台帐管理</title>
+
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <link href="@Url.Content("~/Librarys/casepic/css/style.css")" rel="stylesheet" />
+
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--jqgrid表格组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        var gPageSize = 10;
+        var i = 1; //设置当前页数，全局变量
+        $(function () {
+
+            var height = $(window).height() - 95;
+            $("#grid_View").css('height', height);
+
+            //初始化加载第一页数据
+            getData(1);
+        });
+
+
+        //根据页数读取数据
+        function getData(pagenumber) {
+            i++;//页码自动增加，保证下次调用时为新的一页。
+            $.get('@Url.Action("GetData")?rnd=' + Math.random(), { pagesize: gPageSize, pagenumber: pagenumber }, function (data) {
+                if (data.length > 0) {
+                    var jsonObj = JSON.parse(data);
+                    insertDiv(jsonObj);
+                }
+            });
+        }
+
+
+        //生成数据html，append到div中
+        function insertDiv(json) {
+            var $mainDiv = $("#grid_View");
+            var html = '';
+            for (var i = 0; i < json.length; i++) {
+                html += '<div class="LedgerCard">';
+                html += '<div class="Cardhead">';
+                html += '<div style="float: left">内部编号：</div>';
+                html += '<div style="float: right">' + json[i].CaseInfoNo + '</div>';
+                html += '</div><div><div class="Cardphoto"></div>';
+                html += '<div class="CardInfo" ondblclick="QueryDetails(\'' + json[i].Id + '\')">';
+                html += '当事人：' + json[i].TargetName + '<br />';
+                html += '案由：' + json[i].ItemName + '<br />';
+                html += '结案日期：' + json[i].FinishDate + '<br />';
+                html += '</div></div></div>';
+            }
+            $mainDiv.append(html);
+        }
+
+        //==============核心代码=============
+        var winH = $(window).height(); //页面可视区域高度 
+        //定义鼠标滚动事件
+        $("#grid_View").scroll(function () {
+
+            //alert(11);
+
+            //var pageH = $(document.body).height();
+            //var scrollT = $(window).scrollTop(); //滚动条top 
+            //var aa = (pageH - winH - scrollT) / winH;
+            //if (aa < 0.02) {//0.02是个参数
+            //    getData(i);
+            //}
+        });
+
+        function divScroll() {
+            var pageH = $(document.body).height();
+            var scrollT = $("#grid_View").scrollTop();  //滚动条top 
+            var aa = (pageH - winH - scrollT) / winH;
+            if (aa < 0.02) {//0.02是个参数
+                getData(i);
+                
+                alert('12369874541');
+            }
+        }
+
+        //==============核心代码=============
+
+    </script>
+
+
+</head>
+<body>
+    <div id="layout" class="layout">
+        <div class="layoutPanel" style="overflow: auto;">
+            <div style="margin: 1px; margin-top: -1px;"></div>
+            <!--列表-->
+            <div id="grid_List">
+                <div class="bottomline" style="margin: 1px; margin-top: 0px; margin-bottom: 0px;">
+                    <table border="0" class="form-find" style="height: 45px;">
+                        <tr>
+                            <th>部 门：</th>
+                            <td>
+                                @Html.DropDownList("DrpDepartment", (ViewData["Depts"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 150px" })
+                            </td>
+                            <th>案发时间（始）：</th>
+                            <td>
+                                @Html.TextBox("CaseStartTime", "", new { @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @class = "txt Wdate", @style = "width:150px;" })
+                            </td>
+                            <th>案发时间（止）：</th>
+                            <td>
+                                @Html.TextBox("CaseEndTime", "", new { @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @class = "txt Wdate", @style = "width:150px;" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>大 类：</th>
+                            <td>
+                                @Html.DropDownList("ClassNo", (ViewData["ClassNos"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 150px", @onchange = "javascript:ChangeClassNo(this.value,'ItemActs')" })
+                            </td>
+                            <th>小 类：</th>
+                            <td colspan="3">
+                                <select id="ItemActs" class="select" style="width: 350px;"></select>
+                                &nbsp;&nbsp;
+                                <input id="btnSearch" type="button" class="btnSearch" value="查 询" onclick="btn_search()" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <table id="gridTable"></table>
+                <div id="gridPager"></div>
+            </div>
+            <!--视图-->
+            <div id="grid_View" class="ScrollBar" style="overflow: auto;" onscroll="divScroll();">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    function QueryDetails(id) {
+        var caseEntity = '@Url.Action("Entity")?id=' + id;
+        var width = 1024;
+        var height = 700;
+        Dialog((caseEntity + '&rnd=' + Math.random()), "FirstDialogWindow", "案件卷宗", width, height);
+    }
+
+    //更改大类
+    function ChangeClassNo(classNo, selectId, legislationId, legislationItemId, legislationGistId) {
+        getAjax("@Url.Action("AjLoadItemActs", "PenaltyCase")", { classNo: classNo, selectId: selectId }, function (msg) {
+            eval(msg);
+            if (legislationId != '' && legislationId != undefined) {
+                $("#" + selectId).val(legislationId);
+                $("#LegislationId").val(legislationId);
+            }
+        });
+    }
+
+    /*
+    * 数据查询
+    */
+    function btn_search() {
+        var deptId = $("#DrpDepartment").val();
+        var caseStartTime = $("#CaseStartTime").val();
+        var caseEndTime = $("#CaseEndTime").val();
+        var classI = $("#ClassNo").val();
+        var classIi = $("#ItemActs").val();
+
+        i = 1;
+        var url = '@Url.Action("GetData")?deptId=' + deptId + '&caseStartTime=' + caseStartTime + '&caseEndTime=' + caseEndTime + '&classI=' + classI + '&classIi=' + classIi + '&rnd=' + Math.random();
+        $.get(url, { pagesize: gPageSize, pagenumber: 1 }, function (data) {
+            if (data.length > 0) {
+                var jsonObj = JSON.parse(data);
+                insertDiv(jsonObj);
+            }
+        });
+    }
+
+</script>

@@ -1,0 +1,285 @@
+﻿@{
+    Layout = null;
+    @model Yookey.WisdomClassed.SIP.Model.License.LicensePulicityEntity
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>行政许可维护</title>
+
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <script src="@Url.Content("~/Librarys/jquery_form_min.js")"></script>
+
+    <script>
+        $(document).ready(function () {
+            Loading(false);
+        });
+    </script>
+
+</head>
+<body style="font-size: 12px;">
+    @using (Html.BeginForm("SaveCreditEdit", "LicenseMain", FormMethod.Post, new { @id = "formmain", @enctype = "multipart/form-data" }))
+    {
+        <div id="message" style="display: none; padding: 1px; padding-bottom: 0;"></div>
+        <div>
+            <div style="margin-left: 5px; margin-right: 5px;">
+                <table class="casedt" style="width: 100%; border: 0px;">
+                    <tr>
+                        <th class="formTitle" style="width: 110px;">行政许可决定书文号：</th>
+                        <td class="formValue" style="width: 550px;">
+                            @Html.TextBoxFor(x => x.XK_WSH, new { @class = "txtborder required", @style = "width: 300px;", @datacol = "yes", @err = "行政许可决定书文号", @checkexpession = "NotNull" })
+                        </td>
+                        <th class="emptydt" style="width: 110px;"></th>
+                        <td class="emptydt" style="width: 350px;"></td>
+                        <td class="emptydt"></td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">项目名称：</th>
+                        <td class="formValue" colspan="3">
+                            @Html.TextBoxFor(x => x.XK_XMMC, new { @class = "txtborder required", @style = "width: 300px;", @datacol = "yes", @err = "项目名称", @checkexpession = "NotNull" })
+                        </td>
+                        <td class="emptydt"></td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">行政许可编码：</th>
+                        <td class="formValue" colspan="3">
+                            @Html.TextBoxFor(x => x.XK_BM, new { @class = "txtborder required", @style = "width: 300px;" })
+                        </td>
+                        <td class="emptydt"></td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">许可审批类别：</th>
+                        <td class="formValue" colspan="4">
+                            <input type="radio" name="XK_SPLB" id="rdocflb1jg" value="普通" @(Model.XK_SPLB.Equals("普通") ? "checked=checked" : "")/>
+                            <label for="rdocflb1jg">特许</label>
+                            <input type="radio" name="XK_SPLB" id="rdocflb1fk" value="特许" @(Model.XK_SPLB.Equals("特许") ? "checked=checked" : "")/>
+                            <label for="rdocflb1fk">认可</label>
+                            <input type="radio" name="XK_SPLB" id="rdocflb1ms" value="认可" @(Model.XK_SPLB.Equals("认可") ? "checked=checked" : "")/>
+                            <label for="rdocflb1ms">核准</label>
+                            <input type="radio" name="XK_SPLB" id="rdocflb1tc" value="核准" @(Model.XK_SPLB.Equals("核准") ? "checked=checked" : "")/>
+                            <label for="rdocflb1tc">登记</label>
+                            <input type="radio" name="XK_SPLB" id="rdocflb1zq" value="登记" @(Model.XK_SPLB.Equals("登记") ? "checked=checked" : "")/>
+                            <label for="rdocflb1zq">行政拘留</label>
+                            <input type="radio" name="XK_SPLB" id="rdocflb1jl" value="行政拘留" @(Model.XK_SPLB.Equals("行政拘留") ? "checked=checked" : "")/>                            
+                            <label for="rdocflb1qt">其他</label>
+                            <input type="text" class="txtborder" style="width: 121px;" name="XK_SPLB" />
+                        </td>
+                    </tr>                    
+                    <tr>
+                        <th class="formTitle">许可内容：</th>
+                        <td class="formValue" colspan="4">
+                            @Html.TextBoxFor(x => x.XK_NR, new { @class = "txtborder", @style = "width: 95.3%;", @datacol = "yes", @err = "许可内容", @checkexpession = "NotNull" })
+                        </td>
+                    </tr>                    
+                    <tr>
+                        <th class="formTitle">行政相对人名称：</th>
+                        <td class="formValue" colspan="3">
+                            @Html.TextBoxFor(x => x.XK_XDR, new { @class = "txtborder", @style = "width: 300px;", @datacol = "yes", @err = "行政相对人名称", @checkexpession = "NotNull" })
+                        </td>
+                        <td class="emptydt"></td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">行政相对人代码_1
+                            <br />
+                            （统一社会信用代码）：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.XK_XDR_SHXYM, new { @class = "txtborder", @style = "width: 300px;" })
+                        </td>
+                        <th class="formTitle" style="width: 110px;">行政相对人代码_2<br />
+                            （组织机构代码）：
+                        </th>
+                        <td class="formValue" style="width: 350px;">
+                            @Html.TextBoxFor(x => x.XK_XDR_ZDM, new { @class = "txtborder", @style = "width: 300px;" })
+                        </td>
+                        <td class="emptydt"></td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">行政相对人代码_3
+                            <br />
+                            （工商登记号）：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.XK_XDR_GSDJ, new { @class = "txtborder", @style = "width: 300px;" })
+                        </td>
+                        <th class="formTitle" style="width: 110px;">行政相对人代码_4<br />
+                            （税务登记号）：
+                        </th>
+                        <td class="formValue" style="width: 350px;">
+                            @Html.TextBoxFor(x => x.XK_XDR_SWDJ, new { @class = "txtborder", @style = "width: 300px;" })
+                        </td>
+                        <td class="emptydt"></td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">行政相对人代码_5
+                            <br />
+                            （居民身份证号）：
+                        </th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.XK_XDR_SFZ, new { @class = "txtborder", @style = "width: 300px;" })
+                        </td>
+                        <th class="formTitle" style="width: 110px;">法定代表人姓名：
+                        </th>
+                        <td class="formValue" style="width: 350px;">
+                            @Html.TextBoxFor(x => x.XK_FR, new { @class = "txtborder", @style = "width: 300px;" })
+                        </td>
+                        <td class="emptydt"></td>
+                    </tr>                    
+                    <tr>
+                        <th class="formTitle">许可决定日期：</th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.XK_JZQ, new { @class = "txtborder required", @style = "width: 300px;", @datacol = "yes", @err = "处罚决定日期", @checkexpession = "NotNull", Value = Model.XK_JZQ.Year <= 1900 ? "" : Model.XK_JZQ.ToString("yyyy-MM-dd"), @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})" })
+                        </td>
+                        <th class="formTitle" style="width: 110px;">许可机关：<span style="color: Red;">*</span>
+                        </th>
+                        <td class="formValue" style="width: 350px;">
+                            @Html.TextBoxFor(x => x.XK_XZJG, new { @class = "txtborder required", @style = "width: 300px;", @datacol = "yes", @err = "处罚机关", @checkexpession = "NotNull" })
+                        </td>
+                        <td class="emptydt"></td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">当前状态：</th>
+                        <td class="formValue">
+                            <input type="radio" name="CF_ZT" id="rdocfztzc" value="0" @(Model.XK_ZT.Equals("0") ? "checked=checked" : "")/>
+                            <label for="rdocfztzc">正常</label>
+                            <input type="radio" name="CF_ZT" id="rdocfztcx" value="1" @(Model.XK_ZT.Equals("1") ? "checked=checked" : "")/>
+                            <label for="rdocfztcx">撤销</label>
+                            <input type="radio" name="CF_ZT" id="rdocfztyy" value="2" @(Model.XK_ZT.Equals("2") ? "checked=checked" : "")/>
+                            <label for="rdocfztyy">异议</label>
+                            <input type="radio" name="CF_ZT" id="rdocfztqt" value="3" @(Model.XK_ZT.Equals("3") ? "checked=checked" : "")/>
+                            <label for="rdocfztqt">其他</label>
+                            @*@Html.TextBoxFor(x => x.BZ, new { @class = "txtborder", @style = "width: 138px;" })*@
+                        </td>
+                        <th class="formTitle" style="width: 110px;">地方编码：<span style="color: Red;">*</span>
+                        </th>
+                        <td class="formValue" style="width: 350px;">
+                            @Html.TextBoxFor(x => x.DFBM, new { @class = "txtborder", @style = "width: 300px;", @datacol = "yes", @err = "地方编码", @checkexpession = "NotNull" })
+                        </td>
+                        <td class="emptydt"></td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">备注：</th>
+                        <td class="formValue" colspan="4">
+                            @Html.TextBoxFor(x => x.BZ, new { @class = "txtborder", @style = "width: 95.3%;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">信息使用范围：</th>
+                        <td class="formValue">
+                            <input type="radio" name="CF_SYFW" id="rdosyfwgs" value="0" @(Model.XK_SYFW.Equals("0") ? "checked=checked" : "")/>
+                            <label for="rdosyfwgs">公示</label>
+                            <input type="radio" name="CF_SYFW" id="rdosyfwgx" value="1" @(Model.XK_SYFW.Equals("1") ? "checked=checked" : "")/>
+                            <label for="rdosyfwgx">仅政府部门内部共享</label>
+                            <input type="radio" name="CF_SYFW" id="rdosyfwcx" value="2" @(Model.XK_SYFW.Equals("2") ? "checked=checked" : "")/>
+                            <label for="rdosyfwcx">仅可授权查询</label>
+                        </td>                        
+                    </tr>
+                    <tr>
+                       @* <th class="formTitle">公示截止日期：</th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.CF_GSJZQ, new { @class = "txtborder", @style = "width: 300px;", Value = Model.CF_GSJZQ.Year <= 1900 ? "" : Model.CF_GSJZQ.ToString("yyyy-MM-dd"), @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})" })
+                        </td>*@
+                        <th class="formTitle" style="width: 110px;">是否公示：</th>
+                        <td class="formValue" style="width: 350px;">
+                            <input type="radio" name="WhetherPublic" id="rdopublic" value="1" @(Model.WhetherPublic == 1 ? "checked=checked" : "") />
+                            <label for="rdopublic">公示</label>
+                            <input type="radio" name="WhetherPublic" id="rdounpublic" value="0" @(Model.WhetherPublic == 0 ? "checked=checked" : "")/>
+                            <label for="rdounpublic">不公示</label>
+                        </td>
+                        <td class="emptydt"></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px; padding-bottom: 10px; text-align: center;" colspan="5">
+
+                            @Html.HiddenFor(x => x.Id)
+                            @Html.HiddenFor(x => x.LicenseId)                            
+                            @Html.HiddenFor(x => x.RowStatus)
+                            @Html.HiddenFor(x => x.CreatorId)
+                            @Html.HiddenFor(x => x.CreateBy)
+                            @Html.HiddenFor(x => x.CreateOn)
+
+                            <input type="button" class="btnSave" value="保　存" onclick="javascript: AcceptClick();" />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="button" class="btnClose" value="关　闭" onclick="javascript: closepage();" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+</body>
+</html>
+
+
+<script type="text/javascript">
+    $(function () {
+        InitFormInput();
+    });
+
+    /* 初始化控 */
+    function InitFormInput() {
+
+        $("input[placeholder]").addClass('placeholder').focus(function () {
+            if ($(this).val() == this.defaultValue) {
+                $(this).val('');
+                $(this).removeClass('placeholder');
+            }
+        }).blur(function () {
+            if ($(this).val() == '') {
+                $(this).val(this.defaultValue);
+                $(this).addClass('placeholder');
+            }
+        });
+    }
+
+    function closepage() {
+        parent.ThisCloseTab();
+    }
+
+    //保存事件
+    function AcceptClick() {
+        if (!CheckDataValid('#formmain')) {
+            return false;
+        }
+        Loading(true, "正在提交保存…");
+        window.setTimeout(function () {
+            var options = {
+                type: 'multipart/form-data',
+                dataType: 'json',
+                beforeSubmit: function () {
+
+                },
+                success: function (data) {
+                    Loading(false, "正在拼了命为您加载…");
+                    if (data.RtState == 1) {
+                        confirmDialog('确认提示', '数据保存成功，是否需要关闭当前页面？', function (rt) {
+                            if (rt) {
+                                window.parent.ThisCloseTab();
+                            };
+                        });
+                    } else {
+                        alertDialog(data.rtMsrg, data.rtState);
+                    }
+                }
+            };
+            $("#formmain").ajaxSubmit(options);
+        }, 200);
+        return false;
+    };
+</script>

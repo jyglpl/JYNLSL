@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+@using Yookey.WisdomClassed.SIP.Membership
+
+@{
+        //var flightBackUp = this.Html.IsAllowed("");
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>违章停车登记</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件start-->
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+    <!--上传图片-->
+    <script src="@Url.Content("~/Librarys/imagepreview/main.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/swfupload/swfupload.handlers.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/swfupload/swfupload.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/swfupload/swfupload.queue.js")" type="text/javascript"></script>
+
+
+    <style type="text/css">
+        textarea {
+            width: 100%;
+            height: 30px;
+        }
+
+        .form .formTitle {
+            background: #F7F7F7;
+            border-top: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding: 0px;
+            margin: 0px;
+            height: 24px;
+            white-space: nowrap;
+            font-weight: normal;
+            text-align: right;
+            padding-right: 5px;
+            padding-left: 5px;
+            width: 162px;
+        }
+
+        .mytips {
+            background: #f8f8d8;
+            padding: 10px;
+        }
+
+            .mytips p {
+                height: 25px;
+                line-height: 25px;
+            }
+
+        #show_list li {
+            display: inline-block;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            Loading(false);
+        });
+
+        $(function () {
+            InitSWFUpload("@Url.Action("PicWTUpload", "Upload")", "Filedata", "20 MB", "@Url.Content("~/Librarys/swfupload/swfupload.swf")", 1, 2, "Car", 0);
+            $("#CarRoadWord").change(function () {
+                BindDropItem("#CarRoad", "Road", "", $(this).val());
+            });
+        });
+
+
+        //根据字母加载路段
+        function AjaxLoadRoads(selectId, word) {
+            getAjax("@Url.Action("AjLoadRoads", "PenaltyParking")", { selectId: selectId, word: word }, function (msg) {
+                eval(msg);
+            });
+        }
+
+        //选择执法部门
+        function ChangeDept(deptId, selectIds) {
+            getAjax("@Url.Action("AjLoadUsers", "PenaltyCase")", { deptId: deptId, selectIds: selectIds }, function (msg) {
+                eval(msg);
+            });
+        }
+
+        function btnSave() {
+            //车牌号码    
+            $("#CarNo").val($("#CarCarNoProvience").val() + $("#CarCarNoWord").val() + $("#CarCarNoDetai").val());
+
+            //提交图片
+            var picStr = "";
+            var res = $("#show_list input[name='hide_photo_name']");
+            for (var i = 0; i < res.length; i++) {
+                picStr = picStr + $(res[i]).val() + ",";
+            }
+            if (picStr != "") {
+                picStr = picStr.substr(0, picStr.length - 1);
+            }
+            $("#picStr").val(picStr);
+            if (!CheckDataValid('#form')) {
+                return false;
+            }
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: '@Url.Action("Add", "PenaltyParking")',
+                data: $('#form').serialize(),
+                async: false,
+                datatype: 'json',
+                success: function (data) {
+                    if (data.rtState == -1) {
+                        tipDialog("该车牌号属于白名单！", 3, 0);
+                    }
+                    else if (data.rtState == 0) {
+                        tipDialog("登记保存成功！", 3, 1);
+                        location.reload();
+                    } else if (data == 'error') {
+                        tipDialog('保存出现异常,请联系管理员！', 3, '');
+                    }
+                    else {
+                        tipDialog('保存出现异常,请联系管理员！', 3, '');
+                    }
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <div class="mytips" id="navtips">
+            <p>1、该页面中带*信息为必填或必选项.</p>
+            <p>2、上传附件，单个文件不得超过1M..</p>
+        </div>
+        <!--处罚依据-->
+        <div id="CustomAttribute">
+            <form id="form" action="@Url.Action("Add", "PenaltyParking")" method="post">
+                <table class="form" style="width: 1000px;">
+                    <tr>
+                        @*                        <th class='formTitle' style="width: 120px;">贴单编号：</th>
+                        <td class='formValue'>
+                            <input id="Yiyu_NoticeNo" name="NoticeNo" value="" type="text" class="txt" />
+                        </td>*@
+                        <th class='formTitle' style="width: 120px;">车辆类型：</th>
+                        <td class='formValue'>
+                            @Html.DropDownList("CarType", (ViewData["CarCarType"] as IEnumerable<SelectListItem>), new { @class = "txtselect" })
+                            <input id="picStr" name="picStr" type="hidden" />
+                        </td>
+                        <th class='formTitle'>车牌号码：</th>
+                        <td class='formValue'>
+                            @Html.DropDownList("CarCarNoProvience", (ViewData["CarCarNoProvience"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "width: 80px" })
+                            @Html.DropDownList("CarCarNoWord", (ViewData["CarCarNoWord"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "width: 80px" })
+                            <input id="CarCarNoDetai" type="text" class="txt required" style="display: inline-block; width: 100px;" datacol="yes" err="车牌号码" checkexpession="NotNull" />
+                            <input id="CarNo" name="CarNo" type="hidden" />
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <th class='formTitle'>所在路段：</th>
+                        <td class='formValue'>
+                            @Html.DropDownList("CarRoadWord", (ViewData["CarCarNoWord"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "width: 80px", @onchange = "javascript:AjaxLoadRoads('Road',this.value)" })
+                            <select id="Road" name="Road" style="width: 120px;" class="txtselect"></select>
+                        </td>
+                        <th class='formTitle'>违章地点：</th>
+                        <td class='formValue'>
+                            <input id="Yiyu_PunishMax" name="CheckSignAddress" type="text" class="txt required" datacol="yes" err="违章地点" checkexpession="NotNull" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class='formTitle'>违章日期：</th>
+                        <td class='formValue'>
+                            @Html.TextBox("CheckDate", "", new { @class = "txt Wdate required", @onfocus = "WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss' })", @datacol = "yes", @err = "违章日期", @checkexpession = "NotNull" })
+                        </td>
+                        <th class='formTitle'>执法队员：</th>
+                        <td class='formValue'>
+                            @Html.DropDownList("PersonId1", (ViewData["Users"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "width: 130px" })
+                            @Html.DropDownList("PersonId2", (ViewData["Users"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "width: 130px" })
+                        </td>
+                    </tr>
+                    <tr>
+                        @*                        <th class='formTitle'>处理部门：</th>
+                        <td class='formValue'>
+                            @Html.DropDownList("DeptId", (ViewData["Depts"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @onchange = "javascript:ChangeDept(this.value,'PersonId1,PersonId2')" })
+                        </td>*@
+
+                    </tr>
+                    <tr>
+                        <th class='formTitle'>证据情况：</th>
+                        <td class='formValue' colspan="3">
+                            <div class="upload_btn" style="width: 50px; display: inline-block;">
+                                <span id="upload"></span>
+                            </div>
+                            <div class="clear">
+                            </div>
+                            <!--图片列表.开始-->
+                            <div id="show_list">
+                                <ul>
+                                </ul>
+                            </div>
+                            <!--图片列表.结束-->
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <div style="text-align: center;">
+                <input id="Yiyu_btnCreate" type="button" style="margin-top: 10px;" class="btnSearch" value="提交保存" onclick="btnSave()">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

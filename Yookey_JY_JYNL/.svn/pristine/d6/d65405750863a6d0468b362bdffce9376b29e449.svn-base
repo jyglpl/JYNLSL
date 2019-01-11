@@ -1,0 +1,390 @@
+﻿@{
+    Layout = null;
+}
+@using Yookey.WisdomClassed.SIP.Common
+@using System.Data
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据展示</title>
+    <!--日期组件start-->
+    <script src="~/Librarys/datepicker/WdatePicker.js"></script>
+    <!--日期组件end-->
+    <link href="@Url.Content("~/Content/Files/css/dataIndex.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Files/css/index.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Files/css/forgm.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/Files/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Content/Files/js/echarts.js")"></script>
+    <style>
+        .moreList {
+            float: right;
+            font-size: 15px;
+            color: #4c4c4c;
+            height: 30px;
+            line-height: 30px;
+        }
+
+            .moreList:hover {
+                color: #4c4c4c;
+            }
+    </style>
+</head>
+<body style="overflow-y: auto">
+    <div class="contentBox">
+        <div class="navHeader">
+            <p>
+                <a class="homeIcon" href="#"></a>
+                <b></b>
+                <a href="@Url.Action("Index", "GridManagement")">台账管理</a>
+                <b></b>
+                <a href="#">统计</a>
+            </p>
+        </div>
+        <div class="allDistrict" style="overflow: hidden;">
+            <div class="dataDistrictBox">
+                <span>数据统计</span>
+                <div class="chooseBox">
+                    <p>
+                        <span>
+                            <select class="drpselect" name="drpYears" id="drpYears" style="width: 100px;">
+                               @*年份下拉框 *@
+                                @{
+                                    var years = ViewData["Years"] as DataTable;
+                                    if (years != null && years.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow item in years.Rows)
+                                        {
+                                    <option @(item["GradeYear"].Equals(ViewBag.DefaultYear) ? "selected=selected" : "") value="@item["GradeYear"]">@(item["GradeYear"] + "年")</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                    <option value="@DateTime.Now.Year">@(DateTime.Now.Year.ToString() + "年")</option>
+                                    }
+                                }
+                            </select>
+                        </span>
+                        <span>
+                            @*季度下拉框*@
+                            <select class="drpselect" name="drpQuarter" id="drpQuarter" style="width: 100px;">
+                                <option value="1" @(ViewBag.DefaultQuarter == 1 ? "selected=selected" : "")>1季度</option>
+                                <option value="2" @(ViewBag.DefaultQuarter == 2 ? "selected=selected" : "")>2季度</option>
+                                <option value="3" @(ViewBag.DefaultQuarter == 3 ? "selected=selected" : "")>3季度</option>
+                                <option value="4" @(ViewBag.DefaultQuarter == 4 ? "selected=selected" : "")>4季度</option>
+                            </select>
+                        </span>
+                        <span>
+                            <input id="btnSearch" style="cursor: pointer; width: 100px; height: 30px" name="" type="button" value="查询" onclick="QueryData();">
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="dataBox">
+                <div class="detuct">
+                    <span class="titleDetuct">扣分概况</span>
+                    <div class="paintList">
+                        <ul>
+                            <li>
+                                @{
+                                    var data = ViewData["data"] as DataTable;
+                                    var Score = 0;
+                                    foreach (DataRow item in data.Rows)
+                                    {
+                                        Score += int.Parse(item["Score"].ToString());
+                                    }
+                                   
+                                    <span class="total scroe">@Score.ToString()分</span>
+                                }
+                                <span class="expain">总扣分数</span>
+                            </li>
+                            @{
+                                var company = ViewData["data"] as DataTable;
+                                if (company != null && company.Rows.Count > 0)
+                                {
+                                    foreach (DataRow item in company.Rows)
+                                    {
+                                <li>
+                                    <span class="scroe">@item["Score"].ToString()分</span>
+                                    <span class="expain">@item["CompanyName"]</span>
+                                </li>
+                                    }
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="chartsBox">
+                    @*按扣分内容显示扣分TOP*@
+                    <div class="marksTop">
+                        <p>扣分内容TOP</p>
+                        <div id="mainFirst"></div>
+                    </div>
+                    <div class="marksRight">
+                        @*按考核内容显示扣分TOP*@
+                        <div class="markChart">
+                            <p>考核内容扣分</p>
+                            <div id="scoreContent">
+                            </div>
+                        </div>
+                        <div class="markList">
+                            <ul>
+                                @{
+                                    var gm = ViewData["GM"] as DataTable;
+                                    string[] qwe = ViewData["arr"] as string[];
+                                    int a = 1;
+                                    int z = 0;
+                                    if (gm != null && gm.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow item in gm.Rows)
+                                        {
+                                    <li>
+                                        <b>@a</b>
+                                        <span>其中 @item["GMName"]<span>@item["Score"]分</span>,占比 @qwe[z]</span>
+                                    </li>
+                                            a++;
+                                            z++;
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tableBox">
+                    <p>扣分列表 <span class="moreList"><a href="#" onclick="ShowMore();" class="moreList">查看更多>></a></span></p>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>单位</th>
+                                    <th>大/中队</th>
+                                    <th style="text-align: left">文件名</th>
+                                    <th>操作人</th>
+                                    <th>操作时间</th>
+                                    <th>扣除分数</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    var table = ViewData["Table"] as DataTable;
+                                    int index = 1;
+                                    string t = "";
+                                    foreach (DataRow item in table.Rows)
+                                    {
+                                    <tr>
+                                        <td>@index</td>
+                                        <td class="colorOgreng">@item["CompanyName"]</td>
+                                        <td>@item["DeptName"]</td>
+                                        <td style="text-align: left">@item["GMFileName"]</td>
+                                        <td>@item["CreateBy"]</td>
+                                        <td>@item["UpdateOn"]</td>
+                                        <td><span>@item["Score"]</span></td>
+                                        <td>
+                                            @{
+                                        var fileUrl = item["FileUrl"].ToString();
+                                        var conFileUrl = item["ConvertFileUrl"].ToString();
+                                        if (!string.IsNullOrEmpty(fileUrl))
+                                        {
+                                                <a class="downLoad"  href="@(AppConfig.LedgerFileViewLink + fileUrl)" target="_blank">下载</a>
+                                                <a class="look" href="@(!string.IsNullOrEmpty(conFileUrl) ? AppConfig.LedgerFileViewLink + conFileUrl : AppConfig.LedgerFileViewLink + fileUrl)" target="_blank">浏览</a>
+                                        }
+                                            }
+                                        </td>
+                                    </tr>
+                                        index++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+<!--柱状图-->
+<script type="text/javascript">
+    //通过Ajax获取数据
+    $(function () {
+        SetMainFirst();
+    });
+    function SetMainFirst() {
+        var myChartOne = echarts.init(document.getElementById('mainFirst'));
+
+        $.ajax({
+            type: "get",
+            dataType: "json", //返回数据形式为json
+            url: "/GridManagement/GridManagement/GetDate",
+            data: {
+                year: $("#drpYears").val(),
+                quarter: $("#drpQuarter").val()
+            },
+            success: function (result) {
+                var x = new Array();
+                var y = new Array();
+                //请求成功时执行该函数内容，result即为服务器返回的json对象
+                $.each(result, function (index, item) {
+                    x.push(item.Value);    //挨个取出内容并填入内容数组                    
+                    y.push(item.Name);    //挨个取出扣分并填入扣分数组
+                });
+                var option = {
+                    tooltip: {
+                        trigger: 'item',
+
+                    },
+                    xAxis: [
+                        {
+                            type: 'category',
+                            data: y
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    grid: {
+                        borderWidth: 0,
+                        y: 20,
+                        y2: 30,
+                        x: 30
+                    },
+                    series: [
+                        {
+                            "name": "扣分内容",
+                            "type": "bar",
+                            barWidth: 30,
+                            "data": x,
+                            itemStyle: {
+                                normal: {
+                                    color: "#3087e1"
+                                }
+                            }
+                        }
+                    ]
+                };
+                // 为echarts对象加载数据 
+                myChartOne.setOption(option);
+            },
+            error: function (errorMsg) {
+                alert("加载数据失败");
+            }
+        });
+    }
+</script>
+<!-- 饼状图 -->
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            type: 'post',
+            url: '/GridManagement/GridManagement/GetEchartsDate',
+            data: {
+                year: $("#drpYears").val(),
+                quarter: $("#drpQuarter").val()
+            }, //无参数
+            dataType: 'json', //返回数据形式为json
+            success: function (result) {
+                if (result) {
+                    //把result(即Json数据)以参数形式放入Echarts代码中
+                    bind(result);
+                }
+            },
+            error: function (errorMsg) {
+                alert("加载数据失败");
+            }
+        });
+    });
+
+    function bind(result) {
+        var myChartTwo = echarts.init(document.getElementById('scoreContent'));
+        var option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'horizontal',
+                x: 'left',
+                y: "298",
+                data: (function () {
+                    var res = [];
+                    var len = result.length;
+                    for (var i = 0; i < len; i++) {
+                        res.push({
+                            name: result[i].Name,
+                        });
+                    }
+                    return res;
+                })()
+            },
+            calculable: false,
+            grid: {
+                borderWidth: 0,
+                y: 20,
+                y2: 20,
+                x: 30
+            },
+            series: [
+                {
+                    type: 'pie',
+                    radius: ['60%', '80%'],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        },
+                        emphasis: {
+                            label: {
+                                show: true,
+                                position: 'center',
+                                textStyle: {
+                                    fontSize: '20',
+                                    fontWeight: 'bold'
+                                }
+                            }
+                        }
+                    },
+                    data: (function () {
+                        var res = [];
+                        var len = result.length;
+                        for (var i = 0; i < len; i++) {
+                            res.push({
+                                //通过把result进行遍历循环来获取数据并放入Echarts中
+                                name: result[i].Name,
+                                value: result[i].Value
+                            });
+                        }
+                        return res;
+                    })()
+                }
+            ]
+        };
+        myChartTwo.setOption(option);
+    }
+</script>
+
+<script type="text/javascript">
+
+    function QueryData() {
+        location.href = '@Url.Action("GridStatistics", "GridManagement")?year=' + $("#drpYears").val() + '&quarter=' + $("#drpQuarter").val() + '&rnd=' + Math.random();
+    }
+
+    function ShowMore() {
+        location.href = '@Url.Action("GridStatisticsMore", "GridManagement", new { area = "GridManagement" })?year=' + $("#drpYears").val() + '&quarter=' + $("#drpQuarter").val();
+    }
+
+</script>

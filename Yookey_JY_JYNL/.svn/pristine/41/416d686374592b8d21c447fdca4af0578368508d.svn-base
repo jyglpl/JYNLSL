@@ -1,0 +1,5 @@
+﻿@{
+    ViewBag.Title = "EnterpriseEdit";
+}
+
+<h2>EnterpriseEdit</h2>

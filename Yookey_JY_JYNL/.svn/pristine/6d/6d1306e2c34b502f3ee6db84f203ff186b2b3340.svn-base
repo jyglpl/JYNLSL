@@ -1,0 +1,350 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>工作量化</title>
+
+    <!--框架必需start-->
+    <link  href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link  href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--表格组件end-->
+
+    <!--树形组件start-->
+    <link href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/tree/tree.js")" type="text/javascript"></script>
+    <!--树形组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件start-->
+
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+    <style type="text/css">
+        .ui-jqgrid tr.jqgrow td {
+            white-space: normal !important;
+            height: auto;
+            vertical-align: text-top;
+            padding-top: 2px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+
+        .ui-th-column, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+            background: none;
+        }
+
+        .ui-jqgrid tr.jqgrow td {
+            white-space: normal !important;
+            height: 25px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            GetGrid();
+        });
+
+        //改变分值类型
+        function ChangeScoreType(scoreType, selectId) {
+            getAjax('@Url.Action("AjLoadItems")', { scoreType: scoreType, selectId: selectId }, function (msg) {
+                eval(msg);
+            });
+        }
+
+
+        //加载表格
+        function GetGrid() {
+            var deptId = $("#DeptId").val();
+            $("#gridTable").jqGrid({
+                url: '@Url.Action("GridJson")',
+                postData: { deptId: deptId },
+                datatype: "json",
+                height: $(window).height() - 105,
+                autowidth: true,
+                colModel: [
+                    { label: "主键", name: "UserId", index: "UserId", hidden: true, sortable: false },
+                    { label: "部门ID", name: "DepartmentId", index: "DepartmentId", hidden: true, sortable: false },
+                    {
+                        label: "部门", name: "DeptName", index: "DeptName", width: 90, align: 'center', sortable: false,
+                        cellattr: function (rowId) {
+                            return 'id=\'DeptName' + rowId + "\'";
+                        }
+                    },
+                    {
+                        label: "姓名", name: "UserName", index: "UserName", width: 80, align: 'left', sortable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            if (rdata.UserId == 'totalRow') {
+                                return "style='font-weight:bolder;font-size:15px;'";
+                            }
+                        }
+                    },
+                    {
+                        label: "教育纠处", name: "JYJC", index: "JYJC", width: 70, align: 'center', sortable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            if (rdata.UserId == 'totalRow') {
+                                return "style='font-weight:bolder;font-size:15px;'";
+                            }
+                        }
+                    },
+                    {
+                        label: "简易", name: "JY", index: "JY", width: 70, align: 'center', sortable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            if (rdata.UserId == 'totalRow') {
+                                return "style='font-weight:bolder;font-size:15px;'";
+                            }
+                        }
+                    },
+                    {
+                        label: "一般", name: "YB", index: "YB", width: 70, align: 'center', sortable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            if (rdata.UserId == 'totalRow') {
+                                return "style='font-weight:bolder;font-size:15px;'";
+                            }
+                        }
+                    },
+                    {
+                        label: "重大", name: "ZD", index: "ZD", width: 70, align: 'center', sortable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            if (rdata.UserId == 'totalRow') {
+                                return "style='font-weight:bolder;font-size:15px;'";
+                            }
+                        }
+                    },
+                    {
+                        label: "罚款", name: "FK", index: "FK", width: 70, align: 'center', sortable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            if (rdata.UserId == 'totalRow') {
+                                return "style='font-weight:bolder;font-size:15px;'";
+                            }
+                        }
+                    },
+                    {
+                        label: "违法停车", name: "WT", index: "WT", width: 70, align: 'center', sortable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            if (rdata.UserId == 'totalRow') {
+                                return "style='font-weight:bolder;font-size:15px;'";
+                            }
+                        }
+                    },
+                    {
+                        label: "流动摊贩", name: "LDTF", index: "LDTF", width: 70, align: 'center', sortable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            if (rdata.UserId == 'totalRow') {
+                                return "style='font-weight:bolder;font-size:15px;'";
+                            }
+                        }
+                    },
+                    {
+                        label: "违法建设", name: "WFJS", index: "WFJS", width: 70, align: 'center', sortable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            if (rdata.UserId == 'totalRow') {
+                                return "style='font-weight:bolder;font-size:15px;'";
+                            }
+                        }
+                    },
+                    {
+                        label: "渣土清运", name: "ZTQY", index: "ZTQY", width: 70, align: 'center', sortable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            if (rdata.UserId == 'totalRow') {
+                                return "style='font-weight:bolder;font-size:15px;'";
+                            }
+                        }
+                    },
+                    {
+                        label: "上报", name: "SBJSB", index: "SBJSB", width: 70, align: 'center', sortable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            if (rdata.UserId == 'totalRow') {
+                                return "style='font-weight:bolder;font-size:15px;'";
+                            }
+                        }
+                    },
+                    {
+                        label: "处理", name: "SBJCL", index: "SBJCL", width: 70, align: 'center', sortable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            if (rdata.UserId == 'totalRow') {
+                                return "style='font-weight:bolder;font-size:15px;'";
+                            }
+                        }
+                    },
+                    {
+                        label: "巡逻", name: "XL", index: "XL", width: 70, align: 'center', sortable: false,
+                        cellattr: function (rowId, val, rawObject, cm, rdata) {
+                            if (rdata.UserId == 'totalRow') {
+                                return "style='font-weight:bolder;font-size:15px;'";
+                            }
+                        }
+                    }
+                ],
+                viewrecords: true,
+                rowNum: 1000,
+                rownumbers: true,
+                shrinkToFit: false,
+                gridview: true,
+                ondblClickRow: function (rowid, iRow, iCol, e) {
+                    var cm = jQuery("#gridTable").jqGrid("getGridParam", "colModel");
+                    var colName = cm[iCol].name;
+                    if (colName == 'FK' || colName == 'SBJCL' || colName == 'YB' || colName == 'ZD' || colName == 'WT') {
+                        Details(colName);
+                    }
+                },
+                gridComplete: function () {
+                    var gridName = "gridTable";
+                    Merger(gridName, 'DeptName');
+                }
+            });
+
+            //表头合并
+            $("#gridTable").jqGrid('setGroupHeaders', {
+                useColSpanStyle: true,
+                groupHeaders: [
+                    { startColumnName: 'JYJC', numberOfColumns: 4, titleText: '执法案件' },
+                    { startColumnName: 'WT', numberOfColumns: 4, titleText: '城市顽疾' },
+                    { startColumnName: 'SBJSB', numberOfColumns: 2, titleText: '事部件处置' }
+                ]
+            });
+        }
+
+
+        //合并列公共调用方法
+
+        function Merger(gridName, cellName) {
+            //得到显示到界面的id集合
+            var mya = $("#" + gridName + "").getDataIDs();
+            //当前显示多少条
+            var length = mya.length;
+            for (var i = 0; i < length; i++) {
+                //从上到下获取一条信息
+                var before = $("#" + gridName + "").jqGrid('getRowData', mya[i]);
+                //定义合并行数
+                var rowSpanTaxCount = 1;
+                for (j = i + 1; j <= length; j++) {
+                    //和上边的信息对比 如果值一样就合并行数+1 然后设置rowspan 让当前单元格隐藏
+                    var end = $("#" + gridName + "").jqGrid('getRowData', mya[j]);
+                    if (before[cellName] == end[cellName]) {
+                        rowSpanTaxCount++;
+                        $("#" + gridName + "").setCell(mya[j], cellName, '', { display: 'none' });
+                    } else {
+                        rowSpanTaxCount = 1;
+                        break;
+                    }
+                    $("#" + cellName + "" + mya[i] + "").attr("rowspan", rowSpanTaxCount);
+                }
+            }
+        }
+
+        function SetFont() {
+            var rowDatas = $("#gridTable").jqGrid('getRowData');
+            for (var i = 0; i < rowDatas.length; i++) {
+                var rowData = rowDatas[i];
+                if (rowData.UserId == 'totalRow') {
+                    $("#" + (i + 1) + " td").css({ "color": 'red', 'font-weight:': 'bolder' });
+                }
+            }
+        }
+
+        function btn_Search() {
+            var deptId = $("#DeptId").val();
+            var stime = $("#StartDate").val();
+            var etime = $("#EndDate").val();
+            $("#gridTable").jqGrid('setGridParam', {
+                url: '@Url.Action("GridJson")?deptId=' + deptId + '&stime=' + stime + '&etime=' + etime + '&rnd=' + Math.random()
+            }).trigger('reloadGrid');
+        }
+
+        function Details(colName) {
+
+            var deptId = GetJqGridRowValue("#gridTable", "DepartmentId");   //部门ID
+            var userId = GetJqGridRowValue("#gridTable", "UserId");   //用户ID
+
+            var stime = $("#StartDate").val();
+            var etime = $("#EndDate").val();
+
+            var caseEntity = '@Url.Action("Details")';
+            var width = $(window).width();
+            width = width - (width * 0.2);
+            var height = $(window).height();
+            Dialog((caseEntity + '?qtype=' + colName + '&deptId=' + deptId + '&userId=' + userId + '&stime=' + stime + '&etime=' + etime + '&rnd=' + Math.random()), "FirstDialogWindow", "工作量化详情", width, height);
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <div class="leftline rightline" style="margin-left: 1px; margin-right: 1px;">
+            <div class="QueryArea">
+                <table border="0" class="form-find" style="height: 45px;">
+                    <tr>
+                        <th>部门：</th>
+                        <td>
+                            @Html.DropDownList("DeptId", (ViewData["Depts"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 100px" })
+                        </td>
+                        <th>时间（开始）：</th>
+                        <td>
+                            @Html.TextBox("StartDate", "", new { @class = "txt Wdate", Value = DateTime.Now.ToString("yyyy-MM-dd"), @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:150px" })
+                        </td>
+                        <th>时间（截止）：</th>
+                        <td>
+                            @Html.TextBox("EndDate", "", new { @class = "txt Wdate", Value = DateTime.Now.ToString("yyyy-MM-dd"), @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:150px" })
+                        </td>
+                        <td>
+                            <input type="button" class="btnSearch" value="查 询" onclick="btn_Search()" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="grid_List" class="topline">
+                <table id="gridTable"></table>
+                @*<div id="gridPager"></div>*@
+            </div>
+        </div>
+        <style>
+            .ui-widget-content {
+                border-left: none;
+            }
+        </style>
+    </div>
+</body>
+</html>

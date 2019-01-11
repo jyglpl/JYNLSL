@@ -1,0 +1,144 @@
+﻿<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+</head>
+<style type="text/css">
+    * {
+        margin: 0 auto;
+    }
+
+    html, body {
+        font-family: "微软雅黑","宋体";
+    }
+
+        html.noscrollX,
+        body.noscrollX {
+            overflow: auto;
+            overflow-x: hidden;
+            _overflow-x: hidden;
+        }
+
+    body {
+        background-color: #fff;
+        background-attachment: fixed !important;
+    }
+
+        body.nocolor {
+            background-color: transparent;
+        }
+
+    .n-title {
+        border-collapse: separate;
+        color: rgb(0, 0, 0);
+        display: inline;
+        font-family: 宋体;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .c-title {
+        border-collapse: separate;
+        color: rgb(0, 0, 0);
+        display: inline;
+        font-family: 宋体;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .new-font {
+        font-size: 14px;
+        color: red;
+    }
+
+    object {
+        margin-top: 100px;
+        display: block;
+    }
+</style>
+<body>
+    <table width="100%">
+        <tr>
+            <td align="center" style="padding-top: 100px;"><span class="n-title">@ViewBag.Title</span></td>
+        </tr>
+        <tr>
+            <td align="center" style="padding-top: 20px;"><span class="c-title">@ViewBag.CreateDate</span></td>
+        </tr>
+        <tr>
+            <td align="center">
+                <div style="width: 400px; font-size: 12px;">
+                    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="400" height="20" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab">
+                        <param name="movie" value="@Url.Content("~/Librarys/singlemp3player/singlemp3player.swf")?file=@ViewBag.FileAddress&backColor=990000&frontColor=ddddff&repeatPlay=true&songVolume=30" />
+                        <param name="wmode" value="transparent" />
+                        <embed wmode="transparent" width="100%" height="100%" src="@Url.Content("~/Librarys/singlemp3player/singlemp3player.swf")&backColor=990000&frontColor=ddddff&repeatPlay=true&songVolume=30" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+                    </object>
+                    点击播放/暂停
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <input type="hidden" value="@ViewBag.StartTime" id="startTime"/>
+    <input type="hidden" value="@ViewBag.CourseId" id="courseId"/>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    function audioplay() {
+        isStudy = true;
+    }
+
+    function audiopause() {
+        isStudy = false;
+    }
+
+    var studytime = 0;  //已学习时长
+    var stime = 0;   //总时间（用于监听鼠标）
+    var minute = 0;  //分钟
+    var second = 0;  //秒
+    var timeout;
+    var isStudy = true;
+    function ListenerTime() {
+        if (isStudy) {
+            minute = Math.floor(minute);
+            if (minute < 10)
+                minute = "0" + minute;
+            if (second < 10)
+                second = "0" + second;
+            stime++;
+            studytime++;
+            minute = stime / 60;
+            second = stime % 60;
+        }
+        timeout = setTimeout("ListenerTime()", 1000);
+    }
+    $(function () {
+        ListenerTime();
+        //鼠标移动事件
+        $(document).mousemove(function () {
+            stime = 0;
+            minute = 0;
+            second = 0;
+        });
+    });
+
+    function SaveProcess() {
+        var startTime = $("#startTime").val();
+        var courseId = $("#courseId").val();
+        $.ajax({
+            url: '@Url.Action("StudyRecord")',
+            data: { courseId: courseId, courseType: 2, startTime: startTime, studyTime: studytime, studySec: "", isFinish: "", videoTime: "" },
+            async: false,
+            datatype: 'json',
+            success: function (data) {
+
+            }
+        });
+    }
+
+    window.onbeforeunload = function (event) {
+        SaveProcess();
+    };
+</script>

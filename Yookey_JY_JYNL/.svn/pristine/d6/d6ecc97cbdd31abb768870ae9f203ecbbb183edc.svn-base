@@ -1,0 +1,454 @@
+﻿@{
+    Layout = null;
+}
+@using System.Web.Mvc.Html
+
+@using Yookey.WisdomClassed.SIP.Model.Com
+@model Yookey.WisdomClassed.SIP.Model.Case.InfPunishCaseinfoEntity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>案件处理</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+
+    <script src="@Url.Content("~/Content/Scripts/VideoCon.js")"></script>
+
+    <script>
+        $(document).ready(function () {
+            Loading(false);
+        });
+    </script>
+</head>
+<body>
+    @Html.Partial("~/Views/Video/VideoIndex.cshtml")
+    <div>
+        <form id="formmain">
+            <div style="margin-left: 5px; margin-right: 5px;">
+                <table class="casedt">
+                    <tr>
+                        <th class="formTitle">案件程序：<span style="color: Red;">*</span></th>
+                        <td class="formValue" colspan="3">
+                            @Html.DropDownListFor(x => x.PunishProcess, (ViewData["ProcessType"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px", onchange = "javascript:ChangePunishProcess(this.value)" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">当事人类型：<span style="color: Red;">*</span></th>
+                        <td class="formValue">
+                            @Html.DropDownListFor(x => x.TargetType, (ViewData["TargetTypes"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px", @onchange = "javascript:ChangeTargetType(this.value)" })
+                        </td>
+                        <th class="formTitle">单位名称：<span style="color: Red;" id="spanCompany">*</span></th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.TargetUnit, new { @style = "width: 100%;", @class = "txt" })
+                        </td>
+                    </tr>
+                    <tr id="trcompcode1">
+                        <th class="formTitle">社会信用代码：</th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.TargetSHXYM, new { @style = "width: 100%;", @class = "txt" })
+                        </td>
+                        <th class="formTitle">组织机构代码：</th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.TargetZDM, new { @style = "width: 100%;", @class = "txt" })
+                        </td>
+                    </tr>
+                    <tr id="trcompcode2">
+                        <th class="formTitle">工商登记码：</th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.TargetGSDJ, new { @style = "width: 100%;", @class = "txt" })
+                        </td>
+                        <th class="formTitle">税务登记号：</th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.TargetSWDJ, new { @style = "width: 100%;", @class = "txt" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">
+                            <label id="labTargetName">当事人姓名</label>：<span style="color: Red;" id="spanUserName">*</span></th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.TargetName, new { @style = "width: 100%;", @class = "txt" })
+                        </td>
+                        <th class="formTitle">职务：</th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.TargetDuty, new { @style = "width: 100%;", @class = "txt" })
+                        </td>
+                    </tr>
+                    @* <tr>
+                        <th class="formTitle">车辆类型：</th>
+                        <td class="formValue"></td>
+                        <th class="formTitle">车牌号码：</th>
+                        <td class="formValue"></td>
+                    </tr>*@
+                    <tr>
+                        <th class="formTitle">证件类型：</th>
+                        <td class="formValue">
+                            @Html.DropDownListFor(x => x.TargetPaperType, (ViewData["TargetPaperTypes"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                        </td>
+                        <th class="formTitle">证件号码：</th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.TargetPaperNum, new { @class = "txt", @style = "width: 100%;", @onblur = "javascript:PutCardId(this.value)" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">性别：</th>
+                        <td class="formValue">
+                            @Html.DropDownListFor(x => x.TargetGender, (ViewData["Sexs"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                        </td>
+                        <th class="formTitle">年龄：</th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.TargetAge, new { @class = "txt", @style = "width: 100%;", @Value = Model.TargetAge == 0 ? "" : Model.TargetAge.ToString() })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">联系电话：</th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.TargetPhone, new { @class = "txt", @style = "width: 100%;" })
+                        </td>
+                        <th class="formTitle">联系手机：</th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.TargetMobile, new { @class = "txt", @style = "width: 100%;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">邮编：</th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.TargetZipCode, new { @class = "txt", @style = "width: 100%;" })
+                        </td>
+                        <th class="formTitle">电子邮件：</th>
+                        <td class="formValue">
+                            @Html.TextBoxFor(x => x.TargetEmail, new { @class = "txt", @style = "width: 100%;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">地址：<span style="color: Red;" id="spanAddress">*</span></th>
+                        <td class="formValue" colspan="3">
+                            @Html.TextBoxFor(x => x.TargetAddress, new { @class = "txt", @style = "width: 100%;" })
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="casedt">
+                    <tr>
+                        <th class="formTitle">案件证据：</th>
+                        <td class="formValue" colspan="3" id="EvidenceTD">
+                            @Html.Action("FilesTab", "PenaltyCaseFile", new { resourceId = Model.Id, evtache = "case" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">处理情况：</th>
+                        <td class="formValue" colspan="3">
+                            @{
+                                var evidences = ViewData["Evidences"] as IList<ComResourceEntity>;
+                                if (evidences != null && evidences.Any())
+                                {
+                                    var haproof = Model.HaProof;
+                                    foreach (var comResourceEntity in evidences)
+                                    {
+                                <span class="item">
+                                    <input type="checkbox" name="haproofcheckbox" id="@comResourceEntity.Id" value="@comResourceEntity.Id" checked="@(haproof.Contains(comResourceEntity.Id))" />
+                                    <label for="@comResourceEntity.Id">@comResourceEntity.RsKey</label>
+                                </span>
+                                    }
+                                }
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">承办人：</th>
+                        <td class="formValue" colspan="3" id="">
+                            @Html.DropDownListFor(x => x.UdPersonelIdFirst, (ViewData["Users"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                            &nbsp;&nbsp;&nbsp;
+                            @Html.DropDownListFor(x => x.UdPersonelIdSecond, (ViewData["Users"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                        </td>
+                    </tr>
+                    <tr id="simple_01">
+                        <th class="formTitle">处理方式：</th>
+                        <td class="formValue" colspan="3" id="">
+                            <input type="radio" name="typeradio" id="00170001" value="00170001" onchange="ChangePunishType()" />
+                            <label for="00170001">警告</label>
+                            &nbsp;
+                            <input type="radio" name="typeradio" id="00170002" value="00170002" onchange="ChangePunishType()" checked="checked" />
+                            <label for="00170002">罚款</label>
+                        </td>
+                    </tr>
+                    <tr id="simple_02">
+                        <th class="formTitle">罚没款单据号：</th>
+                        <td class="formValue">
+                            <input type="text" id="PaymentNum" name="PaymentNum" class="txt" />
+                        </td>
+                        <th class="formTitle">没收金额：</th>
+                        <td class="formValue">
+                            <input type="text" id="ForfeitureAmount" name="ForfeitureAmount" class="txt" />
+                        </td>
+                    </tr>
+                    <tr id="simple_03">
+                        <th class="formTitle">处罚金额：</th>
+                        <td class="formValue">
+                            <input type="text" id="PunishAmount" name="PunishAmount" class="txt" />
+                        </td>
+                        <th class="formTitle">罚没款缴纳方式：</th>
+                        <td class="formValue">
+                            @Html.DropDownList("PaymentType", (ViewData["PaymentTypes"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                        </td>
+                    </tr>
+                </table>
+
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="text-align: center;">
+                            <input type="button" value="处 理" class="btnSearch" id="btnHandle" onclick="javascript: SaveCase();" />
+                            <input type="button" value="申请立案" class="btnSearch" id="btnApplyForFiled" style="display: none" onclick="ApplyForFiled(0)" />
+                            @{
+                                if (ViewBag.FastApprove)
+                                {
+                                <input type="button" value="一键立案" class="btnSearch" id="btnFastApplyForFiled" style="display: none" onclick="ApplyForFiled(1)" />
+                                }
+                            }
+                            <input type="button" value="关 闭" class="btnSearch" onclick="javascript: closeDialog();" />
+                        </td>
+                    </tr>
+                </table>
+
+                @Html.HiddenFor(x => x.Id)
+                @Html.HiddenFor(x => x.HaProof)
+                @Html.HiddenFor(x => x.UdPersonelNameFirst)
+                @Html.HiddenFor(x => x.UdPersonelNameSecond)
+            </div>
+        </form>
+    </div>
+     <input style="display:none" id="path" value="<%=ConfigurationManager.AppSettings.AllKeys.Contains('VideoPath')%>" />
+</body>
+<script type="text/javascript">
+
+    $(function () {
+        ChangeTargetType($("#TargetType").val());
+        ChangePunishProcess($("#PunishProcess").val());
+    });
+
+    //更改当事人类型
+    function ChangeTargetType(targetType) {
+        if (targetType == "00120002") {     //法人
+            $("#labTargetName").text("负责人姓名");
+            $("#spanCompany").show();
+            $("#spanUserName").hide();
+            $("#trcompcode1").show();
+            $("#trcompcode2").show();
+        } else {
+            $("#labTargetName").text("当事人姓名");
+            $("#spanCompany").hide();
+            $("#spanUserName").show();
+            $("#trcompcode1").hide();
+            $("#trcompcode2").hide();
+        }
+    }
+
+    //更改案件程序类型
+    function ChangePunishProcess(processId) {
+        if (processId == "00280001") {   //简易案件
+            $("tr[id^=simple_]").show();
+        } else {    //一般、重大
+            $("tr[id^=simple_]").hide();
+        }
+    }
+
+    //简易案件->更改处理方式
+    function ChangePunishType() {
+        var typeId = $("input[name='typeradio']:checked").val();
+        if (typeId == '00170001') {    //警告
+            $("#simple_02").hide();
+            $("#simple_03").hide();
+        } else if (typeId == '00170002') {  //罚款
+            $("#simple_02").show();
+            $("#simple_03").show();
+        }
+    }
+
+
+    //输入证件号码后计算
+    function PutCardId(cardId) {
+        if ($("#TargetPaperType").val() == "00130001") {
+            if (parseInt(cardId.substr(16, 1)) % 2 == 1) {
+                $("#TargetGender").val("1");  //男
+            } else {
+                $("#TargetGender").val("0");  //女
+            }
+            //获取年龄 
+            var myDate = new Date();
+            var month = myDate.getMonth() + 1;
+            var day = myDate.getDate();
+
+            var age = myDate.getFullYear() - cardId.substring(6, 10) - 1;
+            if (cardId.substring(10, 12) < month || cardId.substring(10, 12) == month && cardId.substring(12, 14) <= day) {
+                age++;
+            }
+            $("#TargetAge").val(age);
+        }
+    }
+
+    //案件处理
+    function SaveCase() {
+        if (CheckValidator()) {
+            Loading(true, "正在提交数据...");
+            AjaxJson('@Url.Action("CaseHandle", "PenaltyCaseAjax")', $('#formmain').serialize(), function (data) {
+                $("#btnHandle").hide();
+                if ($("#PunishProcess").val() == '00280001') {
+                    //调用进行修改案件的状态
+                    alertDialogCallBack('处理成功！', 2, function () {
+                        setTimeout(function () {
+                            api.get('FirstDialogWindow').location.reload();
+                            api.close();
+                        }, 500);
+                    });
+                } else {
+                    alertDialog("处理成功！", 1);
+                    $("#btnPrint").hide();
+                    $("#btnApplyForFiled").show();
+                    $("#btnFastApplyForFiled").show();
+                }
+            });
+        }
+    }
+
+    //验证
+    function CheckValidator() {
+        var istrue = true;
+        var haProof = "";    //处理证据情况
+        $("input[name='haproofcheckbox']:checked").each(function () {
+            haProof += $(this).val() + ",";
+        });
+        if (haProof != '') {
+            haProof = haProof.substring(0, haProof.length - 1);
+            $("#HaProof").val(haProof);
+        } else {
+            alertDialog('请选择案件证据情况！', -1);
+            $("input[name='reproofcheckbox']").focus();
+            istrue = false;
+        }
+        if ($("#PunishProcess").val() == '') {
+            alertDialog('请选择案件程序！', -1);
+            $("#PunishProcess").focus();
+            istrue = false;
+        }
+
+        //if ($("#TargetType").val() == '00120002') {  //法人
+        //    var xdr_shxym = $("#TargetSHXYM").val();
+        //    var xdr_zdm = $("#TargetZDM").val();
+        //    var xdr_gsdj = $("#TargetGSDJ").val();
+        //    var xdr_swdj = $("#TargetSWDJ").val();
+
+        //    if (xdr_shxym == '' && xdr_zdm == '' && xdr_gsdj == '' && xdr_swdj == '') {
+        //        alertDialog('被处罚单位的社会信用代码、组织机构代码、工商登记码、税务登记号，必须填写任意一个！', -1);
+        //        istrue = false;
+        //    }
+        //}
+
+        if ($("#UdPersonelIdFirst").val() == '') {
+            alertDialog('请选择承办人员！', -1);
+            $("#UdPersonelIdFirst").focus();
+            istrue = false;
+        } else {
+            $("#UdPersonelNameFirst").val($("#UdPersonelIdFirst").find("option:selected").text());
+        }
+        if ($("#UdPersonelIdSecond").val() == '') {
+            alertDialog('请选择承办人员！', -1);
+            $("#UdPersonelIdSecond").focus();
+            istrue = false;
+        } else {
+            $("#UdPersonelNameSecond").val($("#UdPersonelIdSecond").find("option:selected").text());
+        }
+        return istrue;
+    }
+
+    //=================案件审批======================
+    //申请立案
+
+    function ApplyForFiled(isFaster) {
+        var isDriver = '@ViewData["Driver"]';
+        if (isFaster == 1) {
+            if (isDriver == "1") {
+                //打开视频
+                stratVideo('@Model.Id', 'CaseHandle', 'CaseDecision');
+            }
+        }
+        
+
+        var formId = '@ViewBag.Id';
+        var url = '@Url.Action("CaseWorkFlow", "WorkFlow")?formId=' + formId + '&flowName=立案审批&eType=apply&worklistId=&isloadOp=0&isFaster=' + isFaster;
+        url = encodeURI(url);
+        var width = 500;
+        var height = 300;
+        top.$.dialog({
+            id: "WorkFlow", width: width, height: height, lock: true, max: false, resize: false, extendDrag: true,
+            title: "案件审批",
+            content: 'url:' + url,
+            button: [
+                {
+                    name: '确 定',
+                    className: 'green',
+                    callback: function () {
+                        top.frames["WorkFlow"].AcceptClick('CaseHandle');
+                    }
+                }, { name: '关 闭' }
+            ]
+        });
+    }
+
+    //审批后调用该方法,注：所有审批返回都需要调用该方法
+    function ApplyReturn(data, isFaster) {
+        if (data.rtState == 0 || data.rtState == 1) {
+            var api = frameElement.api, w = api.opener;
+            //一键审批返回
+            if (isFaster == '0' || isFaster == undefined) {
+                //调用进行修改案件的状态
+                alertDialogCallBack(data.rtMsrg, 2, function () {
+                    setTimeout(function () {
+                        api.get('FirstDialogWindow').cancle();    //关闭父窗体
+                        api.close();
+                    }, 500);
+                });
+            } else {
+                //调用进行修改案件的状态
+                alertDialogCallBack(data.rtMsrg, 2, function () {
+                    setTimeout(function () {
+                        api.get('FirstDialogWindow').location.reload();
+                        api.close();
+                        //api.get('FirstDialogWindow').cancle();    //关闭父窗体
+                        //parent.frameElement.close();
+                    }, 500);
+                });
+            }
+        } else {
+            alertDialog("发送过程中出现异常，请联系管理员！", -1);
+        }
+    }
+
+    /*
+    * 取消
+    */
+    function cancle() {
+        var api = frameElement.api, w = api.opener;
+        api.close();
+    }
+
+    //=================案件审批======================
+
+</script>
+</html>

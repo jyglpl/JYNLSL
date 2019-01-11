@@ -1,0 +1,132 @@
+﻿@model Yookey.WisdomClassed.SIP.Model.Case.InfCaseCollectEntity
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>修改</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+</head>
+<body>
+    <form id="form">
+        <table class="casedt">
+            @if (ViewBag.CaseType == 1)
+            {
+                <tr>
+                    <th class="formTitle">类型</th>
+                    <td class="formValue">
+                        @Html.DropDownList("ClassNo_", (ViewData["ClassNos"] as SelectList), new { @class = "txtselect", @style = "width:120px;", @disabled="disabled" })
+                    </td>
+                    <th class="formTitle"></th>
+                    <td class="formValue"></td>
+                </tr>
+            }
+            <tr>
+                <th class="formTitle">部门</th>
+                <td class="formValue">
+                    @Html.DropDownList("DeptId_", (ViewData["Depts"] as SelectList), new { @class = "txtselect", @style = "width:120px;", @disabled="disabled" })
+                </td>
+                <th class="formTitle">所属年月</th>
+
+                <td class="formValue">
+                    @Html.DropDownList("DrpYear", (ViewData["Years"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "width: 60px", @disabled="disabled" })&nbsp;年&nbsp;
+                  @Html.DropDownList("DrpMonth", (ViewData["Months"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "width: 50px", @disabled="disabled" })&nbsp;月
+                </td>
+            </tr>
+            <tr>
+
+                <th class="formTitle">数量</th>
+                <td class="formValue">
+                    @Html.TextBoxFor(m => m.Number, new { @class = "txt" })
+                </td>
+                @if (ViewBag.CaseType == 1)
+                {
+                    <th class="formTitle"></th>
+                    <td class="formValue"></td>
+                }
+                else
+                {
+                    <th class="formTitle">拆除面积</th>
+                    <td class="formValue">
+                        @Html.TextBoxFor(m => m.Area, new { @class = "txt" })
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td colspan="4">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align: center">
+                    <input type="button" class="btnSearch" value="保存" onclick="createSitePubnishment()" />
+                    &nbsp;<input type="button" class="btnSearch" value="取消" onclick="cancle()" />
+                </td>
+            </tr>
+        </table>
+        @Html.HiddenFor(m=>m.Id)
+        @Html.HiddenFor(m=>m.DeptId)
+        @Html.HiddenFor(m=>m.ClassesNo)
+        @Html.HiddenFor(m=>m.ReportingPeriod)
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+    var caseType = '@ViewBag.CaseType';
+    $(function () {
+        //只能输数字
+        IsNumber("Number");
+        //数字和小数
+        IsMoney("Area");
+    });
+    //创建现场纠处
+    function createSitePubnishment() {
+        var id = $("#Id").val();
+        var classNo = $("#ClassesNo").val();
+        var deptId = $("#DeptId").val();
+        var number = $("#Number").val();
+        if (number == "") {
+            alertDialog("请填写数量", -1);
+            return;
+        }
+        var area = 0;
+        if (caseType == 2 || caseType == 3)
+        {
+            area = $("#Area").val();
+            if (area == "") {
+                alertDialog("请填写面积", -1);
+                return;
+            }
+        }
+        var period = $("#ReportingPeriod").val();
+        AjaxJson("@Url.Action("CreateCaseCollect")", { "Id": id, "ClassesNo": classNo, "DeptId": deptId, "Number": number, "ReportingPeriod": period, "TypeNo": caseType,"Area":area }, function (data) {
+            if (data.Status)
+                alertDialog("保存成功", 2);
+            else
+                alertDialog(data.Msg, -1);
+            top.frames[tabiframeId()].reload();
+        });
+    }
+
+    //关闭
+    function cancle() {
+        var api = frameElement.api;
+        api.close();
+    }
+</script>

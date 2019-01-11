@@ -1,0 +1,277 @@
+﻿@{
+    ViewBag.Title = "GetDetailIndex";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>考核信息</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <link href="@Url.Content("~/Librarys/casepic/css/style.css")" rel="stylesheet" />
+
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--jqgrid表格组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+    <style type="text/css">
+        .ui-jqgrid .ui-jqgrid-htable th {
+            height: 28px;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+
+        .ui-th-column, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+            background: none;
+        }
+
+        .ui-jqgrid tr.jqgrow td {
+            white-space: normal !important;
+            height: 25px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        @*$(function () {
+            BindCompany();
+            //changeDate();
+        });
+
+        //绑定单位（大队）
+        function BindCompany() {
+            getAjax("@Url.Action("GetCompanyDropList", "Company", new { area = "CommonModule" })", { controlId: "drpObj" }, function (cmsg) {
+                eval(cmsg);
+                BindDepartment();
+            });
+        }
+        //绑定部门（中队）
+        function BindDepartment() {
+            getAjax("@Url.Action("GetDepartmentDropList", "Department", new { area = "CommonModule" })", { companyId: $("#drpCompany").val(), controlId: "drpDepartment" }, function (dmsg) {
+                eval(dmsg);
+            });
+        }*@
+        function btn_back() {
+            window.location.href = '@Url.Content("~/HomeIndex/ManagemenRight")';
+        }
+    </script>
+
+</head>
+<body>
+    <div id="layout" class="layout" style="border-bottom: none;">
+        <!--工具栏-->
+        <div class="tools_bar" style="border-top: none; margin-bottom: 0px;">
+            <div class="PartialButton">
+                <a id="lr-replace" title="刷新当前(Ctrl+Q)" onclick="Replace()" class="tools_btn"><span><b style="background:url('@Url.Content("~/Content/Images/nav1.png")') 50% 8px no-repeat;background-size:18px 18px;-ms-behavior: url('@Url.Content("~/Content/Images/backgroundsize.min.htc")');behavior:url('@Url.Content("~/Content/Images/backgroundsize.min.htc")');">刷新</b></span></a>
+                <a id="lr-attendance-apply" title="新增" onclick="btn_Add()" class="tools_btn"><span><b style="background: url('@Url.Content("~/Content/Images/nav2.png")') 50% 8px no-repeat;background-size:18px 18px;-ms-behavior: url('@Url.Content("~/Content/Images/backgroundsize.min.htc")');behavior:url('@Url.Content("~/Content/Images/backgroundsize.min.htc")');">新增</b></span></a>
+                <a id="lr-leave" title="关闭当前窗口(Esc)" onclick="btn_back()" class="tools_btn"><span><b style="background:  url('@Url.Content("~/Content/Images/nav6.png")') 50% 8px no-repeat;background-size:18px 18px;-ms-behavior: url('@Url.Content("~/Content/Images/backgroundsize.min.htc")');behavior:url('@Url.Content("~/Content/Images/backgroundsize.min.htc")');">离开</b></span></a>
+            </div>
+        </div>
+        <!--列表-->
+        <div id="grid_List">
+            <div class="bottomline" style="margin: 1px; margin-top: 0px; margin-bottom: 0px;">
+                <table border="0" class="form-find" style="height: 45px;">
+                    <tr>
+                        <th>考核对象：
+                        </th>
+                        <td>
+                            @Html.DropDownList("drpObj", (ViewData["TeamList"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 120px" })
+                            @*<select id="drpObj" class="select" style="width: 130px;" onchange="javascript:BindDepartment();"></select>
+                            <select id="drpDepartment" class="select" style="width: 130px;"></select>*@
+                        </td>
+                        <th>考核模块：</th>
+                        <td>
+                            @Html.DropDownList("EvalModId", (ViewData["AdministrationMod"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 120px" })
+                        </td>
+                        <th style="width: 80px">考核时间：</th>
+                        <td>@Html.TextBox("StartTime", "", new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:110px" })</td>
+                        <th style="width: 20px; text-align: left;">至</th>
+                        <td style="width: 110px">
+                            @Html.TextBox("EndTime", "", new { @class = "txt Wdate", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "width:110px" })
+                        </td>
+                        <th>奖惩：</th>
+                        <td>
+                            @Html.DropDownList("IsRewards", (ViewData["IsRewards"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 120px" })
+                        </td>
+                        <td>
+                            <input id="btnSearch" type="button" class="btnSearch" value="搜 索" onclick="Search()" />
+                        </td>
+                        @* <td>
+                            <input id="btnAdd" type="button" class="btnSearch" value="新 增" onclick="btn_Add()" />
+                        </td>*@
+                    </tr>
+                </table>
+            </div>
+            <table id="gridTable"></table>
+            <div id="gridPager"></div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+
+    //加载表格
+    function GetGrid() {
+        var objId = $("#drpObj").val();
+        var modId = $("#EvalModId").val();
+        var isRewards = $("#IsRewards").val();
+        var startTime = $("#StartTime").val();
+        var endTime = $("#EndTime").val();
+        $("#gridTable").jqGrid({
+            url: '@Url.Action("GetEvaluationLogData")',
+            postData: {
+                objId: objId,
+                modId: modId,
+                isRewards: isRewards,
+                startTime: startTime,
+                endTime: endTime
+            },
+            datatype: "json",
+            height: $(window).height() - 161,
+            autowidth: true,
+            colModel: [
+                { label: "主键", name: "Id", index: "Id", hidden: true },
+                { label: "考核对象", name: "ObjName", index: "ObjName", width: 80, align: 'left' },
+                { label: "考核模块", name: "ModName", index: "ModName", width: 80, align: 'left' },
+                { label: "考核内容", name: "ProcName", index: "ProcName", width: 300, align: 'left' },
+                { label: "考核依据", name: "BasisName", index: "BasisName", width: 300, align: 'left' },
+                { label: "分数", name: "Points", index: "Points", width: 50, align: 'center' },
+                {
+                    label: "奖惩", name: "IsRewards", index: "IsRewards", width: 50, align: 'center', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue === 0)
+                            return "扣分";
+                        if (cellvalue === 1)
+                            return "加分";
+                    }
+                },
+                { label: "考核人", name: "InspectorName", index: "InspectorName", width: 100, align: 'left' },
+                { label: "考核方式", name: "MethodName", index: "MethodName", width: 100, align: 'left' },
+                { label: "考核时间", name: "CheckDate", index: "CheckDate", width: 150, align: 'left' },
+                //{ label: "附件", name: "Status", index: "Status", width: 150, align: 'center',formatter: function (value, grid, rows, state) {
+                //    var btns = "<input type='text' onclick='showAttenanceDetail(\"" + rows[Id] + "\")' value='"+value+"'/>";
+
+                //    return btns;
+                //}},
+            ],
+            viewrecords: true,
+            rowList: [30, 50, 100, 500, 1000],
+            pager: "#gridPager",
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            onSelectRow: function (rowid, iRow, iCol, e) {
+
+            },
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+                showAttenanceDetail();
+            },
+        });
+    }
+
+    //重新载入表格数据
+    function reloadGrid() {
+        $("#gridTable").jqGrid('setGridParam', {
+            url: '@Url.Action("GetEvaluationLogData")',
+            datatype: 'json',
+            page: 1
+        }).trigger("reloadGrid"); //重新载入 
+        }
+
+        //显示详细
+        function showAttenanceDetail() {
+            var id = GetJqGridRowValue("#gridTable", "Id");
+            if (id != '' && id != undefined) {
+                var width = $(window).width() * 0.6;
+                //width = width - (width * 0.2);
+                var height = $(window).height() * 0.7;
+                Dialog(('@Url.Action("AddEvaluationLog")?id=' + id), "FirstDialogWindow", "详情", width, height);
+            } else {
+                tipDialog("您没有选中任何项，请选择后再操作。", 3, -2);
+            }
+        }
+
+        /**
+         *  数据查询
+         */
+        function Search() {
+            var objId = $("#drpObj").val();
+            var modId = $("#EvalModId").val();
+            var startTime = $("#StartTime").val();
+            var endTime = $("#EndTime").val();
+            var isRewards = $("#IsRewards").val();
+
+            $("#gridTable").jqGrid('setGridParam', {
+                url: '@Url.Action("GetEvaluationLogData")',
+            postData: {
+                objId: objId,
+                modId: modId,
+                isRewards: isRewards,
+                startTime: startTime,
+                endTime: endTime
+            },
+            page: 1
+        }).trigger('reloadGrid');
+    }
+
+    $(document).ready(function () {
+        GetGrid();
+    });
+
+    function btn_Add() {
+        var url = '@Url.Action("AddEvaluationLog", "EvaluationLog")';
+            var width = $(window).width();
+            width = width - (width * 0.2);
+            var height = $(window).height();
+            top.$.dialog({
+                id: "FirstDialogWindow",
+                lock: true,
+                title: "新增考核记录",
+                max: false,
+                min: false,
+                width: 1000,
+                height: 580,
+                content: 'url:' + url
+            });
+        }
+</script>

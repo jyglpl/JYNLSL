@@ -1,0 +1,252 @@
+﻿@{
+    ViewBag.Title = "EvaluationLogIndex";
+}
+@model Yookey.WisdomClassed.SIP.Model.Evaluation.ObjLogEntity
+@using Yookey.WisdomClassed.SIP.Model.Evaluation
+
+@{
+    
+    List<ObjLogEntity> objLogList = ViewBag.ObjLogList as List<ObjLogEntity>;
+   
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>考核记录</title>
+    <meta charset="UTF-8" />
+    <link href="@Url.Content("~/Librarys/css/chosen.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/css/border.css")" rel="stylesheet" />
+    <script type="text/javascript" src="@Url.Content("~/Content/Librarys/jquery/jquery-1.9.1.min.js")"></script>
+    @*<link href="@Url.Content("~/Librarys/css/sipac.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/own/css/bootstrap-table.css")" rel="stylesheet" />
+    <script type="text/javascript" src="@Url.Content("~/Content/Librarys/js/jquery-1.9.1.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/avalon.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/gridProperty.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/chosen.jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Librarys/js/main.js")"></script>*@
+
+    @* <script type="text/javascript">
+        var root = "";
+    </script>*@
+    <style>
+        #tabContent th {
+            text-align: center;
+        }
+
+        #tabContent td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="checkContent">
+        <div class="checkTable">
+            <div class="tableTitle">
+                考核报表
+                    <div class="fr">
+                        <span>年</span>
+                        @Html.DropDownList("DrpYear", (ViewData["Years"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 100px;height:30px", @onchange = "javascript:changeDate();" })
+                        <span>季度</span>
+                        @Html.DropDownList("Quarter", (ViewData["QuarterList"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 120px;height:30px" ,@onchange = "removeDate();"})
+
+                        <span id="dMonth">月</span>
+                        @Html.DropDownList("DrpMonth", (ViewData["Months"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "width: 50px;height:30px", @onchange = "javascript:changeDate();" })
+                        <input type="hidden" id="StartTime" value="@ViewBag.StartTime"/>
+                        <input type="hidden" id="EndTime" value="@ViewBag.EndTime" />
+                        
+                        <input id="btnSearch" type="button" class="chaxun" value="查 询" onclick="btn_Search()" />
+                    </div>
+            </div>
+            <table class="table table-striped table-bordered" id="tabContent">
+                <thead>
+                    <tr>
+                        <th rowspan="2" class="xiexian" style="position: relative">
+                            <div class="tr pr8" style="position: absolute; top: 8px; right: 8px;">考核内容</div>
+                            <div class="pl8" style="text-align: left">考核对象</div>
+                        </th>
+                        <th colspan="2">队伍管理</th>
+                        <th colspan="2">执法业务</th>
+                        <th colspan="2">户外广告专项</th>
+                        <th colspan="2">政策法规</th>
+                        <th rowspan="2" style="text-align: center; display: table-cell; vertical-align: middle">总分</th>
+                        <th rowspan="2" style="text-align: center; display: table-cell; vertical-align: middle">得分排名</th>
+                    </tr>
+                    <tr>
+                        <th>扣分</th>
+                        <th>加分</th>
+                        <th>扣分</th>
+                        <th>加分</th>
+                        <th>扣分</th>
+                        <th>加分</th>
+                        <th>扣分</th>
+                        <th>加分</th>
+                    </tr>
+                </thead>
+
+                @if (objLogList != null && objLogList.Any())
+                {
+                    int indexStr=0;
+                    foreach (ObjLogEntity item in objLogList)
+                    {
+                    <tbody>
+                        <tr>
+                            <td>@item.ObjName</td>
+                            <td><a onclick="GetDetail(@item.ObjId,'00860001',0)">@item.PunishmentFirst</a></td>
+                            <td><a onclick="GetDetail(@item.ObjId,'00860001',1)">@item.RewardFirst</a></td>
+                            <td><a onclick="GetDetail(@item.ObjId,'00860002',0)">@item.PunishmentSecond</a></td>
+                            <td><a onclick="GetDetail(@item.ObjId,'00860002',1)">@item.RewardSecond</a></td>
+                            <td><a onclick="GetDetail(@item.ObjId,'00860003',0)">@item.PunishmentThird</a></td>
+                            <td><a onclick="GetDetail(@item.ObjId,'00860003',1)">@item.RewardThird</a></td>
+                            <td><a onclick="GetDetail(@item.ObjId,'00860004',0)">@item.PunishmentFourth</a></td>
+                            <td><a onclick="GetDetail(@item.ObjId,'00860004',1)">@item.RewardFourth</a></td>
+                            <td>@item.Total</td>
+                            <td>@item.Ranking</td>
+                        </tr>
+                    </tbody>
+                    <input id="@("ObjId" + indexStr)" type="hidden" value="@item.ObjId"/>
+                        indexStr++;
+                    }
+                }
+            </table>
+        </div>
+    </div>
+    <script src="~/Librarys/js/echarts.js"></script>
+
+    <script src="~/Librarys/js/jquery.js"></script>
+
+    <script src="~/Librarys/js/bootstrap.min.js"></script>
+
+
+    <script>
+        $('.navUl li').click(function () {
+            $(this).addClass('active').siblings().removeClass('active');
+            var index = $(this).index();
+            $('.checkTable').hide();
+            $('.checkTable').eq(index).show();
+        })
+    </script>
+</body>
+</html>
+<script>
+   
+    function removeDate() {
+        var que = $("#Quarter").val();
+        $("#StartTime").val("");
+        $("#EndTime").val("");
+        if (que == null || que == "") {
+            $("#dMonth").show();
+            $("#DrpMonth").show();
+        } else {
+            $("#dMonth").hide();
+            $("#DrpMonth").hide();
+        }
+       
+        
+    }
+    /*
+    * 计算会计月日期区间
+    */
+    function changeDate() {
+        
+        $("#Quarter").val("");
+        var year = $("#DrpYear").val();
+        var month = $("#DrpMonth").val();
+        var startTime = "StartTime";
+        var endTime = "EndTime";
+        $.ajax({
+            cache: true,
+            type: "POST",
+            datatype: 'json',
+            data: {
+                year: year,
+                month: month,
+                firstControlId: startTime,
+                secondControlId: endTime
+            },
+            url: '@Url.Action("AjaxLoadDateRange", "EvaluationLog")',
+            async: false,
+            success: function (data) {
+                eval(data);
+            }
+        });
+    }
+
+    @*function changeQuarterDate() {
+        
+        var year = $("#DrpYear").val();
+        var quarter = $("#Quarter").val();
+        var startTime = "StartTime";
+        var endTime = "EndTime";
+        $.ajax({
+            cache: true,
+            type: "POST",
+            datatype: 'json',
+            data: {
+                year: year,
+                quarter: quarter,
+                firstControlId: startTime,
+                secondControlId: endTime
+            },
+            url: '@Url.Action("AjaxLoadDate", "EvaluationLog")',
+            async: false,
+            success: function (data) {
+                eval(data);
+            }
+        });
+    }*@
+
+    /**
+    *  数据查询
+    */
+    function btn_Search() {
+        var startTime = $("#StartTime").val();
+        var endTime = $("#EndTime").val();
+        var quarter = $("#Quarter").val();
+        @*$.ajax({
+            cache: true,
+            type: "POST",
+            datatype: 'json',
+            data: {
+                startTime: startTime,
+                endTime: endTime,
+                quarter: quarter
+            },
+            url: '@Url.Action("Index","EvaluationLog")',
+            async: false,
+            success: function (data) {
+                alert(data);
+                return date;
+            }
+        });*@
+        location.href = '@Url.Action("Index", "EvaluationLog")?startTime=' + startTime + '&endTime=' + endTime + '&quarter=' + quarter;
+    }
+    
+    function GetDetail(objId, modId, isRewards) {
+       
+        var startTime = $("#StartTime").val();
+        var endTime = $("#EndTime").val();
+        var url = '@Url.Action("GetDetailIndex", "EvaluationLog")?objId=' + objId + '&modId=' + modId + '&isRewards=' + isRewards + '&startTime=' + startTime + '&endTime=' + endTime;
+        var width = $(window).width();
+        width = width - (width * 0.2);
+        var height = $(window).height();
+        top.$.dialog({
+            id: "FirstDialogWindow",
+            lock: true,
+            title: "考核详情",
+            max: false,
+            min: false,
+            width: width,
+            height: height,
+            content: 'url:' + url
+        });
+        //location.href = '@Url.Action("GetDetailIndex", "EvaluationLog")?objId=' + objId + '&modId=' + modId + '&isRewards=' + isRewards + '&startTime=' + startTime + '&endTime=' + endTime;       
+    }
+</script>
+
+
+

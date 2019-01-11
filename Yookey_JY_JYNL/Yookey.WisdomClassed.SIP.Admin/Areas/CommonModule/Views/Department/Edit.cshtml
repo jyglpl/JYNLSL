@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+@model Yookey.WisdomClassed.SIP.Model.Crm.CrmDepartmentEntity
+<html>
+<head>
+    <title>新增/编辑部门</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")" type="text/javascript"></script>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet"/>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Loadlayout();
+        });
+    </script>
+
+
+</head>
+<body>
+<div>
+    <form id="formmain">
+        <div id="message" style="display: none; padding: 1px; padding-bottom: 0px;"></div>
+        <div class="bd" style="border-bottom: none; margin: 1px;">
+            <div class="tipstitle_title settingtable bold bd todayInfoPanelTab rightPanelTitle_normal">
+                <div class="tab_list_top" style="position: absolute">
+                    <div id="Tabbasic" class="tab_list bd actived" onclick="Tabchange('basic')">基本信息</div>
+                </div>
+            </div>
+        </div>
+        <div class="ScrollBar" style="margin: 1px; overflow: hidden;">
+            <!--基本信息-->
+            <div id="basic" class="tabPanel">
+                <table class="form">
+                    <tr>
+                        <th class="formTitle">部门编码：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.Code, new {@class = "txt required", @datacol = "yes", @err = "部门编码", @checkexpession = "NotNull"})</td>
+                        <th class="formTitle">部门名称：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.FullName, new {@class = "txt required", @datacol = "yes", @err = "部门名称", @checkexpession = "NotNull"})</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">部门简称：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.ShortName, new {@class = "txt"})</td>
+                        <th class="formTitle">部门性质：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.Nature, new {@class = "txt"})</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">负责人：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.Manager, new {@class = "txt"})</td>
+                        <th class="formTitle">联系电话：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.Phone, new {@class = "txt", @datacol = "yes"})</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">部门地址：
+                        </th>
+                        <td class="formValue" colspan="3">
+                            @Html.TextAreaFor(x => x.Address, new { @name = "Address", @maxlength = "200", @class = "txtArea", @rows = "1" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">电子邮件：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.Email, new {@class = "txt", @datacol = "yes", @checkexpession = "EmailOrNull"})</td>
+                        <th class="formTitle">传真：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.Fax, new {@class = "txt", @datacol = "yes", @checkexpession = "Fax"})</td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">显示顺序：</th>
+                        <td class="formValue">@Html.TextBoxFor(x => x.SortCode, new {@onkeyup = "IsNumber(this.id)", @class = "txt required", @datacol = "yes", @err = "显示顺序", @checkexpession = "Num"})</td>
+                        <th class="formTitle">选项：</th>
+                        <td class="formValue">
+                            <span class="item">
+                                <input type="checkbox" name="checkbox" @(Model.Enabled == 1 ? "checked=checked" : "") id="IsEnabled" />
+                                <label for="IsEnabled">有效</label>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">说明：
+                        </th>
+                        <td class="formValue" colspan="3">
+                            @Html.TextAreaFor(x => x.Remark, new { @name = "Description", @maxlength = "200", @class = "txtArea", @rows = "3" })
+
+                            @Html.HiddenFor(x => x.Id)
+                            @Html.HiddenFor(x => x.RowStatus)
+                            @Html.HiddenFor(x => x.CompanyId)
+                            @Html.HiddenFor(x => x.Enabled)
+                            @Html.HiddenFor(t => t.CreatorId)
+                            @Html.HiddenFor(t => t.CreateBy)
+                            @Html.HiddenFor(t => t.CreateOn)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () {
+
+    });
+
+    //保存事件
+    function AcceptClick() {
+        if (!CheckDataValid('#formmain')) {
+            return false;
+        }
+        Loading(true, "正在提交数据...");
+        window.setTimeout(function () {
+            $("#Enabled").val($("#IsEnabled").attr('checked') ? 1 : 0);
+            AjaxJson('@Url.Action("SubmitDepartmentForm", "Department")', $('#formmain').serialize(), function (data) {
+                tipDialog(data.rtMsrg, 3, data.rtState);
+                top.frames[tabiframeId()].windowload();
+                closeDialog();
+            });
+        }, 200);
+    }
+    </script>

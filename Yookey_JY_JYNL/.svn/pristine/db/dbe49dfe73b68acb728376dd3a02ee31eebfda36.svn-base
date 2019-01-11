@@ -1,0 +1,291 @@
+﻿@{
+    ViewBag.Title = "AddEvaluationLog";
+}
+@model Yookey.WisdomClassed.SIP.Model.Evaluation.EvaluationLogEntity
+@using Yookey.WisdomClassed.SIP.Enumerate
+
+@using Yookey.WisdomClassed.SIP.Model.Evaluation
+@{
+    List<EvaluationBasisEntity> evaluationBasisList = (List<EvaluationBasisEntity>)ViewData["EvaluationBasisList"];
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>新增考核记录</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <!--上传文件start-->
+    <script src="@Url.Content("~/Librarys/uploadHelper.js")"></script>
+    <script src="@Url.Content("~/Librarys/uploadify-v2.1.4/swfobject.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/uploadify-v2.1.4/jquery.uploadify.v2.1.4.js")" type="text/javascript"></script>
+    <!--上传文件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+    <style type="text/css">
+        .title {
+            background: #F7F7F7;
+            border: 1px solid #ccc;
+            padding: 0px;
+            margin: 0px;
+            height: 27px;
+            white-space: nowrap;
+            font-weight: normal;
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+
+        .casedt .formValue {
+            height: 40px;
+        }
+
+        .textcenter {
+            text-align: center;
+        }
+
+        .casedt tr td select {
+            height: 30px;
+            width: 400px;
+        }
+
+        .btn-search {
+            padding: 0 15px;
+            height: 24px;
+            line-height: 20px;
+            border-radius: 6px;
+            border: 1px solid #A8A8A8;
+            background: url("../images/btn_bg.gif");
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            var today = new Date();
+            var h = today.getFullYear();
+            var m = today.getMonth() + 1;
+            var d = today.getDate();
+            var nowTime = h + "-" + m + "-" + d;
+            $("#CheckDate").val(nowTime);
+            $("#Id").val('@ViewBag.Id');
+            var evaluationModId = $("#EvaluationModId").val();
+            ChangeProc(evaluationModId);
+            var evaluationProcId = '@Model.EvaluationProcId';
+            ChangeBasis(evaluationProcId);
+        })
+        //根据考核模块ID查询考核依据考核项
+
+        function ChangeProc(procId) {
+            var evalProcId = '@Model.EvaluationProcId';
+            $('#HANDLE_ID').empty();
+            if (procId.length == 0) {
+                $('#HANDLE_ID').empty();
+                $('#HANDLE_ID').append($('<option></option>').val('').text('==请选择=='));
+            } else {
+                $.getJSON('@Url.Action("GetProc", "EvaluationLog")', { procId: procId }, function (data) {
+                    $.each(data, function (i, item) {
+                        if (item.Value == evalProcId) {
+                            $('#HANDLE_ID').append($('<option selected="selected"></option>').val(item.Value).text(item.Text));
+                        } else {
+                            $('#HANDLE_ID').append($('<option></option>').val(item.Value).text(item.Text));
+                        }
+                    });
+                });
+            };
+        }
+        //根据考核依据大类查询考核依据细则
+        function ChangeBasis(basisId) {
+            $('#Basis_ID').empty();
+            var evalBasId = '@Model.EvaluationBasisId';
+            if (basisId.length == 0) {
+                $('#Basis_ID').empty();
+                $('#Basis_ID').append($('<option></option>').val('').text('==请选择=='));
+            } else {
+                $.getJSON('@Url.Action("GetBasis", "EvaluationLog")', { basisId: basisId }, function (data) {
+                    $.each(data, function (i, item) {
+                        if (item.Value == evalBasId) {
+                            $('#Basis_ID').append($('<option selected="selected"></option>').val(item.Value).text(item.Text));
+                        } else {
+                            $('#Basis_ID').append($('<option></option>').val(item.Value).text(item.Text));
+                        }
+                    });
+                });
+            };
+        }
+        // 保存考核细则
+        function SaveEvProc() {
+            
+            if (confirm("您确定新增/修改考核记录吗？")) {
+                var objId = $("#EvaluationObjId").val();
+                var objName = $("#EvaluationObjId").find("option:selected").text();
+                var parentId = $("#EvaluationModId").val();
+                var parentname = $("#EvaluationModId").find("option:selected").text();
+                var procId = $("#HANDLE_ID").val();
+                var procname = $("#HANDLE_ID").find("option:selected").text();
+                var basisId = $("#Basis_ID").val();
+                var basisname = $("#Basis_ID").find("option:selected").text();
+                var checkDate = $("#CheckDate").val();
+                var methodId = $("#EvaluationMethodId").val();
+                var methodname = $("#EvaluationMethodId").find("option:selected").text();
+                var IsRewards = $("#IsRewards").val();
+                var Points = $("#Points").val();
+                var remark = $("#Remark").val();
+                if (parentId == null || parentId == "") {
+                    alert('提示：请选择考核模块！');
+                    return;
+                }
+                else if (procId == undefined || procId == "" || procId == null) {
+                    alert('提示：请选择考核依据！');
+                    return;
+                }
+                else if (basisId == undefined || basisId == "" || basisId == null) {
+                    alert("提示：请完善考核细则！");
+                    return;
+                } else if (checkDate == null || checkDate == "") {
+                    alert("提示：请填写考核时间！");
+                    return;
+                }
+                else if (methodId == undefined || methodId == "" || methodId == null) {
+                    alert("提示：请选择考核方式！");
+                    return;
+                }
+                else if (Points < 0) {
+                    alert('提示：请填写考核分数！');
+                    return;
+                }
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url: '@Url.Action("SavaEvalutionLog", "EvaluationLog")',
+                    data: { Id: '@ViewBag.Id', objId: objId, objName: objName, parentId: parentId, parentname: parentname, procId: procId, procname: procname, basisId: basisId, basisname: basisname, methodId: methodId, methodname: methodname, checkDate: checkDate, remark: remark, IsRewards: IsRewards, Points: Points },
+                    async: false,
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data.rtState == 1) {
+                            alert('保存成功！');
+                            closeDialog();
+                            //location.href = "GetDetailIndex";
+                            //if (confirm('提示：保存成功，是否继续新增？')) {
+                            //    location.href = "AddEvaluationProc";
+                            //} else {
+                            //    location.href = "Index";
+                            //}
+                        }
+                        else {
+                            alert('保存出现异常,请联系管理员！');
+                        }
+                    },
+                    error: function (result) {
+                        var b = result;
+                    }
+                });
+            }
+        }
+
+        function CancelEvProc() {
+            if (confirm('提示：是否放弃保存？')) {
+                closeDialog();
+            }
+        }
+    </script>
+</head>
+<body class="sipac_full">
+    <form id="form">
+        <table class="casedt">
+            @Html.HiddenFor(t => t.Id)
+            <tr>
+                <td colspan="4" class="title" style="text-align: center;">考核记录登记</td>
+            </tr>
+            <tr style="width: 50px">
+                <th class="formTitle">考核模块：<span style="color: Red;">*</span></th>
+                <td class="formValue" colspan="3">
+                    @Html.DropDownListFor(t => t.EvaluationModId, (ViewData["AdministrationMod"] as IEnumerable<SelectListItem>), new { @class = "s_input", @onchange = "javascript:ChangeProc(this.value)" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">考核依据：</th>
+                <td class="formValue" colspan="3">
+                    <select id="HANDLE_ID" class="s_input" onchange="javascript:ChangeBasis(this.value)">
+                        <option>==请选择==</option>
+                    </select>
+
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">考核细则：</th>
+                <td class="formValue" colspan="3">
+                    <select id="Basis_ID" class="s_input">
+                        <option>==请选择==</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">考核对象：<span style="color: Red;">*</span></th>
+                <td class="formValue" colspan="3">
+                    @Html.DropDownListFor(t => t.EvaluationObjId, (ViewData["EvalObjList"] as IEnumerable<SelectListItem>), new { @class = "s_input" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">考核方式：<span style="color: Red;">*</span></th>
+                <td class="formValue" colspan="3">
+                    @Html.DropDownListFor(t => t.EvaluationMethodId, (ViewData["Administrationethod"] as IEnumerable<SelectListItem>), new { @class = "s_input" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">抽查时间：<span style="color: Red;">*</span></th>
+                <td>
+                    @Html.TextBoxFor(t => t.CheckDate, new { @class = "s_input", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})", @style = "margin-left:3px;width:395px;height:25px" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">奖惩：<span style="color: Red;">*</span></th>
+                <td class="formValue" colspan="3">
+                    @Html.DropDownListFor(t => t.IsRewards, (ViewData["IsRewards"] as IEnumerable<SelectListItem>), new { @class = "s_input" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">考核分值：<span style="color: Red;">*</span></th>
+                <td class="formValue" colspan="3">
+                    @Html.TextBoxFor(t => t.Points, new { @style = "width:395px;height:25px", @class = "s_input" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">备注：<span style="color: Red;">*</span></th>
+                <td class="formValue" colspan="3">
+                    @Html.TextBoxFor(t => t.Remark, new { @style = "width:395px;height:25px", @class = "s_input" })
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">证据材料：</th>
+                <td class="formValue" colspan="3" id="EvidenceTD">
+                    @Html.Action("FilesTab", "EvaluationLog", new { resourceId = Model.Id, evtache = "evaluationLog", isupload = "true" })
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="textcenter">
+                    <input type="button" class="btnSearch" onclick="SaveEvProc()" value="保存" />
+                    <input type="button" class="btnSearch" onclick="CancelEvProc()" value="取消" />
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+</html>
+

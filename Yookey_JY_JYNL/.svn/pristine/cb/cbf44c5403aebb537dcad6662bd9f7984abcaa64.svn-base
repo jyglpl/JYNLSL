@@ -1,0 +1,116 @@
+﻿@using Yookey.WisdomClassed.SIP.Common
+@using Yookey.WisdomClassed.SIP.Model.DoubleRandom
+@{
+    @model PetaPoco.Page<DoubleRandomEnterpriseEntity>
+}
+<script type="text/javascript" src="@Url.Content("~/Librarys/js/jquery-1.9.1.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Librarys/js/avalon.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Librarys/js/gridProperty.js")"></script>
+
+<script src="~/Content/Librarys/own/js/jquery.min.js"></script>
+
+<!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--jqgrid表格组件end-->
+
+<link href="@Url.Content("~/Librarys/css/chosen.min.css")" rel="stylesheet">
+<link href="@Url.Content("~/Librarys/css/sipac.css")" rel="stylesheet">
+<link href= "@Url.Content("~/Content/Styles/common.css")" rel="stylesheet" />
+
+<script type="text/javascript">
+
+    var root = "";
+
+</script>
+
+<div class="sipac_tableBox" ms-controller="authorityRoleListModel">
+    <div class="sipac_tableBar">
+        <div class="sipac_table_menu">
+            <a href="javascript:AddEnterprise()">新建</a><em></em>
+            <a href="javascript:void(0);">修改</a><em></em>
+            <a href="javascript:void(0);">批量删除</a><em></em>
+            <a href="javascript:void(0);">通过</a><em></em>
+            <a href="javascript:void(0);">禁用</a><em></em>
+            <a href="javascript:void(0);">启用</a><em></em>
+            <a href="javascript:void(0);">刷新</a>
+        </div>
+    </div>
+    <table id="gridTable"></table>
+    <div id="gridPager"></div>
+</div>
+  <style type="text/css">
+        #font_detail {
+            font-family:'Microsoft YaHei';
+            color:blue;
+            font-size:16px;
+        }
+
+    </style>
+<script type="text/javascript">
+    $(function () {
+        GetGrid();
+    });
+
+    //查询发文
+    function GetGrid() {
+        //var companyId = $("#drpCompany").val();
+        //var deptId = $("#drpDepartment").val();
+        //var startTime = $("#startTime").val();
+        //var endTime = $("#endTime").val();
+        $("#gridTable").jqGrid({
+            url: '@Url.Action("GetCompany", "DoubleRandom")',
+                datatype: "json",
+                postData:
+                  {
+                      //companyId: companyId,
+                      //deptId: deptId,
+                      //startTime: startTime,
+                      //endTime: endTime
+                  },
+                height: $(window).height() - 155,
+                autowidth: true,
+                colModel: [
+                    { label: "企业名称", name: "COMPANY_NAME", index: "COMPANY_NAME", width: 110, align: 'center' },
+                    { label: "社会统一信用代码", name: "ORGANIZATION_CODE", index: "ORGANIZATION_CODE", width: 110, align: 'center' },
+                    { label: "法定代表人", name: "LEGAL_REPRESENTATIVE", index: "LEGAL_REPRESENTATIVE", width: 110, align: 'center' },
+                    { label: "联系电话", name: "PHONE", index: "PHONE", width: 90 },
+                    { label: "注册地址", name: "REGISTERED_ADDRESS", index: "REGISTERED_ADDRESS", width: 100, align: 'center' },
+                    { label: "生产经营地址", name: "PRODUCTION_ADDRESS", index: "PRODUCTION_ADDRESS", width: 100, align: 'center' },
+                    { label: "行业类别大类名称", name: "INDUSTRY_CATEGORYI_NAME", index: "INDUSTRY_CATEGORYI_NAME", width: 100, align: 'center' },
+                    { label: "行业类别中类名称", name: "INDUSTRY_CATEGORYII_Name", index: "INDUSTRY_CATEGORYII_Name", width: 100, align: 'center' },
+                    { label: "行业类别小类名称", name: "INDUSTRY_CATEGORYIII_NAME", index: "INDUSTRY_CATEGORYIII_NAME", width: 100, align: 'center' },
+                    {
+                        label: "操作", name: "PK_ID", index: "PK_ID", width: 160, align: 'center', formatter: function (value, grid, rows, state) {
+                            var btns = "<a id='font_detail' href='javascript:void(0);' onclick='showAttenanceDetail(\"" + value + "\")' >编辑</a>";
+                            //var btns = "<input type='button'class='btnSearch' onclick='showAttenanceDetail(\"" + value + "\")' value='编辑'/>";
+                            return btns;
+                        }
+                    }
+                ],
+                viewrecords: true,
+                rowList: [30, 50, 100, 500, 1000],
+                pager: "#gridPager",
+                rownumbers: true,
+                shrinkToFit: false,
+                gridview: true,
+                onSelectRow: function (rowid, iRow, iCol, e) {
+
+                },
+                ondblClickRow: function (rowid, iRow, iCol, e) {
+                }
+            });
+    }
+
+    function showAttenanceDetail(rowid) {
+        window.location.href = "@Url.Action("EnterpriseEdit", "DoubleRandom")?Pk_Id=" + rowid;
+    }
+
+        //新增企业
+        function AddEnterprise() {
+            window.location.href = "@Url.Action("EnterpriseEdit", "DoubleRandom")";
+    }
+
+</script>

@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>公告接受情况</title>    
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
+    
+    <script src="~/Content/layui/layui.js" charset="utf-8"></script>
+</head>
+<body>
+    <div>
+        <table class="layui-hide" id="table_jsqk" lay-filter="test"></table>
+    </div>
+
+
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+
+            table.render({
+                elem: '#table_jsqk'
+                , url: '@Url.Action("GetJieShouQk", "OA")?Id=' + '@Request["Id"]' + '&timestamp' + (new Date()).valueOf()
+                , cols: [[
+                    { field: 'Id', title: '序号', width: 80, fixed: 'left', type: 'numbers'}
+                    , { field: 'Name', title: '接收人', width: 120, align: 'center' }
+                    , {
+                        field: 'IsJS', title: '阅读情况' ,align: 'center'
+                        ,templet: function(d){
+                            if (d.IsJS == 0) {
+                                return '未读';
+                            }
+                            else if(d.IsJS == 1)
+                            {
+                                return '已阅';
+
+                            }
+                        }
+                    }
+
+                ]]
+                , page: true
+            });
+        });
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0"?>
+<GeneralConfigInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <!--系统名称-->
+  <SystemName>苏州工业园区数字城管|数字执法系统</SystemName>
+  <FileSaveAddr>E:\FileSave\SIP-ZHZFPT\</FileSaveAddr>
+
+  <!--内网链接地址-->
+  <FileViewLink>http://192.168.1.110/FileSave/SIP-ZHZFPT/</FileViewLink>
+  
+  <FileWritViewLink>http://192.168.1.110/FileSave/SIP-ZHZFPT/</FileWritViewLink>
+  
+  <!--外网链接地址-->
+  <FileViewOutNetLink>http://192.168.1.169/FileSave/</FileViewOutNetLink>
+
+  <!--内网IP-->
+  <Intranet>192.168.1.110</Intranet>
+
+  <!--外网IP-->
+  <OutNet>192.168.1.110</OutNet>
+
+  <!--是否启用短信-->
+  <IsEnableNote>1</IsEnableNote>
+
+  <!--密码加密地址-->
+  <PasswordDecode>http://58.210.9.131/UserSecret/psd/{0}/{1}</PasswordDecode>
+
+  <!--坐标转换地址(&在XML是特殊字符,这里用*号代替,使用时再转换下)-->
+  <CoordinateConvert>http://58.210.9.131/wgs2df/handler.ashx?type=gps2df_ddin*latitude={0}*longitude={1}*ticket=e4d83ff0-42b9-40ef-bd31</CoordinateConvert>
+
+  <!--需要过滤的案由编号，多个使用逗号进行分隔-->
+  <KickItemNo>7001</KickItemNo>
+
+  <!--法律法规版本号-->
+  <LegislationVersion>3</LegislationVersion>
+
+  <!--图片存储服务链接地址-->
+  <FileSaveServiceLink>http://192.168.1.169:8100/PictureService.asmx</FileSaveServiceLink>
+
+  <!--图片存储服务器预览地址-->
+  <FileSaveServiceViewLink>http://192.168.1.110/FileSave/SIP-ZHZFPT/</FileSaveServiceViewLink>
+
+  <!--分管副局长 倪俊-->
+  <DeputyDirector>90d71465-9e29-48e3-9aee-57c0c7a72f89</DeputyDirector>
+
+  <!--分管局长 高卫东-->
+  <Director>f31c4a24-54cd-4cc3-8b2c-ce083833de8e</Director>
+
+</GeneralConfigInfo>

@@ -1,0 +1,298 @@
+﻿<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@(Yookey.WisdomClassed.SIP.Common.AppConfig.SystemName)</title>
+
+    <!--框架必需start-->
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Content/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")"></script>
+    <!--引入弹窗组件end-->
+    <script src="@Url.Content("~/Scripts/Index.js")"></script>
+
+    <link href="@Url.Content("~/Content/Main/css/border.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Main/css/swiper.min.css")" rel="stylesheet" />
+
+    <!--[if lt IE 8]>
+    <script src="js/ie8.js"></script>
+<!--[endif]-->
+    <script>
+        $(document).ready(function () {
+            var getUrlParam = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return null;
+            };
+            if (getUrlParam('type') == 'zfcf') {
+                AddTabMenu('Punishmentcase', '@Url.Action("Punishmentcase", "PenaltyCase")');
+            }
+            else if (getUrlParam('type') == 'zfqgc') {
+                AddTabMenu('Evidence', '@Url.Action("IndexPage", "Evidence")');
+                $("#menu li").removeClass('active');
+                $("#menu .qgc").addClass('active');
+            }
+            else if (getUrlParam('type') == 'zfssj') {
+                AddTabMenu('Double', '@Url.Content("~/SIP/DoubleRandom/DoubleRandomIndex")?type=' + 1);
+                $("#menu li").removeClass('active');
+                $("#menu .ssj").addClass('active');
+            }
+            else if (getUrlParam('type') == 'wfjs') {
+                AddTabMenu('Illegal', '@Url.Content("~/SIP/IllegalConstruction/IllegalIndex")');
+                $("#menu li").removeClass('active');
+                $("#menu .wf").addClass('active');
+            }
+            else if (getUrlParam('type') == 'ggzz') {
+                AddTabMenu('petition', 'http://app.cityfun.com.cn/cgzfadv/');
+                $("#menu li").removeClass('active');
+                $("#menu .gg").addClass('active');
+            }
+            else if (getUrlParam('type') == 'zcdw') {
+                AddTabMenu('petition', 'http://app.cityfun.com.cn/cgzfbrf/');
+                $("#menu li").removeClass('active');
+                $("#menu .zc").addClass('active');
+            }
+            else if (getUrlParam('type') == 'zkwp') {
+                AddTabMenu('TempDetain', '@Url.Action("Index", "TempDetain")');
+                $("#menu li").removeClass('active');
+                $("#menu .zk").addClass('active');
+            }
+            else if (getUrlParam('type') == 'ztgl') {
+                AddTabMenu('petition', 'http://app.cityfun.com.cn/cgzfmuk/');
+                $("#menu li").removeClass('active');
+                $("#menu .zt").addClass('active');
+            }
+            else {
+                AddTabMenu('Imain', '@Url.Action("BusinessRight")');
+                    $("#menu li").removeClass('active');
+                    $("#menu .sy").addClass('active');
+                }
+        });
+
+//返回首页
+function homeBox() {
+    AddTabMenu('homebox', '@Url.Action("BusinessRight")');
+}
+//双随机
+function Double(type) {
+    AddTabMenu('Double', '@Url.Content("~/SIP/DoubleRandom/DoubleRandomIndex")?type=' + type);
+}
+//违法建设
+function Illegal() {
+    AddTabMenu('Illegal', '@Url.Content("~/SIP/IllegalConstruction/IllegalIndex")');
+}
+//统计分析
+function IllegalAnalysis() {
+    AddTabMenu('Illegal', '@Url.Content("~/SIP/IllegalConstruction/IllegalStatistic")');
+}
+function statistical() {
+    AddTabMenu('Illegal', '@Url.Content("~/SIP/IllegalConstruction/EvaluationIndex")');
+}
+//执法管理
+function GetIllegal() {
+    AddTabMenu('GetIllegal', '@Url.Content("~/SIP/IllegalConstruction/EvaluationIndex")');
+}
+//受理登记
+function IllegalReport() {
+    AddTabMenu('IllegalReport', '@Url.Content("~/SIP/IllegalConstruction/IllegalReport")');
+}
+//暂扣管理
+function TempDetain() {
+    AddTabMenu('TempDetain', '@Url.Action("Index", "TempDetain")');
+}
+//暂扣统计
+function Tempstatistical() {
+    AddTabMenu('Tempstatistical', '@Url.Action("StatisticsIndex", "TempDetain")');
+}
+//处罚办案
+function Punishmentcase() {
+    AddTabMenu('Punishmentcase', '@Url.Action("Punishmentcase", "PenaltyCase")');
+    }
+    //案件办理
+    function PenaltyCase() {
+        AddTabMenu('PenaltyCase', '@Url.Action("Index", "PenaltyCase")');
+        }
+        //案件分析
+        function PenaltyAnalysis() {
+            AddTabMenu('PenaltyAnalysis', '@Url.Action("Index", "PenaltyAnalysis")');
+        }
+        //执法全过程记录
+        function Evidence() {
+            AddTabMenu('Evidence', '@Url.Action("IndexPage", "Evidence")');
+        }
+
+        //违法停车
+        function CheckSign() {
+            AddTabMenu('CheckSign', '@Url.Action("Index", "PenaltyParking")');
+        }
+
+        //教育纠处
+        function Education() {
+            AddTabMenu('Education', '@Url.Action("Index", "Education")');
+        }
+
+        $(function () {
+            //待办数
+            GetUntreatedCount();
+        });
+
+        //待办事宜条数
+        function GetUntreatedCount() {
+            getAjax('@Url.Action("GetUntreatedCount", "WorkList")', {}, function (data) {
+                $("#Untreated").html(data);
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="headerTop">
+        <p>
+            <img src="~/Content/Main/images/logoTwo.png" alt="">
+        </p>
+        <ul>
+            <li class="sy">
+                <a href="@Url.Action("Index", "HomeIndex")">
+                    <img src="~/Content/Main/images/home.png" alt="" />
+                    <div>系统首页</div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:AddTabMenu('WorkList', '@Url.Action("Index", "WorkList")');">
+                    <div style="position: relative">
+                        <div class='newsIcon' id="Untreated">0</div>
+                        <img src="~/Content/Main/images/news.png" alt="" />
+                    </div>
+                    <div>待办事宜</div>
+                </a>
+            </li>
+            <li><a href="javascript:void(0);">
+                <img src="~/Content/Main/images/nav2.png" alt="" />
+                <div>帮助中心</div>
+            </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="~/Content/Main/images/nav3.png" alt="" />
+                    <div>操作手册</div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="~/Content/Main/images/nav4.png" alt="" />
+                    <div>个人中心</div>
+                </a>
+            </li>
+            <li><a href="@Url.Action("Index", "HomeIndex")">
+                <img src="~/Content/Main/images/nav5.png" alt="" />
+                <div>安全退出</div>
+            </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 内容 -->
+    <div id="content" class="clearfixed">
+        <!-- 内容左侧导航 -->
+        <div class="leftListNav">
+            <p class="headImg">
+                <b></b>
+                <span>@ViewBag.UserName</span>
+            </p>
+            <p class="homeBox">
+                <a onclick="homeBox()" href="javascript:void(0);">
+
+                    <img src="~/Content/Images/homeIcon.png" alt="" />
+                    首页
+
+                </a>
+            </p>
+            <div class="liContent">
+                <ul id="menu">
+                    <li class="active">
+                        <a href="javascript:void(0);">处罚办案</a>
+                        <div class="secList">
+                            <a onclick="Punishmentcase()" href="javascript:void(0);">案件办理</a>
+                            <a onclick="CheckSign()" href="javascript:void(0);">违法停车</a>
+                            <a onclick="Education()" href="javascript:void(0);">教育纠处</a>
+                            <a onclick="PenaltyAnalysis()" href="javascript:void(0);">违法用地管理</a>
+                            <a onclick="javascript:void(0);" href="javascript:void(0);">办案可视化管理</a>
+                        </div>
+                    </li>
+                    <li class="qgc">
+                        <a href="javascript:void(0);" onclick="Evidence();">全过程记录</a>
+                    </li>
+                    <li class="ssj"><a href="javascript:void(0);">双随机抽查</a>
+                        <div class="secList">
+                            <a onclick="Double('1')" href="javascript:void(0);">双随机抽查</a>
+                            <a onclick="Double('0')" href="javascript:void(0);">双随机督查</a>
+                        </div>
+                    </li>
+                    <li class="wf"><a href="javascript:void(0);">违法建设</a>
+                        <div class="secList">
+                            <a onclick="Illegal()" href="javascript:void(0);">违法建设</a>
+                            <a onclick="IllegalAnalysis()" href="javascript:void(0);">统计分析</a>
+                            <a onclick="statistical()" href="javascript:void(0);">考核统计</a>
+                        </div>
+                    </li>
+                    <li class="gg">
+                        <a href="javascript:AddTabMenu('petition', 'http://app.cityfun.com.cn/cgzfadv/');">广告整治</a>
+                    </li>
+                    <li class="zc">
+                        <a href="javascript:AddTabMenu('petition', 'http://app.cityfun.com.cn/cgzfbrf/');">早餐点位</a>
+                    </li>
+                    <li class="zk">
+                        <a href="javascript:void(0);" onclick="TempDetain()">暂扣物品</a>
+                    </li>
+                    <li class="zt">
+                        <a href="javascript:AddTabMenu('petition', 'http://app.cityfun.com.cn/cgzfmuk/');">渣土综合管理</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <!-- 右侧内容 -->
+        <div class="rightContent clearfix" id="ContentPanel" style="border: none; background-color: white;">
+            @* <div i></div>*@
+        </div>
+        <div id="footer">
+            技术支持:江苏中越科技发展有限公司
+        </div>
+    </div>
+
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/echarts.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/jQuery.js")"></script>
+
+
+
+    <script>
+        // $('.leftListNav').height($(".rightContent").outerHeight());
+        $('#menu li').click(function () {
+            $(this).addClass('active').siblings().removeClass('active')
+        })
+        var A_num1 = parseInt($('.manTol1').parent().siblings('.manText').find('.man1').text());
+        var A_num2 = parseInt($('.total_num').text());
+        var A_num = ((A_num1 / A_num2) * 100).toFixed(2);
+        $('.manTol1').height(A_num + "%");
+
+        var B_num1 = parseInt($('.manTol2').parent().siblings('.manText').find('.man1').text());
+        var B_num2 = parseInt($('.total_num').text());
+        var B_num = ((B_num1 / B_num2) * 100).toFixed(2);
+
+        $('.manTol2').height(B_num + "%");
+
+        $('#menu li').hover(function () {
+            $(this).find('.secList').show();
+        }, function () {
+            $(this).find('.secList').hide();
+        })
+    </script>
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")"></script>
+    <!--引入弹窗组件end-->
+</body>
+</html>

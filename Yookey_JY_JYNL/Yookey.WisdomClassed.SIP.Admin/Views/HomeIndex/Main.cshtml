@@ -1,0 +1,265 @@
+﻿@{
+    ViewBag.Title = "Main";
+}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@(Yookey.WisdomClassed.SIP.Common.AppConfig.SystemName)</title>
+    <link href="@Url.Content("~/Content/Main/css/border.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/Main/js/learunui-framework.js")"></script>
+    <script src="@Url.Content("~/Librarys/jquery/jquery-2.1.1.min.js")"></script>
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")"></script>
+    <!--引入弹窗组件end-->
+    <style>
+        .none {
+            display: none;
+        }
+
+        .block {
+            display: block;
+        }
+
+
+        .loading_background {
+            display: block;
+            width: 100%;
+            opacity: 0.0;
+            filter: alpha(opacity=00);
+            background: #fff;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            z-index: 3000;
+            bottom: 0;
+        }
+
+        #loading {
+            color: #666;
+            font-size: 12pt;
+            position: absolute;
+            z-index: 3001;
+            left: 42%;
+            top: 40%;
+            border: 2px solid #537693;
+            width: auto;
+            padding: 8px 10px 7px 10px;
+            background: #fff;
+            display: none;
+            cursor: pointer;
+            -moz-border-radius: 8px;
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+            #loading span {
+                font-size: 12pt;
+            }
+
+        #loadingGird {
+            color: #666;
+            font-size: 12pt;
+            position: absolute;
+            z-index: 3001;
+            left: 42%;
+            top: 40%;
+            border: 2px solid #537693;
+            width: auto;
+            padding: 8px 10px 7px 10px;
+            background: #fff;
+            display: none;
+            cursor: pointer;
+            -moz-border-radius: 8px;
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        .headerTop > p img {
+            width: 600px;
+            height: 65px;
+        }
+    </style>
+    <script>
+        var source = "00001";
+        $(document).ready(function () {
+            var type = "";
+            if (source == "00001") {
+                AddTabMenu('Imain', '@Url.Action("Index","OA")');
+            }
+
+            else {
+                type = source;
+                source = source.substr(0, 4);
+            }
+            GetAccordionMenu(source);
+            if (type != "") {
+                $("#menu li").removeClass('active');
+                $("#menu ." + type + "").addClass('active');
+                var url = $("#" + type).val();
+                AddTabMenu('source', url);
+            }
+        });
+
+function ChangeClass(obj) {
+    $("#menu li").removeClass('active');
+    $("#menu ." + obj + "").addClass('active');
+};
+//导航一级菜单
+var accordionJson = "";
+function GetAccordionMenu(source) {
+    var html = "";
+    $.ajax({
+        type: 'post',
+        dataType: "text",
+        async: false,
+        url: "@Url.Action("LoadAccordionMenu")",
+        data: { source: source },
+        success: function (data) {
+            accordionJson = eval("(" + data + ")");
+            $.each(accordionJson, function (i) {
+                if (accordionJson[i].ParentId == source) {
+                    html += "<li class=\"" + accordionJson[i].ModuleId + "\">";
+                    if (accordionJson[i].Location == "") {
+                        html += "<a onclick=\"javascript:void(0);\">" + accordionJson[i].FullName + "</a>";
+                    }
+                    else {
+                        html += "<a onclick=\"AddTabMenu(\'" + accordionJson[i].Icon + "\',\'" + accordionJson[i].Location + "\')\">" + accordionJson[i].FullName + "</a>";
+                        html += "<input type=\"hidden\" id='" + accordionJson[i].ModuleId + "' value=\"" + accordionJson[i].Location + "\" />"
+                    }
+                    html += GetSubmenu(accordionJson[i].ModuleId, source);
+                    html += "</li>";
+                }
+            });
+        }
+    });
+    $("#menu").append(html);
+};
+
+function GetSubmenu(ModuleId, source) {
+    var flag = false;
+    var submenu = "<div class=\"secList\">";
+    $.each(accordionJson, function (i) {
+        if (accordionJson[i].ParentId == ModuleId) {
+
+            submenu += "<a onclick=\"AddTabMenu(\'" + accordionJson[i].Icon + "\',\'" + accordionJson[i].Location + "\');ChangeClass('" + accordionJson[i].ParentId + "');\">" + accordionJson[i].FullName + "</a>";
+            if (!flag) {
+                submenu += "<input type=\"hidden\" id='" + accordionJson[i].ParentId + "' value=\"" + accordionJson[i].Location + "\" />"
+                flag = true;
+            }
+        }
+    });
+    submenu += "</div>";
+    return submenu;
+};
+
+function homeBox() {
+    if (source == "1") {
+        AddTabMenu('Imain', '@Url.Action("BusinessRight")');
+    }
+    else if (source == "2") {
+        AddTabMenu('Imain', '@Url.Action("ManagemenRight")');
+    }
+    else if (source == "3") {
+        AddTabMenu('Imain', '@Url.Action("OfficeRight")');
+    }
+};
+    </script>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="headerTop">
+        <p>
+            <img src="~/Content/Main/images/logoTwo.png" alt="">
+        </p>
+        <ul>
+            <li>
+                <a href="@Url.Action("Main", "HomeIndex")">
+                    <img src="~/Content/Main/images/home.png" alt="" />
+                    <div>系统首页</div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:AddTabMenu('WorkList', '@Url.Action("Index", "WorkList")');">
+                    <div style="position: relative">
+                        <div class='newsIcon' id="Untreated">0</div>
+                        <img src="~/Content/Main/images/news.png" alt="" />
+                    </div>
+                    <div>待办事宜</div>
+                </a>
+            </li>
+            <li><a href="javascript:void(0);">
+                <img src="~/Content/Main/images/nav2.png" alt="" />
+                <div>帮助中心</div>
+            </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="~/Content/Main/images/nav3.png" alt="" />
+                    <div>操作手册</div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="~/Content/Main/images/nav4.png" alt="" />
+                    <div>个人中心</div>
+                </a>
+            </li>
+            <li><a href="">
+                <img src="~/Content/Main/images/nav5.png" alt="" />
+                <div>安全退出</div>
+            </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 内容 -->
+    <div id="content" class="clearfixed">
+        <!-- 内容左侧导航 -->
+        <div class="leftListNav">
+            <p class="headImg">
+                <b></b>
+                <span>@ViewBag.UserName</span>
+            </p>
+            <p class="homeBox">
+                <a onclick="homeBox()" href="javascript:void(0);">
+                    <img src="~/Content/Images/homeIcon.png" alt="" />首页
+                </a>
+            </p>
+            <div class="liContent">
+                <ul id="menu"></ul>
+            </div>
+        </div>
+        <!-- 右侧内容 -->
+        <div class="rightContent clearfix" id="ContentPanel" style="border: none; background-color: white;">
+        </div>
+        <div id="footer">
+            技术支持:江苏中越科技发展有限公司
+        </div>
+    </div>
+
+    <!--载进度条start-->
+    <div id="loading_background" class="loading_background" style="display: none;"></div>
+    <div id="loading" onclick="Loading(false);">
+        <img src="/Content/Images/loading.gif" style="vertical-align: middle;" />&nbsp;<span>正在拼了命为您加载…</span>&nbsp;
+    </div>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/echarts.js")"></script>
+    <script>
+        //$('.leftListNav').height($(".rightContent").outerHeight());
+        $('#menu li').click(function () {
+            $(this).addClass('active').siblings().removeClass('active')
+        })
+        $('#menu').on('mouseenter mouseleave', 'li', function (e) {
+            if (e.type == 'mouseenter') {
+                $('.secList').addClass('none').removeClass('block');
+                $(this).find('.secList').addClass('block');
+            } else {
+                $('.secList').addClass('none').removeClass('block');
+            }
+        })
+    </script>
+</body>
+</html>
+

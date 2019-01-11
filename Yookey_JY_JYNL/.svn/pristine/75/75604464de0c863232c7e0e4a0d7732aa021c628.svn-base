@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="@Url.Content("~/Content/Main/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Main/css/border.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Main/css/caseLandIndex.css")" rel="stylesheet" />
+    <script type="text/javascript" src="@Url.Content("~/Content/Librarys/jquery/jquery-1.9.1.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+</head>
+<style>
+    html, body {
+        height: 100%;
+    }
+</style>
+<body>
+    <div id="detail">
+        <div class="detailCon clearfixed">
+            <div class="detailCon1">
+                @Html.DropDownList("DrpYear", (ViewData["Years"] as IEnumerable<SelectListItem>), new { @class = "form-control", @style = "width: 100px;height:30px", @onchange = "javascript:echartsOne();" })
+                @*<select class="form-control">
+                    <option value="">日期选择</option>
+                    <option value="">2018年</option>
+                </select>*@
+                <div class="title">案件走势</div>
+                <div id="echartsOne" style="width: 100%; height: 330px;"></div>
+            </div>
+            <div class="detailCon1 mr0">
+                @Html.DropDownList("DrpYear1", (ViewData["Years1"] as IEnumerable<SelectListItem>), new { @class = "form-control", @style = "width: 100px;height:30px", @onchange = "javascript:echartsTwo();" })
+                <div class="title">案件状态</div>
+                <div id="echartsTwo" style="width: 100%; height: 330px;"></div>
+            </div>
+        </div>
+        <div class="detailCon clearfixed mt10">
+            <div class="detailCon2">
+                @Html.DropDownList("DrpYear2", (ViewData["Years2"] as IEnumerable<SelectListItem>), new { @class = "form-control", @style = "width: 100px;height:30px", @onchange = "javascript:echartsThree();" })
+                <div class="title">违法行为TOP10</div>
+                <div id="echartsThree" style="width: 100%; height: 330px;"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/echarts.js")"></script>
+    <script>
+
+        $(function () {
+            //案件走势
+            echartsOne();
+            //案件状态
+            echartsTwo();
+            //违法行为
+            echartsThree();
+        })
+
+        function echartsOne() {
+
+            var data;
+            var year = $("#DrpYear").val();
+            getAjax("@Url.Action("GetCaseLandTrend", "PenaltyCaseLand")", { Date: year }, function (msg) {
+                data = eval(msg);
+            });
+
+            data = eval("[" + data + "]");
+
+            var mychart = echarts.init(document.getElementById('echartsOne'));
+            mychart.setOption(option = {
+                grid: {
+                    x: 40,
+                    y: 30,
+                    x2: 40,
+                    y2: 50
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                        splitLine: { show: false },//去除网格线
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '成交',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: { normal: { areaStyle: { type: 'default' } } },
+                        data: data
+                    }
+                ]
+            })
+        }
+
+        function echartsTwo() {
+
+            var data;
+            var year = $("#DrpYear1").val();
+            getAjax("@Url.Action("GetCaseLandState", "PenaltyCaseLand")", { Date: year }, function (msg) {
+                data = eval(msg);
+            });
+
+            data = eval("[" + data + "]");
+
+
+
+            var mychart = echarts.init(document.getElementById('echartsTwo'));
+            mychart.setOption(option = {
+                grid: {
+                    x: 40,
+                    y: 30,
+                    x2: 40,
+                    y2: 50
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: ['登记', '待立案', '待处理', '待结案', '已结案', '已归档'],
+                        splitLine: { show: false },//去除网格线
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        type: 'bar',
+                        data: data,
+                    }
+                ]
+            })
+        }
+
+        function echartsThree() {
+
+            var data;
+            var itemname;
+            var ct;
+            var year = $("#DrpYear2").val();
+            getAjax("@Url.Action("GetCaseLandTop", "PenaltyCaseLand")", { Date: year }, function (msg) {
+                data = msg;
+            });
+
+            var lst = data.split(";");
+
+
+            itemname = eval("[" + lst[0] + "]");
+            ct = eval("[" + lst[1] + "]");
+
+            var mychart = echarts.init(document.getElementById('echartsThree'));
+            mychart.setOption(option = {
+                grid: {
+                    x: 40,
+                    y: 30,
+                    x2: 40,
+                    y2: 50
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: itemname,
+                        splitLine: { show: false },//去除网格线
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        type: 'bar',
+                        data: ct,
+                        itemStyle: {
+                            normal: {
+                                color: "#0687e1"
+                            }
+                        }
+                    }
+                ]
+            })
+        }
+    </script>
+</body>
+
+</html>

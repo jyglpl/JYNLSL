@@ -1,0 +1,205 @@
+﻿@{
+    ViewBag.Title = "DoubleRandomDetail";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>抽查结果详情</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <link href="@Url.Content("~/Librarys/casepic/css/style.css")" rel="stylesheet" />
+
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--jqgrid表格组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+    <style type="text/css">
+        .ui-jqgrid tr.jqgrow td {
+            white-space: normal !important;
+            height: auto;
+            vertical-align: text-top;
+            padding-top: 2px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+
+        .btn-search {
+            padding: 0 15px;
+            height: 30px;
+            line-height: 20px;
+            border-radius: 6px;
+            border: 1px solid #A8A8A8;
+            background: url("../images/btn_bg.gif");
+        }
+    </style>
+</head>
+<body>
+    <div id="layout" class="layout" style="border-bottom: none; position: relative;">
+
+
+        <!--列表-->
+        <div id="grid_List">
+            <input type="hidden" id="DetailId" value="@ViewBag.ParentId"/>
+            <input type="hidden" id="RandType" value="@ViewBag.RandomType"/>
+            <table id="gridTable"></table>
+            <div id="gridPager"></div>
+        </div>
+        @* <div style="position: absolute; bottom: 38px; right: 80px;">
+            <input type="button" class="btn-search" value="重新抽取" onclick="reChoose()" />
+            <input type="button" class="btn-search" value="任务派发" onclick="dispatch()" />
+            <input type="button" class="btn-search" value="关闭" onclick="cancle()" />
+        </div>*@
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    //关闭
+    function cancle() {
+        closeDialog();
+    }
+    //重新抽取
+    function reChoose() {
+        var parentId = $("#DetailId").val();
+        confirmDialog("系统提示", "是否重新抽取？", function (r) {
+            if (r) {
+                //var type = $("#RandType").val();
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url: '@Url.Action("DeleteRandomResult", "DoubleRandom")',
+                    data: { parentId: parentId },
+                    async: false,
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data.rtState == 1) {
+                            $x("#gridTable").trigger("reloadGrid"); //重新载入
+                            //closeDialog();
+                            //window.location.href = '@Url.Action("DoubleRandomIndex", "DoubleRandom")?type=' + type;
+                        }
+                    }
+
+                });
+            }
+        })
+    }
+    //任务派发
+    function dispatch() {
+        var parentId = $("#DetailId").val();
+        confirmDialog("系统提示", "是否派发任务？", function (r) {
+            if (r) {
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url: '@Url.Action("DispatchRandomResult", "DoubleRandom")',
+                    data: { parentId: parentId },
+                    async: false,
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data.rtState == 1) {
+                            //closeDialog();
+                            // window.location.href = '@Url.Action("DoubleRandomIndex", "DoubleRandom")?type=' + type;
+                        }
+                    }
+                });
+                closeDialog();
+            }
+        })
+    }
+
+
+    $(function () {
+        GetGrid();
+    });
+
+    //加载表格
+    function GetGrid() {
+        var parentId = $("#DetailId").val();
+        $("#gridTable").jqGrid({
+            url: '@Url.Action("DoubleRandomDetailData")',
+            postData: {
+                parentId: parentId
+            },
+            datatype: "json",
+            height: $(window).height() - 58,
+            autowidth: true,
+            colModel: [
+                { label: "主键", name: "Id", index: "Id", hidden: true },
+                { label: "所属大队", name: "TeamName", index: "TeamName", width: 210, align: 'left' },
+                { label: "对象类型", name: "TypeName", index: "TypeName", width: 120, align: 'left' },
+                { label: "抽查对象", name: "ObjName", index: "ObjName", width: 210, align: 'left' },
+                { label: "抽查人员", name: "InspectorNames", index: "InspectorNames", width: 120, align: 'left' },
+                {
+                    label: "抽查时间", name: "CreateOn", index: "CreateOn", width: 140, align: 'center'
+                    , formatter: "date", formatoptions: { newformat: 'Y-m-d' },
+                },
+                {
+                    label: "状态", name: "IsDispatch", index: "IsDispatch", width: 100, align: 'center', formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue==0) {
+                            return "未派发";
+                        } if (cellvalue == 1) {
+                            return "已派发";
+                        }
+                    }
+                },
+                { label: "完成人Id", name: "FinishBy", index: "FinishBy", hidden: true },
+                { label: "完成人", name: "FinishPerson", index: "FinishPerson", width: 140, align: 'center' },
+                {
+                    label: "完成时间", name: "FinishTime", index: "FinishTime", width: 140, align: 'center'
+                    , formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == "1900/1/1 0:00:00") {
+                            return "";
+                        } else {
+                            return cellvalue;
+                        }
+                    }
+                },
+                { label: "备注", name: "Remark", index: "Remark", width: 220, align: 'center' }
+            ],
+            viewrecords: true,
+            rowList: [30, 50, 100, 500, 1000],
+            pager: "#gridPager",
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            onSelectRow: function (rowid, iRow, iCol, e) {
+
+            },
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+            }
+        });
+    }
+</script>
+
+

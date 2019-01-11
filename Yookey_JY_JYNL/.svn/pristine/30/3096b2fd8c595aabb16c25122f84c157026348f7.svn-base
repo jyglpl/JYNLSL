@@ -1,0 +1,552 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>流程管理</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <link href="@Url.Content("~/Content/Styles/Flow/FlowEditor.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.6.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/FlowEditor/Drag.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")" type="text/javascript"></script>
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+    <script type="text/javascript">
+
+    </script>
+    <script language="javascript" type="text/javascript">
+
+        function NewProcess() {
+            if (OnbeforeunloadEvent() == false)
+                return;
+            Editor.NewID = 1;
+            Editor.NodeNumber = 1;
+            window.document.getElementById("txtFlowName").value = "";
+            window.document.getElementById("txtProcessID").value = "";
+            window.document.getElementById("txtVersion").value = "";
+            window.document.getElementById("txtObjType").value = "";
+            Clear();
+        }
+
+        //打开流程列表
+        function OpenProcessList() {
+            var dateObj = new Date();
+            var flowName = window.document.getElementById("txtFlowName").value;
+            var url = '@Url.Action("List", "FlowEditor")?flowName=' + flowName;
+            var tempPathStr = encodeURI(url);
+
+            Dialog(tempPathStr, "FlowList", "流程列表", 830, 460);
+        }
+
+        //列表选择后返回
+        function ListColseBack(processId, flowName) {
+            window.document.getElementById("txtProcessID").value = processId;
+            ReadProcessByName(flowName);
+            var btnReadDate = window.document.getElementById("btnReadProcess");
+        }
+
+
+        function SaveProcess() {
+            GetEditorValue();
+            var btnSave2 = window.document.getElementById("btnSave2");
+            btnSave2.click();
+            return true;
+        }
+        function SetEditorValue2() {
+            OpenAndCloseAlert();
+            setTimeout("SetEditorValue()", 100);
+        }
+        function SetEditorValue3() {
+            OpenAndCloseAlert();
+            setTimeout("SetEditorValue();SetObjID2();", 100);
+        }
+        function OpenAndCloseAlert() {
+            if0.showModelessDialog("javascript:alert('正在刷新界面流程图，请耐心等候……');window.close();", "", "status:no;resizable:no;help:no;dialogHeight:30px;dialogWidth:40px;");
+            setTimeout("if0.location.reload();", 1);
+        }
+        function OnbeforeunloadEvent() {
+            if (window.document.getElementById("txtIsAmend").value != "0")
+                return window.confirm("您已修改了结点属性，尚未保存。是否继续当前操作……");
+            return true;
+        }
+        function onbeforeunload() {
+            if (window.document.getElementById("txtIsAmend").value != "0" && window.document.getElementById("txtOnbeforeunload").value != "0")
+                window.event.returnValue = "您已修改了结点属性，尚未保存……";
+        }
+        function IsNotOnbeforeunload() {
+            window.document.getElementById("txtOnbeforeunload").value = "0";
+        }
+        //启用指定流程
+        function IsUnlockProecess() {
+            OpenProcessList();
+        }
+        function SetAttributePlanVisible() {
+            var divAttributePlan = window.document.getElementById("div_AttributePlan");
+            if (divAttributePlan.style.display == "block") {
+                divAttributePlan.style.display = "none";
+            }
+            else {
+                divAttributePlan.style.display = "block";
+            }
+        }
+        function ReadProcessByName(flowName) {
+            var url = encodeURI("@Url.Action("Prcoess", "FlowEditor")?flowName=" + flowName + "&isUnlock=-1&isMaxVersion=false&rtd=" + Math.random());
+            $.ajax({
+                url: url,
+                datatype: 'json',
+                success: function (data) {
+                    var json = eval(data);
+                    document.getElementById("txtFlowName").value = json[0].FlowName;
+                    document.getElementById("txtVersion").value = json[0].FlowName.CVersion;
+                    ReadProcess();
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-------------------------------------------基本属性面板------------------------------------------->
+        <div id="db">
+            <div id="dh" ondblclick="SetAttributePlanVisible();">属性[点此处拖动属性面板]</div>
+            <div id="div_AttributePlan">
+                <table class="TableBorder" bordercolor="#000000" cellpadding="0" cellspacing="0" width="100%" border="1">
+                    <tr>
+                        <td style="width: 75px; text-align: right;">流程名称</td>
+                        <td style="height: 20px;">
+                            <input id="txtFlowName" ondblclick="OpenProcessList();" type="text" onblur="SetValue(this,1)" onkeyup="SetValue(this)"
+                                style="width: 98%; border-right: 0px solid; border-top: 0px solid; border-left: 0px solid; border-bottom: 1px solid; background-color: papayawhip;" />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">版本号</td>
+                        <td>
+                            <input id="txtVersion" readonly="readonly" type="text" onblur="SetValue(this,1)" onkeyup="SetValue(this)" runat="server"
+                                style="width: 98%; height: 15px; border-right: 0px solid; border-top: 0px solid; border-left: 0px solid; border-bottom: 1px solid; background-color: #d7d2d0;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">结点名</td>
+                        <td>
+                            <input id="pText" runat="server" readonly="readonly" type="text" onblur="SetValue(this,1)" onkeyup="SetValue(this)"
+                                style="width: 98%; height: 15px; border-right: 0px solid; border-top: 0px solid; border-left: 0px solid; border-bottom: 1px solid; background-color: #d7d2d0;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">宽度(像素)</td>
+                        <td>
+                            <input id="pWidth" type="text" onblur="SetValue(this,1)" onkeyup="SetValue(this)"
+                                style="width: 98%; height: 15px; border-right: 0px solid; border-top: 0px solid; border-left: 0px solid; border-bottom: 1px solid;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">高度(像素)</td>
+                        <td>
+                            <input id="pHeight" type="text" onblur="SetValue(this,1)" onkeyup="SetValue(this)"
+                                style="width: 98%; height: 15px; border-right: 0px solid; border-top: 0px solid; border-left: 0px solid; border-bottom: 1px solid;" />
+                        </td>
+                    </tr>
+                </table>
+                <div style="padding-top: 3px; padding-bottom: 360px; text-align: right;"><a style="color: Gray" href='javascript:Handle(el);'>详细...</a></div>
+
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td style="text-align: center">
+                            <input id="btnIsUnlock" type="button" value="启用流程" class="button" onclick="IsUnlockProecess();" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">
+                            <input id="btnSave" type="button" value="保存" class="button" onclick="SaveProcess()" />
+                            <input id="btnIssuance" type="button" value="发布" class="button" onclick="Issuance()" />
+                            <input id="btnDelete" type="button" value="删除" class="button" onclick="Deleted();" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="10" style="text-align: center">
+                            <input id="btnReadProcess" type="button" value="读取流程" class="button" onmousedown="IsNotOnbeforeunload();" onclick="ReadProcess()" />
+                            <input id="btnNewProcess" type="button" value="新建流程" class="button" onclick="NewProcess();" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+
+        <!--------------------------------------------------------------------------------------------------------->
+
+        <div>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td align="center" valign="bottom">
+                        <div id="toplogo"></div>
+                        <table cellpadding="0" cellspacing="0" class="toolsdt">
+                            <tr>
+                                <td>
+                                    <!--------------工具栏-------------->
+                                    <div style="padding: 5px; border: solid 0px">
+                                        <input type="button" class="button btnmouse" value="指针" onclick="point()" />
+                                        <input type="button" class="button btnadd" value="添加" onclick="ADD()" />
+                                        <input type="button" class="button btnline" value="连结" onclick="dl()" />
+                                        <input type="button" class="button btndelete" value="删除" onclick="del()" />
+                                        <input type="button" class="button btnProperpies" value="属性" onclick="Properpies()" />
+                                        <input type="button" class="button btnGrid" value="网格" onclick="ShowGrid()" />
+                                        <input type="button" class="button" value="暂存" onclick="GetEditorValue();" />
+                                        <input type="button" class="button" value="恢复" onclick="SetEditorValue();" />
+                                    </div>
+                                    <!----------------------------------->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="mainCenter">
+                            <iframe id="paintFlow" src="Paint" width="1000px" height="600px" frameborder="0" style="border: solid 1px #555588; background-image: url(inc/images/002.JPG);" scrolling="no"></iframe>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="display: none;">
+            <iframe id="if0"></iframe>
+            <input type="text" id="txtOnbeforeunload" value="1" />
+            <input type="text" id="txtProcessID" /><!--流程编号-->
+            <input type="text" id="txtIsAmend" value="0" />
+
+            <!--是否修改-->
+            <input type="text" id="txtObjType" />
+            <input type="text" id="txtIsShowGrid" value="0" />
+            <input type="text" id="txtNewActivityID" />
+            <input type="button" runat="server" id="btnReadDate" value="读取流程" />
+            <input type="button" runat="server" id="btnSave2" value="保存" onclick="Save()" />
+            <input type="text" id="txtlineCount" value="1" />
+            <input type="text" id="txtnodeCount" value="1" />
+            <input type="text" id="txtLeft" value="770" />
+            <input type="text" id="txtTop" value="105" />
+        </div>
+
+        <!--##############################################################################################--->
+
+        <script type="text/javascript">
+
+            var Editor = self.frames[0];
+            function SetObjID(lineCount, nodeCount) {
+                Editor.NewID = lineCount;
+                Editor.NodeNumber = nodeCount;
+                if (window.document.getElementById("txtIsShowGrid").value == "1")
+                    ShowGrid();
+            }
+            function SetObjID2() {
+                Editor.NewID = window.document.getElementById("txtlineCount").value;
+                Editor.NodeNumber = window.document.getElementById("txtnodeCount").value;
+                if (window.document.getElementById("txtIsShowGrid").value == "1")
+                    ShowGrid();
+            }
+            /*
+    * 添加节点
+    */
+            function ADD() {
+                Editor.New();
+                window.document.getElementById("txtIsAmend").value = "1";
+                window.document.getElementById("txtOnbeforeunload").value = "1";
+            }
+            /*
+        * 画线
+        */
+            function dl() {
+                Editor.dl();
+                window.document.getElementById("txtIsAmend").value = "1";
+                window.document.getElementById("txtOnbeforeunload").value = "1";
+            }
+            /*
+        * 指针
+        */
+            function point() {
+                Editor.point();
+            }
+            /*
+        * 删除
+        */
+            function del() {
+                var x = Editor.DElement;
+                if (Editor.del() == false)
+                    return false;
+                if (x == null) return false;
+                var txtObjType = window.document.getElementById("txtObjType");
+                if (x.id != "EStart" && x.id != "EEnd") {
+
+                    window.document.getElementById("txtIsAmend").value = "1";
+                    window.document.getElementById("txtOnbeforeunload").value = "1";
+
+                    if (x.className == "Line") {
+                        txtObjType.value = txtObjType.value + '/' + 'Line' + '-' + x.id;
+                    }
+                    if (x.className == "dragAble") {
+                        txtObjType.value = txtObjType.value + '/' + 'Node' + '-' + x.id + '-' + Editor.GetText(x);
+                    }
+                }
+                return true;
+            }
+            /*
+        * 显示/隐藏网格
+        */
+            function ShowGrid() {
+                if (Editor.ShowGrid())
+                    window.document.getElementById("txtIsShowGrid").value = 1;
+                else
+                    window.document.getElementById("txtIsShowGrid").value = 0;
+            }
+
+            /*
+        * 恢复
+        */
+            function Properpies() {
+                Editor.Properpies();
+            }
+
+            //////////////////////////////////////////////////////////////////////////
+            //能数为当前对象,在此可处理显示及更改对象的属性
+            ////////
+            var el;
+            //-----------------------线和结点都会触发
+            function Properpies(x) {
+                Handle(Editor.DElement);
+            }
+            //-----------------------只有结点才会触发
+            function FocusChange(x) {
+                el = x;
+                document.getElementById("pText").value = Editor.GetText(x);
+                document.getElementById("pWidth").value = Editor.GetWidth(x);
+                document.getElementById("pHeight").value = Editor.GetHeight(x);
+            }
+            //----------------------------------------------------------------------
+            function SetValue(obj, t) {
+                if (el != null && obj != null && ((event != null && event.keyCode == 13) || t == 1)) {
+                    switch (obj.id) {
+                        case "pText":
+                            Editor.SetText(el, obj.value);
+                            break;
+                        case "pWidth":
+                            Editor.SetWidth(el, obj.value);
+                            break;
+                        case "pHeight":
+                            Editor.SetHeight(el, obj.value);
+                    }
+                }
+            }
+            /////////////////////////////////////////////////////////////////////////
+            function GetEditorValue() {
+                document.getElementById("txtXML").value = Editor.GetEditorValue();
+                return true;
+            }
+            function SetEditorValue() {
+                //SetEditorValue(value) vlalue必须是用GetEditorValue()取得的值
+                Editor.SetEditorValue(document.getElementById("txtXML").value);
+                return true;
+            }
+            function Clear() {
+                Editor.Clear();
+            }
+            //////////
+            //================================================================处理======================================================================
+
+            function Handle(x) {
+                dateObj = new Date();
+                if (x != null) {
+                    var nodetype = "Node";
+                    if (x.id == "EStart") nodetype = "Start";
+                    else if (x.id == "EEnd") nodetype = "End";
+                    else if (x.className == "Line") {
+                        nodetype = "Line"; return;
+                    }
+                    var processId = window.document.getElementById("txtProcessID").value;
+                    if (processId == "") {
+                        window.alert("当前流程尚未保存，请先保存流程……");
+                        return;
+                    }
+                    GetEditorValue();
+
+                    var tempPathStr = encodeURI("@Url.Action("ObjectAttribute", "FlowEditor")?NoneID=" + x.id + "&ProcessID=" + processId + "&NoneName=" + Editor.GetText(x) + "&t=" + dateObj.getTime());
+                    //arr = new Array(3);
+                    //arr = window.showModalDialog(tempPathStr, window, "dialogWidth:700px;DialogHeight=590px;status=0;scroll=yes;help=yes");
+                    //if (arr != null) {
+                    //    if (arr[0] == "true") {
+                    //        var pText = window.document.getElementById("pText");
+                    //        pText.value = arr[1];
+                    //        SetValue(pText, 1);
+                    //        if (arr[2] != "") {
+                    //            var txtNewActivityId = window.document.getElementById("txtNewActivityID");
+                    //            txtNewActivityId = txtNewActivityId.value + "'" + arr[2] + "',";
+                    //            window.document.getElementById("txtIsAmend").value = "1";
+                    //            window.document.getElementById("txtOnbeforeunload").value = "1";
+                    //        }
+                    //    }
+                    //}
+
+                    Dialog(tempPathStr, "FlowDetails", "流程结点属性配置", 700, 550);
+                }
+                else {
+                    alert("请选择对象");
+                }
+            }
+
+            //结点编辑后，返回
+            function handleReturn(isOk, noneName, activityId) {
+                if (isOk == "true") {
+                    var pText = window.document.getElementById("pText");
+                    pText.value = noneName;
+                    SetValue(pText, 1);
+                    if (activityId != "") {
+                        var txtNewActivityId = window.document.getElementById("txtNewActivityID");
+                        txtNewActivityId = txtNewActivityId.value + "'" + activityId + "',";
+                        window.document.getElementById("txtIsAmend").value = "1";
+                        window.document.getElementById("txtOnbeforeunload").value = "1";
+                    }
+                }
+            }
+
+            //初始化控制面板可拖动
+            var rigth = document.documentElement.offsetWidth - 250;
+            Drag.init(dh, db);
+            $("#db").css('top', '85px');
+            $("#db").css('left', rigth);
+
+        </script>
+        <input type="hidden" runat="server" id="txtXML" value="" />
+        <div style="padding: 5px; color: Gray; font-size: 11px;">
+            IE7,IE8请添加此页为受信站点(Internet选项->安全->受信站点),且IE8须为此页启用兼容性视图.<br />
+            快捷键: 指针 ( 1 或 P 或 Ctrl+P )，画连接线 ( 2 或 L 或 Ctrl+L )，添加新结点 ( 3 或 N 或 Ctrl+N ) 
+        </div>
+
+        <script type="text/javascript">
+
+            /**
+            * 保存流程
+            * 作者：周 鹏
+            * 时间：2014-07-16
+            */
+            function SaveProcess() {
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("SaveProcess", "FlowEditor")',
+                    datetype: 'json',
+                    data: { xml: Editor.GetEditorValue(), processId: $("#txtProcessID").val(), flowName: $("#txtFlowName").val(), version: $("#txtVersion").val(), rnd: Math.random() },
+                    success: function (data) {
+                        alert('保存成功...');
+                        ReadProcess();  //重新加载
+                    },
+                    error: function (data) {
+
+                    }
+                });
+            }
+
+
+            /**
+            * 读取流程
+            * 作者：周 鹏
+            * 时间：2014-07-18
+            */
+            function ReadProcess() {
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("ReadProcess", "FlowEditor")',
+                    datetype: 'json',
+                    data: { flowName: $("#txtFlowName").val(), rnd: Math.random() },
+                    success: function (data) {
+                        if (data != '' && data.rtState == 0) {
+                            var processEn = data.rtData;
+                            $("#txtXML").val(processEn[0].FlowChart);
+                            $("#txtProcessID").val(processEn[0].ProcessID);
+                            $("#txtVersion").val(processEn[0].CVersion);
+                            SetEditorValue3();
+                        } else if (data != '' && data.rtState == 1) {
+                            alert(data.rtMsrg);
+                        }
+                    },
+                    error: function (data) {
+
+                    }
+                });
+            }
+
+            /**
+            * 发布流程
+            * 作者：周 鹏
+            * 时间：2014-07-21
+            */
+            function Issuance() {
+
+                if (!window.confirm("您确认要发布流程[" + $("#txtFlowName").val() + "]吗？")) return;
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("Issuance", "FlowEditor")',
+                    datetype: 'json',
+                    data: { xml: Editor.GetEditorValue(), processId: $("#txtProcessID").val(), flowName: $("#txtFlowName").val(), version: $("#txtVersion").val(), rnd: Math.random() },
+                    success: function (data) {
+                        if (data != '' && data.rtState == 0) {
+                            alert(data.rtMsrg);
+                            ReadProcess();
+                        } else {
+                            alert('流程发布失败，请联系管理员...');
+                        }
+                    },
+                    error: function (data) {
+
+                    }
+                });
+            }
+
+            /**
+            * 删除流程
+            * 作者：周 鹏
+            * 时间：2014-07-21
+            */
+            function Deleted() {
+                if (!window.confirm("您确认要删除流程[" + $("#txtFlowName").val() + "]吗？")) return;
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("Delete", "FlowEditor")',
+                    datetype: 'json',
+                    data: { processId: $("#txtProcessID").val(), rnd: Math.random() },
+                    success: function (data) {
+                        if (data != '' && data.rtState == 0) {
+                            alert("您成功删除流程[" + $("#txtFlowName").val() + "]……");
+                            Clear();
+                        } else if (data != '' && data.rtState == 1) {
+                            alert('删除出现异常，请联系管理员……');
+                        } else if (data != '') {
+                            alert(data.rtMsrg);
+                        }
+                    },
+                    error: function (data) {
+
+                    }
+                });
+            }
+
+            /**
+            * 启用流程
+            * 作者：周 鹏
+            * 时间：2014-07-21
+            */
+            function IsUnlockProecess() {
+
+            }
+
+        </script>
+    </form>
+</body>
+</html>
+

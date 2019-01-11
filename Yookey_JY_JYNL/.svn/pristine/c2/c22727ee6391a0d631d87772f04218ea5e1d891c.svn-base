@@ -1,0 +1,360 @@
+﻿@{
+    ViewBag.Title = "EnterpriseDetail";
+    DataTable dt = ViewBag.Details as DataTable;
+}
+@using System.Data;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>企业注册信息</title>
+    <!--框架必需start-->
+    <link  href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link  href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--表格组件end-->
+    <!--树形组件start-->
+    <link  href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/tree/tree.js")"></script>
+    <!--树形组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件start-->
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+
+
+
+    <style type="text/css">
+        .ui-jqgrid .ui-jqgrid-htable th {
+            height: 28px;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+
+        .ui-th-column, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+            background: none;
+        }
+
+        .ui-jqgrid tr.jqgrow td {
+            white-space: normal !important;
+            height: 25px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+
+        .form .formTitle {
+            height: 35px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <script type="text/javascript">
+        </script>
+        <div id="message" style="display: none; padding: 1px; padding-bottom: 0px;"></div>
+        <div class="bd" style="border-bottom: none; margin: 1px;">
+            <div class="tipstitle_title settingtable bold bd todayInfoPanelTab rightPanelTitle_normal">
+                <div class="tab_list_top" style="position: absolute">
+                    <div id="Tabbasic" class="tab_list bd actived">企业详情 </div>
+                </div>
+            </div>
+            <div class="ScrollBar" style="margin: 1px; overflow: hidden;">
+                @if (dt.Rows.Count > 0)
+                {
+                    <div class="tabPanel">
+                        <table class="form">
+                            <tr>
+                                <th class="formTitle">单位名称：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtCompanyName", dt.Rows[0]["企业名称"], new { @class = "txt", @datacol = "yes", @err = "单位名称" })
+                                </td>
+                                <th class="formTitle">工商注册号： </th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtGszch", dt.Rows[0]["工商注册号"], new { @class = "txt", @datacol = "yes", @err = "工商注册号" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">统一社会信用代码/注册号：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtShxydm", dt.Rows[0]["社会信用统一代码"], new { @class = "txt", @datacol = "yes", @err = "统一社会信用代码/注册号" })
+                                </td>
+                                <th class="formTitle">安全生产许可证编号： </th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAqscxkzbh", dt.Rows[0]["安全生产许可证编号"], new { @class = "txt", @datacol = "yes", @err = "安全生产许可证编号" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">所属区镇： </th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtArea", dt.Rows[0]["所属区镇"], new { @class = "txt", @datacol = "yes", @err = "所属区镇" })
+                                </td>
+                                <th class="formTitle">成立日期：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtCreateDate", !string.IsNullOrEmpty(dt.Rows[0]["成立日期"].ToString()) ? Convert.ToDateTime(dt.Rows[0]["成立日期"]).ToString("yyyy-MM-dd") : dt.Rows[0]["成立日期"], new { @class = "txt", @datacol = "yes", @err = "成立日期" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">注册资金：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtZczj", dt.Rows[0]["注册资金"], new { @class = "txt", @datacol = "yes", @err = "注册资金" })
+                                </td>
+                                <th class="formTitle">经济类型：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtJjlx", dt.Rows[0]["经济类型"], new { @class = "txt", @datacol = "yes", @err = "经济类型" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">行业类别：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtHylb", dt.Rows[0]["行业类别"], new { @class = "txt", @datacol = "yes", @err = "行业类别" })
+                                </td>
+                                <th class="formTitle">法定代表人：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtFr", dt.Rows[0]["法定代表人"], new { @class = "txt", @datacol = "yes", @err = "法定代表人" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">联系电话：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtPhone", dt.Rows[0]["联系电话"], new { @class = "txt", @datacol = "yes", @err = "联系电话" })
+                                </td>
+                                <th class="formTitle">传真号码：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtCzhm", dt.Rows[0]["传真号码"], new { @class = "txt", @datacol = "yes", @err = "传真号码" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">电子邮箱：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtYx", dt.Rows[0]["电子邮箱"], new { @class = "txt", @datacol = "yes", @err = "电子邮箱" })
+                                </td>
+                                <th class="formTitle">邮政编码：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtYzbm", dt.Rows[0]["邮政编码"], new { @class = "txt", @datacol = "yes", @err = "邮政编码" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">安全生产标准化等级：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAqbzhdj", dt.Rows[0]["安全生产标准化等级"], new { @class = "txt", @datacol = "yes", @err = "安全生产标准化等级" })
+                                </td>
+                                <th class="formTitle">住所（注册地址）：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAddress", dt.Rows[0]["注册地址"], new { @class = "txt", @datacol = "yes", @err = "住所（注册地址）" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">主要负责人：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtZyfzr", dt.Rows[0]["主要负责人"], new { @class = "txt", @datacol = "yes", @err = "主要负责人" })
+                                </td>
+                                <th class="formTitle">负责人固定电话：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtFzrgddh", dt.Rows[0]["负责人固定电话"], new { @class = "txt", @datacol = "yes", @err = "负责人固定电话" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">负责人移动电话：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtFzryddh", dt.Rows[0]["负责人移动电话"], new { @class = "txt", @datacol = "yes", @err = "负责人移动电话" })
+                                </td>
+                                <th class="formTitle">负责人电子邮箱：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtFzrdzyx", dt.Rows[0]["负责人电子邮箱"], new { @class = "txt", @datacol = "yes", @err = "负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">安全负责人：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzr", dt.Rows[0]["安全负责人"], new { @class = "txt", @datacol = "yes", @err = "安全负责人" })
+                                </td>
+                                <th class="formTitle">安全负责人固定电话：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrgddh", dt.Rows[0]["安全负责人固定电话"], new { @class = "txt", @datacol = "yes", @err = "安全负责人固定电话" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">安全负责人移动电话：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzryddh", dt.Rows[0]["安全负责人移动电话"], new { @class = "txt", @datacol = "yes", @err = "安全负责人移动电话" })
+                                </td>
+                                <th class="formTitle">安全负责人电子邮箱：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["安全负责人电子邮箱"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">所属网格：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzryddh", dt.Rows[0]["所属网格"], new { @class = "txt", @datacol = "yes", @err = "安全负责人移动电话" })
+                                </td>
+                                <th class="formTitle">网格管理人员：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["网格管理人员"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">实际经营地址：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzryddh", dt.Rows[0]["实际经营地址"], new { @class = "txt", @datacol = "yes", @err = "安全负责人移动电话" })
+                                </td>
+                                <th class="formTitle">厂房性质：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["厂房性质"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">厂房产权单位：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzryddh", dt.Rows[0]["厂房产权单位"], new { @class = "txt", @datacol = "yes", @err = "安全负责人移动电话" })
+                                </td>
+                                <th class="formTitle">租赁形式：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["租赁形式"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">主要负责人职务：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzryddh", dt.Rows[0]["主要负责人职务"], new { @class = "txt", @datacol = "yes", @err = "安全负责人移动电话" })
+                                </td>
+                                <th class="formTitle">主要负责人证件号码：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["主要负责人证件号码"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">联系人：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzryddh", dt.Rows[0]["联系人"], new { @class = "txt", @datacol = "yes", @err = "安全负责人移动电话" })
+                                </td>
+                                <th class="formTitle">联系人职务：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["联系人职务"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">安全负责人职务：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzryddh", dt.Rows[0]["安全负责人职务"], new { @class = "txt", @datacol = "yes", @err = "安全负责人移动电话" })
+                                </td>
+                                <th class="formTitle">安全负责人证件号码：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["安全负责人证件号码"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">安全资格证书：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzryddh", dt.Rows[0]["安全资格证书"], new { @class = "txt", @datacol = "yes", @err = "安全负责人移动电话" })
+                                </td>
+                                <th class="formTitle">主要生产工艺：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["主要生产工艺"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">主要设备设施：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzryddh", dt.Rows[0]["主要设备设施"], new { @class = "txt", @datacol = "yes", @err = "安全负责人移动电话" })
+                                </td>
+                                <th class="formTitle">职工人数：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["职工人数"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">管理层人数：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzryddh", dt.Rows[0]["管理层人数"], new { @class = "txt", @datacol = "yes", @err = "安全负责人移动电话" })
+                                </td>
+                                <th class="formTitle">固定资产总额：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["固定资产总额"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">企业规模：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzryddh", dt.Rows[0]["企业规模"], new { @class = "txt", @datacol = "yes", @err = "安全负责人移动电话" })
+                                </td>
+                                <th class="formTitle">法定代表人职务：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["法定代表人职务"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">年龄：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzryddh", dt.Rows[0]["年龄"], new { @class = "txt", @datacol = "yes", @err = "安全负责人移动电话" })
+                                </td>
+                                <th class="formTitle">性别：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["性别"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">企业投产日期：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzryddh", dt.Rows[0]["企业投产日期"], new { @class = "txt", @datacol = "yes", @err = "安全负责人移动电话" })
+                                </td>
+                                <th class="formTitle">投资总额：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["投资总额"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">营业收入：</th>
+                                <td class="formValue">
+                                    @Html.TextBox("txtAufzrdzyx", dt.Rows[0]["营业收入"], new { @class = "txt", @datacol = "yes", @err = "安全负责人电子邮箱" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">经营范围：
+                                </th>
+                                <td class="formValue" colspan="3">
+                                    @Html.TextBox("txtJyfw", dt.Rows[0]["经营范围"], new { @class = "txt", @datacol = "yes", @err = "经营范围" })
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+        <style>
+            .ui-widget-content {
+                border-left: none;
+            }
+        </style>
+    </div>
+</body>
+</html>

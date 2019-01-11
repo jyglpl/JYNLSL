@@ -1,0 +1,93 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data
+@using System.Web.Mvc.Html
+
+@model Yookey.WisdomClassed.SIP.Model.TeamManagement.TeamManagementStandardEntity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>队伍管理标准维护</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--树形组件start-->
+    <link href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/tree/tree.js")" type="text/javascript"></script>
+    <!--树形组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+
+</head>
+<body>
+    <form id="formmain">
+        <div style="margin-left: 5px; margin-right: 5px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">大类名称：
+                    </th>
+                    <td class="formValue">
+                        @Html.TextBoxFor(t => t.ClassTypeIdName, new { @class = "txt", @readonly = "readonly" })
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">管理标准：
+                    </th>
+                    <td class="formValue">
+                        @Html.TextAreaFor(t => t.StandardContent, new { @class = "txtArea", @rows = "6" })
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">显示顺序：</th>
+                    <td class="formValue">
+                        @Html.TextBoxFor(t => t.OrderNo, new { @class = "txt" })
+                    </td>
+                </tr>
+                @Html.HiddenFor(x => x.Id)
+                @Html.HiddenFor(x => x.ClassTypeId)
+                @Html.HiddenFor(x => x.RowStatus)
+                @Html.HiddenFor(t => t.CreatorId)
+                @Html.HiddenFor(t => t.CreateBy)
+                @Html.HiddenFor(t => t.CreateOn)
+            </table>
+        </div>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+
+    //提交表单
+    function AcceptClick() {
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: '@Url.Action("Submit")',
+            data: $('#formmain').serialize(),
+            async: false,
+            datatype: 'json',
+            success: function (data) {
+                if (data.rtState == 0) {
+                    tipDialog("编辑保存成功！", 2, 2);
+                    top.frames[tabiframeId()].windowload();
+                    closeDialog();
+                } else {
+                    tipDialog("保存出现异常，请联系管理员！", 2, 0);
+                }
+            }
+        });
+    }
+
+</script>
+

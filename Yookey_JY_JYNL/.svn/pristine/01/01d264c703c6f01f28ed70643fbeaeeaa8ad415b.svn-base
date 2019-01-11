@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "CorrectiveReviewDetail";
+    DataTable dt = ViewBag.Details as DataTable;
+    DataTable enterprise = ViewBag.Enterprise as DataTable;
+}
+@using System.Data;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>整改复查意见书</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet"/>
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--树形组件start-->
+    <link href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" type="text/css"/>
+    <script src="@Url.Content("~/Librarys/tree/tree.js")" type="text/javascript"></script>
+    <!--树形组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.getElementById("problem").innerHTML = '1项';
+            document.getElementById("time").innerHTML = '2018-11-6日';
+            Loading(false);
+
+        });
+    </script>
+</head>
+<body>
+    <form id="formmain" name="formmain">
+        <div id="message" style="display: none; padding: 1px; padding-bottom: 0px;"></div>
+        @if (dt.Rows.Count > 0)
+        {
+            
+            <fieldset style="margin-left: 5px; margin-right: 5px; margin-top: 8px;">
+                <legend>整改详情</legend>
+                <table class="casedt">
+
+                    <tr>
+                        <th class="formTitle">整改单位：
+                        </th>
+                        <td class="formValue" colspan="2">
+                            @Html.TextBox("txtCompany", dt.Rows[0]["整改企业"], new { @class = "txt ", @style = "width: 300px;height: 30px;", @datacol = "yes", @err = "整改企业" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">需整改问题：
+                        </th>
+                        <td colspan="4">
+                            @Html.TextArea("txtQk", "", new { @class = "txt ", @style = "width: 98%;height: 130px;", @datacol = "yes", @err = "需整改问题" })
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset style="margin-left: 5px; margin-right: 5px; margin-top: 1em;">
+                <legend>文件附件 </legend>
+                <table class="casedt">
+                    <tr>
+                        <th class="formTitle" style="width: 100px;">文件附件：</th>
+                        <td colspan="4">
+                            @Html.TextArea("txtQk", "", new { @class = "txt ", @style = "width: 98%;height: 130px;", @datacol = "yes", @err = "文件附件" })
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        }
+    </form>
+</body>
+</html>

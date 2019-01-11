@@ -1,0 +1,88 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>文书打印</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--jqgrid表格组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <script>
+
+
+        //打印文书
+        function doPrint(writIdentify) {
+            var id = '@ViewBag.Id';  //案件编号
+            getAjax('@Url.Action("GetCaseWrit", "PenaltyCaseWrit")', { writIdentify: writIdentify, resourceId: id }, function (url) {
+                var mydoc;
+                var myDocApp = new ActiveXObject("word.Application");
+                myDocApp.visible = true;
+                myDocApp.activate();
+                mydoc = myDocApp.documents.add(url);
+                try {
+                    mydoc.PrintPreview();
+                } catch (e) {
+                    alert("打印预览失败，请确认您的电脑上装有office！");
+                }
+            });
+        }
+       
+
+    </script>
+
+    <style>
+        .reportflow {
+            width: 165px;
+            margin: 20px;
+            display: block;
+            text-align: center;
+            position: relative;
+            background-color: #7293EE;
+            float: left;
+            cursor: pointer;
+            -moz-border-radius: 8px;
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+            padding-bottom: 8px;
+            padding-top: 8px;
+            color: white;
+            font-size: 15px;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+
+        <div class="reportflow" onclick="doPrint('PetitionRegister');">
+            信访办理登记表
+        </div>       
+    </div>
+</body>
+</html>
+

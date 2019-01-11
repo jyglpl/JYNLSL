@@ -1,0 +1,331 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>发布公告</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
+
+    <!-- LayUI表单 -->
+    <!-- UE富文本编辑框 -->
+
+    <script src="~/Content/ueditor/ueditor.config.js"></script>
+    <script src="~/Content/ueditor/ueditor.all.js"></script>
+    @*<script src="~/Content/ueditor/ueditor.all.min.js"></script>*@
+    <link href="~/Content/ueditor/themes/iframe.css" rel="stylesheet" />
+    <script src="~/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+
+    <link href="~/Content/MiNi/demo.css" rel="stylesheet" />
+    <script src="~/Content/MiNi/boot.js"></script>
+
+    <style>
+        .layui-form-select dl {
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>新增公文</legend>
+    </fieldset>
+    <form class="layui-form">
+     
+
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 100px">公文标题：</label>
+            <div class="layui-input-block">
+                <input name="title" class="layui-input" style="width: 97%" type="text" placeholder="请输入标题" autocomplete="off" lay-verify="title">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 100px">公文类型：</label>
+            <div class="layui-input-block">
+                <div class="layui-inline">
+
+                    <div class="layui-input-inline">
+                        <select name="gwlx" id="gwlx">
+                            <option value="">请选择类别</option>
+                            <option value="1">邀请函</option>
+         
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 100px">发文单位：</label>
+                    <div class="layui-input-inline">
+                        <input name="danwei" class="layui-input" type="text" placeholder="请输入发文单位" autocomplete="off" lay-verify="danwei"/>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 100px">完成时限：</label>
+                    <div class="layui-input-inline">
+                        <input name="completedata" class="layui-input" id="completedata" type="text" placeholder="年-月-日" lay-verify="completedata">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 100px">文件编号：</label>
+                    <div class="layui-input-inline">
+
+                        <input name="wjno" class="layui-input" type="text" placeholder="请输入文件编号" autocomplete="off" lay-verify="wjno"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">附件：</label>
+            <div class="layui-input-block">
+
+                <button type="button" class="layui-btn" id="fileupload">选择</button>
+                <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button> 
+                <label id="filename" name="filename"></label>
+                <input name="filepath" id="filepath" hidden="true" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <div class="layui-upload" style="width: 96%">
+
+                    <div class="layui-upload-list">
+                        <table class="layui-table">
+                            <thead>
+                            <tr>
+                                <th>文件名</th>
+                                <th>大小</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="demoList"></tbody>
+                        </table>
+                    </div>
+         
+                </div>
+            </div>
+        </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label" style="width: 100px">接收人员：</label>
+                <div class="layui-input-block">
+                    <input id="btnEdit1" allowInput="false" class="mini-buttonedit" onbuttonclick="onButtonEdit" />
+                    <input name="sendname" id="sendname" hidden="true" lay-verify="sendname" />
+                    <input name="sendRealName" id="sendRealName" hidden="true" />
+                </div>
+            </div>
+
+            @*<div class="layui-form-item layui-form-text">
+            <label class="layui-form-label" style="width: 100px">批阅意见：</label>
+            <div class="layui-input-block">
+                <textarea name="nr" class="layui-textarea" style="width: 90%" placeholder="请输入内容" lay-verify="nr">已阅</textarea>
+            </div>
+        </div>*@
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-filter="add" lay-submit="">确定</button>
+
+                </div>
+            </div>
+</form>
+
+
+<script src="~/Content/layui/layui.js" charset="utf-8"></script>
+
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script type="text/javascript">
+
+
+    layui.use(['form', 'upload', 'laydate'],
+        function() {
+            var form = layui.form,
+                layer = layui.layer,
+
+                $ = layui.jquery,
+                upload = layui.upload;
+            var index = parent.layer.getFrameIndex(window.name);
+            var laydate = layui.laydate;
+            laydate.render({
+                elem: '#completedata',
+                value: new Date(),
+            });
+
+            //自定义验证规则
+            form.verify({
+                title: function(value) {
+                    if (value.length < 5) {
+                        return '标题至少得5个字符啊';
+                    }
+                },
+                danwei: function (value) {
+                    if (value.length < 1) {
+                        return '发文单位不能为空';
+                    }
+                },
+                wjno: function(value) {
+                    if (value.length < 1) {
+                        return '文件编号不能为空';
+                    }
+                },
+
+                //sendname: function(value) {
+                //    if (value == '') {
+                //        return '接受人不能为空';
+                //    }
+                //},
+                //nr: function (value) {
+                //    if (value.length < 1) {
+                //        return '内容不能为空';
+                //    }
+                //},
+
+
+
+            });
+
+            //监听提交
+            form.on('submit(add)',
+                function(data) {
+
+                    layer.confirm('确定发布公文？', {
+                        btn: ['确定','取消'] //按钮
+                    }, function(){
+                        //layer.msg('的确很重要', {icon: 1});
+                        $.ajax({
+                            type: "POST",
+                            url: "@Url.Action("AddGongWen", "OA")",
+                            data: data.field,
+                            dataType: "json",
+                            success: function(data) {
+                                if (data == '1') {
+                                    parent.layer.msg('保存成功');
+                                    parent.layer.close(index);
+
+                                }
+                            }
+                        });
+                    }, function(){
+                        //layer.msg('也可以这样', {
+                        //    time: 20000, //20s后自动关闭
+                        //    btn: ['明白了', '知道了']
+                        //});
+                        
+                    });
+
+
+                    return false;
+                });
+
+
+            //文件上传
+            upload.render({
+                elem: '#fileupload',
+                url: '@Url.Action("UploadFile", "OA")',
+                done: function(res) {
+                    $("#filename").html(res.name);
+                    $("#filename").val(res.name);
+                    $("#filepath").val(res.src);
+
+                }
+            });
+
+            var demoListView = $('#demoList')
+                ,uploadListIns = upload.render({
+                    elem: '#testList'
+                     ,url: '@Url.Action("UploadFile", "OA")'
+                     ,accept: 'file'
+                     ,multiple: true
+                     ,auto: true
+             
+                     ,choose: function(obj){   
+                         var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                         //读取本地文件
+                         obj.preview(function(index, file, result){
+                             var tr = $(['<tr id="upload-'+ index +'">'
+                                 ,'<td>'+ file.name +'</td>'
+                                 ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
+                                 ,'<td>等待上传</td>'
+                                 ,'<td>'
+                                 ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                                 ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                                 ,'</td>'
+                                 ,'</tr>'].join(''));
+        
+                             //单个重传
+                             tr.find('.demo-reload').on('click', function(){
+                                 obj.upload(index, file);
+                             });
+        
+                             //删除
+                             tr.find('.demo-delete').on('click', function(){
+                                 delete files[index]; //删除对应的文件
+                                 tr.remove();
+                                 uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                             
+
+                             });
+        
+                             demoListView.append(tr);
+                         });
+                     }
+                     ,done: function(res, index, upload){
+                         if(res.code == 0){ //上传成功
+                             var tr = demoListView.find('tr#upload-'+ index)
+                                 ,tds = tr.children();
+                             tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+                             //tds.eq(3).html(''); //清空操作
+                             return delete this.files[index]; //删除文件队列已经上传成功的文件
+                         }
+                         this.error(index, upload);
+                     }
+                     ,error: function(index, upload){
+                         var tr = demoListView.find('tr#upload-'+ index)
+                             ,tds = tr.children();
+                         tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                         tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+                     }
+                 });
+
+        });
+
+
+    //MiniUi组件
+    mini.parse();
+
+    function onButtonEdit(e) {
+        var btnEdit = this;
+
+        mini.open({
+            url: '@Url.Action("ChoosePerson", "OA")',
+            title: "选择接收人",
+            width: 350,
+            height: 350,
+            ondestroy: function(action) {
+
+                if (action == "ok") {
+                    var iframe = this.getIFrameEl();
+
+                    var data = iframe.contentWindow.GetData();
+                    data = mini.clone(data);
+                    btnEdit.setValue(data.id);
+                    btnEdit.setText(data.text);
+                    $("#sendname").val(data.id);
+                    $("#sendRealName").val(data.text);
+                    
+
+                }
+            }
+        });
+
+    }
+
+
+    </script>
+
+</body>
+</html>

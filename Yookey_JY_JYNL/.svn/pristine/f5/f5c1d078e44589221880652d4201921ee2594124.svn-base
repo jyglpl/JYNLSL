@@ -1,0 +1,403 @@
+﻿@{
+    Layout = null;
+}
+@using Yookey.WisdomClassed.SIP.Model.Crm
+@using Yookey.WisdomClassed.SIP.Model.Hr
+@using Yookey.WisdomClassed.SIP.Model.Com
+@using Yookey.WisdomClassed.SIP.Model.Com
+@model Yookey.WisdomClassed.SIP.Model.Hr.AttendanceReportEntity
+@{
+    List<AttendanceReportDetailsEntity> attendanceList = (List<AttendanceReportDetailsEntity>)ViewData["AttendanceList"];
+    List<ComResourceEntity> attendTypeList = ViewBag.AttendTypeList as List<ComResourceEntity>;
+    List<CrmUserEntity> userList = ViewData["UserList"] as List<CrmUserEntity>;
+    
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>加班申请</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <!--上传文件start-->
+    <script src="@Url.Content("~/Librarys/uploadHelper.js")"></script>
+    <script src="@Url.Content("~/Librarys/uploadify-v2.1.4/swfobject.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/uploadify-v2.1.4/jquery.uploadify.v2.1.4.js")" type="text/javascript"></script>
+    <!--上传文件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+    <style type="text/css">
+        .title {
+            background: #F7F7F7;
+            border: 1px solid #ccc;
+            padding: 0px;
+            margin: 0px;
+            height: 27px;
+            white-space: nowrap;
+            font-weight: normal;
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+
+        .textcenter {
+            text-align: center;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        $(function () {
+            BindCompany();
+        });
+
+        //绑定单位（大队）
+        function BindCompany() {
+            var companyId = '@Model.CompanyId';
+            getAjax("@Url.Action("GetCompanyDropList", "Company", new { area = "CommonModule" })", { controlId: "drpCompany", defaultSelId: companyId, defaultSel: true }, function (cmsg) {
+                eval(cmsg);
+                BindDepartment();
+            });
+        }
+        //绑定部门（中队）
+        function BindDepartment() {
+            var departmentId = '@Model.DepartmentId';
+            getAjax("@Url.Action("GetDepartmentDropList", "Department", new { area = "CommonModule" })", { companyId: $("#drpCompany").val(), controlId: "drpDepartment", defaultSelId: departmentId, defaultSel: true }, function (dmsg) {
+                eval(dmsg);
+                if (departmentId == '')
+                    departmentId = $("#drpDepartment").val();
+                BindUser(departmentId);
+            });
+        }
+
+        //更改部门
+        function ChangeDepartment(departmentId) {
+            if ($("#ArticlesBox tr").length <= 2) {
+                BindUser(departmentId);
+            } else {
+                alertDialog("更改部门前，请先将已添加的考勤记录删除", 0);
+            }
+        }
+
+        //绑定人员
+        function BindUser(departmentId) {
+            getAjax("@Url.Action("GetUserDropList", "User", new { area = "CommonModule" })", { deptId: departmentId, controls: "Users" }, function (dmsg) {
+                eval(dmsg);
+            });
+        }
+
+    </script>
+
+</head>
+<body style="overflow-y: auto;">
+    <form id="form">
+        <fieldset>
+            <legend>考勤信息</legend>
+            <table class="casedt">
+                <tr>
+                    <th class="formTitle">执法部门：<span style="color: Red;">*</span></th>
+                    <td class="formValue" colspan="3">
+                        <select id="drpCompany" class="txtselect" style="width: 130px;" onchange="javascript:BindDepartment();"></select>
+                        <select id="drpDepartment" class="txtselect" style="width: 100px;" onchange="javascript:ChangeDepartment(this.value);"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">所属月份：<span style="color: Red;">*</span></th>
+                    <td class="formValue" colspan="3">
+                        <input id="SMonth" name="SMonth" value="@Model.SMonth.ToString("yyyy-MM")" type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM'})" class="txt Wdate" style = "width:150px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">附件：</th>
+                    <td class="formValue" colspan="3">
+                        <input id="txtFile" type="file" name="txtFile">
+                        <div id="show">
+                            <ul>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="title">备注描述</td>
+                </tr>
+                <tr>
+                    <td class="formValue" colspan="4">
+                        @Html.TextArea("Remark", Model.Remark, new { @class = "txtArea", @rows = "3", @onkeyup = "setMaxLength(this,200)" })
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <div style="width: 100%; text-align: right; margin-top: 10px;">
+            <input type="button" value="新增考勤记录" class="btnSearch" onclick="javascript: addArticlesBox();" />
+        </div>
+
+        <fieldset style="">
+            <legend>考勤情况</legend>
+
+            <table class="form" id="ArticlesBox">
+                <tr>
+                    <th class="formTitle" style="text-align: center; height: 30px;">人员<span style="color: Red;">*</span>
+                    </th>
+                    <th class="formTitle" style="text-align: center;">考勤类型
+                    </th>
+                    <th class="formTitle" style="text-align: center;">开始时间<span style="color: Red;">*</span>
+                    </th>
+                    <th class="formTitle" style="text-align: center;">截止时间<span style="color: Red;">*</span>
+                    </th>
+                    <th class="formTitle" style="text-align: center;">备注描述<span style="color: Red;">*</span>
+                    </th>
+                    <th class="formTitle" style="text-align: center; width: 100px;">操  作
+                    </th>
+                </tr>
+
+
+                @{
+                    if (attendanceList != null && attendanceList.Any())
+                    {
+                        int indexStr = 0;
+                        foreach (var entity in attendanceList)
+                        {
+                    <tr>
+                        <th class="formValue">
+                            <select name="Users" class="select" style="height: 25px; width: 100%;">
+                                @if (userList != null && userList.Any())
+                                {
+                                    foreach (var userEntity in userList)
+                                    {
+                                    <option value="@userEntity.Id" @(userEntity.Id == entity.UserId ? "selected=\"selected\"" : "")>@userEntity.RealName</option>
+                                    }
+                                }
+                            </select>
+                        </th>
+                        <th class="formValue">
+
+                            <select name="AttendType" class="select" style="height: 25px; width: 100%;">
+                                @if (attendTypeList != null && attendTypeList.Any())
+                                {
+                                    foreach (var typeEntity in attendTypeList)
+                                    {
+                                    <option value="@typeEntity.Id" @(typeEntity.Id == entity.AttendType ? "selected=\"selected\"" : "")>@typeEntity.RsKey</option>
+                                    }
+                                }
+                            </select>
+
+                        </th>
+                        <th class="formValue">
+                            <input class="txt Wdate" name="StartTime" type="text" value="@entity.StartTime.ToString("yyyy-MM-dd HH:mm")" style="text-align: center;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"></th>
+                        <th class="formValue">
+                            <input class="txt Wdate" name="EndTime" type="text" value="@entity.EndTime.ToString("yyyy-MM-dd HH:mm")" style="text-align: center;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"></th>
+                        <th class="formValue">
+                            <input class="txt" name="DetailRemark" type="text" value="@entity.Remark" style="text-align: left;"></th>
+                        <th class="formValue">
+                            <input type="button" class="btnSearch" style="background: url('@Url.Content("~/Content/Images/Icon16/DeleteRed.png")')50% 4px no-repeat; border:0;" onclick="deleteLeg(this);"  style="text-align: center;"/>
+                        </th>
+                    </tr>  
+                        }
+                    }
+                }
+
+                <tr id="ContentTR" style="display: none;">
+                    <th class="formValue">
+                        <select name="Users" id="Users" class="select" style="height: 25px; width: 100%;"></select>
+                    </th>
+                    <th class="formValue">
+                        @Html.DropDownList("AttendType", (ViewData["AttendType"] as IEnumerable<SelectListItem>), new { @class = "select", @style = "height: 25px;width: 100%;" })
+                    </th>
+                    <th class="formValue">
+                        <input class="txt Wdate" name="StartTime" type="text" value="" style="text-align: center;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"></th>
+                    <th class="formValue">
+                        <input class="txt Wdate" name="EndTime" type="text" value="" style="text-align: center;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"></th>
+                    <th class="formValue">
+                        <input class="txt" name="DetailRemark" type="text" value="" style="text-align: left;"></th>
+                    <th class="formValue">
+                        <input type="button" class="btnSearch" style="background: url('@Url.Content("~/Content/Images/Icon16/DeleteRed.png")')50% 4px no-repeat; border:0;" onclick="deleteLeg(this);"  style="text-align: center;"/>
+                    </th>
+                </tr>
+            </table>
+        </fieldset>
+
+        
+
+        <table style="width: 100%;">
+            <tr>
+                <td style="text-align: center;"></td>
+            </tr>
+        </table>
+        @Html.Hidden("Id", Model.Id)
+        @Html.Hidden("CompanyId", Model.CompanyId)
+        @Html.Hidden("CompanyName", Model.CompanyName)
+        @Html.Hidden("DepartmentId", Model.DepartmentId)
+        @Html.Hidden("DepartmentName", Model.DepartmentName)
+        @Html.Hidden("CreatorId", Model.CreatorId)
+        @Html.Hidden("CreateBy", Model.CreateBy)
+        @Html.Hidden("CreateOn", Model.CreateOn)
+
+    </form>
+</body>
+</html>
+
+<script type="text/javascript">
+    var jsonImage = null;
+    $(document).ready(function () {
+        StartUploadify("txtFile", "Attendance", true, function (a, b, c, d, e) {
+            var result = d.split('|');
+            if (result.length > 0) {
+                AddUpResult(result);
+            }
+        });
+    });
+
+    /*
+     *  上传成功后返回
+     */
+    function AddUpResult(result) {
+        var newLi = $('<li></li>');
+        $('<input type="hidden" name="upfileinfo" class="upfileinfo" value="' + result + '" />').appendTo(newLi);
+        $('<label>' + result[2] + '</label>').appendTo(newLi);
+        $('<a href="javascript:;" onclick="del(this);">删除</a>').appendTo(newLi);
+
+        newLi.appendTo("#show ul");
+    }
+
+
+    /*
+     * 删除上传的附件
+     */
+    function del(obj) {
+        var node = $(obj).parent(); //要删除的LI节点
+        node.remove(); //删除DOM元素
+    }
+
+    function AddImage(result) {
+        //调用服务进行保存
+        getAjax('@Url.Action("AddAttachmentOfApply", "AttendanceReport")', { resourceId: '@Model.Id', fileAddress: result[1], fileType: "", fileTypeName: "", remark: $("#Remark").val(), fileName: result[2], fileReName: result[3] }, function (data) { });
+    }
+
+    var tempIndex = $("#ArticlesBox tr").length;
+    //添加考勤记录
+    function addArticlesBox() {
+        tempIndex++;
+        var num = tempIndex;
+        var html = $('#ContentTR').html();
+        html = "<tr>" + html + "</tr>";
+        $(html).insertBefore($("#ArticlesBox>tbody>tr:last"));
+    };
+
+    //删除考勤记录
+    function deleteLeg(obj) {
+        $(obj).parent().parent().remove();
+    };
+
+
+    //关闭对话框
+    function cancle() {
+        var api = frameElement.api;
+        api.close();
+    }
+
+    //保存并申请
+    function AcceptClick() {
+        if (checkValidator()) {
+            var attacs = $(".upfileinfo");  //获取上传的附件
+            var arrchsrting = "";
+            for (var i = 0; i < attacs.length; i++) {
+                var fileAddr = $(attacs[i]).val();
+                arrchsrting = arrchsrting + fileAddr + "|";
+            }
+            if (arrchsrting != '') {
+                arrchsrting = arrchsrting.substr(0, arrchsrting.length - 1);  //截取附件最后一个逗号
+            }
+            $("#Attachment").val(arrchsrting);
+
+            $("#CompanyId").val($("#drpCompany").val());
+            $("#DepartmentId").val($("#drpDepartment").val());
+            $("#CompanyName").val($("#drpCompany").find("option:selected").text());
+            $("#DepartmentName").val($("#drpDepartment").find("option:selected").text());
+
+            getAjax('@Url.Action("SaveAttendanceReport", "AttendanceReport")', $('#form').serialize(), function (data) {
+                var itemjson = eval("(" + data + ")");
+                if (itemjson.rtState == 1) {
+                    if (confirm('登记保存成功，是否需要提起审批？')) {
+                        var formId = '@Model.Id';
+                        var url = '@Url.Action("AttendanceWorkFlow", "WorkFlow")?formId=' + formId + '&flowName=考勤申报审批&eType=apply&worklistId=';
+                        url = encodeURI(url);
+                        var width = 500;
+                        var height = 300;
+                        top.$.dialog({
+                            id: "WorkFlow", width: width, height: height, lock: true, max: false, resize: false, extendDrag: true,
+                            title: "考勤申报审批",
+                            content: 'url:' + url,
+                            button: [
+                                {
+                                    name: '确 定',
+                                    className: 'green',
+                                    callback: function () {
+                                        top.frames["WorkFlow"].AcceptClick('FirstDialogWindow');
+                                        return true;
+                                    }
+                                }, { name: '关 闭' }
+                            ]
+                        });
+                    } else {
+                        cancle();
+                    }
+                } else {
+                    alertDialog("保存过程中出现异常，请联系管理员！", -1);
+                }
+            });
+        }
+    }
+
+    //=================案件审批成功后调用该方法======================
+    //审批后调用该方法,注：所有审批返回都需要调用该方法
+    function ApplyReturn(data) {
+        if (data.rtState == 0 || data.rtState == 1) {
+            //调用进行修改案件的状态
+            alertDialogCallBack(data.rtMsrg, 2, function () {
+                setTimeout(function () {
+                    cancle();
+                }, 500);
+            });
+        } else {
+            alertDialog("审批过程中出现异常，请联系管理员！", -1);
+        }
+    }
+
+    //表单数据校验
+    function checkValidator() {
+        return true;
+    }
+    
+    //正浮点数正则表达式
+    function regUFloat(sender, length) {
+        var reg = new RegExp("^[\\d]*\\.?\\d{0," + length + "}$");
+        if (!sender.value.match(reg))
+            sender.value = sender.t_value ? sender.t_value : '';
+        else
+            sender.t_value = sender.value;
+    }
+
+    //长度限制（解决textarea maxlength无效）
+    function setMaxLength(sender, length) {
+        if (sender.value.length > length)
+            sender.value = sender.value.substring(0, length);
+    }
+</script>

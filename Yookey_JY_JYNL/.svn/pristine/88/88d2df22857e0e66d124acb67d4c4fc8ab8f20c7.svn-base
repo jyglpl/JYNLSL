@@ -1,0 +1,215 @@
+﻿@using Yookey.WisdomClassed.SIP.Common
+@using Yookey.WisdomClassed.SIP.Model.Hr
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>处理情况统计表</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <link href="@Url.Content("~/Librarys/casepic/css/style.css")" rel="stylesheet" />
+
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--jqgrid表格组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <style type="text/css">
+        .ui-th-column, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+            background: none;
+        }
+
+        .ui-jqgrid tr.jqgrow td {
+            white-space: normal !important;
+            height: 25px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var height = $(window).height() - 50;
+            $("#tableList").css('height', height);
+
+            Loading(false);
+        });
+
+
+        $(document).ready(function () {
+            var qtype = '@ViewBag.Qtype';
+            var deptId = '@ViewBag.DeptId';
+            var userId = '@ViewBag.UserId';
+            var stime = '@ViewBag.Stime';
+            var etime = '@ViewBag.Etime';
+
+            if (qtype == 'FK') {
+                GetGrid(qtype, deptId, userId, stime, etime);    //罚款
+            }
+            else if (qtype == 'YB' || qtype == 'ZD' || qtype == 'WT') {
+                GetPunishCase(qtype, deptId, userId, stime, etime);
+            }
+            else if (qtype == 'SBJCL') {
+                GetSBJCLGrid(qtype, deptId, userId, stime, etime);    //事部件处理
+            }
+        });
+
+        var lastSel;
+
+        //加载罚款
+        function GetGrid(qtype, deptId, userId, stime, etime) {
+            $("#gridTable").jqGrid({
+                url: '@Url.Action("GridDetailsJson")',
+                postData: { qtype: qtype, deptId: deptId, userId: userId, stime: stime, etime: etime, rnd: Math.random() },
+                datatype: "json",
+                height: $(window).height() - 55,
+                autowidth: true,
+                colModel: [
+                    { label: "通知书编号", name: "NoticeNo", index: "NoticeNo", width: 120, align: 'center' },
+                    { label: "案件编号", name: "CaseInfoNo", index: "CaseInfoNo", width: 120, align: 'center' },
+                    { label: "登记时间", name: "CaseDate", index: "CaseDate", width: 120, align: 'center' },
+                    {
+                        label: "处理时间", name: "FileDate", index: "FileDate", width: 120, align: 'center',
+                        formatter: function (value, grid, rows) {
+
+                            if (value == "1900-01-01") {
+                                return "";
+                            }
+                            else { return value; }
+                        }
+                    },
+                    { label: "当事人姓名", name: "TargetName", index: "TargetName", width: 100, align: 'center', sortable: false },
+                    { label: "案由名称", name: "ItemName", index: "ItemName", width: 280, align: 'center', sortable: false },
+                    { label: "部门", name: "DeptName", index: "DeptName", width: 100, align: 'center', sortable: false },
+                    { label: "办案人员", name: "RePersonelNameFist", index: "RePersonelNameFist", width: 100, align: 'center', sortable: false },
+                    { label: "办案人员", name: "RePersonelNameSecond", index: "RePersonelNameSecond", width: 100, align: 'center', sortable: false },
+                    {
+                        label: "处罚金额", name: "PunishAmount", index: "PunishAmount", width: 150, align: 'center', sortable: false,
+                        formatter: function (value, grid, rows) {
+
+                            if (value == "0") {
+                                return "";
+                            }
+                            else { return value; }
+                        }
+                    }
+                ],
+                pager: false,
+                rownumbers: true,
+                rowNum: 3000,
+                cellLayout: 0,
+                shrinkToFit: false
+            });
+
+            //表头合并
+            $("#gridTable").jqGrid('setGroupHeaders', {
+                useColSpanStyle: true,
+                groupHeaders: [
+                    { startColumnName: 'RePersonelNameFist', numberOfColumns: 2, titleText: '办案人员' }
+                ]
+            });
+        }
+
+        //加载罚款
+        function GetPunishCase(qtype, deptId, userId, stime, etime) {
+            $("#gridTable").jqGrid({
+                url: '@Url.Action("GridDetailsJson")',
+                postData: { qtype: qtype, deptId: deptId, userId: userId, stime: stime, etime: etime, rnd: Math.random() },
+                datatype: "json",
+                height: $(window).height() - 55,
+                autowidth: true,
+                colModel: [
+                    { label: "通知书编号", name: "NoticeNo", index: "NoticeNo", width: 120, align: 'center' },
+                    { label: "案件编号", name: "CaseInfoNo", index: "CaseInfoNo", width: 120, align: 'center' },
+                    { label: "登记时间", name: "CaseDate", index: "CaseDate", width: 120, align: 'center' },
+                    { label: "当事人姓名", name: "TargetName", index: "TargetName", width: 100, align: 'center', sortable: false },
+                    { label: "案由名称", name: "ItemName", index: "ItemName", width: 280, align: 'center', sortable: false },
+                    { label: "部门", name: "DeptName", index: "DeptName", width: 100, align: 'center', sortable: false },
+                    { label: "办案人员", name: "RePersonelNameFist", index: "RePersonelNameFist", width: 100, align: 'center', sortable: false },
+                    { label: "办案人员", name: "RePersonelNameSecond", index: "RePersonelNameSecond", width: 100, align: 'center', sortable: false }
+                ],
+                pager: false,
+                rownumbers: true,
+                rowNum: 3000,
+                cellLayout: 0,
+                shrinkToFit: false
+            });
+
+            //表头合并
+            $("#gridTable").jqGrid('setGroupHeaders', {
+                useColSpanStyle: true,
+                groupHeaders: [
+                    { startColumnName: 'RePersonelNameFist', numberOfColumns: 2, titleText: '办案人员' }
+                ]
+            });
+        }
+
+        //事部件处理
+        function GetSBJCLGrid(qtype, deptId, userId, stime, etime) {
+            $("#gridTable").jqGrid({
+                url: '@Url.Action("GridDetailsJson")',
+                postData: { qtype: qtype, deptId: deptId, userId: userId, stime: stime, etime: etime, rnd: Math.random() },
+                datatype: "json",
+                height: $(window).height() - 55,
+                autowidth: true,
+                colModel: [
+                    { label: "案件来源", name: "ProblemOrigin", index: "ProblemOrigin", width: 120, align: 'center' },
+                    { label: "处理量", name: "CNT", index: "CNT", width: 100, align: 'center' }
+                ],
+                pager: false,
+                rownumbers: true,
+                rowNum: 3000,
+                cellLayout: 0,
+                shrinkToFit: false
+            });
+        }
+
+    </script>
+
+</head>
+<body>
+    <div id="layout" class="layout">
+        <!--左边-->
+        <div class="layoutPanel">
+            <!--列表-->
+            <div id="grid_List">
+                <table id="gridTable"></table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+</script>

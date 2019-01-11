@@ -1,0 +1,53 @@
+#list {
+            padding: 10px;
+            background: #efeff4;
+        }
+
+            #list .list_top {
+                margin-bottom: 10px;
+            }
+
+            #list .topLeft {
+                width: 80%;
+                margin-right: 1%;
+                background: white;
+                padding: 8px;
+                height: 445px;
+            }
+
+            #list .topRight {
+                width: 19%;
+                background: white;
+                padding: 8px;
+                height: 445px;
+            }
+
+            #list .title {
+                font-size: 20px;
+                color: #0687e1;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            #list .text {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+                #list .text font {
+                    color: red;
+                    font-weight: bold;
+                }
+
+            #list .list_bottom {
+                background: white;
+                padding: 8px;
+            }
+
+            #list .bot_left {
+                width: 61.5%;
+            }
+
+            #list .bot_right {
+                width: 36%;
+            }

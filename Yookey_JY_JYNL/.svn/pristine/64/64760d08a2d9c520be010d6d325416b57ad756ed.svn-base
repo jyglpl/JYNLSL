@@ -1,0 +1,261 @@
+﻿@{
+    Layout = null;
+}
+@using System.Web.Mvc.Html
+@using Yookey.WisdomClassed.SIP.Model.Com
+@model Yookey.WisdomClassed.SIP.Model.Case.CaseinfoEntityDetail
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>流动摊贩</title>
+
+    <!--框架必需start-->
+    <link  href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link  href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--表格组件end-->
+
+    <!--树形组件start-->
+    <link href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/tree/tree.js")" type="text/javascript"></script>
+    <!--树形组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件start-->
+
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+</head>
+<body>
+    <div class="bd" style="border-bottom: none; margin: 1px;">
+        <div class="tipstitle_title settingtable bold bd todayInfoPanelTab rightPanelTitle_normal">
+            <div class="tab_list_top" style="position: absolute">
+                <div id="Tabbasic" class="tab_list bd actived" onclick="Tabchange('basic')">
+                    摊贩信息
+                <div id="TabCustomAttribute" class="tab_list bd " style="display: none" onclick="Tabchange('CustomAttribute')">处罚依据</div>
+                </div>
+            </div>
+        </div>
+        <div class="ScrollBar" style="margin: 1px; overflow: hidden;">
+            <form id="formmain">
+                <div id="basic" class="tabPanel">
+
+                    @using (Html.BeginForm("Add", "SynthesizeStall", FormMethod.Post, new { @id = "formmain" }))
+                    {
+                        <fieldset style="margin-top: 10px;">
+                            <legend>案件来源</legend>
+                            <table class="form">
+                                <tr>
+                                    <th class="formTitle">执法部门：<span style="color: Red;">*</span></th>
+                                    <td class="formValue" colspan="3">
+                                        @Html.DropDownListFor(x => x.StallCase.DeptId, (ViewData["Depts"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px", @onchange = "javascript:ChangeDept(this.value,'StallCase_RePersonelIdFist,StallCase_RePersonelIdSecond')" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="formTitle">办案人员：<span style="color: Red;">*</span></th>
+                                    <td class="formValue" colspan="3">
+                                        @Html.DropDownListFor(t => t.StallCase.RePersonelIdFist, (ViewData["Users"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                                        @Html.DropDownListFor(t => t.StallCase.RePersonelIdSecond, (ViewData["Users"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                        <fieldset style="margin-top: 10px;">
+                            <legend>当前人情况</legend>
+                            <table class="form">
+                                <tr>
+                                    <th class="formTitle">当事人姓名：</th>
+                                    <td class="formValue" colspan="3">
+                                        @Html.TextBoxFor(t => t.StallCase.TargetName, new { @class = "txt required", @datacol = "yes", @err = "当事人姓名", @checkexpession = "NotNull" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="formTitle">证件类型：</th>
+                                    <td class="formValue">
+                                        @Html.DropDownListFor(t => t.StallCase.TargetPaperType, (ViewData["TargetPaperTypes"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                                    </td>
+                                    <th class="formTitle">证件号码：</th>
+                                    <td class="formValue">
+                                        @Html.TextBoxFor(t => t.StallCase.TargetPaperNum, new { @class = "txt", @style = "width: 100%;", @onblur = "javascript:PutCardId(this.value)" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="formTitle">性别：</th>
+                                    <td class="formValue">
+                                        @Html.DropDownListFor(x => x.StallCase.TargetGender, (ViewData["Sexs"] as IEnumerable<SelectListItem>), new { @class = "txtselect", @style = "height: 20px; width: 130px" })
+                                    </td>
+                                    <th class="formTitle">年龄：</th>
+                                    <td class="formValue">
+                                        @Html.TextBoxFor(x => x.StallCase.TargetAge, new { @class = "txt", @style = "width: 100%;" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="formTitle">地址：</th>
+                                    <td class="formValue" colspan="3">
+                                        @Html.TextBoxFor(t => t.StallCase.TargetAddress, new { @class = "txt required", @datacol = "yes", @err = "当事人地址", @checkexpession = "NotNull" })
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>         
+                        <fieldset style="margin-top: 10px;">
+                            <legend>案件基本情况</legend>
+                            <table class="form">
+                                <tr>
+                                    <th class="formTitle">案发日期：<span style="color: Red;">*</span></th>
+                                    <td class="formValue">
+                                        @Html.TextBoxFor(t => t.StallCase.CaseDate, new { @class = "txt Wdate", Value = Model.StallCase.CaseDate.Year == 1900 ? "" : Model.StallCase.CaseDate.ToString("yyyy-MM-dd HH:mm"), @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})", @style = "width:150px" })
+                                    </td>
+                                    <th class="formTitle">案发地址：
+                                    </th>
+                                    <td class="formValue">
+                                        @Html.TextBoxFor(t => t.StallCase.CaseAddress, new { @class = "txt required", @datacol = "yes", @err = "案发地址", @checkexpession = "NotNull" })
+                                    </td>
+
+                                    @* <th class="formTitle">案由编号：</th>
+                                    <td class="formValue">
+                                        @Html.TextBoxFor(t => t.StallCase.ItemeNo, new { @class = "txt required", @datacol = "yes", @err = "案由编号", @checkexpession = "NotNull" })
+                                    </td>*@
+                                </tr>
+                                @*<tr>
+                                    <th class="formTitle">路段代码：
+                                    </th>
+                                    <td class="formValue">
+                                        @Html.TextBoxFor(t => t.StallCase.RoadNo, new { @class = "txtselect", @datacol = "yes", @err = "路段代码", @checkexpession = "NotNull" })
+
+                                    </td>
+                                    <th class="formTitle">路段名称：</th>
+                                    <td class="formValue">
+                                        @Html.TextBoxFor(t => t.StallCase.RoadName, new { @class = "txt required", @datacol = "yes", @err = "路段名称", @checkexpession = "NotNull" })
+                                    </td>
+                                </tr>*@
+                                <tr>
+                                </tr>
+                                @*<tr>
+                                    <th class="formTitle">违法行为：</th>
+                                    <td class="formValue" colspan="3">
+                                        @Html.TextBoxFor(t => t.StallCase.ItemAct, new { @class = "txt required", @datacol = "yes", @err = "违法行为", @checkexpession = "NotNull" })
+                                    </td>
+                                </tr>*@
+                                <tr>
+                                    <th class="formTitle">案件照片：</th>
+                                    <td class="formValue" colspan="3" id="BeforePic">
+                                        @Html.Action("FilesTab", "SynthesizeStall", new { resourceId = Model.StallCase.Id, evtache = "stall", code = "00360001", isupload = "true" })
+                                    </td>
+                                </tr>
+                                @Html.HiddenFor(t => t.StallCase.CaseInfoNo)
+                                @Html.HiddenFor(t => t.StallCase.CaseFact)
+                                @Html.HiddenFor(t => t.StallCase.DeptName)
+                                @Html.HiddenFor(t => t.StallCase.RePersonelNameFist)
+                                @Html.HiddenFor(t => t.StallCase.RePersonelNameSecond)
+                                @Html.HiddenFor(t => t.StallCase.Id)
+                                @Html.HiddenFor(t => t.StallCase.Lng)
+                                @Html.HiddenFor(t => t.StallCase.Lat)
+                                @Html.HiddenFor(t => t.StallCase.CreatorId)
+                                @Html.HiddenFor(t => t.StallCase.CreateBy)
+                                @Html.HiddenFor(t => t.StallCase.CreateOn)
+                                @Html.HiddenFor(t => t.StallCase.Version)
+                            </table>
+                        </fieldset>
+                    }
+                </div>
+                <!--处罚依据-->
+            </form>
+        </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    //选择执法部门
+    function ChangeDept(deptId, selectIds) {
+        getAjax("@Url.Action("AjLoadUsers", "PenaltyCase")", { deptId: deptId, selectIds: selectIds }, function (msg) {
+            eval(msg);
+        });
+    }
+
+    /*
+     * 取消
+     */
+    function cancle() {
+        var api = frameElement.api, w = api.opener;
+        api.close();
+    }
+
+    //验证
+    function CheckValidator() {
+        var istrue = true;
+
+
+        if ($("#StallCase_DeptId").val() == '') {
+            alertDialog('请选择执法部门！', -1);
+            $("#StallCase_DeptId").focus();
+            istrue = false;
+        }
+        if ($("#StallCase_RePersonelIdFist").val() == '') {
+            alertDialog('请选择执法人员一！', -1);
+            $("#StallCase_RePersonelIdFist").focus();
+            istrue = false;
+        }
+        if ($("#StallCase_RePersonelIdSecond").val() == '') {
+            alertDialog('请选择执法人员二！', -1);
+            $("#StallCase_RePersonelIdSecond").focus();
+            istrue = false;
+        }
+        if ($("#StallCase_TargetName").val() == '') {
+            alertDialog('请填写当事人姓名！', -1);
+            $("#StallCase_TargetName").focus();
+            istrue = false;
+        }
+        if ($("#StallCase_TargetAddress").val() == '') {
+            alertDialog('请填写当事人地址！', -1);
+            $("#StallCase_TargetAddress").focus();
+            istrue = false;
+        }
+        if ($("#StallCase_CaseDate").val() == '') {
+            alertDialog('请填写案发时间！', -1);
+            $("#StallCase_CaseDate").focus();
+            istrue = false;
+        }
+        if ($("#StallCase_CaseAddress").val() == '') {
+            alertDialog('请填写案发地址！', -1);
+            $("#StallCase_CaseAddress").focus();
+            istrue = false;
+        }
+        return istrue;
+    }
+
+    //确定保存事件
+    function AcceptSaveClick() {
+
+        if (CheckValidator()) {
+            var url = '@Url.Action("Save")';
+
+            $("#StallCase_DeptName").val($("#StallCase_DeptId").find('option:selected').text());
+            $("#StallCase_RePersonelNameFist").val($("#StallCase_RePersonelIdFist").find('option:selected').text());
+            $("#StallCase_RePersonelNameSecond").val($("#StallCase_RePersonelIdSecond").find('option:selected').text());
+
+            AjaxJson(url, $('#formmain').serialize(), function (data) {
+                if (data.rtState == 1) {
+                    tipDialog("保存成功！", 2);
+                    cancle();
+                } else {
+                    tipDialog("审批过程中出现异常，请联系管理员！", -1);
+                }
+            });
+        }
+    }
+</script>

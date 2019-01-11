@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>权力库</title>
+    <!--框架必需start-->
+    <link  href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link  href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--表格组件end-->
+    <!--树形组件start-->
+    <link  href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/tree/tree.js")"></script>
+    <!--树形组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件start-->
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+
+
+
+    <style type="text/css">
+        .ui-jqgrid .ui-jqgrid-htable th {
+            height: 28px;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+
+        .ui-th-column, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+            background: none;
+        }
+
+        .ui-jqgrid tr.jqgrow td {
+            white-space: normal !important;
+            height: 25px;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .ui-state-default, .ui-th-column-header, .ui-th-ltr {
+            padding-top: 2px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .ui-widget-content {
+            border-bottom-color: #ccc;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Loadlayout();
+            //绑定大类类型
+            BindDropItem("#QueryType", "ItemType", "请选择");
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <script type="text/javascript">
+            $(function () {
+                GetGrid();
+            });
+            //搜索
+            function btn_Search() {
+                var itemType = $("#QueryType").val();
+                var itemno = $("#txtItemNo").val();
+                var itemact = $("#txtItemAct").val();
+                $("#gridTable").jqGrid('setGridParam', {
+                    url: "@Url.Action("QueryListJson", "PenaltyLaw")?itemno=" + escape(itemno) + '&itemact=' + escape(itemact) + '&itemType=' + escape(itemType), page: 1
+                }).trigger('reloadGrid');
+            }
+            //加载表格
+            function GetGrid() {
+                $("#gridTable").jqGrid({
+                    url: "@Url.Action("QueryListJson", "PenaltyLaw")",
+                    datatype: "json",
+                    height: $(window).height() - 153,
+                    autowidth: true,
+                    colModel: [
+                        { label: "主键", name: "Id", index: "Id", hidden: true },
+                        { label: "权利编码", name: "ItemCode", index: "ItemCode", width: 150 },
+                        { label: "案由编号", name: "ItemNo", width: 150 },
+                        //{ label: "案由名称", name: "ItemName", index: "ItemName", width: 300 },
+                        { label: "违法行为", name: "ItemAct", index: "ItemAct", width: 1000 }
+                    ],
+                    viewrecords: true,
+                    rowList: [30, 50, 100, 500, 1000],
+                    pager: "#gridPager",
+                    rownumbers: true,
+                    shrinkToFit: false,
+                    gridview: true,
+                    ondblClickRow: function (rowid, iRow, iCol, e) {
+                        btn_detail();
+                    }
+                });
+            }
+            @*
+            //新增
+            function btn_add() {
+                
+                var id = GetJqGridRowValue("#gridTable", "CompanyId");
+                if (!id) {
+                    id = 0;
+                }
+                var url = "@Url.Action("add","PenaltyLaw")?id=" + id;
+                top.$.dialog({
+                    id: "Form", width: 900, height: 560, lock: true, max: false, resize: false, extendDrag: true,
+                    title: "自由裁量详情",
+                    content: 'url:' + url,
+                    button: [
+                        {
+                            name: '保存自由裁量',
+                            className: 'green',
+                            callback: function () {
+                                top.frames["Form"].AcceptClick();
+                                return false;
+                            }
+                        },
+                        {
+                            name: '关 闭'
+                        }
+                    ]
+                });
+
+            }*@
+
+            //新增
+            function btn_add() {
+                var url = "@Url.Action("New", "PenaltyLaw")";
+                top.$.dialog({
+                    id: "Form", width: 900, height: 600, lock: true, max: false, resize: false, extendDrag: true,
+                    title: "自由裁量详情",
+                    content: 'url:' + url,
+                    button: [
+                        {
+                            name: '保存自由裁量',
+                            className: 'green',
+                            callback: function () {
+                                top.frames["Form"].AcceptClick();
+                                return false;
+                            }
+                        },
+                        {
+                            name: '关 闭'
+                        }
+                    ]
+                });
+            }
+
+            //删除
+            function btn_delete() {
+                var id = GetJqGridRowValue("#gridTable", "Id");
+                confirmDialog("系统提示", "注：您确定要删除权力数据记录？", function (r) {
+                    if (r) {
+                        Loading(true, "正在删除数据...");
+                        $.ajax({
+                            url: '@Url.Action("Delete", "PenaltyLaw")?id=' + id,
+                            datatype: 'json',
+                            success: function (data) {
+                                if (data.rtState == 1) {
+                                    var selectedId = $("#gridTable").jqGrid("getGridParam", "selrow");
+                                    $("#gridTable").jqGrid('delRowData', selectedId);
+
+                                } else {
+                                    alert('删除数据出现异常！');
+                                }
+                            }
+                        });
+                    }
+                });
+
+            }
+            //详细
+            function btn_detail() {
+                var id = GetJqGridRowValue("#gridTable", "Id");
+                if (!id) {
+                    id = 0;
+                }
+                var url = "@Url.Action("New", "PenaltyLaw")?id=" + id + "&random=" + Math.random();
+
+                top.$.dialog({
+                    id: "Form", width: 900, height: 560, lock: true, max: false, resize: false, extendDrag: true,
+                    title: "自由裁量",
+                    content: 'url:' + url,
+                    button: [
+                        {
+                            name: '保存自由裁量',
+                            className: 'green',
+                            callback: function () {
+                                top.frames["Form"].AcceptClick();
+                                return false;
+                            }
+                        },
+                        {
+                            name: '关 闭'
+                        }
+                    ]
+                });
+            }
+
+        </script>
+        <div class="leftline rightline" style="margin-left: 1px; margin-right: 1px;">
+            <div class="tools_bar" style="margin-top: 1px; margin-bottom: 0px;">
+                <div class="PartialButton">
+                    <a id="lr-replace" title="刷新当前(Ctrl+Q)" onclick="Replace()" class="tools_btn"><span><b style="background: url('@Url.Content("~/Content/Images/Icon16/arrow_refresh.png")') 50% 4px no-repeat;">刷新</b></span></a>
+                    <a id="lr-add" title="新增权力" onclick="btn_add()" class="tools_btn"><span><b style="background: url('@Url.Content("~/Content/Images/Icon16/add.png")') 50% 4px no-repeat;">新增</b></span></a>
+                    <a id="lr-detail" title="详细信息(Ctrl+X)" onclick="btn_detail()" class="tools_btn"><span><b style="background: url('@Url.Content("~/Content/Images/Icon16/application_view_detail.png")') 50% 4px no-repeat;">明细</b></span></a>
+                    <a id="lr-delete" title="删除订单" onclick="btn_delete()" class="tools_btn"><span><b style="background: url('@Url.Content("~/Content/Images/Icon16/DeleteRed.png")') 50% 4px no-repeat;">删除</b></span></a>
+                    <a id="lr-leave" title="关闭当前窗口(Esc)" onclick="btn_back()" class="tools_btn"><span><b style="background: url('@Url.Content("~/Content/Images/Icon16/back.png")') 50% 4px no-repeat;">离开</b></span></a>
+                </div>
+            </div>
+            <div class="QueryArea">
+                <table border="0" class="form-find" style="height: 45px;">
+                    <tr>
+                        <th>大 类：
+                        </th>
+                        <td>
+                            <select id="QueryType" class="select" style="width: 150px">
+                            </select>
+                        </td>
+                        <th>案由编号：</th>
+                        <td>
+                            <input id="txtItemNo" type="text" class="txt" style="width: 150px" />
+                        </td>
+                        <th>案由名称：</th>
+                        <td>
+                            <input id="txtItemAct" type="text" class="txt" style="width: 150px" />
+                        </td>
+                        <td>
+                            <input id="btnSearch" type="button" class="btnSearch" value="搜 索" onclick="btn_Search()" />
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+            <div id="grid_List" class="topline">
+                <table id="gridTable"></table>
+                <div id="gridPager"></div>
+            </div>
+        </div>
+        <style>
+            .ui-widget-content {
+                border-left: none;
+            }
+        </style>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,216 @@
+﻿@{
+    Layout = null;
+}
+@using Yookey.WisdomClassed.SIP.Common
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+     <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <link href="@Url.Content("~/Librarys/casepic/css/style.css")" rel="stylesheet" />
+
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--jqgrid表格组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+
+    <!--上传文件start-->
+    <script src="@Url.Content("~/Librarys/uploadHelper.js")"></script>
+    <script src="@Url.Content("~/Librarys/uploadify-v2.1.4/swfobject.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/uploadify-v2.1.4/jquery.uploadify.v2.1.4.js")" type="text/javascript"></script>
+    <!--上传文件end-->
+</head>
+<body>
+    <div style="float:left;">
+        <input id="txtFile" type="file" name="txtFile">
+    </div>
+    <div>
+          <a style="cursor:pointer;" onclick="ShowPhotograph()"><img src="~/Content/Images/Icon32/camera_black.png"  style="margin-left:20px;"/></a>          
+    </div>
+    <table id="gridTable">
+    </table>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        StartUploadify("txtFile", "License", true, function (a, b, c, d, e) {                       
+            var result=d.split('|');
+            if (result.length>0) {                
+                var fileInfor={
+                    fileName:result[3],
+                    fileReName:result[2],
+                    fileSize:c.size,
+                    fileAddress:result[1],
+                    fileTypeName:c.type
+                };
+                AddUpResult(fileInfor);
+            }
+        });
+        GetGrid();
+    });
+
+    /*
+     *  上传成功后返回
+     */
+    function AddUpResult(fileInfor) {
+        console.log(fileInfor);
+        var resourceId = GetQueryString('resourceId');//关联案件编号
+        var fileType =GetQueryString('fileType');//关联  
+        if (!resourceId || !fileType)
+        {
+            alert('上传失败！');
+        }
+        fileInfor.resourceId = resourceId;
+        fileInfor.fileType=fileType;        
+        $.get('UpLoadAttach', fileInfor, function (data) {
+            data = JSON.parse(data);
+            if (data.rtState == 1) {
+                reloadGrid();//从新刷新列表
+            }
+            else {
+                alert(data.rtMsrg);
+            }
+        })
+    }    
+    
+
+
+    /*
+     * 删除上传的附件
+     */
+    function del(obj) {
+        var node = $(obj).parent(); //要删除的LI节点
+        node.remove(); //删除DOM元素
+    }
+
+    //关闭
+    function cancle() {
+        var api = frameElement.api;
+        api.close();
+    }
+
+    //加载表格
+    function GetGrid() { 
+        var resourceId = GetQueryString('resourceId');//关联案件编号
+        var fileType =GetQueryString('fileType');//关联        
+        $("#gridTable").jqGrid({
+            url: '@Url.Action("GetLicenseAttachData")',
+            postData: {
+                resourceId: resourceId,
+                fileType:fileType
+            },
+            datatype: "json",
+            height: $(window).height() - 100,
+            autowidth: true,
+            colModel: [
+                { label: "主键", name: "Id", index: "Id", hidden: true },
+                { label: "附件名称", name: "FileReName", index: "FileReName", width: 200, align: 'left' },
+                {
+                    label: "大小", name: "FileSize", index: "FileSize", width: 100, align: 'left',
+                    formatter: function (value, grid, rows, state) {
+                        var htmlStr = parseInt(value / 1024) + 'KB';
+                        return htmlStr;
+                    }
+                },
+                { label: "类 型", name: "FileTypeName", index: "FileTypeName", width: 80, align: 'center' },
+                { label: "上传时间", name: "CreateOn", index: "CreateOn", width: 120, align: 'center' },
+                { label: "上传人员", name: "CreateBy", index: "CreateBy", width: 80, align: 'center' },
+                {
+                    label: "操作", name: "FileAddress", index: "FileAddress", width: 160, align: 'center', formatter: function (value, grid, rows, state) {
+                        var btns = "<a target='_blank' href=@AppConfig.FileViewLink" + value + "><input type='button'class='btnSearch'  value='查看'/></a>";
+                        btns += "<input type='button'class='btnSearch' onclick='licenseAttachDelete(\"" + rows.Id + "\")' value='删除'/>";
+                        return btns;
+                    }
+                }
+            ],                   
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true,
+            pgbuttons: false,
+            onSelectRow: function (rowid, iRow, iCol, e) {
+
+            },
+            ondblClickRow: function (rowid, iRow, iCol, e) {
+
+            }
+        });
+    }
+
+    //重新载入表格数据
+    function reloadGrid() {
+        $("#gridTable").jqGrid('setGridParam', {
+            url: '@Url.Action("GetLicenseAttachData")',
+            datatype: 'json',
+            page: 1
+        }).trigger("reloadGrid"); //重新载入 
+    }
+
+    //显示请假详细
+    function licenseAttachDelete(id) {
+        confirmDialog('系统提示', '您确定需要删除么?', function (cdata) {
+            if (cdata) {
+                $.get('LicenseAttachDelete', { id: id }, function (data) {
+                    data = JSON.parse(data);
+                    if (data.state == 0)
+                    {
+                        alert(data.message);
+                    }
+                    reloadGrid();
+                });
+            }
+        });
+    }
+
+    //获取参数
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+
+    function ShowPhotograph() {
+        var url = '@Url.Action("Photograph","LicenseAttach")' + "?resourceId=" + GetQueryString('resourceId');
+        url += "&fileType=" + GetQueryString('fileType');
+         var width = $(window).width();
+         width = width - (width * 0.64);
+         var height = $(window).height() * 0.75;
+         top.$.dialog({
+             id: "Photograph",
+             lock: false,
+             title: "拍照",
+             max: false,
+             min: false,
+             width: 710,
+             height: 620,
+             content: 'url:' + url,
+             close: function ()
+             {
+                 location.reload();
+             }
+         });
+     }
+</script>

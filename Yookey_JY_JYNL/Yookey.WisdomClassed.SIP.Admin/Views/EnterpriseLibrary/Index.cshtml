@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>经营单位</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+</head>
+<body>
+    <div>
+        <div class="Search">
+            <form class="layui-form" action="">
+
+
+                企业名称：
+                <div class="layui-inline">
+                    <input name="Key" class="layui-input" id="Key" autocomplete="off">
+                </div>
+                <input type="button" class="layui-btn" data-type="reload" value="搜索"></input>
+            </form>
+        </div>
+        <script id="toolbar" type="text/html">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-primary layui-btn-sm" id="add" lay-event="add">添加</button>
+            </div>
+        </script>
+
+        <table class="layui-hide" id="Item" lay-filter="Item"></table>
+    </div>
+    <div style="display: none">
+        <input name="isSubmit" id="isSubmit"/>
+    </div>
+    <script src="~/Content/layui/layui.js" charset="utf-8"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+    <script>
+
+        layui.use(['table','form'],
+            function () {
+                var table = layui.table, form = layui.form;
+
+                var $ = layui.jquery;
+
+
+
+
+                table.render({
+                    elem: '#Item',
+                    url: '@Url.Action("LoadItem", "Power")?timestamp' + (new Date()).valueOf(),
+                    title: '权利事项',
+                    size: 'sm',
+                    toolbar: '#toolbar',
+                    defaultToolbar: [],
+                    cols: [
+                        [
+                            { field: 'Id', title: '序号', width: 80, fixed: 'left', align: 'center', type: 'numbers', unresize: true, },
+                            { field: 'Item', title: '企业名称' },
+                            { field: 'WFFG', title: '法人（负责人）', width: 200 },
+                            { field: 'CFZL', title: '监督对象类型', width: 200 },
+                            { field: 'CFYJ', title: '产品类型', width: 200 },
+                            { field: 'CFYJYW', title: '企业地址', width: 200 },
+                            { field: 'LX', title: '重点监督', width: 80 },
+
+                        ]
+                    ],
+                    page: true,
+                    limit:30,
+                    height: 'full-70',
+                    done: function (res, curr, count) {
+
+                    }
+                });
+
+                form.render();
+
+
+                //头工具栏事件
+                table.on('toolbar(Item)', function (obj) {
+                    //var checkStatus = table.checkStatus(obj.config.id);
+                    switch (obj.event) {
+                        case 'add':
+                            layer.open({
+                                type: 2,
+                                title: '添加经营单位',
+                                area: ['1300px', '650px'],
+                                fixed: false, //不固定
+                                maxmin: false,
+                                content: '@Url.Action("CompanyEdit", "EnterpriseLibrary")',
+                                end: function() {
+                                    if ($('#isSubmit').val() == '1') {
+                                        table.reload('Item',
+                                            {
+                                                url: '@Url.Action("LoadItem", "Power")?timestamp2' + (new Date()).valueOf()
+                                                , where: {}
+                                            });
+                                        $('#isSubmit').val('');
+                                    }
+
+                                }
+                            });
+                            break;
+                    };
+                });
+
+
+
+
+
+
+
+
+                $('.Search .layui-btn').on('click', function () {
+
+                    var Key = $('#Key');
+                    var LX = $('#LX');
+                    table.reload('Item',
+                        {
+                            url: '@Url.Action("LoadItem", "Power")?timestamp3' + (new Date()).valueOf()
+                            , where: {
+                                Item: Key.val(),
+                                LX:LX.val()
+                            }
+                        });
+
+                });
+            });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+﻿@{
+    Layout = null;
+}
+@using Yookey.WisdomClassed.SIP.Model.License;
+@using Yookey.WisdomClassed.SIP.Common;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>材料附件预览</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">    
+    <script src="http://code.jquery.com/jquery-2.2.4.js" ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Librarys/viewerjs/viewer.js"></script>
+    <link href="~/Librarys/viewerjs/viewer.css" rel="stylesheet" />
+    <!--图片列表插件-->
+    <link href="~/Librarys/flexImages/jquery.flex-images.css" rel="stylesheet" />
+    <link href="~/Librarys/flexImages/pure-min.css" rel="stylesheet" />
+    <script src="~/Librarys/flexImages/jquery.flex-images.js"></script>
+    <!--end-->
+    <style>
+    .pictures {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      max-width: 30rem;
+    }
+
+    .pictures > li {
+      float: left;
+      width: 33.3%;
+      height: 33.3%;
+      margin: 0 -1px -1px 0;
+      border: 1px solid transparent;
+      overflow: hidden;
+    }
+
+    .pictures > li > img {
+      width: 100%;
+      cursor: -webkit-zoom-in;
+      cursor: zoom-in;
+    }
+
+    .viewer-download {
+      color: #fff;
+      font-family: FontAwesome;
+      font-size: .75rem;
+      line-height: 1.5rem;
+      text-align: center;
+    }
+
+    .viewer-download::before {
+      content: "\f019";
+    }
+
+    #Images .over { position: absolute; bottom: 0; left: 0; right: 0; padding: 4px 6px; font-size: 13px; color: #fff; background: #222; background: rgba(0,0,0,.7); }
+  </style>
+</head>
+<body>
+    <div>
+  <select class="custom-select" id="fileType">
+    @{
+        var materials = ViewData["Material"] as List<LicenseMaterialCatalogueEntity>;            
+            foreach (var entity in materials)
+            {
+                 <option value="@entity.Id">@entity.MaterialName</option>                
+            }
+      }    
+  </select>
+</div>
+  <div class="container">
+    <p style="margin:20px 0 8px">材料附件缩略图:</p>
+        <div id="Images" class="flex-images">
+            <span style="color:red;">没有上传的材料附件！</span>
+        </div>
+  </div>
+</body>
+</html>
+ <script type="text/javascript">
+     var viewern = null;
+     $(function () {         
+         SetImages();
+         
+     })
+     
+     function SetImages(fileTypep)
+     {
+         var resourceId = GetQueryString('resourceId');
+         var fileType;
+         if (fileTypep) {
+             fileType = fileTypep;
+         }
+         else {
+             fileType = GetQueryString('fileType');
+             $('#fileType').val(fileType);
+         }
+         if (!resourceId || !fileType)
+         {
+             return false;
+         }         
+         $.getJSON('GetLicenseAttachData', { resourceId: resourceId, fileType: fileType, ran:Math.random() }, function (data) {
+             if (data.length <= 0) {
+                 $('#Images').html('<span style="color:red;">没有上传的材料附件！</span>');
+             }
+             else {
+                 var htmlStr = '';
+                 for (var i = 0; i < data.length;i++)
+                 {
+                     htmlStr += '<div class="item" data-w="180" data-h="150">';
+                     htmlStr += '<img src="@AppConfig.FileViewLink' + data[i].FileAddress + '">';
+                     htmlStr += '<div class="over">' + data[i].FileReName + '</div>';
+                     htmlStr += '</div>';
+                 }
+                 $('#Images').html(htmlStr);
+                 $('#Images').flexImages({ rowHeight: 140 });
+                 if (!viewern) {
+                     viewern = new Viewer(document.getElementById('Images'));
+                 }
+                 else {
+                     viewern.update();
+                 }
+             }                              
+        });
+     }
+     
+     $('#fileType').change(function () {
+         SetImages($('#fileType').val());
+     });
+     
+
+         //获取参数
+         function GetQueryString(name) {
+             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+             var r = window.location.search.substr(1).match(reg);
+             if (r != null) return unescape(r[2]); return null;
+         }
+  </script>

@@ -1,0 +1,146 @@
+﻿@{
+    Layout = null;
+}
+@using System.Data;
+@using System.Diagnostics
+@using Yookey.WisdomClassed.SIP.Common
+
+@model PetaPoco.PageJqDatagrid<DataTable>
+
+<!DOCTYPE html>
+
+<html style="background-color:#eef1f5;">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GridStatisticsMore</title>
+    <link href="@Url.Content("~/Content/Files/css/dataIndex.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Files/css/index.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Files/css/forgm.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Content/Files/js/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Content/Files/js/echarts.js")"></script>
+</head>
+<body style="overflow-y: auto">
+    <div class="contentBox">
+        <div class="navHeader">
+            <p>
+                <a class="homeIcon" href="#"></a>
+                <b></b>
+                <a href="@Url.Action("Index", "GridManagement")">台账管理</a>
+                <b></b>
+                <a href="@Url.Action("GridStatistics", "GridManagement")">统计</a>
+            </p>
+        </div>
+        <div class="allDistrict" style="overflow: hidden;">
+            <p>数据统计</p>
+            <div class="dataBox">
+                <div class="inputBox">
+                    <p>
+                        <span>
+                            <select class="drpselect" name="drpYears" id="drpYears" style="width: 100px;">
+                                @{
+                                    var years = ViewData["Years"] as DataTable;
+                                    if (years != null && years.Rows.Count > 0)
+                                    {
+                                        foreach (DataRow item in years.Rows)
+                                        {
+                                            <option @(item["GradeYear"].Equals(ViewBag.DefaultYear) ? "selected=selected" : "") value="@item["GradeYear"]">@(item["GradeYear"] + "年")</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option value="@DateTime.Now.Year">@(DateTime.Now.Year.ToString() + "年")</option>
+                                    }
+                                }
+                            </select>
+                        </span>
+
+                        <span>
+                            <select class="drpselect" name="drpQuarter" id="drpQuarter" style="width: 100px;">
+                                <option value="1" @(ViewBag.DefaultQuarter == 1 ? "selected=selected" : "")>1季度</option>
+                                <option value="2" @(ViewBag.DefaultQuarter == 2 ? "selected=selected" : "")>2季度</option>
+                                <option value="3" @(ViewBag.DefaultQuarter == 3 ? "selected=selected" : "")>3季度</option>
+                                <option value="4" @(ViewBag.DefaultQuarter == 4 ? "selected=selected" : "")>4季度</option>
+                            </select>
+                        </span>
+                    </p>
+                    <p class="keySearch">
+                        <span>关键字：</span>
+                        <span>
+                            <input type="text" id="txtKeyword" value="@ViewBag.Keywords"></span>
+                        <span>
+                            <button onclick="Search();">搜索</button>
+                        </span>
+                    </p>
+                </div>
+                <div class="tableBox">
+                    <p>扣分列表</p>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th style="text-align: left">单位</th>
+                                    <th style="text-align: left">大/中队</th>
+                                    <th style="text-align: left">文件名</th>
+                                    <th>操作人</th>
+                                    <th>操作时间</th>
+                                    <th>扣除分数</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    var data = Model.rows as DataTable;
+                                    if (data != null && data.Rows.Count > 0)
+                                    {
+                                        int index = 1;
+                                        string t = "";
+                                        foreach (DataRow item in data.Rows)
+                                        {
+                                            <tr>
+                                                <td>@index</td>
+                                                <td class="colorOgreng" style="text-align: left">@item["CompanyName"]</td>
+                                                <td style="text-align: left">@item["DeptName"]</td>
+                                                <td style="text-align: left">@item["GMFileName"]</td>
+                                                <td>@item["CreateBy"]</td>  
+                                                <td>@item["UpdateOn"]</td>
+                                                <td><span>@item["Score"]</span></td>
+                                                <td>
+                                            
+                                                    @{
+                                                        var fileUrl = item["FileUrl"].ToString();
+                                                        var conFileUrl = item["ConvertFileUrl"].ToString();
+
+                                                        if (!string.IsNullOrEmpty(fileUrl))
+                                                        {
+                                                            <a class="downLoad"  href="@(AppConfig.LedgerFileViewLink + fileUrl)" target="_blank">下载</a>
+                                                            <a class="look" href="@(!string.IsNullOrEmpty(conFileUrl) ? AppConfig.LedgerFileViewLink + conFileUrl : AppConfig.LedgerFileViewLink + fileUrl)" target="_blank">浏览</a>
+                                                        }
+                                                    }
+
+                                                </td>
+                                            </tr>
+                                            index++;
+                                        }
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="pagination">
+                    共<b>@Model.records</b> 条数据 当前第<b>@Model.page</b>页 共<b>@Model.total</b>页
+                    @Html.Pager("page", Model.PageSize, Model.records)
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+
+    function Search() {
+        location.href = '@Url.Action("GridStatisticsMore", "GridManagement")?year=' + $("#drpYears").val() + '&quarter=' + $("#drpQuarter").val() + '&keywords=' + $("#txtKeyword").val();
+    }
+
+</script>

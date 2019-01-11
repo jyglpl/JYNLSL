@@ -1,0 +1,409 @@
+﻿<!DOCTYPE html>
+@using Yookey.WisdomClassed.SIP.Common
+@model Yookey.WisdomClassed.SIP.Model.Case.InfCarChecksignEntity
+@using Yookey.WisdomClassed.SIP.Membership
+
+@{
+    var isEdu = this.Html.IsAllowed("Education");
+    var isFine = this.Html.IsAllowed("Fine");
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>案件详情</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link  href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--表格组件end-->
+    <!--树形组件start-->
+    <link href="@Url.Content("~/Librarys/tree/tree.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/tree/tree.js")"></script>
+    <!--树形组件end-->
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件start-->
+    <!--表单验证组件start-->
+    <script src="@Url.Content("~/Librarys/validator/learunui-validator.js")"></script>
+    <!--表单验证组件end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+    <style type="text/css">
+        textarea {
+            width: 100%;
+            height: 30px;
+        }
+
+        .form .formTitle {
+            background: #F7F7F7;
+            border-top: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding: 0px;
+            margin: 0px;
+            height: 24px;
+            white-space: nowrap;
+            font-weight: normal;
+            text-align: right;
+            padding-right: 5px;
+            padding-left: 5px;
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form id="formmain">
+            <div style="margin-left: 5px; margin-top: 5px; margin-right: 5px;">
+
+                <fieldset style="margin-top: 5px; padding: 5px;">
+                    <legend>案件信息</legend>
+                    <table class="form">
+                        <tr>
+                            <th class='formTitle'>案件照片：</th>
+                            <td class='formValue' colspan="3">
+                                <img style="width:300px;height:250px;cursor: pointer;" src="@Model.BigPicAddress" onclick="javascript:PrintFile('@Model.BigPicId')" alt="证据图片" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class='formTitle'>通知书编号：</th>
+                            <td class='formValue'>
+                                <input id="NoticeNo"  name="NoticeNo" value="@Model.NoticeNo" type="text" class="txt" />
+                            </td>
+                            <th class='formTitle'></th>
+                            <td class='formValue'></td>
+                        </tr>
+                        <tr>
+                            <th class='formTitle'>案件状态：</th>
+                            <td class='formValue'>
+                                <input id="Yiyu_Id" name="Id"  type="hidden" value="@Model.Id"  />
+                                @{
+                                    switch (Model.State)
+                                    {
+                                        case -1:
+                                            {
+                                    <span>销案</span>
+                                            }
+                                            break;
+                                        case 0:
+                                            {
+                                    <span>未处理</span>
+                                            }
+                                            break;
+                                        case 511:
+                                            {
+                                    <span>罚款处理</span>
+                                            }
+                                            break;
+                                        case 888:
+                                            {
+                                    <span>已移交</span>
+                                            }
+                                            ;
+                                            break;
+                                        case 999:
+                                            {
+                                    <span>已归档</span>
+                                            }
+                                            break;
+                                        case 777:
+                                            {
+                                    <span>教育处理</span>
+                                            }
+                                            break;
+                                        default:
+                                            {
+                                            }
+                                            break;
+                                    }
+                                }
+                                <span></span>
+                            </td>
+
+                            <th class='formTitle'>违章日期：</th>
+                            <td class='formValue'>
+                                <input id="CheckDate" name="CheckDate" value="@(Model.CheckDate.ToString(AppConst.DateFormatLong))"  type="text" class="txt" />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <th class='formTitle'>车牌号码：</th>
+                            <td class='formValue'>
+                                <input id="CarNo" name="CarNo" value="@Model.CarNo"  type="text" class="txt" />
+                            </td>
+                            <th class='formTitle'>车辆类型：</th>
+                            <td class='formValue'>
+                                @ViewBag.CarType
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class='formTitle'>执法部门：</th>
+                            <td class='formValue'>
+                                <input id="DeptName" name="DeptName" value="@Model.DeptName"  type="text" class="txt" />
+                            </td>
+                            <th class='formTitle'>执法人员：</th>
+                            <td class='formValue'>
+                                <input id="Yiyu_OrderNo" name="OrderNo" type="text" value="@Model.PersonName1,@Model.PersonName2" class="txt" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class='formTitle'>违章地点：</th>
+                            <td class='formValue' colspan="3">
+                                <input id="Yiyu_PunishMax" name="PunishMax" value="@Model.CheckSignAddress" type="text" class="txt" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+                @{
+                    if (Model.State == 511)
+                    {
+                    <fieldset style="margin-top: 5px; padding: 5px;">
+                        <legend>当事人信息</legend>
+                        <table class="form">
+                            <tr>
+                                <th class='formTitle'>当事人姓名：</th>
+                                <td class='formValue'>
+                                    <input id="Name" name="Name" value="@Model.Name"  type="text" class="txt required" datacol="yes" err="当事人姓名" checkexpession="NotNull"  />
+                                </td>
+                                <th class='formTitle'>证件类型：</th>
+                                <td class='formValue'>
+                                    @Html.DropDownListFor(t => t.ZjType, (ViewData["TargetPaperTypes"] as IEnumerable<SelectListItem>), new { @class = "txtselect" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class='formTitle'>证件号码：</th>
+                                <td class='formValue'>
+                                    <input id="PersonNo" name="PersonNo" value="@Model.PersonNo"  type="text" class="txt" />
+                                </td>
+                                <th class='formTitle'>年  龄：</th>
+                                <td class='formValue'>
+                                    <input id="Age" name="Age" value="@Model.Age"   type="text" class="txt" />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class='formTitle'>性 别：</th>
+                                <td class='formValue'>
+                                    <select id="SelSex" name="Sex" style="font-family: '微软雅黑';" class="txtselect">
+                                        <option value="1" @(Model.Sex == 1 ? "selected=selected" : "") >男</option>
+                                        <option value="0" @(Model.Sex == 0 ? "selected=selected" : "")>女</option>
+                                    </select>
+                                </td>
+                                <th class='formTitle'>联系电话：</th>
+                                <td class='formValue'>
+                                    <input id="Telephone" name="Telephone" type="text" value="@Model.Telephone" class="txt" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="formTitle">地址：</th>
+                                <td class="formValue" colspan="3">
+                                    <input id="Address" name="Address" type="text" class="txt required" value="@Model.Address" datacol="yes" err="地址" checkexpession="NotNull"  />
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    }
+                }
+                @{
+                    if (Model.State == 511)
+                    {
+                    <fieldset style="margin-top: 5px; padding: 5px;">
+                        <legend>处罚信息</legend>
+                        <table class="form">
+                            <tr>
+                                <th class='formTitle'>决定书编号：</th>
+                                <td class='formValue'>
+                                    <input id="CfapproveNo"  name="CfapproveNo" value="@Model.CfapproveNo" type="text" class="txt" />
+                                </td>
+                                <th class='formTitle'></th>
+                                <td class='formValue'></td>
+                            </tr>
+                            <tr>
+
+                                <th class='formTitle'>处理日期：</th>
+                                <td class='formValue'>
+                                    <input id="CbrDate" readonly="readonly" value="@Model.CbrDate"  name="CbrDate" type="text" class="txt required" datacol="yes" err="处理日期" checkexpession="NotNull"  />
+                                </td>
+                                <th class='formTitle'>缴纳方式：</th>
+                                <td class='formValue'>
+                                    @Html.DropDownListFor(t => t.Job, (ViewData["PaymentTypes"] as IEnumerable<SelectListItem>), new { @class = "txtselect" })
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class='formTitle'>处罚金额：</th>
+                                <td class='formValue'>
+                                    <input  name="Money" id="Money" type="text" value="@Model.Money" readonly="readonly" class="txt" />
+                                </td>
+                                <th class='formTitle'>罚没款票据号：</th>
+                                <td class='formValue'>
+                                    <input  name="PaymentNum" id="PaymentNum" type="text" value="@Model.PaymentNum" readonly="readonly" class="txt" />
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    }
+                }
+
+                <div style="text-align: center;">
+                    @{
+                        if (Model.State == 0)
+                        {
+                            if (isEdu)
+                            {
+                        <input type="button" style="margin-top: 10px;" class="btnSearch" value="教育处理" onclick="Education()" />
+                            }
+                            if (isFine)
+                            {
+                        <input type="button" style="margin-top: 10px;" class="btnSearch" value="处 理" onclick="handle()">                 
+                            }
+                        }
+                        else if (Model.State == 511 && isFine)
+                        {
+                        <input type="button" style="margin-top: 10px;" class="btnSearch" value="打印决定书（带章）" onclick="doPrint('SimpleCarChapter')">      
+                        <input type="button" style="margin-top: 10px;" class="btnSearch" value="打印决定书" onclick="doPrint('SimpleCar')">      
+@*<input type="button" style="margin-top: 10px;" class="btnSearch" value="打印委托单" onclick="doPrint('CarOrder')">*@
+                        <input type="button" style="margin-top: 10px;" class="btnSearch" value="打印票据" onclick="doPrint('CarBill')">      
+                        }
+                    }
+                    <input type="button" style="margin-top: 10px;" class="btnSearch" value="关 闭" onclick="cancel()">
+                </div>
+
+                <fieldset style="margin-top: 5px; padding: 5px;">
+                    <legend>操作日志</legend>
+                    <div style="width: 100%">
+                        <table id="gridTable_yiju"></table>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var id = GetQuery("id");
+        GetLogGrid(id);
+    });
+
+    //加载操作日志
+    function GetLogGrid(id) {
+        $("#gridTable_yiju").jqGrid({
+            url: '@Url.Action("QueryListJsonHandle")?id=' + id,
+            queryParams: { Checkid: id },
+            datatype: "json",
+            width: 800,
+            height: 150,
+            colModel: [
+                { label: "主键", name: "Id", index: "Id", hidden: true },
+                { label: "操作人", name: "RealName", index: "RealName", width: 100 },
+                { label: "操作说明", name: "HandContent", index: "HandContent", width: 120 },
+                { label: "操作IP", name: "HandleIp", index: "HandleIp", width: 130 },
+                { label: "操作时间", name: "HandDate", index: "HandDate", width: 150 },
+                { label: "备注", name: "HandReason", index: "HandReason", width: 200 }
+            ],
+            viewrecords: true,
+            rownumbers: true,
+            shrinkToFit: false,
+            gridview: true
+        });
+    }
+
+    //处理
+    function handle() {
+        if (!CheckDataValid('#yiju_form')) {
+            return false;
+        }
+        else {
+            var id = $("#Yiyu_Id").val();
+            var url = '@Url.Action("TransactEntry")?id=' + id + '&rnd=' + Math.random();
+            $.dialog({
+                id: 'CarHandle', zIndex: 9999, width: 643, height: 330, max: false, lock: true, title: '违停处理',
+                content: 'url:' + url,
+                button: [
+                    {
+                        name: '处 理',
+                        className: 'green',
+                        callback: function () {
+                            top.frames["CarHandle"].AcceptClick();
+                            return false;
+                        }
+                    },
+                    {
+                        name: '关 闭'
+                    }
+                ]
+            });
+        }
+    }
+
+    //教育处理
+    function Education() {
+        var id = $("#Yiyu_Id").val();
+        var url = "@Url.Action("TransactLog", "PenaltyParking")?con=" + escape('教育处理') + "&checkid=" + id;
+        $.dialog({
+            id: "Handle", zIndex: 9999, width: 500, height: 120, lock: true, max: false, resize: false, extendDrag: true,
+            title: "教育处理",
+            content: 'url:' + url,
+            button: [
+                {
+                    name: '保 存',
+                    className: 'green',
+                    callback: function () {
+                        top.frames["Handle"].AcceptClick();
+                    }
+                },
+                {
+                    name: '关 闭'
+                }
+            ]
+        });
+    }
+
+    //处理返回调用方法
+    function ApplyReturn(state) {
+        tipDialog("操作成功", 1, 1);
+        location.reload();
+    }
+
+    //打印文书
+    function doPrint(writIdentify) {
+        var id = $("#Yiyu_Id").val();
+        getAjax('@Url.Action("GetCaseWrit", "PenaltyCaseWrit")', { writIdentify: writIdentify, resourceId: id }, function (url) {
+            var mydoc;
+            var myDocApp = new ActiveXObject("word.Application");
+            myDocApp.visible = true;
+            myDocApp.activate();
+            mydoc = myDocApp.documents.add(url);
+            try {
+                mydoc.PrintPreview();
+            } catch (e) {
+                alert("打印预览失败，请确认您的电脑上装有office！");
+            }
+        });
+    }
+
+    function cancel() {
+        var api = frameElement.api, w = api.opener;
+        api.close();
+    }
+
+    //打印
+    function PrintFile(fileId) {
+        window.open('@Url.Action("FilePrintView", "PenaltyParking")?fileId=' + fileId);
+    }
+
+</script>

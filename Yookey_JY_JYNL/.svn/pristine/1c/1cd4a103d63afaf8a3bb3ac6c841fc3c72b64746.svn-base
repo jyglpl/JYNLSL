@@ -1,0 +1,163 @@
+﻿@using Yookey.WisdomClassed.SIP.Common
+@using Yookey.WisdomClassed.SIP.Model.Hr
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+   <meta name="viewport" content="width=device-width" />
+    <title>考试统计表</title>
+        <link href="@Url.Content("~/Librarys/css/chosen.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/css/sipac.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Librarys/own/css/bootstrap-table.css")" rel="stylesheet" />
+    <link href="~/Librarys/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Librarys/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/common.js")"></script>
+    <link href= "@Url.Content("~/Styles/common.css")" rel="stylesheet" />
+        <link href="~/Librarys/css/chosen.min.css" rel="stylesheet" />
+    <link href="~/Librarys/css/sipac.css" rel="stylesheet" />
+    <link href="~/Styles/common.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Librarys/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="~/Librarys/js/chosen.jquery.min.js"></script>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <link href="@Url.Content("~/Librarys/casepic/css/style.css")" rel="stylesheet" />
+
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--jqgrid表格组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+</head>
+<body>
+    <div id="layout" class="layout">
+          <div class="layoutPanel">
+            <!--列表-->
+            <div id="grid_List">
+                <div class=".s_sb_cont sipac_editbox sipac_form" style="margin: 1px; margin-top: 0px; margin-bottom: 0px;">
+                    <table border="0" class="form-find" style="height: 45px; width: 100%">
+                        <tr>
+                            <th>试卷名称：</th>
+                            <td style="width: 130px;">
+                                <select id="drpCompany" class="select" style="width: 120px;"></select>
+                            </td>
+                             <th>职务：</th>
+                            <td style="width: 130px;">
+                                <select id="zhiwu" class="select" style="width: 120px;"></select>
+                            </td>
+                            <th>排序：</th>
+                            <td style="width: 130px;">
+                                <select id="paixu" class="select" style="width: 120px;"></select>
+                            </td>
+                             <th>学生姓名：</th>
+                            <td >
+                                 @Html.TextBox("Name", "", new { @class = "s_input" ,@style="width:100.6px;height:10.6px;"})
+                            </td>
+                            <th>部门：</th>
+                            <td style="width: 130px;">
+                                <select id="bumen" class="select" style="width: 120px;"></select>
+                            </td>
+                            <th style="width: 80px">成绩区间：</th>
+                            <td style="width: 280px;">
+                                 @Html.TextBox("qu", "", new { @class = "s_input",@style="width:100.6px;height:10.6px;" })
+                                &nbsp;至&nbsp;
+                                @Html.TextBox("jian", "", new { @class = "s_input",@style="width:100.6px;height:10.6px;" })
+                            </td>
+                            <td style="width: 160px;">
+                                <span>已考/未考：</span>
+                                <select class="select" id="caseType">
+                                    <option value="">==请选择==</option>
+                                    <option value="00280001">已考</option>
+                                    <option value="00280002">未考</option>
+                                </select>
+                            </td>
+                            <td style="width: 150px;">
+                                <input type="button" class="btnSearch" value="查 询" onclick="javascript: Search();" />
+                                <input type="button" class="btnSearch" value="导 出" onclick="javascript: Export();" />
+                            </td>
+                            <td style="text-align: right; width: auto;"></td>
+                        </tr>
+                    </table>
+                </div>
+                <table id="gridTable"></table>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            GetGrid();
+        });
+
+        function GetGrid() {
+            //var companyId = $("#drpCompany").val();
+            //var deptId = $("#drpDepartment").val();
+            //var startTime = $("#startTime").val();
+            //var endTime = $("#endTime").val();
+            $("#gridTable").jqGrid({
+                url: '@Url.Action("GetCompanyTest", "TestStatistic")',
+                datatype: "json",
+                postData:
+                  {
+                      //companyId: companyId,
+                      //deptId: deptId,
+                      //startTime: startTime,
+                      //endTime: endTime
+                  },
+                height: $(window).height() - 155,
+                autowidth: true,
+                colModel: [
+                    { label: "试卷名称", name: "TE", index: "TE", width: 110, align: 'center' },
+                    { label: "姓名", name: "DOCUMENT_CONTENT", index: "DOCUMENT_CONTENT", width: 110, align: 'center' },
+                    { label: "部门名称", name: "INCOMING_DATE", index: "INCOMING_DATE", width: 110, align: 'center' },
+                    { label: "试卷总分", name: "FR", index: "FR", width: 90 },
+                    { label: "最高得分", name: "SO", index: "SO", width: 100, align: 'center' },
+                    { label: "已考次数", name: "ZS", index: "ZS", width: 100, align: 'center' },
+                    { label: "考试时间", name: "DATE", index: "DATE", width: 100, align: 'center' },
+                    {
+                        label: "已考/未考", name: "KS", index: "KS", width: 100, align: 'center', formatter: function (value) {
+                            if (value==0) {
+                                return '已考';
+                            }
+                        }
+                    },
+                    {
+                        label: "操作", name: "Id", index: "Id", width: 160, align: 'center', formatter: function (value, grid, rows, state) {
+                            var btns = "<input type='button'class='btnSearch' onclick='showAttenanceDetail(\"" + value + "\")' value='详细'/>";
+                            return btns;
+                        }
+                    }
+                ],
+                viewrecords: true,
+                rowList: [30, 50, 100, 500, 1000],
+                pager: "#gridPager",
+                rownumbers: true,
+                shrinkToFit: false,
+                gridview: true,
+                onSelectRow: function (rowid, iRow, iCol, e) {
+
+                },
+                ondblClickRow: function (rowid, iRow, iCol, e) {
+            }
+            });
+        }
+    </script>
+</body>
+</html>

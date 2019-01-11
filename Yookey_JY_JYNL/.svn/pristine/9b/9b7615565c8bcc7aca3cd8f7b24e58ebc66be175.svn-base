@@ -1,0 +1,489 @@
+﻿@using System.Web.UI.WebControls
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>违章停车一级审核</title>
+    <style type="text/css">
+        /* ---------- gallery styles start here ----------------------- */
+        .gallery {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+            .gallery li {
+                margin-bottom: 10px;
+                margin-left: 13px;
+                margin-right: 13px;
+                padding: 0;
+                float: left;
+            }
+
+            .gallery img {
+                background: #fff;
+                border: solid 1px #ccc;
+                padding: 4px;
+                width: 250px;
+                height: 250px;
+            }
+
+            .gallery span {
+                width: 20px;
+                height: 18px;
+                display: block;
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .gallery a {
+                text-decoration: none;
+            }
+
+                .gallery a:hover img {
+                    border-color: #666;
+                }
+
+                .gallery a:hover span {
+                    background-position: left -22px;
+                }
+    </style>
+
+
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--jqgrid表格组件end-->
+
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件end-->
+
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")" type="text/javascript"></script>
+    <!--引入弹窗组件end-->
+
+
+    <!--照片查看组件-->
+    <link href="@Url.Content("~/Librarys/lightbox/css/jquery.lightbox-0.5.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Librarys/lightbox/js/jquery.lightbox-0.5.pack.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Librarys/lightbox/js/script.js")" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#main").splitter({
+                type: "h",
+                outline: false,
+                minTop: 50, sizeTop: 50, maxTop: 50,
+                anchorToWindow: true,
+                accessKey: "L"
+            });
+
+            $("#layout").splitter({
+                type: "v",
+                outline: true,
+                minLeft: 370, sizeLeft: 370,
+                anchorToWindow: true,
+                accessKey: "L"
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        $(function () {
+            BindCompany();
+            GetGrid();
+        });
+
+        //绑定单位（大队）
+        function BindCompany() {
+            getAjax("@Url.Action("GetCompanyDropList", "Company", new { area = "CommonModule" })", { controlId: "drpCompany" }, function (cmsg) {
+                eval(cmsg);
+                BindDepartment();
+            });
+        }
+        //绑定部门（中队）
+        function BindDepartment() {
+            getAjax("@Url.Action("GetDepartmentDropList", "Department", new { area = "CommonModule" })", { companyId: $("#drpCompany").val(), controlId: "drpDepartment" }, function (dmsg) {
+                eval(dmsg);
+            });
+        }
+    </script>
+
+</head>
+<body style="overflow: auto;">
+    <div id="main">
+        <div id="top" style="height: 100px; width: 100%;">
+            <table border="0" class="form-find" style="height: 45px;">
+                <tr>
+                    <th>执法部门：
+                    </th>
+                    <td>
+                        <select id="drpCompany" class="select" style="width: 120px;" onchange="javascript:BindDepartment();"></select>
+                        <select id="drpDepartment" class="select" style="width: 100px;"></select>
+                    </td>
+                    <th>贴单编号：
+                    </th>
+                    <td>
+                        <input type="text" style="width: 100px;" class="txt" id="txtNoticeNo" />
+                    </td>
+                    <th>车牌号码：
+                    </th>
+                    <td>
+                        <input type="text" style="width: 100px;" class="txt" id="TextCarNo" />
+                    </td>
+                    <th>状态：
+                    </th>
+                    <td>
+                        <select class="select" style="width: 90px;" id="state">
+                            <option value="">==全部==</option>
+                            <option value="0" selected="selected">未审核</option>
+                            <option value="1">审核通过</option>
+                            <option value="404">审核作废</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="btnSearch" type="button" class="btnSearch" onclick="btn_Search()" value="搜 索" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="layout" class="layout">
+            <!--左边-->
+            <div class="layoutPanel layout-west">
+                <!--列表-->
+                <div id="grid_List">
+                    <table id="gridTable"></table>
+                </div>
+                <!--视图-->
+                <div id="grid_View" class="ScrollBar">
+                </div>
+            </div>
+            <!--右边-->
+            <div class="layoutPanel layout-center" style="overflow-y: auto;">
+                <!--加载图片-->
+                <ul class="gallery" style="display: inline-block;">
+                    <li class="galleryli"><a href="@Url.Content("~/Content/images/noPic.jpg")" title="1" target="_blank">
+                        <img src="@Url.Content("~/Content/images/noPic.jpg")" alt="image" id="img0" /></a></li>
+                    <li class="galleryli"><a href="@Url.Content("~/Content/images/noPic.jpg")" title="2" target="_blank">
+                        <img src="@Url.Content("~/Content/images/noPic.jpg")" id="img1" /></a></li>
+                    <li class="galleryli"><a href="@Url.Content("~/Content/images/noPic.jpg")" title="3" target="_blank">
+                        <img src="@Url.Content("~/Content/images/noPic.jpg")" id="img2" /></a></li>
+                </ul>
+                <table class="form" style="width: 832px; margin-left: 15px;">
+                    <tr>
+
+                        <th class="formTitle">车牌号码：</th>
+                        <td class="formValue">
+                            <input id="CarNo" name="CarNo" type="text" class="txt" />
+                        </td>
+                        <th class="formTitle">车辆类型：</th>
+                        <td class="formValue">
+                            @Html.Hidden("CarId")
+                            @Html.DropDownList("DropCarType", (ViewData["Types"] as IEnumerable<SelectListItem>), new { @class = "txtselect" })
+                        </td>
+                        <th class="formTitle">贴单编号：</th>
+                        <td class="formValue">
+                            <input id="NoticeNo" name="NoticeNo" type="text" class="txt" disabled="disabled" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">所属中队：</th>
+                        <td class="formValue">
+                            <input id="DeptName" name="DeptName" type="text" class="txt" disabled="disabled" />
+                        </td>
+                        <th class="formTitle">执法队员一：</th>
+                        <td class="formValue">
+                            <input id="PersonId1" name="PersonId1" type="text" class="txt" disabled="disabled" />
+                        </td>
+                        <th class="formTitle">执法队员二：</th>
+                        <td class="formValue">
+                            <input id="PersonId2" name="PersonId2" type="text" class="txt" disabled="disabled" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="formTitle">违章日期：</th>
+                        <td class="formValue">
+                            <input id="CheckDate" name="CheckDate" type="text" class="txt" readonly="readonly" disabled="disabled" />
+                        </td>
+                        <th class="formTitle">违章地点：</th>
+                        <td class="formValue" colspan="3">
+                            <input id="CheckSignAddress" name="CheckSignAddress" type="text" class="txt" />
+                        </td>
+                    </tr>
+                </table>
+                <div class="btns" style="width: 650px; margin-left: 90px; height: 70px; line-height: 70px; text-align: center; display: none" id="btnS">
+                    <input id="btnSave" type="button" class="btnSearch able" onclick="btn_Save()" value="保 存" />
+                    <input id="btnPass" type="button" class="btnSearch able" onclick="btn_Pass()" value="审核通过" />
+                    <input id="btnLose" type="button" class="btnSearch able" onclick="btn_Lose()" value="作废处理" />
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    var selRowIndex = 0;
+
+    //加载数据列表
+    function GetGrid() {
+        var companyId = $("#drpCompany").val();
+        var deptId = $("#drpDepartment").val();
+
+        $("#gridTable").jqGrid({
+            url: '@Url.Action("QueryListJsonFirst")',
+            postData: { companyId: companyId, deptId: deptId, state: 0 },
+            datatype: "json",
+            treeGrid: false,
+            treeGridModel: "nested",
+            ExpandColumn: "Code",
+            height: $(window).height() - 105,
+            autowidth: true,
+            colModel: [
+                { label: "主键", name: "Id", index: "Id", hidden: true },
+                { label: "车牌号码", name: "CarNo", index: "CarNo", width: 80, align: 'center' },
+                { label: "违章日期", name: "CheckDate", index: "CheckDate", width: 130, align: 'center' },
+                { label: "离自动审核", name: "Hours", index: "Hours", width: 90, align: 'center' }
+            ],
+            pager: false,
+            rownumbers: true,
+            rowNum: 3000,
+            shrinkToFit: false,
+            onSelectRow: function (rowid, iRow, iCol, e) {
+                btn_detail();
+                selRowIndex = rowid;
+                //alert($("#listInfoTable #gridTable").next()[0].Id);
+            }
+        });
+    }
+
+    //查看车辆详情
+    function btn_detail() {
+        var id = GetJqGridRowValue("#gridTable", "Id");
+        $.ajax({
+            url: '@Url.Action("CheckMiddleDetails")',
+            data: { id: id, rnd: Math.random() },
+            datatype: 'json',
+            success: function (data) {
+                $("#NoticeNo").val(data.NoticeNo);
+                $("#CarNo").val(data.CarNo);
+                $("#DropCarType").val(data.CarType);
+                $("#DropDept").val(data.DeptId);
+                $("#CheckDate").val(data.CheckDate);
+                $("#PersonId1").val(data.PersonFirst);
+                $("#PersonId2").val(data.PersonSecond);
+                $("#CheckSignAddress").val(data.Address);
+                $("#DeptName").val(data.DeptName);
+                $("#CarId").val(data.Id);
+                $("img[id^='img']").attr('src', '@Url.Content("~/Content/images/noPic.jpg")');
+                for (var i in data.PicItems) {
+                    $("#img" + i).attr('src', data.PicItems[i]);
+                    $("#img" + i).parent("a").attr("href", data.PicItems[i]);
+                }
+                if (data.State == '0') {
+                    $("#btnS").show();
+                }
+                else {
+                    $("#btnS").hide();
+                }
+            }
+        });
+    }
+
+    //数据查询
+    function btn_Search() {
+        var companyId = $("#drpCompany").val();
+        var deptId = $("#drpDepartment").val();
+        var noticeNo = $("#txtNoticeNo").val();
+        var carNo = $("#TextCarNo").val();
+        var state = $("#state").val();
+
+        $("#gridTable").jqGrid('setGridParam', {
+            url: '@Url.Action("QueryListJsonFirst")',
+            postData: { companyId: companyId, deptId: deptId, noticeNo: noticeNo, carNo: carNo, state: state },
+            page: 1
+        }).trigger('reloadGrid');
+        ClearForm();
+    }
+
+    //数据保存
+    function btn_Save() {
+        var carNo = $("#CarNo").val();
+        var carType = $("#DropCarType").val();
+        var noticeNo = $("#NoticeNo").val();
+        var address = $("#CheckSignAddress").val();
+        var id = $("#CarId").val();
+        if (IsChecked(id)) {
+            AjaxJson('@Url.Action("SaveMiddle")', {
+                id: id,
+                carNo: carNo,
+                carType: carType,
+                noticeNo: noticeNo,
+                address: address,
+                rnd: Math.random()
+            }, function (data) {
+                if (data.rtState == 0) {
+                    tipDialog("保存成功", 1, 1);
+                } else {
+                    tipDialog("保存出现异常,请联系管理员！", 1, 0);
+                }
+            });
+        }
+    }
+
+    //审核通过
+    function btn_Pass() {
+        var id = $("#CarId").val();
+        if (IsChecked(id)) {
+            if (CheckRepeat()) {
+                confirmDialog('系统提示', '该车辆为重复贴单，是否需要继续审批？', function (cdata) {
+                    if (cdata) {
+                        Audit(id);
+                    } else {
+                        return;
+                    }
+                });
+            } else {
+                Audit(id);
+            }
+        }
+    }
+
+
+
+    //审核通过
+    function Audit(id) {
+        AjaxJson('@Url.Action("MiddleHandle")', { id: id, handle: 'pass', rnd: Math.random() }, function (data) {
+            if (data.rtState == 0) {
+                tipDialog("操作成功", 1, 1);
+
+                var selectedindex = $("tr[tabindex='0']").index();  //获取选择的第几个
+
+                //移除当前选择的数据,再选择下一行数据
+                var selectedId = $("#gridTable").jqGrid("getGridParam", "selrow");
+                $("#gridTable").jqGrid('delRowData', selectedId);
+
+
+                var rowListNum = $("#gridTable").jqGrid('getGridParam', 'records');
+                if (rowListNum > 0) {
+                    if (rowListNum > selectedindex) {
+                        $("#gridTable").jqGrid('setSelection', $("#gridTable").getDataIDs()[selectedindex - 1]);
+                    }
+                    else {
+                        $("#gridTable").jqGrid('setSelection', $("#gridTable").getDataIDs()[rowListNum - 1]);
+                    }
+                } else {
+                    ClearForm();
+                }
+            } else {
+                tipDialog("保存出现异常,请联系管理员！", 1, 0);
+            }
+        });
+    }
+
+
+    //验证是否重复贴单
+    function CheckRepeat() {
+        var isCarRepeat = false;  //是否重复贴单
+        AjaxJson('@Url.Action("CheckRepeat", "PenaltyParking")', { carNo: $("#CarNo").val(), type: 'First', rnd: Math.random() }, function (data) {
+            if (data.rtState > 1) {
+                isCarRepeat = true;
+            } else {
+                isCarRepeat = false;
+            }
+        });
+        return isCarRepeat;
+    }
+
+    //作废处理
+    function btn_Lose() {
+        var id = $("#CarId").val();
+        if (IsChecked(id)) {
+            var url = "@Url.Action("TransactLog", "PenaltyParking")?con=" + escape("一级审核作废") + "&checkid=" + id + '&rnd=' + Math.random();
+            $.dialog({
+                id: "Handle",
+                width: 500,
+                height: 120,
+                lock: true,
+                max: false,
+                resize: false,
+                extendDrag: true,
+                title: "作废处理",
+                content: 'url:' + url,
+                button: [
+                    {
+                        name: '确 定',
+                        className: 'green',
+                        callback: function () {
+                            top.frames["Handle"].AcceptClick();
+                        }
+                    },
+                    {
+                        name: '关 闭'
+                    }
+                ]
+            });
+        }
+    }
+
+    function ApplyReturn(state) {
+        if (state == 1) {
+            tipDialog("操作成功", 1, 1);
+
+            var selectedindex = $("tr[tabindex='0']").index();  //获取选择的第几个
+            //移除当前选择的数据,再选择下一行数据
+            var selectedId = $("#gridTable").jqGrid("getGridParam", "selrow");
+            $("#gridTable").jqGrid('delRowData', selectedId);
+
+
+            var rowListNum = $("#gridTable").jqGrid('getGridParam', 'records');
+            if (rowListNum > 0) {
+                if (rowListNum > selectedindex) {
+                    $("#gridTable").jqGrid('setSelection', $("#gridTable").getDataIDs()[selectedindex - 1]);
+                }
+                else {
+                    $("#gridTable").jqGrid('setSelection', $("#gridTable").getDataIDs()[rowListNum - 1]);
+                }
+            } else {
+                ClearForm();
+            }
+        }
+    }
+
+    //清除表单
+    function ClearForm() {
+        $("#NoticeNo").val("");
+        $("#CarNo").val("");
+        $("#DropCarType").val("");
+        $("#DropDept").val("");
+        $("#CheckDate").val("");
+        $("#PersonId1").val("");
+        $("#PersonId2").val("");
+        $("#CheckSignAddress").val("");
+        $("#CarId").val("");
+        $("img[id^='img']").attr('src', '@Url.Content("~/Content/images/noPic.jpg")');
+    }
+
+</script>

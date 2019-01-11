@@ -1,0 +1,73 @@
+﻿@using Yookey.WisdomClassed.SIP.Model.Crm
+@using Yookey.WisdomClassed.SIP.Membership
+
+@{
+    var company = ViewData["Company"] as CrmCompanyEntity;
+
+
+    //验证权限
+    var isCityPermission = this.Html.IsAllowed("CityPermission");
+}
+
+@model List<CrmDepartmentEntity>
+<html lang="en" style="height: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>网格化台账管理</title>
+    <link href="@Url.Content("~/Content/Files/css/forgm.css")" rel="stylesheet" />
+</head>
+<body>
+    <div class="contentBox">
+        <div class="navHeader">
+            <p>
+                <a class="homeIcon" href="#"></a>
+                @{
+                    if (isCityPermission)
+                    {
+                    <b></b>
+                    <a href="@Url.Action("Index", "GridManagement")">台账管理</a>
+                    }
+                }
+                <b></b>
+                <a href="#">@company.ShortName</a>
+            </p>
+        </div>
+        @*<div class="tool clearfix">
+            <p>
+                <b></b>
+                <span>修改</span>
+            </p>
+        </div>*@
+        <div class="allDistrict">
+            <p>全部单位</p>
+            <div class="unitList clearfix">
+                <ul class="">
+
+                    @{
+                        if (Model != null && Model.Any())
+                        {
+                            int tempIndex = 0;
+
+                            foreach (var entity in Model)
+                            {
+                                tempIndex++;
+
+                        <li class="@(tempIndex % 6 == 0 ? "nthLiMargin " : "")marginBot">
+                            <a href="@Url.Action("Folder", "GridManagement")?companyId=@company.Id&departmentId=@(entity.Id)">
+                                <p>
+                                    <img src="@Url.Content("~/Content/Files/images/fileImg.png")" alt="">
+                                </p>
+                                <p class="textUnit">@entity.ShortName</p>
+                            </a>
+                        </li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

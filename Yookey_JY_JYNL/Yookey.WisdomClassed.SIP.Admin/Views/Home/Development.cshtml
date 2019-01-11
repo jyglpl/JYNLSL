@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <style type="text/css">
+        body {
+            background-color: #F7F7F7;
+        }
+
+        .not-support-browser {
+            background-color: #FFFFFF;
+            border: 1px solid #CED0D3;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            width: 570px;
+            height: 190px;
+            margin: 170px auto;
+            padding: 0px;
+        }
+
+        .not-support-browser-contant {
+            color: #666666;
+            font-size: 18px;
+            margin-right: 10px;
+            margin-left: 280px;
+            text-align: center;
+            width: 310px;
+            margin-top: -85px;
+        }
+
+        .not-support-browser-contantleft {
+            color: #666666;
+            font-size: 18px;
+            margin-left: 80px;
+            margin-top: 60px;
+            width: 200px;
+            text-align: left;
+        }
+
+        .not-support-browser-contantleftbottom {
+            color: #666666;
+            font-size: 18px;
+            margin-left: 80px;
+            margin-top: 10px;
+            width: 200px;
+            text-align: left;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>此页面正在开发测试中</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <!--布局组件start-->
+    <script src="@Url.Content("~/Librarys/layout/splitter.js")"></script>
+    <!--布局组件end-->
+</head>
+<body>
+    <!-- 内容区 -->
+    <div class="not-support-browser">
+        <div class="not-support-browser-contantleft">
+            <font style="font-size: 26px; font-family: 黑体;">此页面</font>
+
+        </div>
+        <div class="not-support-browser-contantleftbottom">
+            <h9 style="font-size: 20px">正在开发测试中...</h9>
+        </div>
+        <div class="not-support-browser-contant">
+
+            <img src="@Url.Content("~/Content/Images/Development.png")">
+        </div>
+    </div>
+
+</body>
+</html>

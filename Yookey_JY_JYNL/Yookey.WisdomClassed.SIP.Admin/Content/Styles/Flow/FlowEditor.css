@@ -1,0 +1,47 @@
+﻿body {margin: 0px;cursor: default;}
+#toplogo{ height: 78px;/*background-image: url('../../Images/floweditor/bg-1.jpg');*/background: #4A5B79;background-repeat: repeat-x;}
+#mainCenter{border: solid 1px #aaa; text-align: center;padding-top: 5px;}
+.toolsdt{margin-top: 0px; position: absolute; top: 50px; z-index: 14; left: 500px;}
+.button {padding-right: 0px;background-repeat: no-repeat;padding-left: 15px;border: solid 1px #555588;background-color: #dddddd;cursor:pointer;height: 20px;}
+td{background-color: white}
+.ValueBox {border: solid 1px #aaaaaa;}
+#db{ width: 200px;border: solid 1px #aaaaaa;right: 100px;top: 50px;padding: 5px;font-size: 10pt;position: absolute;background-color: white;height: 580px;background-image: url("../Images/FlowEditor/002.jpg");}
+#dh{ padding: 5px; color: Gray; cursor:pointer;}
+#div_AttributePlan{border: solid 1px #bbbbbb; height: 350px; color: #333333; display: block;}
+#div_AttributePlan dt{ height: 20px;}
+.TableBorder{border-color: #000000; border-bottom-style:none;border-bottom-width:0px;border-left-style:none;border-left-width:0px;border-right-style:none;border-right-width:0px;border-top-style:none;border-top-width:0px;FONT-SIZE: 9pt;color:#3d3d3d;font-family:"宋体";border-width:2;BORDER-COLLAPSE: collapse;border-color:#000000;}
+
+.btnmouse{background-image: url('../../Images/floweditor/mouse.gif')}
+.btnadd{background-image: url('../../Images/floweditor/add.gif')}
+.btnline{background-image: url('../../Images/floweditor/line.gif')}
+.btndelete{background-image: url('../../Images/floweditor/delete.gif')}
+.btnProperpies{background-image: url('../../Images/floweditor/Properpies.gif')}
+.btnGrid{background-image: url('../../Images/floweditor/Grid.gif')}
+
+/***********************************************************/
+v\:*{behavior: url(#default#VML);}
+.mainBody{width:100%;height:100%;margin:0px; /*background-image:url(../images/bg.jpg);*/position:relative;cursor:default;}
+.PointText{cursor:default;}
+/***********************************************************/
+
+/***********************************************************/
+#aContextMenu{margin:0px;padding:0px;border:solid 1px #555588;width:120px;height:173px;background-color:#f5f5f5;position:absolute;text-align:center;}
+ul{margin:5px;padding:0px;width:95%;}
+li{list-style-type:none;margin:0px;padding:0px;width:100%;}
+.MenuItem{width:90%;padding:3px;color:Black ;text-decoration:none;float:left;font-size:13px;text-align:left;cursor:default;}
+.MenuItem:hover{width:90%;padding:3px;color:Black ;text-decoration:none;float:left;font-size:13px;text-align:left;cursor:default;background-color:#9999bb;}
+.MenuItemIco{border:none;width:16px;height:15px;vertical-align:text-bottom;margin-right:6px;}
+.MenuItemSplit{border-bottom:solid 1px #cccccc; margin:3px; height:0px; clear:both; padding:0px; margin-left:0px;font-size:0px;overflow: hidden;}
+
+
+
+a{text-decoration: none;color: #000;font-size: 14px;}
+#tabbox{ width:600px; overflow:hidden; margin:0 auto;}
+.tab_conbox{border: 1px solid #999;border-top: none;}
+.tab_con{ display:none;}
+.tabs{height: 32px;border-bottom:1px solid #999;border-left: 1px solid #999;width: 100%;}
+.tabs li{height:31px;line-height:31px;float:left;border:1px solid #999;border-left:none;margin-bottom: -1px;background: #e0e0e0;overflow: hidden;position: relative;}
+.tabs li a {display: block;padding: 0 20px;border: 1px solid #fff;outline: none;}
+.tabs li a:hover {background: #ccc;}	
+.tabs .thistab,.tabs .thistab a:hover{background: #fff;border-bottom: 1px solid #fff;}
+.tab_con {padding:12px;font-size: 14px; line-height:175%;}

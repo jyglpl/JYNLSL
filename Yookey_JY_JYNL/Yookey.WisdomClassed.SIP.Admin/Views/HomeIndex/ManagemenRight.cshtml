@@ -1,0 +1,492 @@
+﻿<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>日常管理</title>
+    <link href="@Url.Content("~/Content/Main/css/border.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Main/css/bootstrap.min.css")" rel="stylesheet" />
+    <!--引入时间组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--引入时间组件end-->
+    <style>
+        html, body {
+            height: 100%;
+            background: #efeff4;
+        }
+    </style>
+</head>
+<body>
+    <!-- 右侧内容 -->
+    <div class="clearfixed approve">
+        <div class="form-inline" style="text-align: left; margin-bottom: 20px;">
+            <label for="">受理时间:</label>
+            @Html.TextBox("applyTime", "", new { @class = "form-control", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd'})" })
+            <button class="btn btn-primary" onclick="Search();">搜索</button>
+        </div>
+        <div class="clearfixed mt10">
+            <div class="approveSec fl">
+                <div class="title">部门事项统计</div>
+                <div id="echartsOne" style="width: 100%; height: 300px"></div>
+            </div>
+            <div class="approveSec fl mr0">
+                <div class="title">事项办结统计率</div>
+                <div id="echartsTwo" style="width: 100%; height: 300px"></div>
+            </div>
+            <div class="approveSec fl" style="margin-top: 15px">
+                <div class="title">事项办理统计</div>
+                <div id="echartsThree" style="width: 100%; height: 300px"></div>
+            </div>
+            <div class="approveSec fl mr0" style="margin-top: 15px">
+                <div class="title">事项上报统计率</div>
+                <div id="echartsFour" style="width: 100%; height: 300px"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/echarts.js")"></script>
+    @*<script src="@Url.Content("~/Librarys/js/echarts.common.min.js")"></script>*@
+    @*<script type="text/javascript" src="@Url.Content("~/Content/Main/js/jquery.js")"></script>*@
+    <script src="@Url.Content("~/Librarys/js/jqueryStatistic.js")"></script>
+    @*<script type="text/javascript" src="@Url.Content("~/Content/Main/js/bootstrap.min.js")"></script>*@
+    <script>
+        function Search() {
+            var applyTime = $("#applyTime").val();
+            $(function () {
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("GetDeptMajor", "HomeIndex")',
+                    data: { applyTime: applyTime }, //无参数
+                    dataType: 'json', //返回数据形式为json
+                    success: function (result) {
+                        if (result) {
+                            getEchartsOne(result);
+                        }
+                    },
+                    error: function (errorMsg) {
+                        alert("部门事项统计加载数据失败");
+                    }
+                });
+            });
+            $(function () {
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("GetMatterRate", "HomeIndex")',
+                    data: { applyTime: applyTime }, //无参数
+                    dataType: 'json', //返回数据形式为json
+                    success: function (result) {
+                        if (result) {
+                            getEchartsTwo(result);
+                        }
+                    },
+                    error: function (errorMsg) {
+                        alert("事项办结统计率加载数据失败");
+                    }
+                });
+            });
+            $(function () {
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("GetMatter", "HomeIndex")',
+                    data: { applyTime: applyTime }, //无参数
+                    dataType: 'json', //返回数据形式为json
+                    success: function (result) {
+                        if (result) {
+                            getEchartsThree(result);
+                        }
+                    },
+                    error: function (errorMsg) {
+                        alert("事项办理统计加载数据失败");
+                    }
+                });
+            });
+            $(function () {
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("GetMatterCount", "HomeIndex")',
+                    data: { applyTime: applyTime }, //无参数
+                    dataType: 'json', //返回数据形式为json
+                    success: function (result) {
+                        if (result) {
+                            getEchartsFour(result);
+                        }
+                    },
+                    error: function (errorMsg) {
+                        alert("事项上报统计率加载数据失败");
+                    }
+                });
+            });
+        }
+
+        $(function () {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("GetDeptMajor", "HomeIndex")',
+                data: {}, //无参数
+                dataType: 'json', //返回数据形式为json
+                success: function (result) {
+                    if (result) {
+                        getEchartsOne(result);
+                    }
+                },
+                error: function (errorMsg) {
+                    alert("部门事项统计加载数据失败");
+                }
+            });
+        });
+        //部门事项统计
+        function getEchartsOne(result) {
+            var myChart = echarts.init(document.getElementById('echartsOne'));
+            myChart.setOption(option = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                res.push({
+                                    value: result[i].Key,
+                                });
+                            }
+                            return res;
+                        })(),
+                        //['一大队', '一大队', '一大队', '一大队', '一大队', '一大队', '一大队'],
+                        splitLine: {
+                            show: false
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                grid: {
+                    x: 35,
+                    y: 15,
+                    x2: 35,
+                    y2: 60
+                },
+                series: [
+                    {
+                        name: '上报事项',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: { normal: { areaStyle: { type: 'default' } } },
+                        data: (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                res.push({
+                                    value: result[i].Value,
+                                });
+                            }
+                            return res;
+                        })(),
+                        //[10, 12, 21, 54, 260, 830, 710],
+                    }
+                ]
+            })
+        }
+
+        $(function () {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("GetMatterRate", "HomeIndex")',
+                data: {}, //无参数
+                dataType: 'json', //返回数据形式为json
+                success: function (result) {
+                    if (result) {
+                        getEchartsTwo(result);
+                    }
+                },
+                error: function (errorMsg) {
+                    alert("事项办结统计率加载数据失败");
+                }
+            });
+        });
+        //事项办结统计率
+        function getEchartsTwo(result) {
+
+            var myChart = echarts.init(document.getElementById('echartsTwo'));
+            myChart.setOption(option = {
+                tooltip: {
+                    formatter: function (params) {
+                        var res = [];
+                        res = '办结数:' + result[params.dataIndex].FValue + '<br>未逾期办结数:' + result[params.dataIndex].SValue;
+                        return res;
+                    }
+                },
+                grid: {
+                    x: 40,
+                    y: 20,
+                    x2: 20,
+                    y2: 40,
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                res.push({
+                                    value: result[i].Key,
+                                });
+                            }
+                            return res;
+                        })(),
+                        //['占用挖掘', '渣土运输', '户外广告', '城市绿地', '砍伐迁移', '举办活动', '占道经营', '表彰奖励', '档案标记'],
+                        splitLine: {
+                            show: false
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        axisLabel: {
+                            show: true,
+                            interval: 'auto',
+                            formatter: '{value} %'
+                        },
+                    }
+                ],
+                series: [
+                    {
+                        name: '访问来源',
+                        type: 'bar',
+                        data:
+                            (function () {
+                                var res = [];
+                                var len = result.length;
+                                for (var i = 0; i < len; i++) {
+                                    res.push({
+                                        value: result[i].dValue,
+                                    });
+                                }
+                                return res;
+                            })(),
+                        //[0.6, 0.3, 0.1, 0.3, 0.1, 0.3, 0.1, 0.3, 0.1],
+                    }
+                ]
+            })
+        }
+
+        $(function () {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("GetMatter", "HomeIndex")',
+                data: {}, //无参数
+                dataType: 'json', //返回数据形式为json
+                success: function (result) {
+                    if (result) {
+                        getEchartsThree(result);
+                    }
+                },
+                error: function (errorMsg) {
+                    alert("事项办理统计加载数据失败");
+                }
+            });
+        });
+        //事项办理统计
+        function getEchartsThree(result) {
+            var myChart = echarts.init(document.getElementById('echartsThree'));
+            myChart.setOption(option = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['总计数', '未办结数', '已办结数', '逾期数']
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                res.push({
+                                    value: result[i].Key,
+                                });
+                            }
+                            return res;
+                        })(),
+                        //['占用挖掘', '渣土运输', '户外广告', '城市绿地', '砍伐迁移', '举办活动', '占道经营', '表彰奖励', '档案标记'],
+                        splitLine: {
+                            show: false
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                    }
+                ],
+                grid: {
+                    x: 35,
+                    y: 25,
+                    x2: 35,
+                    y2: 35
+                },
+                series: [
+                    {
+                        name: '总计数',
+                        type: 'bar',
+                        data: (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                res.push({
+                                    value: result[i].Value,
+                                });
+                            }
+                            return res;
+                        })(),
+                        //[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3, 3.3],
+
+                    },
+                    {
+                        name: '未办结数',
+                        type: 'bar',
+                        data: (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                res.push({
+                                    value: result[i].FValue,
+                                });
+                            }
+                            return res;
+                        })(),
+                        //[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3, 3.3],
+
+                    },
+                    {
+                        name: '已办结数',
+                        type: 'bar',
+                        data: (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                res.push({
+                                    value: result[i].SValue,
+                                });
+                            }
+                            return res;
+                        })(),
+                        //[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3, 3.3],
+
+                    },
+                    {
+                        name: '逾期数',
+                        type: 'bar',
+                        data: (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                res.push({
+                                    value: result[i].TValue,
+                                });
+                            }
+                            return res;
+                        })(),
+                        //[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3, 3.3],
+
+                    }
+                ]
+            })
+        }
+
+        $(function () {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("GetMatterCount", "HomeIndex")',
+                data: {}, //无参数
+                dataType: 'json', //返回数据形式为json
+                success: function (result) {
+                    if (result) {
+                        getEchartsFour(result);
+                    }
+                },
+                error: function (errorMsg) {
+                    alert("事项上报统计率加载数据失败");
+                }
+            });
+        });
+        //事项上报统计率
+        function getEchartsFour(result) {
+            var myChart = echarts.init(document.getElementById('echartsFour'));
+            myChart.setOption(option = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    data:
+                        (function () {
+                            var res = [];
+                            var len = result.length;
+                            for (var i = 0; i < len; i++) {
+                                res.push(result[i].Key);
+                            }
+                            return res;
+                        })(),
+                    //['占用挖掘', '渣土运输', '户外广告', '城市绿地', '砍伐迁移', '举办活动', '占道经营', '表彰奖励', '档案标记'],
+                },
+
+                series: [
+                    {
+                        name: '事项上报数',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['50%', '60%'],
+                        data:
+                            (function () {
+                                var res = [];
+                                var len = result.length;
+                                for (var i = 0; i < len; i++) {
+                                    if (result[i].Value == 0) {
+                                        res.push({
+                                            value: result[i].Value,
+                                            name: result[i].Key,
+                                            itemStyle: {
+                                                normal: {
+                                                    label: {
+                                                        show: true,
+                                                        formatter: function (params, option) {
+                                                            if (params.data.value == 0) {
+                                                                params.data.itemStyle.normal.labelLine.show = false;
+                                                                params.data.itemStyle.normal.label.show = false;
+                                                            }
+                                                        },
+                                                    },
+                                                    labelLine: {
+                                                        show: true
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    } else {
+                                        res.push({
+                                            value: result[i].Value,
+                                            name: result[i].Key,
+                                        });
+                                    }
+
+
+                                }
+                                return res;
+                            })(),
+                    }
+                ]
+            })
+        }
+    </script>
+</body>
+</html>

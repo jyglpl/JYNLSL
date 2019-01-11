@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>协同办公</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="~/Content/layui/css/layui.css" media="all">
+
+</head>
+<body style="overflow: hidden">
+
+    <div class="layui-tab" lay-filter="test">
+
+        <ul class="layui-tab-title">
+            @*<li class="layui-this person1" lay-id="11">公告通知</li>*@
+            <li class="layui-this" lay-id="22">公告通知</li>
+            <li lay-id="33">公文管理</li>
+
+        </ul>
+        <div class="layui-tab-content">
+            @*<div class="layui-tab-item layui-show person">
+                    <table class="layui-hide" id="test2"></table>
+                    <script>
+
+                    </script>
+                </div>*@
+            @*公告通知*@
+            <div class="layui-tab-item layui-show">
+
+                <div class="demoTable">
+                    <form class="layui-form" action="">
+
+                        <div class="layui-inline">
+
+                            <div class="layui-input-inline">
+                                <select name="Gglx" id="Gglx">
+                                    <option value="">请选择类别</option>
+                                    @*<option value="1">通知</option>
+                                        <option value="2">公告</option>*@
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">日期范围</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="datafw" name="datafw" placeholder=" 至 ">
+                            </div>
+                        </div>
+                        关键字：
+                        <div class="layui-inline">
+                            <input name="id" class="layui-input" id="demoReload" autocomplete="off">
+                        </div>
+                        <input type="button" class="layui-btn" data-type="reload" value="搜索"></input>
+                    </form>
+                </div>
+                <table class="layui-hide" id="test" lay-filter="test"></table>
+
+                <script id="toolbarDemo" type="text/html">
+                    <div class="layui-btn-container">
+
+                        <button class="layui-btn layui-btn-sm" id="add" style="display:none" lay-event="add">新增</button>
+
+                    </div>
+                </script>
+
+                <script id="barDemo" type="text/html">
+
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                    @*<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>*@
+
+                    <a id="tx" style="display:none" class="layui-btn layui-btn-danger layui-btn-xs tx" lay-event="">提醒</a>
+
+
+                </script>
+            </div>
+            
+            @*公文管理*@
+            <div class="layui-tab-item" >
+                 <iframe id="tabs_iframe_grid" name="tabs_iframe_grid" height="800px" width="100%" src="@Url.Action("GongWenManger","OA")" frameborder="0"></iframe>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="~/Content/layui/layui.js" charset="utf-8"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+    <script>
+
+
+    function timeToStamp(datetime) {
+        if(datetime == '') {
+            return '';
+        }else{
+            var day = new Date(datetime)
+            var stamp = Date.parse(day)/1000;
+            return stamp;
+        }
+    }
+
+//  将时间戳转为格式化时间
+    function stampToTime(timestamp) {
+        if(timestamp == 0) {
+            return "";
+        }else{
+            var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            var Y = date.getFullYear();
+            var M = date.getMonth()+ 1;
+            var D = date.getDate();
+            var h = date.getHours();
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            var datestring = Y + "-";
+            if (M < 10) datestring += "0";
+            datestring += M + "-";
+            if (D < 10) datestring += "0";
+            datestring += D + " ";
+            if (h < 10) datestring += "0";
+            datestring += h + ":";
+            if (m < 10) datestring += "0";
+            datestring += m + ":";
+            if (s < 10) datestring += "0";
+            datestring += s;
+            return datestring;
+        }
+    }
+
+    layui.use(['table', 'form', 'laydate', 'element'], function () {
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var form = layui.form;
+        var $ = layui.jquery
+            , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+        //Hash地址的定位
+        var layid = location.hash.replace(/^#test=/, '');
+        element.tabChange('test', layid);
+
+        element.on('tab(test)', function (elem) {
+            location.hash = 'test=' + $(this).attr('lay-id');
+        });
+
+        //日期范围
+        laydate.render({
+            elem: '#datafw'
+            , range: '至'
+
+
+
+        });
+
+
+   
+
+
+
+        table.render({
+            elem: '#test',
+            url: '@Url.Action("GetAllDoc", "OA")?timestamp' + (new Date()).valueOf(),
+            toolbar: '#toolbarDemo',
+            defaultToolbar: [],
+            title: '公告通知表',
+            size: 'sm',
+            cols: [[
+                    //{ type: 'checkbox', fixed: 'left' }
+                    {
+                        field: 'Id',
+                        title: 'Id',
+                        width: 80,
+                        fixed: 'left',
+                        align: 'center',
+                        unresize: true,
+                        sort: true,
+                        hide: true
+                    },
+                    {
+                        field: 'Id',
+                        title: '编号',
+                        width: 80,
+                        fixed: 'left',
+                        align: 'center',
+                        type: 'numbers',
+                        unresize: true,
+                        sort: true
+                    }, { field: 'Title', title: '标题' },
+                { field: 'Publisher', title: '发布人', width: 150, align: 'center' },
+                    {
+                        field: 'ReleaseTime',
+                        title: '发布时间',
+                        width: 200,
+                        align: 'center',
+                        templet: function(d) {
+                            return stampToTime(timeToStamp(d.ReleaseTime))
+                        }
+                    }, {
+                        field: 'jsqk',
+                        title: '接受情况',
+                        event: 'setSign',
+                        style: 'cursor: pointer;',
+                        width: 100,
+                        //hide: true,
+
+                        align: 'center',
+                        templet: function(d) {
+                            return d.JieShouCount + '/' + d.JieShouAllCount;
+                        }
+                    }, {
+                        field: 'Category',
+                        title: '类别',
+                        width: 80,
+                        align: 'center',
+                        templet: function(d) {
+                            if (d.Category == '1') {
+                                return "通知";
+                            } else if (d.Category == '2') {
+                                return "公告";
+                            }
+                        }
+                    }, { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 230, align: 'center' }
+                ]
+            ],
+            page: true,
+            height: 'full-140',
+            done: function(res, curr, count) {
+                if ('@ViewBag.leader' == '1') {
+
+                    $('#add').css('display', '');
+                    $('.tx').css('display', '');
+                }
+                if ('@ViewBag.leader' == '0')
+                    $("[data-field='jsqk']").css('display', 'none');
+
+
+            }
+
+        });
+
+        $.ajax({
+            url: "@Url.Action("BindTGLX", "OA")",
+            type: "post",
+            dataType: "json",
+            data: {},
+            success: function (data) {
+                var navs = data;
+
+                //加载一级菜单
+                $.each(navs, function (i, item) {
+                   // alert(item.RsKey)
+                    $("#Gglx").append("<option value=" + item.RsValue + ">" + item.RsKey + "</option>");
+
+                });
+                form.render();
+
+            }
+        });
+
+
+        form.render();
+
+
+        //头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+            case 'add':
+                layer.open({
+                    type: 2,
+                    title: '发布公告',
+                    area: ['1300px', '650px'],
+                    fixed: false, //不固定
+                    maxmin: true,
+                    content: '@Url.Action("DocAdd", "OA")',
+                    end: function() {
+                        //location.reload();
+
+                        table.reload('test',
+                            {
+                                url: '@Url.Action("GetAllDoc", "OA")?timestamp2' + (new Date()).valueOf()
+                                , where: {}
+
+                        });
+                    }
+
+                });
+                break;
+
+            };
+        });
+
+    
+        //监听行工具事件
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            //console.log(obj)
+            if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.prompt({
+                    formType: 2
+                    , value: data.email
+                }, function (value, index) {
+                    obj.update({
+                        email: value
+                    });
+                    layer.close(index);
+                });
+            }
+            else if (obj.event === 'detail')
+            {
+                layer.open({
+                    type: 2,
+                    title:'查看公告',
+                    area: ['1300px', '650px'],
+                    fixed: false, //不固定
+                    maxmin: true,
+                    content: '@Url.Action("GongGaoDetial", "OA")?Id=' + data.Id + '&ContentId=' + data.ContentId,
+
+
+                });
+            }
+            else if(obj.event === 'setSign'){
+                layer.open({
+                    type: 2,
+                    title:'接受情况',
+                    area: ['500px', '300px'],
+                    fixed: false, //不固定
+                    maxmin: true,
+                    content: '@Url.Action("JieShouDetial", "OA")?Id=' + data.Id,
+                    end: function () {
+
+                    }
+
+                });
+            }
+        });
+
+
+        $('.demoTable .layui-btn').on('click', function () {
+            //alert('1111');
+            var demoReload = $('#demoReload');
+            var datafw = $('#datafw');
+            var Gglx = $('#Gglx');
+
+            table.reload('test',
+                {
+                    url: '@Url.Action("GetAllDoc", "OA")?timestamp3' + (new Date()).valueOf()
+                    , where: {
+                        Title: demoReload.val()
+                        , datafw: datafw.val()
+                        , Gglx: Gglx.val()
+                    }
+
+                });
+
+        });
+
+    });
+
+
+    </script>
+
+</body>
+</html>

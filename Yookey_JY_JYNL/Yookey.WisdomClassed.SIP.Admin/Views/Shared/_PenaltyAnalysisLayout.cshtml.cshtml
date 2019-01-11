@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>案件分析</title>
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+
+    <!--jqgrid表格组件start-->
+    <script src="@Url.Content("~/Librarys/jqgrid/jquery-ui-custom.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/jqgrid/grid.locale-cn.js")"></script>
+    <link href="@Url.Content("~/Librarys/jqgrid/css/jqgrid.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jqgrid/jqGrid.js")"></script>
+    <!--jqgrid表格组件end-->
+
+    <script src="@Url.Content("~/Librarys/Highcharts-4.0.3/js/highcharts.js")"></script>
+
+    <!--日期组件start-->
+    <script src="@Url.Content("~/Librarys/datepicker/WdatePicker.js")"></script>
+    <!--日期组件start-->
+
+    <script type="text/javascript">
+
+        //按类型
+        function StatisticByType() {
+            location.href = "Index";
+        }
+
+        //按分类
+        function StatisticByClassify() {
+            location.href = "StatisitcsByClassify";
+        }
+
+        //按趋势
+        function StatisitcsByDate() {
+            location.href = "StatisitcsByDate";
+        }
+
+        //按处理情况
+        function StatisitcsByHandle() {
+            location.href = "StatisitcsByHandle";
+        }
+
+        //按中队
+        function StatisticByDept() {
+            location.href = "StatisitcsByDept";
+        }
+
+        //按阶段分析
+        function StatisitcsByStage() {
+            location.href = "StatisitcsByStage";
+        }
+
+        //按城市顽疾
+        function StatisitcsByCityIlls() {
+            location.href = "StatisitcsByCityIlls";
+        }
+
+    </script>
+
+</head>
+<body>
+    <div style="margin: 10px;">
+        <div id="leftDiv" style="width: 185px; float: left; text-align: left;">
+            <div class="reportLink" style="background-color: #2BA9E3" onclick="StatisticByType()">
+                <i></i>
+                <div class="text">
+                    按类型分析
+                </div>
+            </div>
+            <div class="reportLink" style="background-color: #2BA9E3" onclick="StatisticByClassify();">
+                <i></i>
+                <div class="text">
+                    按案件类别
+                </div>
+            </div>
+            <div class="reportLink" style="background-color: #2BA9E3" onclick="StatisticByDept();">
+                <i></i>
+                <div class="text">
+                    按部门分析
+                </div>
+            </div>
+            <div class="reportLink" style="background-color: #2BA9E3" onclick="StatisitcsByDate();">
+                <i></i>
+                <div class="text">
+                    按时间趋势
+                </div>
+            </div>
+            <div class="reportLink" style="background-color: #2BA9E3" onclick="StatisitcsByHandle();">
+                <i></i>
+                <div class="text">
+                    按处理情况
+                </div>
+            </div>
+@*            <div class="reportLink" style="background-color: #2BA9E3" onclick="StatisitcsByStage();">
+                <i></i>
+                <div class="text">
+                    按阶段分析
+                </div>
+            </div>
+            <div class="reportLink" style="background-color: #2BA9E3" onclick="StatisitcsByCityIlls();">
+                <i></i>
+                <div class="text">
+                    按城市顽疾
+                </div>
+            </div>*@
+        </div>
+    </div>
+    @RenderBody()
+</body>
+</html>

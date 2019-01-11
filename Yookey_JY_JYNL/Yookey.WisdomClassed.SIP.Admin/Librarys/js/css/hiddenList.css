@@ -1,0 +1,60 @@
+.hiddenList {
+  width: 100%;
+  overflow: hidden;
+  height: 222px;
+  border-bottom: 1px solid #e5e5e5;
+  display: none;
+}
+.hiddenList form > div {
+  width: 20%;
+  margin-left: 3%;
+}
+.hiddenList form > div:nth-child(3) {
+  width: 40%;
+  margin-left: 5%;
+}
+.hiddenList form > div:nth-child(3) p {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.hiddenList form > div:nth-child(3) p span {
+  font-size: 14px;
+  color: #333;
+  margin-right: 5px;
+  font-weight: 600;
+}
+.hiddenList form > div:nth-child(3) p span input {
+  width: 32%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.contentBox .contentCase .contenForm .silded {
+  width: 100%;
+  padding-bottom: 0px;
+}
+.contentBox .contentCase .contenForm .silded span {
+  display: block;
+  width: 50px;
+  height: 20px;
+  margin: 0px auto;
+  background: url(../img/slideDe.png) no-repeat;
+}
+.sliden {
+  width: 37px;
+  height: 34px;
+  background: url(../img/slideIcon.png) no-repeat;
+  background-size: 100% 100%;
+  border-radius: 3px;
+  margin-left: 3px;
+  cursor: pointer;
+}
+.contentBox .searchBox {
+  width: 400px;
+}

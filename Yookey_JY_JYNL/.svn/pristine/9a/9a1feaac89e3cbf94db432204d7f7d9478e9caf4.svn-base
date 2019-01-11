@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C1B64528-CBBB-4658-9783-FD1BDBBFAFF8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yookey.WisdomClassed.SIP.DataAccess</RootNamespace>
+    <AssemblyName>Yookey.WisdomClassed.SIP.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Yookey.WisdomClassed.SIP.Admin\bin\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.8.3\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\BaseCertificateDal.cs" />
+    <Compile Include="Base\BaseCertificateUseDal.cs" />
+    <Compile Include="Base\BaseCompanyDal.cs" />
+    <Compile Include="Base\BaseDal.cs" />
+    <Compile Include="Base\BaseDepartmentDal.cs" />
+    <Compile Include="Base\BaseGroupUserDal.cs" />
+    <Compile Include="Base\BasePostDal.cs" />
+    <Compile Include="Base\BaseRolesDal.cs" />
+    <Compile Include="Base\BaseUserDal.cs" />
+    <Compile Include="Base\IDal.cs" />
+    <Compile Include="Com\ComApiAccountDal.cs" />
+    <Compile Include="Com\ComArticleDal.cs" />
+    <Compile Include="Com\ComAttachmentDal.cs" />
+    <Compile Include="Com\ComAttributeDal.cs" />
+    <Compile Include="Com\ComAttributeValueDal.cs" />
+    <Compile Include="Com\ComHolidaysDal.cs" />
+    <Compile Include="Com\ComLoginLogDal.cs" />
+    <Compile Include="Com\ComMenuDal.cs" />
+    <Compile Include="Com\ComNoteDal.cs" />
+    <Compile Include="Com\ComNoticeAttachDal.cs" />
+    <Compile Include="Com\ComNoticeDal.cs" />
+    <Compile Include="Com\ComNoticeReceiveDal.cs" />
+    <Compile Include="Com\ComNumberDal.cs" />
+    <Compile Include="Com\ComOperationLogDal.cs" />
+    <Compile Include="Com\ComResourceDal.cs" />
+    <Compile Include="Com\ComVersionManagementDal.cs" />
+    <Compile Include="Com\ComWhiteListDal.cs" />
+    <Compile Include="Crm\CrmCompanyDal.cs" />
+    <Compile Include="Crm\CrmDailyOneProblemDal.cs" />
+    <Compile Include="Crm\CrmDailyOneProblemRecordDal.cs" />
+    <Compile Include="Crm\CrmDepartmentDal.cs" />
+    <Compile Include="Crm\CrmFeedBackDal.cs" />
+    <Compile Include="Crm\CrmIdeaListDal.cs" />
+    <Compile Include="Crm\CrmIssuanceModelDal.cs" />
+    <Compile Include="Crm\CrmMessageWorkDal.cs" />
+    <Compile Include="Crm\CrmOpinionsDal.cs" />
+    <Compile Include="Crm\CrmPostDal.cs" />
+    <Compile Include="Crm\CrmRoleDal.cs" />
+    <Compile Include="Crm\CrmRoleMenuDal.cs" />
+    <Compile Include="Crm\CrmUserDal.cs" />
+    <Compile Include="Crm\CrmUserMenuDal.cs" />
+    <Compile Include="Crm\CrmUserRoleDal.cs" />
+    <Compile Include="DalImp\BaseDalImp.cs" />
+    <Compile Include="EnterpriseLibrary\EnterpriseLibraryDal.cs" />
+    <Compile Include="IDal\IBaseDal.cs" />
+    <Compile Include="LawManger\LawMangerDal.cs" />
+    <Compile Include="OA\DocNotfPersonDal.cs" />
+    <Compile Include="OA\DocumentNotificationDal.cs" />
+    <Compile Include="OA\GongGaoDetialDal.cs" />
+    <Compile Include="OA\GongGaoMangerDal.cs" />
+    <Compile Include="Power\PowerItemDal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBHelper\DBHelper.csproj">
+      <Project>{068adb92-ba8f-4da4-bc0b-ae35f3921a32}</Project>
+      <Name>DBHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.Common\Yookey.WisdomClassed.SIP.Common.csproj">
+      <Project>{7ffbc8b4-d5d5-4478-98bb-ec0284d78444}</Project>
+      <Name>Yookey.WisdomClassed.SIP.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.Enumerate\Yookey.WisdomClassed.SIP.Enumerate.csproj">
+      <Project>{760a3b96-f7d6-48c5-91cb-6125e5858387}</Project>
+      <Name>Yookey.WisdomClassed.SIP.Enumerate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.Model\Yookey.WisdomClassed.SIP.Model.csproj">
+      <Project>{64765b1f-7e6e-4b1a-a440-dfd15c2112ec}</Project>
+      <Name>Yookey.WisdomClassed.SIP.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yookey.WisdomClassed.SIP.PetaPoco\PetaPoco.csproj">
+      <Project>{8fbf860e-d32f-4168-bed5-4f67c34817de}</Project>
+      <Name>PetaPoco</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

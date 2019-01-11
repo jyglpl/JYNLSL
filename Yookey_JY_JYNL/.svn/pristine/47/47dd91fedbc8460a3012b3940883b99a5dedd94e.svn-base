@@ -1,0 +1,78 @@
+﻿@using System.Data
+
+
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>网格化台账管理</title>
+    <link href="@Url.Content("~/Content/Files/css/forgm.css")" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="contentBox">
+        <div class="navHeader">
+            <p>
+                <a class="homeIcon" href="#"></a>
+                <b></b>
+                <a href="@Url.Action("Index", "GridManagement")">台账管理</a>
+            </p>
+            <p class="lastP">
+                <span class="spanStatistics">
+                    <a href="@Url.Action("GridStatistics", "GridManagement")">数据统计</a>
+                </span>
+                <span class="spanOne">
+                    <input type="text"></span>
+                <span class="spanTwo">
+                    <button type="button"></button>
+                </span>
+
+            </p>
+        </div>
+        <div class="allDistrict">
+            <p>所有区域</p>
+            <div class="allDistrictContent clearfix" tool clearfixstyle="overflow: auto;" style="height:auto">
+                <ul class="">
+                    @{
+                        var company = ViewData["Company"] as DataTable;
+                        var companyNewUploadInfo = ViewData["CompanyNewUploadInfo"] as DataTable;
+                        if (company != null && company.Rows.Count > 0)
+                        {
+                            int tempIndex = 0;
+                            foreach (DataRow row in company.Rows)
+                            {
+                                tempIndex++;
+                        <li style="height:auto" class="@(tempIndex % 3 == 0 ? "nthLast " : "")maginBottomS">
+                            <div>
+                                <p class="state success">已上报：@row["UpCount"]</p>
+                                <p class="title">@row["ShortName"]</p>
+                                <div>
+                                    @{
+                                if (companyNewUploadInfo != null && companyNewUploadInfo.Rows.Count > 0)
+                                {
+                                    DataRow[] newUploadInfo = companyNewUploadInfo.Select(string.Format("CompanyId='{0}'", row["Id"]));
+                                    foreach (var dataRow in newUploadInfo)
+                                    {
+                                        <p>
+                                            <span>@dataRow["DeptName"]</span>
+                                            <span>更新：@dataRow["NewTime"]</span>
+                                        </p>
+                                    }
+                                }
+                                    }
+                                    <p>....</p>
+                                </div>
+                            </div>
+                            <a href="@Url.Action("DepartmentIndex", "GridManagement")?companyId=@row["Id"]">查看详情&gt;&gt;</a>
+                        </li>
+                            }
+                        }                       
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,293 @@
+.dataBox {
+  width: 96%;
+  margin: 20px auto;
+}
+.dataBox .detuct {
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+}
+.dataBox .detuct .chooseBox {
+  width: 100%;
+  overflow: hidden;
+}
+.dataBox .detuct .chooseBox > span {
+  float: left;
+  font-size: 18px;
+  color: #666;
+  margin-right: 15px;
+  font-weight: bold;
+}
+.dataBox .detuct .chooseBox p {
+  float: left;
+}
+.dataBox .detuct .chooseBox p span {
+  float: left;
+  margin-right: 5px;
+}
+.dataBox .detuct .chooseBox p span select {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  color: #666;
+}
+.dataBox .detuct .paintList {
+  width: 100%;
+  margin-top: 15px;
+}
+.dataBox .detuct .paintList ul li {
+  display: inline-block;
+  width: 100px;
+  margin-right: 30px;
+}
+.dataBox .detuct .paintList ul li span {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.dataBox .detuct .paintList ul li .scroe {
+  font-size: 18px;
+  color: #ec5a5a;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.dataBox .detuct .paintList ul li .total {
+  color: #0482e0;
+}
+.dataBox .detuct .paintList ul li .expain {
+  font-size: 18px;
+  color: #666;
+}
+.dataBox .chartsBox {
+  width: 100%;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.dataBox .chartsBox .marksTop {
+  float: left;
+  width: 48%;
+  background-color: #fff;
+  height: 400px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.dataBox .chartsBox .marksTop > p {
+  font-size: 27px;
+  color: #4c4c4c;
+}
+.dataBox .chartsBox .marksTop>div {
+  width: 100%;
+  height: 300px;
+}
+.dataBox .chartsBox .marksRight {
+  float: left;
+  margin-left: 2%;
+  height: 400px;
+  background-color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 50%;
+}
+.dataBox .chartsBox .marksRight .markChart {
+  width: 50%;
+  float: left;
+}
+.dataBox .chartsBox .marksRight .markChart > p {
+  font-size: 27px;
+  color: #4c4c4c;
+}
+.dataBox .chartsBox .marksRight .markChart #scoreContent {
+  width: 100%;
+  height: 320px;
+}
+.dataBox .chartsBox .marksRight .markList {
+  float: left;
+  width: 50%;
+  margin-top: 10%;
+}
+.dataBox .chartsBox .marksRight .markList ul {
+  margin-left: 10px;
+}
+.dataBox .chartsBox .marksRight .markList ul li {
+  margin-bottom: 30px;
+  width: 100%;
+  overflow: hidden;
+}
+.dataBox .chartsBox .marksRight .markList ul li b {
+  display: block;
+  float: left;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  color: #fff;
+  background-color: #ff4040;
+  font-size: 12px;
+  margin-right: 5px;
+  margin-top: 2px;
+}
+.dataBox .chartsBox .marksRight .markList ul li > span {
+  color: #666;
+  float: left;
+  width: 80%;
+}
+.dataBox .chartsBox .marksRight .markList ul li > span span {
+  color: #ff8c54;
+}
+.dataBox .tableBox {
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.dataBox .tableBox > p {
+  font-size: 27px;
+  color: #4c4c4c;
+}
+.dataBox .tableBox div {
+  width: 98%;
+  margin: 0px auto;
+  margin-top: 5px;
+}
+.dataBox .tableBox div table {
+  width: 100%;
+}
+.dataBox .tableBox div table thead tr {
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 30px;
+  color: #818385;
+}
+.dataBox .tableBox div table thead tr td {
+  border: none;
+}
+.dataBox .tableBox div table tbody tr {
+  border-bottom: 1px solid #ddd;
+  height: 30px;
+}
+.dataBox .tableBox div table tbody tr td {
+  text-align: center;
+  color: #666;
+}
+.dataBox .tableBox div table tbody tr td span {
+  display: block;
+  width: 30%;
+  margin: 0px auto;
+  height: 100%;
+  color: #fff;
+  background-color: #e65404;
+}
+.dataBox .tableBox div table tbody tr td .green {
+  background-color: #09ae09;
+}
+.dataBox .tableBox div table tbody tr td a.downLoad {
+  color: #e65404;
+  margin-right: 10px;
+}
+.dataBox .tableBox div table tbody tr td a.look {
+  color: #3087e1;
+}
+.dataBox .tableBox div table tbody tr .colorOgreng {
+  color: #e65404;
+}
+.inputBox {
+  width: 100%;
+  height: 44px;
+  background-color: #fff;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.inputBox p {
+  float: left;
+  margin-right: 25px;
+}
+.inputBox p span {
+  float: left;
+  color: #666;
+  font-size: 16px;
+  margin-top: 9.5px;
+  margin-right: 10px;
+}
+.inputBox p span select {
+  width: 120px;
+  height: 25px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #888;
+}
+.inputBox p span input {
+  width: 150px;
+  height: 25px;
+  border: 1px solid #ccc;
+  color: #888;
+}
+.inputBox .keySearch {
+  float: right;
+}
+.inputBox .keySearch span:last-child {
+  margin-left: -10px;
+}
+.inputBox .keySearch span:last-child button {
+  width: 50px;
+  height: 29px;
+  background-color: #44a9f3;
+  color: #fff;
+  border: none;
+}
+.inputBox .keySearch span:last-child input {
+  padding-left: 10px;
+}
+.tablePaging {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 20px;
+}
+.tablePaging p {
+  float: right;
+}
+.tablePaging p span {
+  display: inline-block;
+  border: 1px solid #44a9f3;
+  padding: 1px 5px;
+  color: #888;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.tablePaging p b {
+  color: #888;
+}
+/************/
+
+.dataDistrictBox .chooseBox {
+  width: 29%;
+  float:right;
+}
+.dataDistrictBox .chooseBox > span {
+  float: left;
+  font-size: 18px;
+  color: #666;
+  margin-right: 15px;
+  font-weight: bold;
+}
+.dataDistrictBox .chooseBox p {
+  float: right;
+  margin-top:9px;
+}
+ .detuct .titleDetuct {
+    color: #8b8b8b;
+    font-size: 18px;
+   
+    }
+.dataDistrictBox .chooseBox p span {
+  float: left;
+  margin-right: 5px;
+}
+.dataDistrictBox .chooseBox p span select {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  color: #666;
+}

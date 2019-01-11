@@ -1,0 +1,270 @@
+﻿@{
+    Layout = null;
+}
+
+@using Yookey.WisdomClassed.SIP.Enumerate
+@using Yookey.WisdomClassed.SIP.Model.Com
+@model List<Yookey.WisdomClassed.SIP.Model.Com.ComMenuEntity>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>权限设置</title>
+    <meta name="viewport" content="width=device-width" />
+    <!--框架必需start-->
+    <link href="@Url.Content("~/Content/Styles/learunui-startmenu.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/Styles/learunui-accordion.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/Styles/learunui-framework.css")" rel="stylesheet"/>
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--框架必需end-->
+    <link href="@Url.Content("~/Content/Styles/menu.css")" rel="stylesheet"/>
+</head>
+<body style="overflow-y: auto;">
+    @using (Html.BeginForm("SavePermission", "Permission", FormMethod.Post, new { @id = "formmain" }))
+    {
+        var rolemenus = ViewData["MenuList"] as List<ComMenuEntity>;
+        var topmenus = Model.Where(t => t.ParentMenuId.Equals("0000") && t.MenuLevel == (int)MenuLevel.First);
+        
+        @Html.Hidden("id", ViewData["Id"])
+        @Html.Hidden("idType", ViewData["IdType"])
+
+        foreach (var topmenu in topmenus)
+        {
+        <div class="menuList_box">
+            <div class="menuList actionalllist">
+                <div class="menu_tit">
+                    <h3>
+                        @{
+            if (rolemenus != null && rolemenus.Count(t => t.Id == topmenu.Id).Equals(1))
+            {
+                            <input type="checkbox" name="chkRoleMenu" id="topmenu@(topmenu.Id)" value="@(topmenu.Id)" checked="checked" onclick=" javascript: selectall(this, '.actionalllist'); "/>
+                            <label for="topmenu@(topmenu.Id)">@(topmenu.MenuName)</label>
+            }
+            else
+            {
+                            <input type="checkbox" name="chkRoleMenu" id="topmenu@(topmenu.Id)" value="@(topmenu.Id)" onclick=" javascript: selectall(this, '.actionalllist'); "/>
+                            <label for="topmenu@(topmenu.Id)">@(topmenu.MenuName)</label>
+            }
+                        }
+                    </h3>
+                </div>
+                <div class="menu_content">
+                    @{
+            var leftfirstmenus = Model.Where(t => t.ParentMenuId == topmenu.Id);
+            int row = 1;
+            foreach (var leftfirstmenu in leftfirstmenus)
+            {
+                        <dl class="secondactionlist">
+                            <dt>
+                                @if (rolemenus != null && rolemenus.Count(t => t.Id == leftfirstmenu.Id).Equals(1))
+                                {
+                                    <input type="checkbox" name="chkRoleMenu" id="secondmenu@(leftfirstmenu.Id)" checked="checked" value="@leftfirstmenu.Id"  onclick=" javascript: selectall(this, '.secondactionlist'); "/>
+                                    <label for="secondmenu@(leftfirstmenu.Id)">@(leftfirstmenu.MenuName)</label>
+                                }
+
+                                else
+                                {
+                                    <input type="checkbox" name="chkRoleMenu" id="secondmenu@(leftfirstmenu.Id)" value="@leftfirstmenu.Id"  onclick=" javascript: selectall(this, '.secondactionlist'); "/>
+                                    <label for="secondmenu@(leftfirstmenu.Id)">@(leftfirstmenu.MenuName)</label>
+                                }</dt>
+                            @{
+                                var leftsecondmenus = Model.Where(t => t.ParentMenuId == leftfirstmenu.Id);
+                                foreach (var leftsecondmenu in leftsecondmenus)
+                                {
+                                <dl class="secondactionlist">
+                                    <dt>
+                                        @{
+                                    if (rolemenus != null && rolemenus.Count(t => t.Id == leftsecondmenu.Id).Equals(1))
+                                    {
+                                            <input type="checkbox" name="chkRoleMenu" id="leftmenu@(leftsecondmenu.Id)" checked="checked" value="@(leftsecondmenu.Id)" onclick=" javascript: checkselect(this); " />
+                                            <label for="leftmenu@(leftsecondmenu.Id)">@(leftsecondmenu.MenuName)
+                                                @Html.Raw(leftsecondmenu.IsMenu.Equals(1) ? "<font color='#537693' style='font-weight:bold;'>[菜单]</font>" : "<font color='#2e3e4e' style='font-weight:bold;'>[功能]</font>")</label>
+                                    }
+                                    else
+                                    {
+                                            <input type="checkbox" name="chkRoleMenu" id="leftmenu@(leftsecondmenu.Id)" value="@(leftsecondmenu.Id)" onclick=" javascript: checkselect(this); " />
+                                            <label for="leftmenu@(leftsecondmenu.Id)">@(leftsecondmenu.MenuName)
+                                                @Html.Raw(leftsecondmenu.IsMenu.Equals(1) ? "<font color='#537693' style='font-weight:bold;'>[菜单]</font>" : "<font color='#2e3e4e' style='font-weight:bold;'>[功能]</font>")</label>
+                                    }
+                                        }
+                                    </dt>
+
+                                    @{
+                                    var leftthirdmenus = Model.Where(t => t.ParentMenuId == leftsecondmenu.Id);
+                                    foreach (var leftthirdmenu in leftthirdmenus)
+                                    {
+                                        <dl class="thirdactionlist">
+                                            <dd>
+                                                @{
+                                        if (rolemenus != null && rolemenus.Count(t => t.Id == leftthirdmenu.Id).Equals(1))
+                                        {
+                                                    <input type="checkbox" name="chkRoleMenu" id="leftmenu@(leftthirdmenu.Id)" checked="checked" value="@(leftthirdmenu.Id)" onclick=" javascript: checkselect(this); " />
+                                                    <label for="leftmenu@(leftthirdmenu.Id)">@(leftthirdmenu.MenuName)
+                                                        @Html.Raw(leftthirdmenu.IsMenu.Equals(1) ? "<font color='#537693' style='font-weight:bold;'>[菜单]</font>" : "<font color='#2e3e4e' style='font-weight:bold;'>[功能]</font>")</label>
+                                        }
+                                        else
+                                        {
+                                                    <input type="checkbox" name="chkRoleMenu" id="leftmenu@(leftthirdmenu.Id)" value="@(leftthirdmenu.Id)" onclick=" javascript: checkselect(this); " />
+                                                    <label for="leftmenu@(leftsecondmenu.Id)">@(leftthirdmenu.MenuName)
+                                                        @Html.Raw(leftthirdmenu.IsMenu.Equals(1) ? "<font color='#537693' style='font-weight:bold;'>[菜单]</font>" : "<font color='#2e3e4e' style='font-weight:bold;'>[功能]</font>")</label>
+                                        }
+                                                }
+                                            </dd>
+                                        </dl>
+                                    }
+                                    }
+
+                                </dl>
+                                }
+                            }
+                        </dl>
+                                row++;
+            }
+                    }
+                </div>
+            </div>
+        </div>
+        }
+    }
+</body>
+</html>
+
+<script type="text/javascript">
+    //选择所有
+    function selectall(obj, classid) {
+        $(obj).parents(classid).children().find("input[type='checkbox']").each(function () {
+            $(this).attr("checked", $(obj).prop('checked'));
+        });
+    }
+
+    //联动
+    function checkselect(obj) {
+        //if ($(obj).parents(".menu_content").children().find("input[type='checkbox']:checked").length > 0) {
+        //    //第一层
+        //    $(obj).parents(".menuList").children(".menu_tit").find("input[type='checkbox']:eq(0)").attr("checked", true);
+        //    //第二层
+        //    $(obj).parents(".secondactionlist").find("input[type='checkbox']:eq(0)").attr("checked", true);
+            
+        //    if ($(obj).parents(".secondactionlist").children("dd").find("input[type='checkbox']:checked").length > 0) {
+        //        $(obj).parents(".secondactionlist").find("input[type='checkbox']:eq(0)").attr("checked", true);
+        //    } else {
+        //        $(obj).parents(".secondactionlist").find("input[type='checkbox']:eq(0)").attr("checked", false);
+        //        topmenucheck();
+        //    }
+        //    //第三层
+        //    $(obj).parents(".thirdactionlist").find("input[type='checkbox']:eq(0)").attr("checked", true);
+        //    if ($(obj).parents(".thirdactionlist").children("dd").find("input[type='checkbox']:checked").length > 0) {
+        //        $(obj).parents(".thirdactionlist").find("input[type='checkbox']:eq(0)").attr("checked", true);
+        //    } else {
+        //        $(obj).parents(".thirdactionlist").find("input[type='checkbox']:eq(0)").attr("checked", false);
+        //        topmenucheck();
+        //    }
+        //} else {
+        //    $(obj).parents(".menuList").children(".menu_tit").find("input[type='checkbox']:eq(0)").attr("checked", false);
+        //    topmenucheck();
+        //}
+    }
+
+    function topmenucheck() {
+        if ($(".menu_content").children().find("input[type='checkbox']:checked").length <= 0) {
+            $(".menuList").children(".menu_tit").find("input[type='checkbox']:eq(0)").attr("checked", false);
+        }
+    }
+
+    function selectall(obj, classid) {
+        $(obj).parents(classid).children().find("input[type='checkbox']").each(function () {
+            $(this).attr("checked", $(obj).prop('checked'));
+        });
+        if ($(obj).parents(".menuList").children(".menu_content").find("input[type='checkbox']:checked").length > 0) {
+            //console.info($(obj).parents(".menuList").find("input[type='checkbox']:checked").length);
+            //第一层
+            $(obj).parents(".menuList").children(".menu_tit").find("input[type='checkbox']:eq(0)").attr("checked", true);
+        } else if ($(obj).parents(".menuList").children(".menu_content").find("input[type='checkbox']").length > 0) {
+            //第一层
+            $(obj).parents(".menuList").children(".menu_tit").find("input[type='checkbox']:eq(0)").attr("checked", false);
+        }
+    }
+
+    function checkselect(obj) {
+        //if ($(obj).parents(".menu_content").children().find("input[type='checkbox']:checked").length > 0) {
+        //    //第一层
+        //    $(obj).parents(".menuList").children(".menu_tit").find("input[type='checkbox']:eq(0)").attr("checked", true);
+
+        //    //第二层
+        //    if ($(obj).parents(".secondactionlist").children("dd").find("input[type='checkbox']:checked").length > 0) {
+
+        //        $(obj).parents(".secondactionlist").find("input[type='checkbox']:eq(0)").attr("checked", true);
+        //    } else {
+        //        $(obj).parents(".secondactionlist").find("input[type='checkbox']:eq(0)").attr("checked", false);
+        //        topmenucheck();
+        //    }
+            
+        //    //第三层
+        //    if ($(obj).parents(".thirdactionlist").children("dd").find("input[type='checkbox']:checked").length > 0) {
+
+        //        $(obj).parents(".thirdactionlist").find("input[type='checkbox']:eq(0)").attr("checked", true);
+        //    } else {
+        //        $(obj).parents(".thirdactionlist").find("input[type='checkbox']:eq(0)").attr("checked", false);
+        //        topmenucheck();
+        //    }
+        //} else {
+        //    $(obj).parents(".menuList").children(".menu_tit").find("input[type='checkbox']:eq(0)").attr("checked", false);
+        //}
+        
+
+        if ($(obj).parents(".menu_content").children().find("input[type='checkbox']:checked").length > 0) {
+            //第一层
+            $(obj).parents(".menuList").children(".menu_tit").find("input[type='checkbox']:eq(0)").attr("checked", true);
+
+            //第二层
+            if ($(obj).parents(".secondactionlist").children("dd").find("input[type='checkbox']:checked").length > 0) {
+
+                $(obj).parents(".secondactionlist").find("input[type='checkbox']:eq(0)").attr("checked", true);
+                
+
+            } else {
+                //$(obj).parents(".secondactionlist").find("input[type='checkbox']:eq(0)").attr("checked", false);
+                //topmenucheck();
+            }
+
+            //第三层
+            if ($(obj).parents(".thirdactionlist").children("dd").find("input[type='checkbox']:checked").length > 0) {
+
+                $(obj).parents(".thirdactionlist").find("input[type='checkbox']:eq(0)").attr("checked", true);
+            } else {
+                $(obj).parents(".thirdactionlist").find("input[type='checkbox']:eq(0)").attr("checked", false);
+                topmenucheck();
+            }
+        } else {
+            $(obj).parents(".menuList").children(".menu_tit").find("input[type='checkbox']:eq(0)").attr("checked", false);
+        }
+
+    }
+
+    function topmenucheck() {
+        if ($(".menu_content").children().find("input[type='checkbox']:checked").length <= 0) {
+            $(".menuList").children(".menu_tit").find("input[type='checkbox']:eq(0)").attr("checked", false);
+        }
+    }
+
+
+    //提交表单
+    function AcceptClick() {
+        Loading(true, "正在提交数据...");
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: '@Url.Action("SavePermission", "Permission")',
+            data: $('#formmain').serialize(),
+            async: false,
+            datatype: 'json',
+            success: function (data) {
+                Loading(false);
+                tipDialog(data.rtMsrg, 3, data.rtState);
+            }
+        });
+    }
+
+</script>

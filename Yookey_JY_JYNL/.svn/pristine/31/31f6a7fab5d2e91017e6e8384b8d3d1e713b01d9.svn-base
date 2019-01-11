@@ -1,0 +1,176 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>执法全过程</title>
+    <link href="@Url.Content("~/Librarys/evidence/css/index.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Librarys/jquery/jquery-1.9.1.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/Plugins/layer/layer.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/evidence/scripts/EvidenceJScript.js")"></script>
+    <script src="@Url.Content("~/Librarys/evidence/scripts/ddsmoothmenu.js")"></script>
+    <style type="text/css"></style>
+</head>
+<body class="yk-main">
+    @*<div id="pageloading">
+        数据加载中，请稍等...
+    </div>*@
+    <!--当前页的索引-->
+    <input type="text" id="page" style="display: none" value="1" />
+    <!--当前页类型：0：全部、视频、音频、图片，1：回收站-->
+    <input type="text" id="pagetype" style="display: none" value="0" />
+    <!--大队-->
+    <input type="text" id="txtDetp" style="display: none" value="" />
+    <!--中队-->
+    <input type="text" id="txtDetachment" style="display: none" value="" />
+
+    <!--头部start-->
+    <div class="yk-header">
+        @*<div class="logo">
+            <img src="image/logo.png" />
+        </div>*@
+        <div class="yk-so">
+            <div class="yk-so-box" style="margin-left: 10px;">
+                <input name="q" id="headq" type="text" />
+                <button type="button" id="btnSearchKU">
+                    <em>搜索</em></button>
+            </div>
+        </div>
+        <div class="yk-menu-so">
+            <ul class="yk-menus">
+                <li class="yk-menus-item"><a title="高级搜索" id="advacetso" href="javascript:void(0)">高级搜索</a>
+                </li>
+            </ul>
+            <div class="panel">
+                <div class="yk-userlog-action">
+                    <h4>请选择更多条件，进行高级搜索：</h4>
+                    <span class="btnSearch">高级搜索</span> <a class="btnClear">清 空</a>
+                </div>
+                <ul class="yk-userservices-list">
+                    <li>
+                        <label>
+                            媒体名称：</label>
+                        <input id="filename" class="form_input" style="width: 100px;" type="text" value="">
+                        &nbsp;&nbsp;
+                        <label>
+                            用户名称：</label>
+                        <input id="uname" class="form_input" style="width: 100px;" type="text" value="">
+                    </li>
+                    <li>
+                        <label>
+                            用户编号：</label>
+                        <input id="uid" class="form_input" style="width: 100px;" type="text" value="">
+                        <input id="cuid" type="text" value="" style="display: none;">
+                        &nbsp;&nbsp;
+                        <label>
+                            设备编号：</label>
+                        <input id="deceiveno" class="form_input" style="width: 100px;" type="text" value="">
+                    </li>
+                </ul>
+                <div class="separateline">
+                </div>
+                <ul class="yk-userservices-list">
+                    <li>
+                        <label>
+                            所属大队：</label>
+                        <select id="deptid" style="width: 118px" onchange="$.Evidence.getdetachment()">
+                        </select>
+                        &nbsp;&nbsp;
+                        <label>
+                            所属中队：</label>
+                        <select id="detachment" style="width: 118px">
+                        </select>
+                    </li>
+                    <li>
+                        <label>
+                            文件类型：</label>
+                        <select id="filetype" style="width: 118px">
+                            <option value="">全部</option>
+                            <option value="1">视频</option>
+                            <option value="2">音频</option>
+                            <option value="3">图片</option>
+                        </select>
+                        &nbsp;&nbsp;
+                        <label>
+                            媒体类型：</label>
+                        <select type="select" id="classno" style="width: 118px">
+                            <option value="">全部</option>
+                        </select>
+                    </li>
+                </ul>
+                <div class="separateline">
+                </div>
+                <ul class="yk-userservices-list">
+                    <li>
+                        <label>
+                            起始时间：</label>
+                        <input id="starttime" class="form_input" style="width: 100px;" type="text" value="">
+                        &nbsp;&nbsp;
+                        <label>
+                            结束时间：</label>
+                        <input id="endtime" class="form_input" style="width: 100px;" type="text" value="">
+                    </li>
+                </ul>
+                <div class="separateline">
+                </div>
+            </div>
+        </div>
+        @*<div class="yk-menu-logout">
+            <ul class="yk-menus">
+                <li class="yk-menus-item"><a title="注销" href="javascript:void(0)" onclick="$.Evidence.logout();">注销</a> </li>
+            </ul>
+        </div>*@
+    </div>
+    <!--头部end-->
+    <!--导航菜单start-->
+    <div class="menu_navcc">
+        <div class="menu_nav clearfix">
+            <ul class="nav_content">
+                <li class="current"><a href="javascript:void(0)" onclick="$.Evidence.changeheard(this)"
+                    title="全部"><span>全部</span></a></li>
+                <li><a href="javascript:void(0)" onclick="$.Evidence.changeheard(this)" title="视频"><span>视频</span></a></li>
+                <li><a href="javascript:void(0)" onclick="$.Evidence.changeheard(this)" title="音频"><span>音频</span></a></li>
+                <li><a href="javascript:void(0)" onclick="$.Evidence.changeheard(this)" title="图片"><span>图片</span></a></li>
+                <li><a href="javascript:void(0)" onclick="$.Evidence.changeheard(this)" title="回收站"><span>回收站</span></a></li>
+                <li><a href="javascript:void(0)" onclick="javascript:downloadsoftware();" title="上传"><span>上传</span></a></li>
+            </ul>
+            <div class="menu_nav_right">
+            </div>
+        </div>
+    </div>
+    <!--导航菜单end-->
+    <div style="clear: both">
+    </div>
+    <div class="yk-box">
+        <div class="yk-head">
+            <div class="yk-append">
+            </div>
+            <div class="yk-extend">
+            </div>
+        </div>
+        <div class="yk-body">
+            <!--左边导航 -->
+            <div id="smoothmenu2" class="ddsmoothmenu-v">
+            </div>
+            <!--左边导航end-->
+            <div class="yk-row">
+            </div>
+        </div>
+    </div>
+    <!--分页start-->
+    <div class="applay-select">
+    </div>
+</body>
+<script type="text/javascript">
+    //$(function () {
+
+    //});
+    //下载软件
+    function downloadsoftware() {
+        alert('点击“确定”下载上传客户端软件并安装，进行文件上传');
+        window.open('');
+    }
+</script>
+</html>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  有关如何配置 ASP.NET 应用程序的详细信息，请访问
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <configSections>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="Yookey.WisdomClassed.SIP.Admin.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+  </configSections>
+  <connectionStrings>
+    <add name="SQLConnStringRead" connectionString="server=192.168.1.65\MSSQLSERVER2008;database=WisdomClassed_JYNLSLOverall;user id=sa;password=123;MultipleActiveResultSets=true;" providerName="System.Data.SqlClient" />
+    <add name="SQLConnStringWrite" connectionString="server=192.168.1.65\MSSQLSERVER2008;database=WisdomClassed_JYNLSLOverall;user id=sa;password=123;MultipleActiveResultSets=true;" />
+
+   
+
+    
+    
+    <!--基础数据平台-->
+    <add name="SQLConnStringJCXXDBRead" connectionString="server=192.168.1.65\MSSQLSERVER2008;database=WisdomClassed_JYNLSLOverall;user id=sa;password=123;MultipleActiveResultSets=true;" providerName="System.Data.SqlClient" />
+
+   
+
+
+  </connectionStrings>
+  <appSettings>
+    <add key="FileViewAddress" value="http://localhost/FileSave/"/>
+    <add key="webpages:Version" value="2.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="PreserveLoginUrl" value="true" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <!-- 账户密码加密方式(MD5,Clear) -->
+    <add key="PasswordFormat" value="Clear" />
+    <!-- 系统皮肤 -->
+    <add key="Skin" value="Default" />
+    <!--天气接口地址-->
+    <add key="WearthService" value="http://www.weather.com.cn/data/cityinfo/{0}.html" />
+    <!--视频存储路径-->
+    <add key="VideoPath" value="C:\Upload\WindowsUpload\UpLoad\" />
+
+    <!--附件存储路径-->
+    <add key="OnlineClassFileSave" value="E:\FileSave\SIP-ZHZFPT\" />
+    <!--附件浏览路径-->
+    <add key="OnlineClassFileUrl" value="http://localhost/FileSave/SIP-ZHZFPT/" />
+  </appSettings>
+  <system.web>
+
+    <httpRuntime maxRequestLength="524288000" requestValidationMode="2.0" />
+    <compilation debug="true" targetFramework="4.0" />
+    <pages controlRenderingCompatibilityVersion="4.0">
+      <namespaces>
+        <add namespace="System.Web.Helpers" />
+        <add namespace="System.Web.Mvc" />
+        <add namespace="System.Web.Mvc.Ajax" />
+        <add namespace="System.Web.Mvc.Html" />
+        <add namespace="System.Web.Routing" />
+        <add namespace="System.Web.WebPages" />
+      </namespaces>
+    </pages>
+    <authentication mode="Forms">
+      <forms loginUrl="~/Account/Login" timeout="2" cookieless="UseCookies" defaultUrl="~/HomeIndex/MainPage" name="WisdomClassed_SIP" />
+    </authentication>
+
+
+    <!--<identity impersonate="true" userName="ZhouPeng" password="1"/>-->
+  </system.web>
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+    <modules runAllManagedModulesForAllRequests="true" />
+    <handlers>
+      <remove name="ExtensionlessUrlHandler-ISAPI-4.0_32bit" />
+      <remove name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" />
+      <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+      <add name="ExtensionlessUrlHandler-ISAPI-4.0_32bit" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" modules="IsapiModule" scriptProcessor="%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll" preCondition="classicMode,runtimeVersionv4.0,bitness32" responseBufferLimit="0" />
+      <add name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" modules="IsapiModule" scriptProcessor="%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll" preCondition="classicMode,runtimeVersionv4.0,bitness64" responseBufferLimit="0" />
+      <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+    </handlers>
+    <security>
+      <requestFiltering>
+        <requestLimits maxAllowedContentLength="4294967295" />
+      </requestFiltering>
+    </security>
+    <directoryBrowse enabled="true" />
+  </system.webServer>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <system.serviceModel>
+    <bindings />
+    <client />
+  </system.serviceModel>
+  <applicationSettings>
+    <Yookey.WisdomClassed.SIP.Admin.Properties.Settings>
+      <setting name="Yookey_WisdomClassed_SIP_Admin_PictureService_PictureService" serializeAs="String">
+        <value>http://localhost:8088/PictureService.asmx</value>
+      </setting>
+    </Yookey.WisdomClassed.SIP.Admin.Properties.Settings>
+  </applicationSettings>
+</configuration>

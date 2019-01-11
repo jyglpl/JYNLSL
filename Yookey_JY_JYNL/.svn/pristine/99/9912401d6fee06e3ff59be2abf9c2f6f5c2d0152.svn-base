@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>处罚办案</title>
+    @*<link href="@Url.Content("~/Content/Main/css/border.css")" rel="stylesheet" />*@
+    <link href="~/Content/Main/css/border.css" rel="stylesheet" />
+    <link href="~/Content/Main/css/bootstrap.min.css" rel="stylesheet" />
+    @* <link href="@Url.Content("~/Content/Main/css/swiper.min.css")" rel="stylesheet" />*@
+    <link href="~/Content/Main/css/swiper.min.css" rel="stylesheet" />
+</head>
+
+
+<script type="text/javascript">
+    function OpenPunishCase(type) {
+        var url = '';
+        if (type == '00950002') {    //国土
+            url = '@Url.Action("Index", "PenaltyCaseLand")';
+        }
+        else if (type == '00950003') {  //安监
+            url = '@Url.Action("CaseSaftyAnalysisIndex", "PenaltyCaseSafty")';
+        }
+        else if (type == '00950004') {  //渔政
+            url = '@Url.Action("CaseSeaIndex", "PenaltyCaseSea")';
+        }
+        else if (type == '00950005') {  //水利
+            url = '@Url.Action("Index", "PenaltyCaseWater")?type=' + type;
+        }
+        else {
+            url = '@Url.Action("Index", "PenaltyCase")?type=' + type;
+        }
+    location.href = url;
+}
+
+</script>
+
+<body>
+    <div class="caseCon">
+
+        <div class="col-lg-3 caseItem col-md-4">
+            <a href="#" onclick="OpenPunishCase('00950001')">
+                <div class="caseBor">
+                    <div class="caseList">
+                        城市管理
+                        <div class="bgWhite"></div>
+                        <img src="~/Content/Images/tubiao1 (2).png" class="tubiaoIcon">
+                    </div>
+                    <div class="caseBot">城市管理执法办案模块</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 caseItem col-md-4">
+            <a href="#" onclick="OpenPunishCase('00950002')">
+                <div class="caseBor">
+                    <div class="caseList">
+                        国土监察
+                        <div class="bgWhite"></div>
+                        <img src="~/Content/Images/tubiao1 (4).png" class="tubiaoIcon">
+                    </div>
+                    <div class="caseBot">国土监察执法办案模块</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 caseItem col-md-4">
+            <a href="#" onclick="OpenPunishCase('00950003')">
+                <div class="caseBor">
+                    <div class="caseList">
+                        安全生产
+                        <div class="bgWhite"></div>
+                        <img src="~/Content/Images/tubiao1 (1).png" class="tubiaoIcon">
+                    </div>
+                    <div class="caseBot">安全生产执法办案模块</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 caseItem col-md-4">
+            <a href="#" onclick="OpenPunishCase('00950004')">
+                <div class="caseBor">
+                    <div class="caseList">
+                        海洋渔政
+                        <div class="bgWhite"></div>
+                        <img src="~/Content/Images/tubiao1 (5).png" class="tubiaoIcon">
+                    </div>
+                    <div class="caseBot">渔政执法办案模块</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 caseItem col-md-4">
+            <a href="#" onclick="OpenPunishCase('00950005')">
+                <div class="caseBor">
+                    <div class="caseList">
+                        水&nbsp;&nbsp;&nbsp;利
+                        <div class="bgWhite"></div>
+                        <img src="~/Content/Images/tubiao1 (8).png" class="tubiaoIcon">
+                    </div>
+                    <div class="caseBot">水政执法办案模块</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 caseItem col-md-4">
+            <a href="#" onclick="OpenPunishCase('00950006')">
+                <div class="caseBor">
+                    <div class="caseList">
+                        规&nbsp;&nbsp;&nbsp;划
+                        <div class="bgWhite"></div>
+                        <img src="~/Content/Images/tubiao1 (3).png" class="tubiaoIcon">
+                    </div>
+                    <div class="caseBot">规划执法办案模块</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 caseItem col-md-4">
+            <a href="#" onclick="OpenPunishCase('00950007')">
+                <div class="caseBor">
+                    <div class="caseList">
+                        建&nbsp;&nbsp;&nbsp;设
+                        <div class="bgWhite"></div>
+                        <img src="~/Content/Images/tubiao1 (6).png" class="tubiaoIcon">
+                    </div>
+                    <div class="caseBot">建设执法办案模块</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 caseItem col-md-4">
+            <a href="#" onclick="OpenPunishCase('00950008')">
+                <div class="caseBor">
+                    <div class="caseList">
+                        房&nbsp;&nbsp;&nbsp;产
+                        <div class="bgWhite"></div>
+                        <img src="~/Content/Images/tubiao1 (6).png" class="tubiaoIcon">
+                    </div>
+                    <div class="caseBot">房产执法办案模块</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 caseItem col-md-4">
+            <a href="#" onclick="OpenPunishCase('00950009')">
+                <div class="caseBor">
+                    <div class="caseList">
+                        物&nbsp;&nbsp;&nbsp;业
+                        <div class="bgWhite"></div>
+                        <img src="~/Content/Images/tubiao1 (6).png" class="tubiaoIcon">
+                    </div>
+                    <div class="caseBot">物业执法办案模块</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 caseItem col-md-4">
+            <a href="#" onclick="OpenPunishCase('00950010')">
+                <div class="caseBor">
+                    <div class="caseList">
+                        燃&nbsp;&nbsp;&nbsp;气
+                        <div class="bgWhite"></div>
+                        <img src="~/Content/Images/tubiao1 (6).png" class="tubiaoIcon">
+                    </div>
+                    <div class="caseBot">燃气执法办案模块</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 caseItem col-md-4">
+            <a href="#" onclick="OpenPunishCase('00950011')">
+                <div class="caseBor">
+                    <div class="caseList">
+                        园&nbsp;&nbsp;&nbsp;林
+                        <div class="bgWhite"></div>
+                        <img src="~/Content/Images/tubiao1 (9).png" class="tubiaoIcon">
+                    </div>
+                    <div class="caseBot">园林执法办案模块</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 caseItem col-md-4">
+            <a href="#" onclick="OpenPunishCase('00950012')">
+                <div class="caseBor">
+                    <div class="caseList">
+                        供水排水
+                        <div class="bgWhite"></div>
+                        <img src="~/Content/Images/tubiao1 (10).png" class="tubiaoIcon">
+                    </div>
+                    <div class="caseBot">供水排水模块</div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    @*       <div class="caseList clearfixed">
+            <div class="caseItem">
+                <img src="~/Content/Main/images/caseIcon.png" alt="">
+                <div class="caseHead">城市管理</div>
+                <div class="caseText" onclick="location.href='@Url.Action("Index", "PenaltyCase")'" style="cursor:pointer;">案件办理</div>
+                @*<div class="caseText">数据统计</div>
+                <div class="caseText" onclick="location.href='@Url.Action("Index", "PenaltyAnalysis")'" style="cursor:pointer;">数据分析</div>
+                <div class="caseText"></div>*@
+
+    <div class="caseItem">
+        <img src="~/Content/Main/images/caseIcon.png" alt="">
+        <div class="caseHead">国土监察</div>
+        <div class="caseText" onclick="location.href='@Url.Action("Index", "PenaltyCaseLand")'" style="cursor:pointer;">案件办理</div>
+        @*<div class="caseText">数据统计</div>
+                <div class="caseText" onclick="location.href='@Url.Action("CaseLandAnalysisIndex", "PenaltyCaseLand")'" style="cursor:pointer;">数据分析</div>
+                <div class="caseText"></div>*@
+    </div>
+    <div class="caseItem">
+        <img src="~/Content/Main/images/caseIcon.png" alt="">
+        <div class="caseHead">安全生产</div>
+        <div class="caseText">数据同步</div>
+        @*<div class="caseText" onclick="location.href='@Url.Action("CaseSaftyStatisticsIndex", "PenaltyCaseSafty")'" style="cursor:pointer;">数据统计</div>
+                <div class="caseText" onclick="location.href='@Url.Action("CaseSaftyAnalysisIndex", "PenaltyCaseSafty")'" style="cursor:pointer;" >数据分析</div>
+                <div class="caseText"></div>*@
+    </div>
+    <div class="caseItem mr0">
+        <img src="~/Content/Main/images/caseIcon.png" alt="">
+        @*<div class="caseHead">渔政监督</div>
+        <div class="caseText">数据导入</div>*@
+        @*<div class="caseText">数据统计</div>
+                <div class="caseText">数据分析</div>
+                <div class="caseText"></div>*@
+    </div>
+
+
+    @*      <div class="caseItem">
+                <img src="~/Content/Main/images/caseIcon.png" alt="">
+                <div class="caseHead">水 利</div>
+                <div class="caseText">案件办理</div>
+            </div>
+            
+            <div class="caseItem">
+                <img src="~/Content/Main/images/caseIcon.png" alt="">
+                <div class="caseHead">规 划</div>
+                <div class="caseText">案件办理</div>
+            </div>
+            <div class="caseItem">
+                <img src="~/Content/Main/images/caseIcon.png" alt="">
+                <div class="caseHead">建 设</div>
+                <div class="caseText">案件办理</div>
+            </div>
+            
+            <div class="caseItem">
+                <img src="~/Content/Main/images/caseIcon.png" alt="">
+                <div class="caseHead">房 产</div>
+                <div class="caseText">案件办理</div>
+            </div>
+            
+            <div class="caseItem">
+                <img src="~/Content/Main/images/caseIcon.png" alt="">
+                <div class="caseHead">物 业</div>
+                <div class="caseText">案件办理</div>
+            </div>
+            <div class="caseItem">
+                <img src="~/Content/Main/images/caseIcon.png" alt="">
+                <div class="caseHead">燃 气</div>
+                <div class="caseText">案件办理</div>
+            </div>
+             <div class="caseItem">
+                <img src="~/Content/Main/images/caseIcon.png" alt="">
+                <div class="caseHead">园 林</div>
+                <div class="caseText">案件办理</div>
+            </div>
+        </div>*@
+
+    @*<div class="copyright">技术支持:江苏中越科技发展有限公司</div>*@
+    @*<script src='js/jquery-1.9.1.min.js'></script>*@
+    <script src="@Url.Content("~/Content/Main/js/jquery-1.9.1.min.js")"></script>
+</body>
+</html>

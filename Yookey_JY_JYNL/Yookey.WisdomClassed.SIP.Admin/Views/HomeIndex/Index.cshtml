@@ -1,0 +1,267 @@
+﻿@using Yookey.WisdomClassed.SIP.Common
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@(AppConfig.SystemName)</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="content-style-type" content="text/css" />
+    <meta http-equiv="content-script-type" content="text/javascript" />
+    <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico" />
+    <link href="@Url.Content("~/Content/Main/css/index.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Main/css/reset.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Main/css/ModalWindow.css")" rel="stylesheet" />
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/jQuery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/Form.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/modalWindow.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/Main/js/ready.min.js")"></script>
+    <script src="@Url.Content("~/Librarys/learunui-framework.js")"></script>
+    <!--引入弹窗组件start-->
+    <script src="@Url.Content("~/Librarys/lhgdialog/lhgdialog.min.js")"></script>
+    <!--引入弹窗组件end-->
+    <style type="text/css">
+        .Qrcode {
+            margin-top: 14px;
+            margin-left: 24px;
+            opacity: 0;
+        }
+
+        .rightfu:hover .Qrcode {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a class="logo" href="javascript:void(0);" title="综合行政执法">
+            <img alt="综合行政执法" src="~/Content/Main/images/logo.png" />
+        </a>
+        <a class="menu" href="javascript:;" onclick="Logout();" title="安全退出">
+            <img alt="安全退出" src="~/Content/Main/images/close.png" />
+            <span>安全退出</span>
+        </a>
+        <a class="menu" href="javascript:;" title="个人中心">
+            <img alt="个人中心" src="~/Content/Main/images/user.png" />
+            <span>个人中心</span>
+        </a>
+    </div>
+    <div class="bg">
+        <div class="banner"></div>
+    </div>
+    <div class="system">
+        <div class="rightfu" style="cursor: pointer;">
+            <span>政务通应用</span>
+            <div class="Qrcode">
+                <img style="width: 100px; height: 100px;" src="~/Content/Main/images/zwt.png" />
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="rightfu2">
+            <a href="http://ecitizen.sipac.gov.cn/" target="_blank">居民通应用</a>
+        </div>
+
+        <div class="div-nav" style="margin: 0 auto;">
+            <ul>
+                <li class="green" id="Tab1">
+                    @*<a href="javascript:;" title="综合执法业务处理应用" class="icon fbjcz"></a>
+                    <span><a onclick="AddTabMenu(1)" title="执法业务处理">执法业务处理</a></span>*@
+                </li>
+                <li class="yellow" id="Tab2">
+                    @*<a href="javascript:;" title="综合执法日常管理应用" class="icon xzzf"></a>
+                    <span><a onclick="AddTabMenu(2)" title="执法日常管理">执法日常管理</a></span>*@
+                </li>
+                <li class="red" id="Tab3">
+                    @*<a href="javascript:void(0);" title="综合执法日常办公应用" class="icon srsz"></a>
+                    <span><a onclick="AddTabMenu(3)" title="执法日常办公">执法日常办公</a></span>*@
+                </li>
+                <li class="blue li-last" id="Tab4">
+                    @* <a href="javascript:void(0);" title="综合执法一张图监管应用" class="icon zhgl"></a>
+                    <span><a href="@Url.Action("PremapIndex", "HomeIndex")" title="一张图监管">一张图监管</a></span>
+                    <div style="display: none;">
+                        <dl>
+                            <dd class="blank"><a href="@Url.Action("PremapIndex", "HomeIndex")" onclick="SST()">事前审批一张图</a></dd>
+                            <dd class="blank"><a href="@Url.Action("PremapIndex", "HomeIndex")">事中监管一张图</a></dd>
+                            <dd class="blank"><a href="@Url.Action("PremapIndex", "HomeIndex")">事后执法一张图</a></dd>
+                            <dd class="blank"><a href="@Url.Action("PremapIndex", "HomeIndex")">综合指挥调度</a></dd>
+                            <dd class="blank"><a href="@Url.Action("PremapIndex", "HomeIndex")">视频资源整合展示</a></dd>
+                        </dl>
+                    </div>*@
+                </li>
+                <li class="blue li-last applist">
+                    <a href="javascript:void(0);" title="移动执法APP" class="icon jcxx"></a>
+                    <span style="display: block;"><a href="javascript:void(0);" title="移动执法APP" style="display: inline;">移动执法APP</a></span>
+                    <div style="display: none;">
+                        <dl class="appDown">
+                            <dd class="blank appDown1"><a id="" href="javascript:void(0);" title="IOS">IOS</a></dd>
+                            <dd class="blank appDown2"><a id="" href="javascript:;" title="Android">Android</a></dd>
+                        </dl>
+                    </div>
+                    <table style="display: none;" class="iphoneShow">
+                        <tr>
+                            <td>扫描二维码下载苹果手机app</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img style="width: 100px; height: 100px;" alt="执法通二维码" src="~/Content/Main/images/zwt.png" /></td>
+                        </tr>
+                    </table>
+                    <table style="display: none;" class="andriodShow">
+                        <tr>
+                            <td>扫描二维码下载安卓手机app</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img style="width: 100px; height: 100px;" alt="执法通二维码" src="~/Content/Main/images/zwt.png" /></td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        <span>江苏中越科技发展有限公司</span>
+        <span class="support">技术支持</span>
+    </div>
+    <input name="hUserName" type="hidden" id="hUserName" />
+    <input name="hPassword" type="hidden" id="hPassword" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetAccordionMenu();
+        })
+
+        //导航一级菜单
+        var accordionJson = "";
+        function GetAccordionMenu() {
+            var html = "";
+            var htmlf = "";
+            var htmls = "";
+            var htmlt = "";
+            $.ajax({
+                type: 'post',
+                dataType: "text",
+                //async: false,
+                url: "@Url.Action("LoadAccordionMenu")",
+                data: { para: "para" },
+                success: function (data) {
+                    accordionJson = eval("(" + data + ")");
+                    accordJson = eval("(" + data + ")");
+                    $.each(accordionJson, function (i) {
+                        if (accordionJson[i].ModuleId == '0001') {
+                            html += "<a href=\"javascript:void(0);\" class=\"icon fbjcz\"></a>"
+                            html += "<span><a onclick=\"AddTabMenu(" + accordionJson[i].ModuleId + ")\">" + accordionJson[i].FullName + "</a></span>"
+                            html += "<div style=\"display: none;\">";
+                            html += "<dl>"
+                            $.each(accordJson, function (j) {
+                                if (accordJson[j].ParentId == accordionJson[i].ModuleId) {
+                                    html += "<dd class=\"blank\"><a href=\"javascript:void(0);\" onclick=\"AddTabMenu('" + accordJson[j].ModuleId + "');\">" + accordJson[j].FullName + "</a></dd>"
+                                }
+                            });
+                            html += "</dl>"
+                            html += " </div>";
+                        }
+                        if (accordionJson[i].ModuleId == '0002') {
+                            htmlf += "<a href=\"javascript:void(0);\" class=\"icon xzzf\"></a>"
+                            htmlf += "<span><a onclick=\"AddTabMenu(" + accordionJson[i].ModuleId + ")\">" + accordionJson[i].FullName + "</a></span>"
+                            htmlf += "<div style=\"display: none;\">";
+                            htmlf += "<dl>"
+                            $.each(accordJson, function (j) {
+                                if (accordJson[j].ParentId == accordionJson[i].ModuleId) {
+                                    htmlf += "<dd class=\"blank\"><a href=\"javascript:void(0);\" onclick=\"AddTabMenu('" + accordJson[j].ModuleId + "');\">" + accordJson[j].FullName + "</a></dd>"
+                                }
+                            });
+                            htmlf += "</dl>"
+                            htmlf += " </div>";
+                        }
+                        if (accordionJson[i].ModuleId == '0003') {
+                            htmls += "<a href=\"javascript:void(0);\" class=\"icon srsz\"></a>"
+                            htmls += "<span><a onclick=\"AddTabMenu(" + accordionJson[i].ModuleId + ")\">" + accordionJson[i].FullName + "</a></span>"
+                            htmls += "<div style=\"display: none;\">";
+                            htmls += "<dl>"
+                            $.each(accordJson, function (j) {
+                                if (accordJson[j].ParentId == accordionJson[i].ModuleId) {
+                                    htmls += "<dd class=\"blank\"><a href=\"javascript:void(0);\" onclick=\"AddTabMenu('" + accordJson[j].ModuleId + "');\">" + accordJson[j].FullName + "</a></dd>"
+                                }
+                            });
+                            htmls += "</dl>"
+                            htmls += " </div>";
+                        }
+                        if (accordionJson[i].ModuleId == '0004') {
+                            htmlt += "<a href=\"javascript:void(0);\" class=\"icon zhgl\"></a>"
+                            htmlt += "<span><a onclick=\"AddTabMenu(" + accordionJson[i].ModuleId + ")\">" + accordionJson[i].FullName + "</a></span>"
+                            htmlt += "<div style=\"display: none;\">";
+                            htmlt += "<dl>"
+                            $.each(accordJson, function (j) {
+                                if (accordJson[j].ParentId == accordionJson[i].ModuleId) {
+                                    htmlt += "<dd class=\"blank\"><a href=\"javascript:void(0);\" onclick=\"AddTabMenu('" + accordJson[j].ModuleId + "');\">" + accordJson[j].FullName + "</a></dd>"
+                                }
+                            });
+                            htmlt += "</dl>"
+                            htmlt += " </div>";
+                        }
+                    })
+                    $("#Tab1").append(html);
+                    $("#Tab2").append(htmlf);
+                    $("#Tab3").append(htmls);
+                    $("#Tab4").append(htmlt);
+                }
+            });
+        }
+
+        function AddTabMenu(obj) {
+            window.location.href = "@Url.Action("Main", "HomeIndex")?Source=" + obj;
+        }
+    </script>
+
+    <script type="text/javascript">
+        $('.appDown1 a').click(function () {
+            $('.iphoneShow').show();
+            $('.andriodShow').hide();
+        });
+        $('.appDown2 a').click(function () {
+            $('.andriodShow').show();
+            $('.iphoneShow').hide();
+        });
+        $('.applist').hover(function () {
+
+        }, function () {
+            $('.iphoneShow').hide();
+            $('.andriodShow').hide();
+        });
+
+        function Logout() {
+            var msg = "<div class='ui_alert'>确认要退出系统？</div>";
+            top.$.dialog({
+                id: "confirmDialog",
+                lock: true,
+                icon: "hits.png",
+                content: msg,
+                title: "系统提示",
+                button: [
+                    {
+                        name: '退出',
+                        callback: function () {
+                            Loading(true, "正在退出系统...");
+                            window.setTimeout(function () {
+                                window.opener = null;
+                                var wind = window.open('', '_self');
+                                wind.close();
+                            }, 200);
+                        }
+                    },
+                    {
+                        name: '切换账号',
+                        callback: function () {
+                            Loading(true, "正在注销系统...");
+                            window.setTimeout(function () {
+                                window.location.href = RootPath() + '/Account/Login';
+                            }, 200);
+                        }
+                    },
+                    {
+                        name: '取消'
+                    }
+                ]
+            });
+        }
+    </script>
+</body>
+</html>

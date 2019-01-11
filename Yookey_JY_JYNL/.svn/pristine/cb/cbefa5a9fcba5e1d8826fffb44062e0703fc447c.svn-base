@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Newtonsoft.Json;
+using Yookey.WisdomClassed.SIP.Admin.Models;
+using Yookey.WisdomClassed.SIP.Business.OA;
+using Yookey.WisdomClassed.SIP.DataAccess.OA;
+using Yookey.WisdomClassed.SIP.Model.Base;
+using Yookey.WisdomClassed.SIP.Model.OA;
+
+namespace Yookey.WisdomClassed.SIP.Admin.Controllers.JYNLSL
+{
+    public class OAController : Controller
+    {
+        //
+        // GET: /OA/
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+
+        /// <summary>
+        /// 获取所有的
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        public string GetAllDoc(string limit,string page)
+        {
+            var entity = new DocumentNotificationEntity()
+            {
+                page = new Page()
+                {
+                    PageSize = Convert.ToInt32(limit),
+                    CurrentPage = Convert.ToInt32(page)
+                }
+            };
+
+
+            var data =  new DocumentNotificationBll().GetAllResult(entity);
+
+        
+
+            var result = new LayTableModel<DocumentNotificationEntity>
+            {
+                code = 0,
+                msg = "成功",
+                count = 11,
+                data = data
+            };
+            string temp = JsonConvert.SerializeObject(result);
+            return JsonConvert.SerializeObject(result);
+
+        }
+
+    }
+}

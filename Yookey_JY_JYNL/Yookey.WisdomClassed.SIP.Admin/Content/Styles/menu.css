@@ -1,0 +1,35 @@
+﻿.menuList{float:left; clear:both; height:100%; width:99%;margin: 0 auto; margin-top:5px;margin-bottom: 5px;border:solid 1px #85b6df;} 
+.menuList .menu_tit{ width:100%;  height:32px; width:100%; float:left; clear:both;background: url("../Images/block_top_bg.png") no-repeat scroll 0 -32px transparent;background-position: 0 -32px;background-repeat: repeat-x; border-bottom:solid 1px #85b6df;}
+.menuList .menu_tit h3{ float: left;font-size: 12px;font-weight: bold;line-height: 16px; margin-left: 13px; padding:11px 0;color: #393939; }
+.menuList .menu_tit h3 input{ margin-right:3px; margin-top:-2px;}
+.menuList .menu_content{padding-top:10px; float:left; clear:both; width:100%;}
+
+/*.menuList .menu_content .secondactionlist{clear:both; height:auto; overflow:hidden; padding-left:15px;background:url("../Images/tableLine.jpg") no-repeat scroll left bottom transparent;}
+.menuList .menu_content .secondactionlist .thirdlist{font-size:12px; font-family:"宋体"; font-weight:bold; padding-bottom:2px; width:100%;}
+.menuList .menu_content input{ margin-right:3px; margin-top:-2px;}
+.menuList .menu_content label{ line-height:16px; margin-left:3px;}
+
+.secondactionlist ul{ font-size:12px; font-family:"宋体"; font-weight:bold; padding-bottom:2px; width:100%;}
+
+.thirdactionlist{clear:both; height:auto; overflow:hidden;}
+.thirdactionlist dl dt{ font-size:12px; font-family:"宋体"; font-weight:bold; padding-bottom:2px; width:100%;}
+.thirdactionlist dl dd{float:left; width:33%; font-size:12px; font-family:"宋体"; line-height:20px; overflow:hidden;}*/
+
+
+/*.menuList{float:left; clear:both; height:100%; width:100%; margin-top:10px;border:solid 1px #004962;} 
+.menuList .menu_tit{ width:100%;  height:36px; width:100%; float:left; clear:both;border-bottom:solid 1px #004962;}
+.menuList .menu_tit h3{ float: left;font-size: 14px;font-weight: bold;line-height: 16px; margin-left: 13px;color: #307d93;width: 100%;}
+.menuList .menu_tit h3 input{ float: left;}
+.menuList .menu_tit h3 label{ float: left;margin-left: 10px;}
+.menuList .menu_content{ padding:10px 0; float:left; clear:both; width:100%;} */
+
+.secondactionlist{ padding-bottom: 5px;}
+.thirdactionlist{ padding-bottom: 5px;}
+.menuList .menu_content dl{ clear:both; height:auto; overflow:hidden; padding-left:15px;}
+.menuList .menu_content dl dt{ font-size:12px; font-family:"宋体"; font-weight:bold; padding-bottom:5px; width:100%;overflow: hidden;}
+.menuList .menu_content dl dd{ float:left; width:33%; font-size:12px; font-family:"宋体"; line-height:20px; overflow:hidden;margin-left: 25px;}
+.menuList .menu_content dl dd label{ float: left;margin-left: 10px;}
+.menuList .menu_content dl dd input{ float: left;}
+.menuList .menu_content dl dt label{ float: left;margin-left: 10px;}
+.menuList .menu_content dl dt input{ float: left;}
+.menuList_box{ padding:0 42px 0 32px;}
